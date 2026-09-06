@@ -98,6 +98,7 @@ const ExampleSwitcher = memo(function ExampleSwitcher({
               if (v) onSelect(Number(v));
             }}
             aria-label="Demo switcher"
+            className="flex-wrap"
           >
             {examples.map((ex, i) => (
               <ToggleGroupItem key={ex.title} value={String(i)}>
