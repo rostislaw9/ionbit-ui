@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.13] — 2026-09-07
+
 ### Added
 
 - **Mode Switcher component:** dark/light theme toggle built on the

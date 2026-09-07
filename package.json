@@ -1,6 +1,6 @@
 {
   "name": "ionbit-ui-root",
-  "version": "0.1.12",
+  "version": "0.1.13",
   "private": true,
   "type": "module",
   "description": "Ionbit UI — a production-quality React UI component system with a distinctive digital visual language and integrated motion/interaction primitives.",
