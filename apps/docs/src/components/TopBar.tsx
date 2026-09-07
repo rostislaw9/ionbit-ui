@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { Button, ModeSwitcher, Separator } from "@ionbit-ui/ui";
 
 import { useTheme } from "../hooks/useTheme";
+import { GitHubStarButton } from "./GitHubStarButton";
 import { Logo } from "./Logo";
 import { MenuButton } from "./MenuButton";
 import { navItems } from "./navItems";
@@ -33,6 +34,12 @@ export function TopBar() {
         <div className="flex w-full items-center justify-between px-6 py-3 lg:py-4">
           {/* Left: logo + nav links (desktop) / burger (mobile) */}
           <div className="flex items-center gap-5">
+            <div className="lg:hidden">
+              <MenuButton
+                open={menuOpen}
+                onClick={() => setMenuOpen((v) => !v)}
+              />
+            </div>
             <Logo size="sm" className="hidden lg:flex" />
             <Separator orientation="vertical" className="hidden lg:block" />
             <nav className="hidden items-center gap-1 lg:flex">
@@ -44,16 +51,12 @@ export function TopBar() {
                 </Button>
               ))}
             </nav>
-            <div className="lg:hidden">
-              <MenuButton
-                open={menuOpen}
-                onClick={() => setMenuOpen((v) => !v)}
-              />
-            </div>
           </div>
 
-          {/* Right: mode switcher */}
+          {/* Right: GitHub star button + mode switcher */}
           <div className="flex items-center gap-2">
+            <GitHubStarButton />
+            <Separator orientation="vertical" />
             <ModeSwitcher mode={mode} onModeChange={setMode} />
           </div>
         </div>

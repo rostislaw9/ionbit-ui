@@ -645,6 +645,7 @@ __metadata:
     "@ionbit-ui/motion": "workspace:*"
     "@ionbit-ui/tokens": "workspace:*"
     "@ionbit-ui/ui": "workspace:*"
+    "@primer/octicons-react": "npm:^19.33.0"
     "@tailwindcss/vite": "npm:^4.3.3"
     "@types/react": "npm:^18.3.11"
     "@types/react-dom": "npm:^18.3.0"
@@ -861,6 +862,15 @@ __metadata:
     "@emnapi/core": ^1.7.1 || ^2.0.0-alpha.4
     "@emnapi/runtime": ^1.7.1 || ^2.0.0-alpha.4
   checksum: 10c0/6da0a4bf9df79e9abfb3e3d462f6a5d42889be39426040038c9dd5925865585d7dbd06dd439c2ffc20f49ef2751412da5bd748cfb3c5b049142d72c0550f6f79
+  languageName: node
+  linkType: hard
+
+"@primer/octicons-react@npm:^19.33.0":
+  version: 19.33.0
+  resolution: "@primer/octicons-react@npm:19.33.0"
+  peerDependencies:
+    react: ">=16.3"
+  checksum: 10c0/ca836073625f67a203b900a5f9f606d0598a32ee6c58e75e0ec6a0df400ec6bebac9ff4642c74e389ab35bf2876331014be5a1833ab01bf1630a79bb3e777ea3
   languageName: node
   linkType: hard
 

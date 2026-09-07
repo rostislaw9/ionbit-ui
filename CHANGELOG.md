@@ -36,6 +36,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   now wrap the "New" badge/dot in a `Pulse` motion primitive.
 - **Glowing logo:** the docs app logo is wrapped in a `Glow`
   primitive for a subtle accent halo.
+- **GitHub star button:** the docs top bar now includes a ghost Button
+  linking to the GitHub repo with the official `MarkGithubIcon` from
+  `@primer/octicons-react` and a live star count fetched from the
+  GitHub API.
 
 ### Changed
 
