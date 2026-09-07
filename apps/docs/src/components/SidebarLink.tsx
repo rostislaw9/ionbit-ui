@@ -1,6 +1,7 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
+import { Pulse } from "@ionbit-ui/motion";
 import { Button, cn } from "@ionbit-ui/ui";
 
 const activeClass =
@@ -30,10 +31,12 @@ export const SidebarLink = forwardRef<
         <span className="flex items-center gap-1.5">
           {label}
           {isNew && (
-            <span
-              aria-label="New"
-              className="size-1.5 rounded-full bg-accent"
-            />
+            <Pulse>
+              <span
+                aria-label="New"
+                className="size-1.5 rounded-full bg-accent"
+              />
+            </Pulse>
           )}
         </span>
       </Link>

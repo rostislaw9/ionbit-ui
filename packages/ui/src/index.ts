@@ -100,6 +100,9 @@ export type { NativeSelectProps } from "./components/native-select/index";
 export { Spinner, spinnerVariants } from "./components/spinner/index";
 export type { SpinnerProps } from "./components/spinner/index";
 
+export { ModeSwitcher } from "./components/mode-switcher/index";
+export type { Mode, ModeSwitcherProps } from "./components/mode-switcher/index";
+
 export { Textarea } from "./components/textarea/index";
 export type { TextareaProps } from "./components/textarea/index";
 

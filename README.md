@@ -95,6 +95,12 @@ Ionbit UI uses a semantic token system mapped to Tailwind v4 utilities:
 ```
 
 Override any token in your `:root` or `.dark` / `.light` selectors to retheme.
+Both dark and light themes are shipped — add the `ModeSwitcher` component
+for a toggle with a radial View Transition reveal animation:
+
+```bash
+npx ionbit-ui@latest add mode-switcher
+```
 
 ## Requirements
 

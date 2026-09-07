@@ -184,7 +184,11 @@ export function UtilDetailPage() {
         {/* Hero demo */}
         {util.heroDemo && (
           <Reveal direction="up" delay={60}>
-            <section id="preview" className="flex scroll-mt-24 flex-col gap-3">
+            <section
+              id="preview"
+              key={util.name}
+              className="flex scroll-mt-24 flex-col gap-3"
+            >
               <PreviewCodeBlock
                 preview={util.heroDemo.render()}
                 code={util.heroDemo.code}

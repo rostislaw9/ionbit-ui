@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Reveal } from "@ionbit-ui/motion";
+import { Pulse, Reveal } from "@ionbit-ui/motion";
 import {
   Badge,
   Button,
@@ -93,7 +93,11 @@ export function ComponentsPage() {
                     <h3 className="text-sm font-semibold text-foreground transition-colors duration-[var(--duration-fast)] group-hover:text-accent">
                       {comp.label}
                     </h3>
-                    {comp.isNew && <Badge variant="accent">New</Badge>}
+                    {comp.isNew && (
+                      <Pulse intensity={0.3}>
+                        <Badge variant="accent">New</Badge>
+                      </Pulse>
+                    )}
                   </div>
                   <span className="font-mono text-[10px] tracking-wider text-foreground-subtle uppercase">
                     {comp.category}

@@ -7,6 +7,59 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Mode Switcher component:** dark/light theme toggle built on the
+  Button component with a radial fullscreen reveal animation powered
+  by the View Transitions API. Controlled `mode`/`onModeChange` props,
+  inherits all Button variants and sizes (defaults to `ghost`/`icon`).
+  Falls back to an instant toggle in browsers without
+  `document.startViewTransition`. Respects `prefers-reduced-motion`.
+  Registry dependency on `button`; setup step shows the required
+  `::view-transition-*` CSS.
+- **Light mode support:** design tokens now include a full `.light`
+  variant with adjusted foreground, border, accent, and semantic
+  colors for optimal contrast on light backgrounds. The docs app
+  defaults to the user's system preference and persists the choice
+  to `localStorage`.
+- **No-FOUC theme bootstrap:** inline script in `index.html` applies
+  the stored/system theme class before first paint.
+- **Shared theme store:** `useTheme` hook rewritten with
+  `useSyncExternalStore` so multiple ModeSwitcher instances on the
+  same page stay in sync. Also syncs across browser tabs via
+  `storage` events.
+- **Shiki dual-theme code highlighting:** code blocks now switch
+  between GitHub Dark and GitHub Light themes based on the active
+  mode. Light-mode token colors use the `--shiki-light` CSS variables
+  emitted by Shiki's dual-theme output.
+- **Pulsing "New" indicators:** sidebar links and component cards
+  now wrap the "New" badge/dot in a `Pulse` motion primitive.
+- **Glowing logo:** the docs app logo is wrapped in a `Glow`
+  primitive for a subtle accent halo.
+
+### Changed
+
+- **Wildcard Vite aliases:** `apps/docs/vite.config.ts` now uses
+  regex aliases for `@/components/ui/<name>`,
+  `@/components/motion/<name>`, and `@ionbit-ui/ui/<name>` so adding
+  a component does not require editing the config.
+- **Dynamic UI package entries:** `packages/ui/vite.config.ts` now
+  scans `src/components/` at build time to generate lib entries
+  automatically. New component directories are picked up without
+  config edits.
+- **PmCommandBlock background:** changed from `bg-background` to
+  `bg-surface` to match all other code block containers.
+- **ExampleSwitcher extracted:** moved from inline definition in
+  `ComponentDetailPage` to its own file
+  `apps/docs/src/components/ExampleSwitcher.tsx`.
+- **Preview code block state reset:** added `key` props to
+  `ExampleSwitcher` and the util hero demo section so the
+  `codeExpanded` state resets when navigating between components or
+  utilities.
+- **Light token contrast:** darkened light-mode foreground, border,
+  accent, and semantic color tokens for better contrast against the
+  off-white surface.
+
 ## [0.1.12] — 2026-09-05
 
 ### Added

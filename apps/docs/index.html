@@ -1,10 +1,31 @@
 <!doctype html>
-<html lang="en" class="dark">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ionbit_ui - React UI system</title>
+    <script>
+      // No-FOUC theme bootstrap — applies the stored/system theme class
+      // before the first paint to avoid a flash of the wrong color scheme.
+      (function () {
+        try {
+          var stored = localStorage.getItem("ionbit-ui-theme");
+          var prefersLight = window.matchMedia(
+            "(prefers-color-scheme: light)",
+          ).matches;
+          var mode =
+            stored === "dark" || stored === "light"
+              ? stored
+              : prefersLight
+                ? "light"
+                : "dark";
+          document.documentElement.classList.add(mode);
+        } catch (e) {
+          document.documentElement.classList.add("dark");
+        }
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

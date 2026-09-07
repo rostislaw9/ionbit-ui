@@ -156,6 +156,21 @@
       ]
     },
     {
+      "name": "mode-switcher",
+      "type": "registry:ui",
+      "title": "Mode Switcher",
+      "description": "Dark/light theme toggle with a radial fullscreen reveal animation powered by the View Transitions API.",
+      "dependencies": ["lucide-react"],
+      "registryDependencies": ["button"],
+      "files": [
+        {
+          "path": "packages/ui/src/components/mode-switcher/mode-switcher.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/mode-switcher.tsx"
+        }
+      ]
+    },
+    {
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",

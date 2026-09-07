@@ -20,6 +20,7 @@ import { inputMeta } from "./input";
 import { inputGroupMeta } from "./input-group";
 import { labelMeta } from "./label";
 import { magneticMeta } from "./magnetic";
+import { modeSwitcherMeta } from "./mode-switcher";
 import { nativeSelectMeta } from "./native-select";
 import { paginationMeta } from "./pagination";
 import { popoverMeta } from "./popover";
@@ -63,6 +64,7 @@ export const componentRegistry: ComponentMeta[] = [
   inputGroupMeta,
   labelMeta,
   magneticMeta,
+  modeSwitcherMeta,
   nativeSelectMeta,
   paginationMeta,
   popoverMeta,

@@ -156,6 +156,15 @@ export const componentManifest: ManifestEntry[] = [
     exampleCount: 2,
   },
   {
+    name: "mode-switcher",
+    label: "Mode Switcher",
+    category: "Feedback",
+    description:
+      "Dark/light theme toggle with a radial fullscreen reveal animation.",
+    exampleCount: 1,
+    isNew: true,
+  },
+  {
     name: "native-select",
     label: "Native Select",
     category: "Form",

@@ -7,6 +7,36 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /*
+ * View Transitions — radial theme reveal.
+ * The Mode Switcher component calls document.startViewTransition() and
+ * animates ::view-transition-new(root) with a clip-path circle that
+ * grows from the button's center. These rules disable the default
+ * cross-fade so the radial clip is the only visible animation, and
+ * ensure the new view sits on top of the old one.
+ */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-new(root) {
+  z-index: 1;
+}
+
+::view-transition-old(root) {
+  z-index: 0;
+}
+
+/* Respect reduced-motion: skip the radial animation entirely. */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/*
  * Ionbit UI tokens + base layer.
  * In a real consumer app this is the only required "config":
  *   @import "@ionbit-ui/tokens/css";
@@ -43,6 +73,19 @@
  * Shiki generates <pre><code> with inline styles. We override the
  * background to a darker surface and add CSS-based line numbers.
  */
+
+/*
+ * Shiki dual-theme support.
+ * Shiki outputs dark colors as the default inline styles and light
+ * variants as --shiki-light / --shiki-light-bg CSS variables. In light
+ * mode we swap the token colors to use the light variables. The
+ * background is left to var(--surface) via the rules below so it
+ * matches the surrounding container and copy button.
+ */
+.light .shiki,
+.light .shiki span {
+  color: var(--shiki-light) !important;
+}
 
 /* Base styles for Shiki code blocks with padding + surface background.
  * Line numbers are opt-in via .shiki-lines; .shiki-nolines omits them.

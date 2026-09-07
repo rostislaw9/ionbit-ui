@@ -40,7 +40,7 @@ export function PmCommandBlock({ copyText, codeHtml }: PmCommandBlockProps) {
   };
 
   return (
-    <div className="overflow-hidden rounded-lg border border-border bg-background">
+    <div className="overflow-hidden rounded-lg border border-border bg-surface">
       <Tabs
         value={activePm}
         onValueChange={handlePmChange}

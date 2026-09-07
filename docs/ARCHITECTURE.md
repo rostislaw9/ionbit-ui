@@ -310,11 +310,12 @@ This gives us:
   `text-accent`, etc. as first-class Tailwind utilities.
 - Retheming = overriding `--background`, `--accent`, etc. in the
   consumer's CSS. No Tailwind config edit required.
-- Dark mode = adding `.dark` to a root element. The docs app defines
-  `@custom-variant dark` in its `index.css` so `@variant dark` in
-  utilities resolves via the `.dark` class instead of
-  `prefers-color-scheme`. Consumers must add the same directive to
-  their global CSS if they use class-based dark mode.
+- Dark mode = adding `.dark` to a root element. Light mode = adding
+  `.light`. The docs app defines `@custom-variant dark` in its
+  `index.css` so `@variant dark` in utilities resolves via the `.dark`
+  class instead of `prefers-color-scheme`. Consumers must add the same
+  directive to their global CSS if they use class-based dark mode. The
+  tokens package ships both `.dark` and `.light` variable sets.
 - Non-Tailwind consumers can still `var(--accent)` directly.
 
 ### 5.3 Component source uses only semantic tokens
@@ -826,8 +827,11 @@ The docs app uses a two-tier registry pattern to keep chunks small:
 
 Build-time syntax highlighting is handled by `vite-plugin-shiki.ts`,
 which scans the registry directories at build time and produces
-highlighted HTML via Shiki (GitHub light/dark themes). Highlighted
-output is exposed through virtual modules:
+highlighted HTML via Shiki with dual themes (GitHub Dark Default and
+GitHub Light Default). Shiki emits dark colors as inline defaults and
+light variants as `--shiki-light` CSS variables; the docs app's
+`index.css` swaps to the light variables when the `.light` class is
+active. Highlighted output is exposed through virtual modules:
 `virtual:highlighted-inline`, `virtual:highlighted-sources-map`, and
 `virtual:highlighted-source/<name>`.
 

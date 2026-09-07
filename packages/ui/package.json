@@ -87,6 +87,11 @@
       "import": "./dist/label.js",
       "require": "./dist/label.cjs"
     },
+    "./mode-switcher": {
+      "types": "./dist/mode-switcher.d.ts",
+      "import": "./dist/mode-switcher.js",
+      "require": "./dist/mode-switcher.cjs"
+    },
     "./native-select": {
       "types": "./dist/native-select.d.ts",
       "import": "./dist/native-select.js",

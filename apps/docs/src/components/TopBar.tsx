@@ -1,20 +1,21 @@
 import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
-import { Button, Separator } from "@ionbit-ui/ui";
+import { Button, ModeSwitcher, Separator } from "@ionbit-ui/ui";
 
+import { useTheme } from "../hooks/useTheme";
 import { Logo } from "./Logo";
 import { MenuButton } from "./MenuButton";
 import { navItems } from "./navItems";
 import { Sidebar } from "./Sidebar";
 
-/** Top navigation bar. Desktop: nav links on the left, right side
- * reserved for future features (search, theme switcher). Mobile:
- * burger menu button that opens a fullscreen overlay with the
- * docs sidebar content. */
+/** Top navigation bar. Desktop: nav links on the left, mode switcher
+ * on the right. Mobile: burger menu button that opens a fullscreen
+ * overlay with the docs sidebar content. */
 export function TopBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const closeMenu = useCallback(() => setMenuOpen(false), []);
+  const { mode, setMode } = useTheme();
 
   // Lock body scroll when menu is open.
   useEffect(() => {
@@ -31,7 +32,7 @@ export function TopBar() {
       <header className="sticky top-0 z-30 border-b border-border/40 bg-surface/80 backdrop-blur-md">
         <div className="flex w-full items-center justify-between px-6 py-3 lg:py-4">
           {/* Left: logo + nav links (desktop) / burger (mobile) */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-5">
             <Logo size="sm" className="hidden lg:flex" />
             <Separator orientation="vertical" className="hidden lg:block" />
             <nav className="hidden items-center gap-1 lg:flex">
@@ -51,9 +52,9 @@ export function TopBar() {
             </div>
           </div>
 
-          {/* Right: reserved for future features */}
+          {/* Right: mode switcher */}
           <div className="flex items-center gap-2">
-            {/* TODO: search, theme switcher, etc. */}
+            <ModeSwitcher mode={mode} onModeChange={setMode} />
           </div>
         </div>
       </header>

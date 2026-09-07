@@ -349,9 +349,14 @@ At minimum:
 
 ## 18. Dark and Light Themes
 
-The initial design should prioritize dark mode.
+Both dark and light modes are first-class. The tokens package ships
+`.dark` and `.light` variable sets with adjusted foreground, border,
+accent, and semantic colors for optimal contrast in each mode.
 
-However, the architecture should not make light mode impossible.
+The docs app includes a Mode Switcher component that toggles the
+`.dark`/`.light` class on `<html>` with a radial View Transition
+reveal animation. Theme state is persisted to `localStorage` with a
+system-preference fallback and a no-FOUC inline bootstrap script.
 
 Do not hardcode colors directly into individual components.
 
