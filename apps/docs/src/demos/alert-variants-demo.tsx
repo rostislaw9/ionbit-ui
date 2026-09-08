@@ -1,8 +1,8 @@
 import {
-  AlertCircle,
   AlertTriangle,
   CheckCircle2,
   Info,
+  Sparkles,
   XCircle,
 } from "lucide-react";
 
@@ -19,8 +19,14 @@ export function AlertVariantsDemo() {
       </Alert>
       <Alert variant="accent">
         <AlertTitle>
-          <AlertCircle />
+          <Sparkles />
           Accent
+        </AlertTitle>
+      </Alert>
+      <Alert variant="info">
+        <AlertTitle>
+          <Info />
+          Info
         </AlertTitle>
       </Alert>
       <Alert variant="success">

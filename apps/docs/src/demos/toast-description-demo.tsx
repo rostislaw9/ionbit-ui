@@ -15,6 +15,7 @@ export function ToastDescriptionDemo() {
         With description
       </Button>
       <Button
+        className="text-success"
         variant="secondary"
         onClick={() =>
           toast.success("Deploy complete", {
@@ -25,7 +26,8 @@ export function ToastDescriptionDemo() {
         Success with description
       </Button>
       <Button
-        variant="destructive"
+        className="text-error"
+        variant="secondary"
         onClick={() =>
           toast.error("Deploy failed", {
             description: "Check the build logs and try again",

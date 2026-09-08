@@ -3,6 +3,9 @@ import type { ComponentMeta } from "./types";
 import { AlertDescriptionDemo } from "../../demos/alert-description-demo";
 import AlertDescriptionDemoSource from "../../demos/alert-description-demo.tsx?highlighted";
 import AlertDescriptionDemoRaw from "../../demos/alert-description-demo.tsx?raw";
+import { AlertGlowDemo } from "../../demos/alert-glow-demo";
+import AlertGlowDemoSource from "../../demos/alert-glow-demo.tsx?highlighted";
+import AlertGlowDemoRaw from "../../demos/alert-glow-demo.tsx?raw";
 import { AlertSoftDemo } from "../../demos/alert-soft-demo";
 import AlertSoftDemoSource from "../../demos/alert-soft-demo.tsx?highlighted";
 import AlertSoftDemoRaw from "../../demos/alert-soft-demo.tsx?raw";
@@ -19,7 +22,7 @@ export const alertMeta: ComponentMeta = {
     {
       title: "Variants",
       description:
-        "Default, accent, success, warning, and error alerts with icons and titles.",
+        "Default, accent, info, success, warning, and error alerts with icons and titles.",
       code: AlertVariantsDemoSource,
       rawCode: AlertVariantsDemoRaw,
       render: () => <AlertVariantsDemo />,
@@ -27,7 +30,7 @@ export const alertMeta: ComponentMeta = {
     {
       title: "Soft",
       description:
-        "Solid background with contrasting text — accent, success, warning, and error.",
+        "Subtle surface background with colored text — accent, info, success, warning, and error.",
       code: AlertSoftDemoSource,
       rawCode: AlertSoftDemoRaw,
       render: () => <AlertSoftDemo />,
@@ -38,6 +41,14 @@ export const alertMeta: ComponentMeta = {
       code: AlertDescriptionDemoSource,
       rawCode: AlertDescriptionDemoRaw,
       render: () => <AlertDescriptionDemo />,
+    },
+    {
+      title: "With Glow",
+      description:
+        "Wrap alerts in a Glow primitive for a colored halo on hover.",
+      code: AlertGlowDemoSource,
+      rawCode: AlertGlowDemoRaw,
+      render: () => <AlertGlowDemo />,
     },
   ],
   usageImport: `import {
@@ -53,14 +64,14 @@ export const alertMeta: ComponentMeta = {
   props: [
     {
       name: "variant",
-      type: '"default" | "accent" | "success" | "warning" | "error" | "accent-soft" | "success-soft" | "warning-soft" | "error-soft"',
+      type: '"default" | "accent" | "info" | "success" | "warning" | "error" | "accent-soft" | "info-soft" | "success-soft" | "warning-soft" | "error-soft"',
       default: '"default"',
       description: "Visual variant of the alert.",
     },
   ],
   accessibility: [
     'Error and warning variants set role="alert" automatically.',
-    'Default, accent, and success variants set role="status".',
+    'Default, accent, info, and success variants set role="status".',
     "Role can be overridden via the role prop.",
   ],
   radixBased: false,

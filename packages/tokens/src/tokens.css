@@ -34,18 +34,18 @@
   /* Borders — barely visible at rest, stronger on interaction. */
   --border: oklch(1 0 0 / 0.08);
   --border-strong: oklch(1 0 0 / 0.14);
-  --border-accent: oklch(0.78 0.16 238 / 0.5);
+  --border-accent: oklch(0.77 0.17 241 / 0.5);
   --border-error: oklch(0.62 0.24 5 / 0.5);
   --border-success: oklch(0.78 0.15 155 / 0.5);
   --border-warning: oklch(0.82 0.15 80 / 0.5);
   --border-info: oklch(0.82 0.14 230 / 0.5);
 
-  /* Accent — electric cyan/blue family. Configurable. */
-  --accent: oklch(0.78 0.17 238);
-  --accent-hover: oklch(0.82 0.18 238);
-  --accent-muted: oklch(0.78 0.17 238 / 0.16);
-  --accent-subtle: oklch(0.78 0.17 238 / 0.08);
-  --accent-foreground: oklch(0.1 0.02 238);
+  /* Accent — deep blue family. Configurable. */
+  --accent: oklch(0.77 0.17 241);
+  --accent-hover: oklch(0.81 0.18 241);
+  --accent-muted: oklch(0.77 0.17 241 / 0.16);
+  --accent-subtle: oklch(0.77 0.17 241 / 0.08);
+  --accent-foreground: oklch(0.1 0.02 241);
 
   /* Semantic status — restrained, not neon. */
   --success: oklch(0.78 0.15 155);
@@ -70,7 +70,7 @@
   --info-foreground: oklch(0.1 0.03 230);
 
   /* Focus ring — accent-tinted, visible but not loud. */
-  --ring: oklch(0.82 0.16 238 / 0.55);
+  --ring: oklch(0.81 0.18 241 / 0.55);
 
   /* Typography */
   --font-sans:
@@ -168,16 +168,16 @@
 
   --border: oklch(0 0 0 / 0.1);
   --border-strong: oklch(0 0 0 / 0.16);
-  --border-accent: oklch(0.62 0.18 238 / 0.5);
+  --border-accent: oklch(0.55 0.2 241 / 0.5);
   --border-error: oklch(0.52 0.24 5 / 0.5);
   --border-success: oklch(0.58 0.16 155 / 0.5);
   --border-warning: oklch(0.62 0.17 80 / 0.5);
   --border-info: oklch(0.58 0.16 238 / 0.5);
 
-  --accent: oklch(0.56 0.2 238);
-  --accent-hover: oklch(0.5 0.21 238);
-  --accent-muted: oklch(0.56 0.2 238 / 0.14);
-  --accent-subtle: oklch(0.56 0.2 238 / 0.07);
+  --accent: oklch(0.55 0.2 241);
+  --accent-hover: oklch(0.49 0.21 241);
+  --accent-muted: oklch(0.55 0.2 241 / 0.14);
+  --accent-subtle: oklch(0.55 0.2 241 / 0.07);
   --accent-foreground: oklch(0.99 0 0);
 
   --success: oklch(0.56 0.16 155);
@@ -201,7 +201,7 @@
   --info-subtle: oklch(0.56 0.16 238 / 0.07);
   --info-foreground: oklch(0.99 0 0);
 
-  --ring: oklch(0.62 0.18 238 / 0.5);
+  --ring: oklch(0.59 0.19 241 / 0.5);
 
   --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / 0.06);
   --shadow-sm:

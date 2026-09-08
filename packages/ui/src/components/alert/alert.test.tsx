@@ -21,6 +21,20 @@ describe("Alert", () => {
     expect(alert.className).toContain("bg-error");
   });
 
+  it("applies info variant classes", () => {
+    const { container } = render(<Alert variant="info">Test</Alert>);
+    const alert = container.firstChild as HTMLElement;
+    expect(alert.className).toContain("bg-info");
+    expect(alert.className).toContain("text-info");
+  });
+
+  it("applies info-soft variant classes", () => {
+    const { container } = render(<Alert variant="info-soft">Test</Alert>);
+    const alert = container.firstChild as HTMLElement;
+    expect(alert.className).toContain("bg-surface");
+    expect(alert.className).toContain("text-info");
+  });
+
   it("applies soft variant classes", () => {
     const { container } = render(<Alert variant="success-soft">Test</Alert>);
     const alert = container.firstChild as HTMLElement;

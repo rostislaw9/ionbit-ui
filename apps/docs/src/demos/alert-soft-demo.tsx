@@ -1,7 +1,8 @@
 import {
-  AlertCircle,
   AlertTriangle,
   CheckCircle2,
+  Info,
+  Sparkles,
   XCircle,
 } from "lucide-react";
 
@@ -12,8 +13,14 @@ export function AlertSoftDemo() {
     <div className="flex w-full max-w-sm flex-col gap-3">
       <Alert variant="accent-soft">
         <AlertTitle>
-          <AlertCircle />
+          <Sparkles />
           Accent
+        </AlertTitle>
+      </Alert>
+      <Alert variant="info-soft">
+        <AlertTitle>
+          <Info />
+          Info
         </AlertTitle>
       </Alert>
       <Alert variant="success-soft">

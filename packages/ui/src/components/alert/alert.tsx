@@ -11,10 +11,12 @@ export const alertVariants = cva(
       variant: {
         default: "border-border bg-surface text-foreground",
         accent: "border-border-accent bg-accent-subtle text-foreground [&_svg]:text-accent",
+        info: "border-border-info bg-info-subtle text-foreground [&_svg]:text-info",
         success: "border-border-success bg-success-muted text-foreground [&_svg]:text-success",
         warning: "border-border-warning bg-warning-muted text-foreground [&_svg]:text-warning",
         error: "border-border-error bg-error-muted text-foreground [&_svg]:text-error",
         "accent-soft": "border-border bg-surface text-accent [&_svg]:text-accent",
+        "info-soft": "border-border bg-surface text-info [&_svg]:text-info",
         "success-soft": "border-border bg-surface text-success [&_svg]:text-success",
         "warning-soft": "border-border bg-surface text-warning [&_svg]:text-warning",
         "error-soft": "border-border bg-surface text-error [&_svg]:text-error",

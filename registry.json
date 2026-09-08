@@ -448,8 +448,13 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Small status indicator with semantic variants (default, accent, success, warning, error, outline).",
-      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+      "description": "Small status indicator with soft and text variants.",
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority",
+        "clsx",
+        "tailwind-merge"
+      ],
       "registryDependencies": ["cn"],
       "files": [
         {

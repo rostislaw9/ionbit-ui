@@ -35,14 +35,14 @@ export const componentManifest: ManifestEntry[] = [
     label: "Avatar",
     category: "Layout",
     description: "Avatar with image and fallback support.",
-    exampleCount: 3,
+    exampleCount: 4,
   },
   {
     name: "badge",
     label: "Badge",
     category: "Feedback",
-    description: "Small status indicator with semantic variants.",
-    exampleCount: 2,
+    description: "Small status indicator with soft and text variants.",
+    exampleCount: 8,
   },
   {
     name: "breadcrumb",

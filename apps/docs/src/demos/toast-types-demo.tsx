@@ -15,6 +15,7 @@ export function ToastTypesDemo() {
         Default
       </Button>
       <Button
+        className="text-info"
         variant="secondary"
         onClick={() =>
           toast.info("Info", {
@@ -25,6 +26,7 @@ export function ToastTypesDemo() {
         Info
       </Button>
       <Button
+        className="text-success"
         variant="secondary"
         onClick={() =>
           toast.success("Success!", {
@@ -35,6 +37,7 @@ export function ToastTypesDemo() {
         Success
       </Button>
       <Button
+        className="text-warning"
         variant="secondary"
         onClick={() =>
           toast.warning("Warning", {
@@ -45,7 +48,8 @@ export function ToastTypesDemo() {
         Warning
       </Button>
       <Button
-        variant="destructive"
+        className="text-error"
+        variant="secondary"
         onClick={() =>
           toast.error("Error", {
             description: "Something went wrong",

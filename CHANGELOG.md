@@ -7,6 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Badge `asChild` support:** Badge now accepts `asChild` to render as
+  a Slot, enabling link badges and other element composition via
+  `@radix-ui/react-slot`.
+- **Badge soft and text variants:** each semantic color (accent, success,
+  warning, error, info) now has `-soft` (muted background, no border) and
+  `-text` (colored text only) variants alongside the default muted-with-border
+  style. `ghost` variant added for transparent badges with hover background.
+- **Badge demos:** With Spinner, Link (asChild), Custom Colors, Soft, Text,
+  and With Glow demos added to the docs.
+- **Alert `info` variant:** `info` and `info-soft` variants added with
+  `--info-*` token colors and `role="status"`.
+- **Alert With Glow demo:** alerts wrapped in the Glow primitive for a
+  colored halo on hover.
+
+### Changed
+
+- **Accent token color:** shifted slightly darker and toward deeper blue
+  (hue 238 to 241) to differentiate from the `info` color (hue 230).
+- **Badge height:** fixed at 20px (`h-5` with `leading-none`) and reduced
+  horizontal padding to `px-1.5` for tighter icon spacing.
+- **Badge `default` variant:** now uses `bg-surface-hover` with no border,
+  making it visually distinct from `outline`.
+
 ## [0.1.13] — 2026-09-07
 
 ### Added
