@@ -65,6 +65,6 @@ export const accordionMeta: ComponentMeta = {
     "Keyboard navigation via Arrow keys",
     "Home/End to jump to first/last item",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

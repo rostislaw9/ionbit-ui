@@ -38,6 +38,6 @@ export const scrollAreaMeta: ComponentMeta = {
     "Radix preserves native scroll behavior",
     "Keyboard scrollable",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

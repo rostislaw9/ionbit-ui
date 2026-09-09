@@ -48,16 +48,11 @@ const LANG_MAP: Record<string, string> = {
   ".css": "css",
 };
 
-/** Cursor CSS — shared static code block. */
-const CURSOR_CSS = `@layer base {
-  button:not(:disabled),
-  [role="button"]:not(:disabled) {
-    cursor: pointer;
-  }
-}`;
-
 /** Package manager `add` commands for radix-ui dependency installation. */
-const PM_ADD = pmInstallCmd("radix-ui");
+const PM_ADD_RADIX = pmInstallCmd("radix-ui");
+
+/** Package manager `add` commands for @base-ui/react dependency installation. */
+const PM_ADD_BASE_UI = pmInstallCmd("@base-ui/react");
 
 /** Package manager install commands for ionbit-ui (used by util pages). */
 const PM_INSTALL_IONBIT = pmInstallCmd("ionbit-ui");
@@ -178,6 +173,7 @@ function extractUsageFields(filePath: string): {
   usageCode?: string;
   sectionCodes: string[];
   setup?: { filename: string; code: string };
+  infoBlocks: { code: string; lang: string }[];
 } {
   const content = readFileSync(filePath, "utf-8");
   const nameMatch = content.match(/name:\s*"([^"]+)"/);
@@ -208,7 +204,40 @@ function extractUsageFields(filePath: string): {
           code: unescapeTemplateLiteral(setupCodeMatch[1]),
         }
       : undefined;
-  return { name, usageImport, usageCode, sectionCodes, setup };
+  // Extract infoBlocks: [ { code, lang? }, ... ]
+  // Use \], to avoid stopping at ] inside code template literals (e.g. [open, setOpen]).
+  // Only extract code and lang (description is a ReactNode, not a string).
+  // For each code, search the surrounding block territory (between the previous
+  // code and the next code) for an optional lang field.
+  const infoBlocks: { code: string; lang: string }[] = [];
+  const infoBlocksMatch = content.match(/infoBlocks:\s*\[([\s\S]*?)\],/);
+  if (infoBlocksMatch) {
+    const blockSection = infoBlocksMatch[1];
+    const codeRegex = /code:\s*`([\s\S]*?)`/g;
+    const codePositions: { start: number; end: number; code: string }[] = [];
+    let codeMatch;
+    while ((codeMatch = codeRegex.exec(blockSection)) !== null) {
+      codePositions.push({
+        start: codeMatch.index,
+        end: codeMatch.index + codeMatch[0].length,
+        code: unescapeTemplateLiteral(codeMatch[1]),
+      });
+    }
+    for (let i = 0; i < codePositions.length; i++) {
+      const territoryStart = i > 0 ? codePositions[i - 1]!.end : 0;
+      const territoryEnd =
+        i + 1 < codePositions.length
+          ? codePositions[i + 1]!.start
+          : blockSection.length;
+      const territory = blockSection.slice(territoryStart, territoryEnd);
+      const langMatch = territory.match(/lang:\s*"([^"]*)"/);
+      infoBlocks.push({
+        code: codePositions[i]!.code,
+        lang: langMatch ? langMatch[1]! : "tsx",
+      });
+    }
+  }
+  return { name, usageImport, usageCode, sectionCodes, setup, infoBlocks };
 }
 
 /** Scan a registry directory and return extracted fields for each file. */
@@ -227,7 +256,7 @@ function scanRegistryDir(dir: string) {
  *    file at build time and returns highlighted HTML.
  * 2. Virtual module: `virtual:highlighted-inline` — a JSON map of
  *    component name → { importHtml, codeHtml, install } for usage examples
- *    and install commands, plus `__cursor__` for the cursor CSS block.
+ *    and install commands.
  * 3. Per-component virtual module: `virtual:highlighted-source/<name>` —
  *    returns `{ sourceFiles, depInstall }` for the manual install tab.
  *    Dynamically imported by InstallBlock only when the Manual tab is
@@ -304,10 +333,14 @@ export function shikiHighlightPlugin(): Plugin {
           }
         > = {};
 
-        // Components: usage import/code + install commands + setup
-        for (const { name, usageImport, usageCode, setup } of scanRegistryDir(
-          componentDir,
-        )) {
+        // Components: usage import/code + install commands + setup + info blocks
+        for (const {
+          name,
+          usageImport,
+          usageCode,
+          setup,
+          infoBlocks,
+        } of scanRegistryDir(componentDir)) {
           if (!name) continue;
           const entry: {
             importHtml?: string;
@@ -333,14 +366,20 @@ export function shikiHighlightPlugin(): Plugin {
             );
           }
           result[name] = entry;
+          // Pre-highlight info block codes
+          for (let i = 0; i < infoBlocks.length; i++) {
+            result[`__info_${name}_${i}__`] = {
+              codeHtml: await highlight(
+                infoBlocks[i]!.code,
+                infoBlocks[i]!.lang,
+              ),
+              rawCode: infoBlocks[i]!.code,
+              install: {},
+            };
+          }
         }
 
-        // Static blocks: cursor CSS, util install commands, util CSS import
-        result["__cursor__"] = {
-          codeHtml: await highlight(CURSOR_CSS, "css"),
-          rawCode: CURSOR_CSS,
-          install: {},
-        };
+        // Static blocks: util install commands, util CSS import
         const utilInstall: Record<string, string> = {};
         for (const pm of PACKAGE_MANAGERS) {
           utilInstall[pm.id] = await highlight(
@@ -469,10 +508,18 @@ export function shikiHighlightPlugin(): Plugin {
           }
         }
 
-        // Generate radix-ui dependency install commands.
+        // Generate dependency install commands based on the component's
+        // dependencies. Radix UI components install `radix-ui`; Base UI
+        // components install `@base-ui/react`.
+        const deps = item?.dependencies ?? [];
+        const pmAdd =
+          deps.some((d) => d.startsWith("@base-ui/")) &&
+          !deps.some((d) => d.startsWith("@radix-ui/"))
+            ? PM_ADD_BASE_UI
+            : PM_ADD_RADIX;
         const depInstall: Record<string, string> = {};
         for (const pm of PACKAGE_MANAGERS) {
-          depInstall[pm.id] = await highlight(PM_ADD[pm.id]!, "bash");
+          depInstall[pm.id] = await highlight(pmAdd[pm.id]!, "bash");
         }
 
         const payload = { sourceFiles, depInstall };

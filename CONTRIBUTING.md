@@ -74,7 +74,7 @@ yarn registry:build   # build the source registry
 
    Example: `feat: add Copy Page button to component detail page`
 
-   See `docs/AGENT_RULES.md` §26 for the full specification.
+   See `docs/AGENTS.md` §26 for the full specification.
 
 6. Open a pull request describing what changed and why.
 
@@ -112,7 +112,7 @@ yarn registry:build   # build the source registry
    `apps/docs/src/components/registry/index.ts`. Follow the normalized
    field order: `name`, `label`, `description`, `category`, `examples`,
    `usageImport`, `usageCode`, `composition`, `props`, `accessibility`,
-   `radixBased`, `about`, `primitives`, `isNew`.
+   `basedOn`, `about`, `primitives`, `isNew`.
    - `about` — optional attribution or upstream-credit note
      (e.g. "Built on Sonner by Emil Kowalski").
 7. Create a demo and documentation in the docs app.

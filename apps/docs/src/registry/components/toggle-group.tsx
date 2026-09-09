@@ -157,6 +157,6 @@ export const toggleGroupMeta: ComponentMeta = {
     "Keyboard navigation via Tab, Space, and Enter",
     "Use aria-label to label the group",
   ],
-  radixBased: true,
-  isNew: true,
+  basedOn: "radix",
+  isNew: false,
 };

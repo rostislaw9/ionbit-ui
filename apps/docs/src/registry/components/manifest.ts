@@ -66,7 +66,6 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Groups related buttons with separators, text, and nesting support.",
     exampleCount: 11,
-    isNew: true,
   },
   {
     name: "card",
@@ -81,7 +80,6 @@ export const componentManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Placeholder for empty states with structured subcomponents.",
     exampleCount: 2,
-    isNew: true,
   },
   {
     name: "checkbox",
@@ -89,6 +87,23 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Binary selector with indeterminate state.",
     exampleCount: 1,
+  },
+  {
+    name: "collapsible",
+    label: "Collapsible",
+    category: "Layout",
+    description:
+      "Single expand/collapse section. Simpler than Accordion for one toggle.",
+    exampleCount: 4,
+    isNew: true,
+  },
+  {
+    name: "combobox",
+    label: "Combobox",
+    category: "Form",
+    description: "Searchable dropdown composing Popover, Command, and Button.",
+    exampleCount: 10,
+    isNew: true,
   },
   {
     name: "command",
@@ -146,7 +161,6 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Groups an input with leading or trailing addons, buttons, and text.",
     exampleCount: 4,
-    isNew: true,
   },
   {
     name: "label",
@@ -170,7 +184,6 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Styled native HTML select with custom chevron.",
     exampleCount: 2,
-    isNew: true,
   },
   {
     name: "magnetic",
@@ -263,7 +276,6 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Animated loading indicator icon for buttons and async states.",
     exampleCount: 2,
-    isNew: true,
   },
   {
     name: "slider",
@@ -321,7 +333,6 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "A two-state button that can be either on or off.",
     exampleCount: 5,
-    isNew: true,
   },
   {
     name: "toggle-group",
@@ -330,7 +341,6 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "A set of two-state buttons with single or multiple selection.",
     exampleCount: 6,
-    isNew: true,
   },
   {
     name: "tooltip",

@@ -67,6 +67,6 @@ export const sliderMeta: ComponentMeta = {
     "Arrow keys to adjust",
     "Keyboard focusable",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

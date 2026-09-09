@@ -117,6 +117,6 @@ export const badgeMeta: ComponentMeta = {
     "Include an icon or text label that describes the status.",
     "When using asChild with a link, the child element provides its own semantics.",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

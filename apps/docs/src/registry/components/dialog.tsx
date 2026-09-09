@@ -75,6 +75,6 @@ export const dialogMeta: ComponentMeta = {
     "aria-labelledby and aria-describedby on content",
     "Scroll lock when open",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

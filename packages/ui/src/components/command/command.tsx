@@ -30,7 +30,7 @@ export const Command = forwardRef<HTMLDivElement, CommandProps>(
       <CommandPrimitive
         ref={ref}
         // prettier-ignore
-        className={cn("flex size-full flex-col overflow-hidden bg-surface-elevated text-foreground", className)}
+        className={cn("flex size-full flex-col overflow-hidden rounded-md bg-surface-elevated text-foreground", className)}
         {...props}
       />
     );
@@ -115,7 +115,7 @@ export const CommandList = forwardRef<HTMLDivElement, CommandListProps>(
       <CommandPrimitive.List
         ref={ref}
         // prettier-ignore
-        className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden p-1", className)}
+        className={cn("max-h-[300px] overflow-y-auto overflow-x-hidden p-0.5", className)}
         {...props}
       />
     );

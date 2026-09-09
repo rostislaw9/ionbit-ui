@@ -139,6 +139,6 @@ export const contextMenuMeta: ComponentMeta = {
     "Arrow keys navigate items",
     "Escape closes the menu",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

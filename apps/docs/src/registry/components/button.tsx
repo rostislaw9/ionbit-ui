@@ -1,5 +1,6 @@
 import type { ComponentMeta } from "./types";
 
+import { InlineCode } from "../../components/InlineCode";
 import { ButtonIconVariantsDemo } from "../../demos/button-icon-variants-demo";
 import ButtonIconVariantsDemoSource from "../../demos/button-icon-variants-demo.tsx?highlighted";
 import ButtonIconVariantsDemoRaw from "../../demos/button-icon-variants-demo.tsx?raw";
@@ -63,7 +64,44 @@ export const buttonMeta: ComponentMeta = {
   ],
   usageImport: `import { Button } from "@/components/ui/button";`,
   usageCode: `<Button variant="primary" size="md">Click me</Button>`,
-  cursor: true,
+  infoBlocks: [
+    {
+      title: "Cursor",
+      description: (
+        <>
+          <p>
+            Tailwind v4{" "}
+            <a
+              href="https://tailwindcss.com/docs/upgrade-guide#buttons-use-the-default-cursor"
+              className="text-accent hover:underline"
+              target="_blank"
+              rel="noreferrer"
+            >
+              switched
+            </a>{" "}
+            from <InlineCode>cursor: pointer</InlineCode> to{" "}
+            <InlineCode>cursor: default</InlineCode> for the button component.
+          </p>
+          <p>
+            If you want to keep the <InlineCode>cursor: pointer</InlineCode>{" "}
+            behavior, add the following code to your CSS file:
+          </p>
+          <p>
+            You can also enable this during project setup with{" "}
+            <InlineCode>npx ionbit-ui init --pointer</InlineCode>.
+          </p>
+        </>
+      ),
+      lang: "css",
+      filename: "src/index.css",
+      code: `@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}`,
+    },
+  ],
   props: [
     {
       name: "variant",
@@ -90,6 +128,6 @@ export const buttonMeta: ComponentMeta = {
     "Disabled state prevents interaction and reduces opacity",
     "Icon-only buttons require an aria-label",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

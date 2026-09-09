@@ -24,6 +24,7 @@ import {
 } from "../hooks/useScrollSpy";
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
 import { getPrevNext } from "../lib/getPrevNext";
+import { slugify } from "../lib/slugify";
 import { utilToMarkdown } from "../lib/util-to-markdown";
 
 // Lazy-load util registry files.
@@ -50,10 +51,6 @@ function findMeta(mod: Record<string, unknown>): UtilMeta | null {
     }
   }
   return null;
-}
-
-function toSectionId(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, "-");
 }
 
 export function UtilDetailPage() {
@@ -95,7 +92,7 @@ export function UtilDetailPage() {
     if (util.classTable || util.usageCode)
       result.push({ id: "usage", label: "Usage" });
     for (const section of util.sections) {
-      result.push({ id: toSectionId(section.title), label: section.title });
+      result.push({ id: slugify(section.title), label: section.title });
     }
     return result;
   }, [util]);

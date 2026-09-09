@@ -61,6 +61,5 @@ export const nativeSelectMeta: ComponentMeta = {
     "Associate a <Label htmlFor> or use aria-label for screen reader support.",
     "The invalid prop sets aria-invalid on the underlying select element.",
   ],
-  radixBased: false,
-  isNew: true,
+  isNew: false,
 };

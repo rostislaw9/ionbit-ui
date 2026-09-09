@@ -77,17 +77,23 @@ export const commandMeta: ComponentMeta = {
   </Command>
 </CommandDialog>`,
   composition: [
-    "Command",
-    "├── CommandInput",
-    "└── CommandList",
-    "    ├── CommandGroup",
-    "    │   ├── CommandItem",
-    "    │   └── CommandShortcut",
-    "    ├── CommandEmpty",
-    "    └── CommandSeparator",
-    "",
-    "CommandDialog",
-    "└── Command (wrapped in Dialog)",
+    {
+      heading: "Command",
+      tree: [
+        "Command",
+        "├── CommandInput",
+        "└── CommandList",
+        "    ├── CommandGroup",
+        "    │   ├── CommandItem",
+        "    │   └── CommandShortcut",
+        "    ├── CommandEmpty",
+        "    └── CommandSeparator",
+      ],
+    },
+    {
+      heading: "Command Dialog",
+      tree: ["CommandDialog", "└── Command (wrapped in Dialog)"],
+    },
   ],
   props: [
     {
@@ -112,6 +118,6 @@ export const commandMeta: ComponentMeta = {
     "Keyboard navigable items",
     "Escape closes the palette",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

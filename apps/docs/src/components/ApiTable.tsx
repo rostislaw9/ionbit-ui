@@ -11,11 +11,11 @@ import {
 
 const headClass =
   "h-auto px-4 py-2 font-mono text-xs uppercase tracking-wider text-foreground-subtle";
-const cellBase = "px-4 py-2 font-mono text-xs leading-loose";
+const cellBase = "px-4 py-2 font-mono text-xs leading-loose whitespace-normal";
 
 export function ApiTable({ props }: { props: PropMeta[] }) {
   return (
-    <div className="overflow-hidden rounded-lg border border-border">
+    <div className="overflow-x-auto rounded-lg border border-border">
       <Table className="text-sm">
         <TableHeader>
           <TableRow className="border-border bg-surface hover:bg-surface">
@@ -34,13 +34,13 @@ export function ApiTable({ props }: { props: PropMeta[] }) {
               <TableCell className={`${cellBase} text-accent`}>
                 {prop.name}
               </TableCell>
-              <TableCell className={`${cellBase} text-foreground`}>
+              <TableCell className={`${cellBase} max-w-md text-foreground`}>
                 {prop.type}
               </TableCell>
               <TableCell className={`${cellBase} text-foreground-muted`}>
                 {prop.default ?? "—"}
               </TableCell>
-              <TableCell className={`${cellBase} text-foreground`}>
+              <TableCell className={`${cellBase} max-w-md text-foreground`}>
                 {prop.description}
               </TableCell>
             </TableRow>

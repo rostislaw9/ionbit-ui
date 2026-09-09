@@ -78,6 +78,6 @@ export const selectMeta: ComponentMeta = {
     "Type-ahead support",
     "Escape closes",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

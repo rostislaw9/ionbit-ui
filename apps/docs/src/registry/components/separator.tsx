@@ -49,6 +49,6 @@ export const separatorMeta: ComponentMeta = {
     "When decorative is true, the separator is not focusable.",
     "Use decorative=false for separators that divide content sections.",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

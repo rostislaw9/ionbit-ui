@@ -72,6 +72,5 @@ import { Pulse } from "@/components/motion/pulse";`,
     "Status is communicated by color/shape, not motion",
     "Use sparingly — only for genuinely active states",
   ],
-  radixBased: false,
   isNew: false,
 };

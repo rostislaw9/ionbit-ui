@@ -5,13 +5,10 @@ import type {
 
 import highlightedInline from "virtual:highlighted-inline";
 
+import { slugify } from "../lib/slugify";
 import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
 import { PreviewCodeBlock } from "./PreviewCodeBlock";
 import { SectionHeading } from "./SectionHeading";
-
-function toSectionId(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, "-");
-}
 
 export function UtilSections({
   utilName,
@@ -52,7 +49,7 @@ export function UtilSections({
     });
 
   return sections.map((section) => {
-    const sectionId = toSectionId(section.title);
+    const sectionId = slugify(section.title);
     return (
       <section
         key={section.title}

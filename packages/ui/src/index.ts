@@ -278,6 +278,55 @@ export type {
   AccordionTriggerProps,
 } from "./components/accordion/index";
 
+export {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "./components/collapsible/index";
+export type {
+  CollapsibleContentProps,
+  CollapsibleProps,
+  CollapsibleTriggerProps,
+} from "./components/collapsible/index";
+
+export {
+  Combobox,
+  ComboboxInput,
+  ComboboxTrigger,
+  ComboboxClear,
+  ComboboxContent,
+  ComboboxList,
+  ComboboxItem,
+  ComboboxEmpty,
+  ComboboxGroup,
+  ComboboxLabel,
+  ComboboxCollection,
+  ComboboxSeparator,
+  ComboboxChips,
+  ComboboxChipsInput,
+  ComboboxChip,
+  ComboboxValue,
+  useComboboxAnchor,
+} from "./components/combobox/index";
+export type {
+  ComboboxRootProps,
+  ComboboxInputProps,
+  ComboboxTriggerProps,
+  ComboboxClearProps,
+  ComboboxContentProps,
+  ComboboxListProps,
+  ComboboxItemProps,
+  ComboboxEmptyProps,
+  ComboboxGroupProps,
+  ComboboxLabelProps,
+  ComboboxCollectionProps,
+  ComboboxSeparatorProps,
+  ComboboxChipsProps,
+  ComboboxChipsInputProps,
+  ComboboxChipProps,
+  ComboboxValueProps,
+} from "./components/combobox/index";
+
 export { toast, Toaster } from "./components/toast/index";
 export type { IonBitToasterProps } from "./components/toast/index";
 

@@ -39,7 +39,7 @@ export function ButtonSizesDemo() {
       </div>
       <div className="flex items-center gap-2">
         <Button size="xl" variant="outline">
-          XL
+          XLarge
         </Button>
         <Button size="icon-xl" variant="outline" aria-label="Add">
           <Plus />

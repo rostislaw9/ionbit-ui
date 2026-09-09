@@ -54,6 +54,6 @@ import { Tooltip } from "@/components/ui/tooltip";`,
     "Keyboard focus triggers tooltip",
     "Screen readers announce content",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

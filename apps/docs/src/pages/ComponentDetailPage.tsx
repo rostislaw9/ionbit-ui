@@ -1,8 +1,8 @@
 import type { ComponentMeta } from "../registry/components/types";
 
 import { ArrowLeft } from "lucide-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 
 import { Reveal } from "@ionbit-ui/motion";
 import { Badge, Button } from "@ionbit-ui/ui";
@@ -10,8 +10,8 @@ import { Badge, Button } from "@ionbit-ui/ui";
 import { AccessibilityList } from "../components/AccessibilityList";
 import { ApiTable } from "../components/ApiTable";
 import { CompositionSection } from "../components/CompositionSection";
-import { CursorSection } from "../components/CursorSection";
 import { ExampleSwitcher } from "../components/ExampleSwitcher";
+import { InfoBlocksSection } from "../components/InfoBlocksSection";
 import { InstallBlock } from "../components/InstallBlock";
 import { OnThisPage } from "../components/OnThisPage";
 import { PageActions } from "../components/PageActions";
@@ -29,6 +29,8 @@ import {
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
 import { componentToMarkdown } from "../lib/component-to-markdown";
 import { getPrevNext } from "../lib/getPrevNext";
+import { scrollToSection } from "../lib/scroll-to-section";
+import { slugify } from "../lib/slugify";
 
 // Lazy-load registry files — only the requested component's metadata
 // (with demos, ?raw, ?highlighted) is imported, not the entire registry.
@@ -61,12 +63,10 @@ function findMeta(mod: Record<string, unknown>): ComponentMeta | null {
   return null;
 }
 
-function toSectionId(name: string): string {
-  return name.toLowerCase().replace(/\s+/g, "-");
-}
-
 export function ComponentDetailPage() {
   const { name } = useParams<{ name: string }>();
+  const navigate = useNavigate();
+  const { pathname, search } = useLocation();
   const [comp, setComp] = useState<ComponentMeta | null>(null);
   const [notFound, setNotFound] = useState(false);
   const [activeExample, setActiveExample] = useState(0);
@@ -108,9 +108,34 @@ export function ComponentDetailPage() {
     result.push({ id: "installation", label: "Installation" });
     if (comp?.usageImport && comp.usageCode)
       result.push({ id: "usage", label: "Usage" });
-    if (comp?.cursor) result.push({ id: "cursor", label: "Cursor" });
-    if (comp?.composition)
-      result.push({ id: "composition", label: "Composition" });
+    if (comp?.infoBlocks) {
+      for (const block of comp.infoBlocks) {
+        result.push({
+          id: slugify(block.title),
+          label: block.title,
+        });
+      }
+    }
+    if (comp?.composition) {
+      const subsections =
+        Array.isArray(comp.composition) &&
+        comp.composition.length > 0 &&
+        typeof comp.composition[0] === "object" &&
+        comp.composition[0] !== null &&
+        "tree" in comp.composition[0]
+          ? (comp.composition as { heading?: string }[])
+              .filter((block) => block.heading)
+              .map((block) => ({
+                id: `composition-${slugify(block.heading!)}`,
+                label: block.heading!,
+              }))
+          : undefined;
+      result.push({
+        id: "composition",
+        label: "Composition",
+        subsections,
+      });
+    }
     if (comp?.apiReference) result.push({ id: "api", label: "API Reference" });
     if (comp?.props && comp.props.length > 0)
       result.push({ id: "api", label: "API Reference" });
@@ -118,7 +143,7 @@ export function ComponentDetailPage() {
       result.push({ id: "accessibility", label: "Accessibility" });
     if (comp?.primitives) {
       for (const primitive of comp.primitives) {
-        const id = `primitive-${toSectionId(primitive.name)}`;
+        const id = `primitive-${slugify(primitive.name)}`;
         result.push({ id, label: `${primitive.name} API` });
       }
     }
@@ -134,6 +159,46 @@ export function ComponentDetailPage() {
   );
 
   useScrollToAnchor(sectionIds);
+
+  // Handle demo anchors (e.g. #demo-basic) — switch to the matching example
+  // and scroll to the preview section. Skips when the change came from a
+  // tab click (signaled via skipDemoScrollRef) to avoid flash/scroll on
+  // plain navigation.
+  const skipDemoScrollRef = useRef(false);
+  const { hash } = useLocation();
+  useEffect(() => {
+    if (!comp || !hash) return;
+    const id = hash.slice(1);
+    if (!id.startsWith("demo-")) return;
+    if (skipDemoScrollRef.current) {
+      skipDemoScrollRef.current = false;
+      return;
+    }
+    const slug = id.slice(5);
+    const index = comp.examples.findIndex((ex) => slugify(ex.title) === slug);
+    if (index >= 0) {
+      setActiveExample(index);
+      requestAnimationFrame(() => scrollToSection("preview"));
+    }
+  }, [hash, comp]);
+
+  // Update the URL hash when the active example changes via tab click,
+  // without scrolling (replace, don't push to history).
+  const handleSelectExample = useCallback(
+    (index: number) => {
+      setActiveExample(index);
+      if (comp && comp.examples.length > 1) {
+        const example = comp.examples[index];
+        if (example) {
+          skipDemoScrollRef.current = true;
+          navigate(`${pathname}${search}#demo-${slugify(example.title)}`, {
+            replace: true,
+          });
+        }
+      }
+    },
+    [comp, navigate, pathname, search],
+  );
 
   if (notFound) {
     return (
@@ -185,12 +250,12 @@ export function ComponentDetailPage() {
                     >
                       {comp.category}
                     </Badge>
-                    {comp.radixBased && (
+                    {comp.basedOn && (
                       <Badge
                         variant="outline"
                         className="font-mono text-[10px] tracking-wider uppercase"
                       >
-                        Radix
+                        {comp.basedOn === "radix" ? "Radix UI" : "Base UI"}
                       </Badge>
                     )}
                   </div>
@@ -218,7 +283,7 @@ export function ComponentDetailPage() {
           key={comp.name}
           examples={comp.examples}
           activeExample={activeExample}
-          onSelect={setActiveExample}
+          onSelect={handleSelectExample}
         />
 
         {comp.about && (
@@ -238,7 +303,7 @@ export function ComponentDetailPage() {
             <SectionHeading id="installation">Installation</SectionHeading>
             <InstallBlock
               name={comp.name}
-              radixBased={comp.radixBased}
+              basedOn={comp.basedOn}
               setup={comp.setup}
             />
           </section>
@@ -254,81 +319,73 @@ export function ComponentDetailPage() {
           </Reveal>
         )}
 
-        {comp.cursor && (
-          <Reveal direction="up">
-            <CursorSection />
-          </Reveal>
+        {comp.infoBlocks && comp.infoBlocks.length > 0 && (
+          <InfoBlocksSection
+            componentName={comp.name}
+            infoBlocks={comp.infoBlocks}
+          />
         )}
 
         {comp.composition && (
-          <Reveal direction="up">
-            <CompositionSection tree={comp.composition} label={comp.label} />
-          </Reveal>
+          <CompositionSection tree={comp.composition} label={comp.label} />
         )}
 
         {comp.apiReference && (
-          <Reveal direction="up">
-            <section id="api" className="flex scroll-mt-24 flex-col gap-3">
-              <SectionHeading id="api">API Reference</SectionHeading>
-              <p className="text-sm text-foreground-muted">
-                See the{" "}
-                <a
-                  href={comp.apiReference.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-accent hover:underline"
-                >
-                  {comp.apiReference.label}
-                </a>{" "}
-                for more information.
-              </p>
-            </section>
-          </Reveal>
+          <section id="api" className="flex scroll-mt-24 flex-col gap-3">
+            <SectionHeading id="api">API Reference</SectionHeading>
+            <p className="text-sm text-foreground-muted">
+              See the{" "}
+              <a
+                href={comp.apiReference.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-accent hover:underline"
+              >
+                {comp.apiReference.label}
+              </a>{" "}
+              for more information.
+            </p>
+          </section>
         )}
 
         {!comp.apiReference && comp.props && comp.props.length > 0 && (
-          <Reveal direction="up">
-            <section id="api" className="flex scroll-mt-24 flex-col gap-3">
-              <SectionHeading id="api">API Reference</SectionHeading>
-              <ApiTable props={comp.props} />
-            </section>
-          </Reveal>
+          <section id="api" className="flex scroll-mt-24 flex-col gap-3">
+            <SectionHeading id="api">API Reference</SectionHeading>
+            <ApiTable props={comp.props} />
+          </section>
         )}
 
         {comp.accessibility && comp.accessibility.length > 0 && (
-          <Reveal direction="up">
-            <section
-              id="accessibility"
-              className="flex scroll-mt-24 flex-col gap-3"
-            >
-              <SectionHeading id="accessibility">Accessibility</SectionHeading>
-              <AccessibilityList notes={comp.accessibility} />
-            </section>
-          </Reveal>
+          <section
+            id="accessibility"
+            className="flex scroll-mt-24 flex-col gap-3"
+          >
+            <SectionHeading id="accessibility">Accessibility</SectionHeading>
+            <AccessibilityList notes={comp.accessibility} />
+          </section>
         )}
 
         {comp.primitives &&
           comp.primitives.map((primitive) => {
-            const sectionId = `primitive-${toSectionId(primitive.name)}`;
+            const sectionId = `primitive-${slugify(primitive.name)}`;
             return (
-              <Reveal key={primitive.name} direction="up">
-                <section
-                  id={sectionId}
-                  className="flex scroll-mt-24 flex-col gap-3"
-                >
-                  <SectionHeading id={sectionId}>
-                    {primitive.name} API
-                  </SectionHeading>
-                  <p className="text-sm text-foreground-muted">
-                    {primitive.description}
-                  </p>
-                  <ApiTable props={primitive.props} />
-                  <h3 className="text-xs font-semibold text-foreground-muted">
-                    {primitive.name} Accessibility
-                  </h3>
-                  <AccessibilityList notes={primitive.accessibility} />
-                </section>
-              </Reveal>
+              <section
+                key={primitive.name}
+                id={sectionId}
+                className="flex scroll-mt-24 flex-col gap-3"
+              >
+                <SectionHeading id={sectionId}>
+                  {primitive.name} API
+                </SectionHeading>
+                <p className="text-sm text-foreground-muted">
+                  {primitive.description}
+                </p>
+                <ApiTable props={primitive.props} />
+                <h3 className="text-xs font-semibold text-foreground-muted">
+                  {primitive.name} Accessibility
+                </h3>
+                <AccessibilityList notes={primitive.accessibility} />
+              </section>
             );
           })}
 

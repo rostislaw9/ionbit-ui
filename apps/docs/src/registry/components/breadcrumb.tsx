@@ -107,6 +107,6 @@ export const breadcrumbMeta: ComponentMeta = {
     'BreadcrumbPage sets aria-current="page" on the current page.',
     'BreadcrumbSeparator has role="presentation".',
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

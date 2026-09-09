@@ -95,7 +95,6 @@ export const toastMeta: ComponentMeta = {
     'aria-live="polite" for announcements',
     "Screen readers read toast content",
   ],
-  radixBased: false,
   isNew: false,
   setup: {
     heading: "Add the Toaster to your app root.",

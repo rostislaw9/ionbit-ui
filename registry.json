@@ -296,6 +296,41 @@
       ]
     },
     {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "Radix-based single expand/collapse section with animated height transitions.",
+      "dependencies": ["@radix-ui/react-collapsible", "clsx", "tailwind-merge"],
+      "registryDependencies": ["cn", "tokens"],
+      "files": [
+        {
+          "path": "packages/ui/src/components/collapsible/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/collapsible.tsx"
+        }
+      ]
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "Composable autocomplete built on Base UI with InputGroup fields.",
+      "dependencies": [
+        "@base-ui/react",
+        "clsx",
+        "tailwind-merge",
+        "lucide-react"
+      ],
+      "registryDependencies": ["cn", "button", "input-group"],
+      "files": [
+        {
+          "path": "packages/ui/src/components/combobox/combobox.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/combobox.tsx"
+        }
+      ]
+    },
+    {
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",

@@ -47,6 +47,6 @@ export const labelMeta: ComponentMeta = {
     "Clicking the label focuses the associated control via htmlFor.",
     "Applies disabled styling when the peer control is disabled.",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

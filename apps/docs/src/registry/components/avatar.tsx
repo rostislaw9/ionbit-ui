@@ -112,14 +112,20 @@ export const avatarMeta: ComponentMeta = {
   <AvatarGroupCount>+3</AvatarGroupCount>
 </AvatarGroup>`,
   composition: [
-    "Avatar",
-    "├── AvatarImage",
-    "├── AvatarFallback",
-    "├── AvatarStatus",
-    "└── AvatarBadge",
-    "AvatarGroup",
-    "├── Avatar",
-    "└── AvatarGroupCount",
+    {
+      heading: "Avatar",
+      tree: [
+        "Avatar",
+        "├── AvatarImage",
+        "├── AvatarFallback",
+        "├── AvatarStatus",
+        "└── AvatarBadge",
+      ],
+    },
+    {
+      heading: "Avatar Group",
+      tree: ["AvatarGroup", "├── Avatar", "└── AvatarGroupCount"],
+    },
   ],
   props: [
     {
@@ -162,6 +168,6 @@ export const avatarMeta: ComponentMeta = {
     "AvatarBadge does not have an implicit role — provide an aria-label.",
     "AvatarGroupCount should be readable text (e.g. +4) for screen readers.",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

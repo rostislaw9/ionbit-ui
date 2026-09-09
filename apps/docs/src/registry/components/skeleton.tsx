@@ -31,6 +31,5 @@ export const skeletonMeta: ComponentMeta = {
   accessibility: [
     "Decorative — add aria-label or aria-busy on parent for screen readers",
   ],
-  radixBased: false,
   isNew: false,
 };

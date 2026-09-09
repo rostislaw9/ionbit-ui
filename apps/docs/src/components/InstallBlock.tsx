@@ -1,3 +1,5 @@
+import type { BasedOn } from "../registry/components/types";
+
 import { FileBracesCorner } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import highlightedInline from "virtual:highlighted-inline";
@@ -24,7 +26,7 @@ interface SetupMeta {
 
 interface InstallBlockProps {
   name: string;
-  radixBased?: boolean;
+  basedOn?: BasedOn;
   setup?: SetupMeta;
 }
 
@@ -61,7 +63,7 @@ function Steps({ steps }: { steps: Step[] }) {
   );
 }
 
-export function InstallBlock({ name, radixBased, setup }: InstallBlockProps) {
+export function InstallBlock({ name, basedOn, setup }: InstallBlockProps) {
   const [activeTab, setActiveTab] = useState<string>(
     () => localStorage.getItem(INSTALL_TAB_KEY) ?? "command",
   );
@@ -130,10 +132,10 @@ export function InstallBlock({ name, radixBased, setup }: InstallBlockProps) {
             }
             codeHtml={install}
           />
-          {radixBased && (
-            <p className="mt-2 text-xs text-foreground-subtle">
-              Built on Radix UI — npm dependencies will be installed
-              automatically.
+          {basedOn && (
+            <p className="text-xs text-foreground-subtle">
+              Built on {basedOn === "radix" ? "Radix UI" : "Base UI"} — npm
+              dependencies will be installed automatically.
             </p>
           )}
         </>
@@ -144,7 +146,7 @@ export function InstallBlock({ name, radixBased, setup }: InstallBlockProps) {
 
   // Build Manual tab steps
   const manualSteps: Step[] = [];
-  if (radixBased && depInstall) {
+  if (basedOn && depInstall) {
     manualSteps.push({
       heading: "Install the following dependencies:",
       content: (

@@ -181,6 +181,5 @@ export const buttonGroupMeta: ComponentMeta = {
     "Tab to navigate between buttons in the group",
     "Use aria-label or aria-labelledby to label the group",
   ],
-  radixBased: false,
-  isNew: true,
+  isNew: false,
 };

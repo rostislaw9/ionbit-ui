@@ -62,7 +62,6 @@ export const modeSwitcherMeta: ComponentMeta = {
     'An aria-label reflects the next action (e.g. "Switch to light mode").',
     "The radial animation is skipped when prefers-reduced-motion is set.",
   ],
-  radixBased: false,
   isNew: true,
   setup: {
     heading: "Add the View Transitions CSS to your global CSS file.",

@@ -10,7 +10,7 @@ describe("Button", () => {
     const btn = screen.getByRole("button", { name: "Confirm" });
     expect(btn).toBeInTheDocument();
     expect(btn.className).toContain("bg-accent");
-    expect(btn.className).toContain("px-3");
+    expect(btn.className).toContain("px-2.5");
   });
 
   it("applies the destructive variant classes", () => {

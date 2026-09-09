@@ -62,6 +62,6 @@ export const tabsMeta: ComponentMeta = {
     "Arrow keys navigate between tabs",
     "aria-selected on active tab",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

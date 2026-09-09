@@ -16,6 +16,9 @@ export function useScrollToAnchor(sectionIds: string[]) {
     if (!hash) return;
     const id = hash.slice(1);
     if (!id) return;
+    // Only scroll for known section anchors — skip demo-* anchors
+    // (handled by ComponentDetailPage's demo-switching effect).
+    if (!sectionIds.includes(id)) return;
 
     const ro = new ResizeObserver(() => scrollToSection(id, sectionIds));
     ro.observe(document.body);

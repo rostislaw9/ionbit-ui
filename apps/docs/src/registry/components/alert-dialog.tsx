@@ -69,6 +69,6 @@ export const alertDialogMeta: ComponentMeta = {
     "Escape closes the dialog",
     'role="alertdialog" for screen readers',
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

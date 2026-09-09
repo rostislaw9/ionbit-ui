@@ -9,6 +9,28 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Combobox component:** composable autocomplete built on
+  `@base-ui/react`. Supports flat, grouped, and custom object items
+  via `itemToStringValue`. Single-select and multi-select (with
+  removable chips) modes. Controlled and uncontrolled
+  `value`/`defaultValue`, `open`/`defaultOpen`, `autoHighlight`,
+  `disabled` props. Subcomponents: `ComboboxInput`,
+  `ComboboxTrigger`, `ComboboxClear`, `ComboboxContent`,
+  `ComboboxEmpty`, `ComboboxList`, `ComboboxItem`, `ComboboxGroup`,
+  `ComboboxLabel`, `ComboboxCollection`, `ComboboxSeparator`,
+  `ComboboxChips`, `ComboboxChipsInput`, `ComboboxValue`,
+  `ComboboxChip`, and the `useComboboxAnchor` hook for anchoring the
+  popup to the chips container in multiple mode.
+- **Collapsible component:** animated collapsible built on
+  `@radix-ui/react-collapsible` with `Collapsible`,
+  `CollapsibleTrigger`, `CollapsibleContent`. CSS-based height
+  transition, respects `prefers-reduced-motion`.
+- **Composition subheading anchors:** composition section
+  subheadings now support clickable anchor links with `#` hover
+  indicators, matching main section headings.
+- **Info blocks:** component docs can now include `infoBlocks` —
+  titled sections with description and code examples rendered
+  between usage and composition.
 - **Badge `asChild` support:** Badge now accepts `asChild` to render as
   a Slot, enabling link badges and other element composition via
   `@radix-ui/react-slot`.
@@ -25,6 +47,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Component `basedOn` field:** replaced the boolean `radixBased` flag
+  with `basedOn?: "radix" | "base" | undefined`, allowing the docs to
+  show distinct "Radix" or "Base UI" badges and generate the correct
+  dependency install commands per component.
 - **Accent token color:** shifted slightly darker and toward deeper blue
   (hue 238 to 241) to differentiate from the `info` color (hue 230).
 - **Badge height:** fixed at 20px (`h-5` with `leading-none`) and reduced
@@ -241,7 +267,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   and Utilities sections with autoscroll to active item.
 - **Unused import auto-removal:** added `eslint-plugin-unused-imports`
   for auto-removal of unused imports via `yarn lint --fix`.
-- **Release creation rule:** added a rule to `docs/AGENT_RULES.md`
+- **Release creation rule:** added a rule to `docs/AGENTS.md`
   clarifying that creating a GitHub release should only involve
   `gh release create` with a changelog-derived message.
 
@@ -469,7 +495,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   (like Spotlight), instead of being combined into a single "Motion
   Primitives" page. Each page shows its own demos, props, and manual
   install source.
-- **AGENT_RULES §25.3:** added rule requiring `yarn registry:build`
+- **AGENTS §25.3:** added rule requiring `yarn registry:build`
   before committing when modifying component source.
 
 ### Changed
@@ -520,7 +546,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- **Conventional commits spec:** added section 26 to AGENT_RULES.md
+- **Conventional commits spec:** added section 26 to AGENTS.md
   with the full Conventional Commits specification (format, type table,
   examples, automated commit rules, optional scope). Expanded
   CONTRIBUTING.md commit message section with a type table.
@@ -714,7 +740,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   contains one metadata file per component with a normalized field
   order (`name`, `label`, `description`, `category`, `examples`,
   `usageImport`, `usageCode`, `composition`, `props`, `accessibility`,
-  `radixBased`, `primitives`, `isNew`).
+  `basedOn`, `primitives`, `isNew`).
 - **Testing:** 171 tests across 37 files — component behavior, keyboard
   navigation, ARIA, reduced-motion, motion primitives.
 - **Performance:** lazy-loaded routes, vendor chunk splitting (react/radix/
@@ -723,7 +749,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   responsive table overflow, token-based error shadows.
 - `CONTRIBUTING.md` with development workflow and conventions.
 - `CHANGELOG.md`.
-- `docs/AGENT_RULES.md` with editor workflow rules (add code before
+- `docs/AGENTS.md` with editor workflow rules (add code before
   imports; keep changelog and docs up to date on every commit).
 - `packages/cli/README.md` for the npm package page.
 
@@ -788,7 +814,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `docs/IMPLEMENTATION_PLAN.md` — the phased plan is complete; the
   repository is now treated as the first MVP iteration and tracked via
-  `CHANGELOG.md` and `docs/AGENT_RULES.md` instead.
+  `CHANGELOG.md` and `docs/AGENTS.md` instead.
 
 ### Fixed
 
@@ -810,5 +836,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   the registry entry. Previously only the primitive itself was included,
   causing broken imports when installed. Added `motion` to npm
   dependencies for all motion primitives.
-- Fixed `radixBased` metadata for Button and Breadcrumb (both use
+- Fixed `basedOn` metadata for Button and Breadcrumb (both use
   `@radix-ui/react-slot`).

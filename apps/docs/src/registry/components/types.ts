@@ -3,9 +3,12 @@ import type { ReactNode } from "react";
 export type ComponentCategory =
   "Form" | "Layout" | "Overlay" | "Feedback" | "Navigation" | "Data" | "Motion";
 
+/** The underlying headless framework a component is built on. */
+export type BasedOn = "radix" | "base";
+
 export interface ComponentExample {
   title: string;
-  description: string;
+  description: ReactNode;
   /** Pre-highlighted HTML from Shiki (build-time via ?highlighted import). */
   code: string;
   /** Raw source code for the copy button. */
@@ -27,20 +30,44 @@ export interface PrimitiveMeta {
   accessibility: string[];
 }
 
+export interface InfoBlock {
+  /** Section heading (e.g. "Controlled State"). */
+  title: string;
+  /** Short description shown below the heading. Can include React nodes for inline code. */
+  description: ReactNode;
+  /** Code example shown in a code block. */
+  code: string;
+  /** Code language for syntax highlighting (defaults to "tsx"). */
+  lang?: string;
+  /** Optional filename header for the code block (e.g. "src/index.css"). */
+  filename?: string;
+}
+
+export interface CompositionBlock {
+  /** Optional subheading for this composition variant (e.g. "Simple"). Omitted for single-block compositions. */
+  heading?: string;
+  /** Short description shown below the subheading. Can include React nodes for inline code and links. */
+  description?: ReactNode;
+  /** ASCII tree diagram. */
+  tree: string[];
+}
+
 export interface ComponentMeta {
   name: string;
   label: string;
   description: string;
   category: ComponentCategory;
   examples: ComponentExample[];
+  /** Optional info blocks (e.g. "Controlled State") shown after Usage. */
+  infoBlocks?: InfoBlock[];
   /** Props table for the API reference section. */
   props?: PropMeta[];
   /** External API reference link (shown instead of the props table when present). */
   apiReference?: { label: string; url: string };
   /** Accessibility notes. */
   accessibility?: string[];
-  /** Whether this component is built on Radix UI. */
-  radixBased?: boolean;
+  /** Whether this component is built on Radix UI or Base UI. */
+  basedOn?: BasedOn;
   /** Attribution / "About" note shown above installation (e.g. upstream author). */
   about?: ReactNode;
   /** For grouped entries (e.g. motion): per-primitive API + accessibility. */
@@ -51,10 +78,8 @@ export interface ComponentMeta {
   usageImport?: string;
   /** JSX usage example for the Usage section. */
   usageCode?: string;
-  /** Component tree diagram for the Composition section. */
-  composition?: string[];
-  /** Whether to show the Cursor section (Tailwind v4 cursor: pointer guidance). */
-  cursor?: boolean;
+  /** Component tree diagram(s) for the Composition section. */
+  composition?: string[] | CompositionBlock[];
   /** Optional final install step (e.g. "Add the Toaster to your app root"). */
   setup?: { heading: string; filename: string; code: string };
 }

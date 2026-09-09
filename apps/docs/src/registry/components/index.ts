@@ -9,6 +9,8 @@ import { breadcrumbMeta } from "./breadcrumb";
 import { buttonMeta } from "./button";
 import { cardMeta } from "./card";
 import { checkboxMeta } from "./checkbox";
+import { collapsibleMeta } from "./collapsible";
+import { comboboxMeta } from "./combobox";
 import { commandMeta } from "./command";
 import { contextMenuMeta } from "./context-menu";
 import { dialogMeta } from "./dialog";
@@ -53,6 +55,8 @@ export const componentRegistry: ComponentMeta[] = [
   buttonMeta,
   cardMeta,
   checkboxMeta,
+  collapsibleMeta,
+  comboboxMeta,
   commandMeta,
   contextMenuMeta,
   dialogMeta,

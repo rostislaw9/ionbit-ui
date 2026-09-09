@@ -33,11 +33,13 @@ It **is**:
 
 ## Components
 
-**UI (32):** Accordion, Alert, AlertDialog, Avatar, Badge, Breadcrumb,
-Button, Card, Checkbox, Command, ContextMenu, Dialog, DropdownMenu,
-HoverCard, Input, Label, Pagination, Popover, Progress,
+**UI (42):** Accordion, Alert, AlertDialog, Avatar, Badge, Breadcrumb,
+Button, ButtonGroup, Card, Checkbox, Collapsible, Combobox, Command,
+ContextMenu, Dialog, DropdownMenu, Empty, HoverCard, Input, InputGroup,
+Label, ModeSwitcher, NativeSelect, Pagination, Popover, Progress,
 RadioGroup, ScrollArea, Select, Separator, Sheet, Skeleton, Slider,
-Switch, Table, Tabs, Textarea, Toast, Tooltip.
+Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle, ToggleGroup,
+Tooltip.
 
 **Motion (5):** Glow, Pulse, Spotlight, Magnetic, Reveal.
 
@@ -141,7 +143,7 @@ See `CONTRIBUTING.md` for the full development workflow.
 - [Design System](docs/DESIGN_SYSTEM.md)
 - [Product Spec](docs/PRODUCT_SPEC.md)
 - [Competitive Research](docs/COMPETITIVE_RESEARCH.md)
-- [Agent Rules](docs/AGENT_RULES.md)
+- [Agent Rules](docs/AGENTS.md)
 
 ## Acknowledgments
 
@@ -151,6 +153,8 @@ Ionbit UI stands on the shoulders of several excellent projects:
   component composition patterns that inspired this project.
 - [Radix UI](https://www.radix-ui.com) — the headless, accessible
   primitives that power most of the overlay and form components.
+- [Base UI](https://base-ui.com) — the unstyled React components from
+  the MUI team that power `Combobox`.
 - [Sonner](https://sonner.emilkowal.ski) by
   [Emil Kowalski](https://twitter.com/emilkowalski) — the toast engine
   that `Toast` is built on.

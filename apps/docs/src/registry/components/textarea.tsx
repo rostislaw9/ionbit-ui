@@ -47,6 +47,5 @@ export const textareaMeta: ComponentMeta = {
     "aria-invalid set when invalid prop is true",
     "Focus visible ring",
   ],
-  radixBased: false,
   isNew: false,
 };

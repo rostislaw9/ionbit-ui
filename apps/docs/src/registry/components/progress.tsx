@@ -37,6 +37,6 @@ export const progressMeta: ComponentMeta = {
     'role="progressbar" with aria-valuenow/min/max',
     "Screen readers announce progress",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

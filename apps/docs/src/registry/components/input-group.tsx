@@ -178,6 +178,5 @@ export const inputGroupMeta: ComponentMeta = {
     "Clicking an addon focuses the inner input, unless a button was clicked.",
     "InputGroupSeparator is marked aria-hidden as it is decorative.",
   ],
-  radixBased: false,
-  isNew: true,
+  isNew: false,
 };

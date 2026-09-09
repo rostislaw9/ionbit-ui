@@ -252,7 +252,7 @@ source-ownership model.
 the primary integration test for the public packages.
 
 **Stack:** Vite + React + Tailwind v4. No Next.js — the project must
-work in plain Vite (per AGENT_RULES §6). Documentation content is MDX
+work in plain Vite (per AGENTS §6). Documentation content is MDX
 or co-located markdown; routing is `react-router`.
 
 **Why Vite, not Next.js:** The component library must work in plain
@@ -410,7 +410,7 @@ classes.
 This means: **by default, reduced-motion users get no animation
 everywhere.** Components and motion primitives must opt in to keeping
 only functional, non-motion state changes. This is stricter than most
-libraries and matches AGENT_RULES §8.
+libraries and matches AGENTS §8.
 
 ---
 
@@ -675,8 +675,8 @@ natural.
 
 ### 13.2 Current state
 
-The registry is built. `registry.json` contains 39 items (cn, tokens,
-32 components, 5 motion primitives). It is generated from
+The registry is built. `registry.json` contains 49 items (cn, tokens,
+42 components, 5 motion primitives). It is generated from
 `packages/ui/src/components/*` and `packages/motion/src/primitives/*`
 by `registry/build.mjs` (`yarn registry:build`).
 
@@ -835,9 +835,9 @@ active. Highlighted output is exposed through virtual modules:
 `virtual:highlighted-inline`, `virtual:highlighted-sources-map`, and
 `virtual:highlighted-source/<name>`.
 
-Vendor chunks: `vendor-react`, `vendor-radix`, `vendor-motion`,
-`vendor-lucide`, `vendor-cmdk`, `vendor-sonner` are split in
-`vite.config.ts` for cacheability.
+Vendor chunks: `vendor-react`, `vendor-radix`, `vendor-base-ui`,
+`vendor-motion`, `vendor-lucide`, `vendor-cmdk`, `vendor-sonner` are
+split in `vite.config.ts` for cacheability.
 
 ### 16.5 Why it matters
 
@@ -905,10 +905,13 @@ The exact commands and results are recorded in the final report.
 
 ## 19. Decisions that may need revisiting
 
-1. **Radix vs Base UI as the headless layer.** Radix is chosen for
-   ecosystem fit. If Base UI's store-based model proves materially
-   better for a specific component, we can support it per-component
-   later (ReUI's dual-version approach is a precedent).
+1. **Radix vs Base UI as the headless layer.** Radix is the default for
+   ecosystem fit; Base UI is adopted per-component where its store-based
+   model is a better fit (currently `Combobox`). The `basedOn` registry
+   field tracks which framework each component uses, and the docs render
+   the correct dependency install commands and badge per component.
+   ReUI's dual-version approach remains a precedent if broader
+   dual-headless support is needed later.
 2. **Yarn linker (node-modules vs PnP).** node-modules is chosen for
    compatibility. If the docs app grows large, we can revisit PnP for
    dev performance.

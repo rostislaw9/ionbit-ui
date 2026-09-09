@@ -68,6 +68,6 @@ export const dropdownMenuMeta: ComponentMeta = {
     "Escape closes menu",
     "aria-haspopup on trigger",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

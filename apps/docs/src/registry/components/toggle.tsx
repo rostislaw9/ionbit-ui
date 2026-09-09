@@ -107,6 +107,6 @@ export const toggleMeta: ComponentMeta = {
     "Focus visible ring",
     "Icon-only toggles require an aria-label",
   ],
-  radixBased: true,
-  isNew: true,
+  basedOn: "radix",
+  isNew: false,
 };

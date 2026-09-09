@@ -60,6 +60,6 @@ export const radioGroupMeta: ComponentMeta = {
     "Radix manages ARIA radio roles and keyboard navigation",
     "Arrow keys move between options",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

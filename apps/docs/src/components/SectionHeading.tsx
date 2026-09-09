@@ -1,3 +1,5 @@
+import type { ElementType } from "react";
+
 import { Link } from "react-router-dom";
 
 import { cn } from "@ionbit-ui/ui";
@@ -6,24 +8,30 @@ interface SectionHeadingProps {
   id: string;
   children: React.ReactNode;
   className?: string;
+  /** Heading element to render. Defaults to "h2". */
+  as?: ElementType;
 }
 
 /**
  * Section heading with an anchor link.
  *
- * Renders an h2 wrapped in a link button. A muted "#" symbol appears
- * to the right on hover. Clicking navigates to `#<id>`, and the
- * scroll-spy / scroll-to-anchor logic handles the actual scrolling.
+ * Renders a heading (h2 by default) wrapped in a link button. A muted
+ * "#" symbol appears to the right on hover. Clicking navigates to
+ * `#<id>`, and the scroll-spy / scroll-to-anchor logic handles the
+ * actual scrolling.
  */
 export function SectionHeading({
   id,
   children,
   className,
+  as: Tag = "h2",
 }: SectionHeadingProps) {
   return (
-    <h2
+    <Tag
       className={cn(
-        "text-xl font-semibold text-foreground md:text-lg",
+        Tag === "h2"
+          ? "text-xl font-semibold text-foreground md:text-lg"
+          : "text-base font-semibold text-foreground",
         className,
       )}
     >
@@ -41,6 +49,6 @@ export function SectionHeading({
           </span>
         </Link>
       </span>
-    </h2>
+    </Tag>
   );
 }

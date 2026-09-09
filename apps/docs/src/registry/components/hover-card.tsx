@@ -57,6 +57,6 @@ export const hoverCardMeta: ComponentMeta = {
     "Radix manages ARIA attributes",
     "Keyboard accessible via focus",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

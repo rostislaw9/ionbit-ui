@@ -49,6 +49,6 @@ export const checkboxMeta: ComponentMeta = {
     "Keyboard toggle via Space",
     "Focus visible ring",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

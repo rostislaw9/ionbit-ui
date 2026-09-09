@@ -593,7 +593,7 @@ When generating a commit message, always:
 
 1. Update `CHANGELOG.md` under the appropriate `[Unreleased]` or
    release section with the change being committed.
-2. Keep all docs (`README.md`, `docs/AGENT_RULES.md`,
+2. Keep all docs (`README.md`, `docs/AGENTS.md`,
    `docs/ARCHITECTURE.md`, `docs/DESIGN_SYSTEM.md`,
    `docs/PRODUCT_SPEC.md`, `CONTRIBUTING.md`) consistent with the
    current state of the codebase.

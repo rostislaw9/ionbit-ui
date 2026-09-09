@@ -1,4 +1,5 @@
 import type { ComponentMeta } from "../registry/components/types";
+import type { ReactNode } from "react";
 
 /**
  * Convert a ComponentMeta object into a markdown document suitable for
@@ -16,7 +17,8 @@ export function componentToMarkdown(comp: ComponentMeta): string {
 
   // Category / tags
   const tags: string[] = [comp.category];
-  if (comp.radixBased) tags.push("Radix UI");
+  if (comp.basedOn)
+    tags.push(comp.basedOn === "radix" ? "Radix UI" : "Base UI");
   lines.push(`**Tags:** ${tags.join(", ")}`);
   lines.push("");
 
@@ -38,6 +40,22 @@ export function componentToMarkdown(comp: ComponentMeta): string {
     lines.push(comp.usageCode);
     lines.push("```");
     lines.push("");
+  }
+
+  // Info blocks (e.g. Controlled State, Cursor)
+  if (comp.infoBlocks) {
+    for (const block of comp.infoBlocks) {
+      lines.push(`## ${block.title}`);
+      lines.push("");
+      if (typeof block.description === "string") {
+        lines.push(block.description);
+        lines.push("");
+      }
+      lines.push("```tsx");
+      lines.push(block.code);
+      lines.push("```");
+      lines.push("");
+    }
   }
 
   // Examples
@@ -122,12 +140,38 @@ export function componentToMarkdown(comp: ComponentMeta): string {
   if (comp.composition && comp.composition.length > 0) {
     lines.push("## Composition");
     lines.push("");
-    lines.push("```");
-    for (const line of comp.composition) {
-      lines.push(line);
+    const isBlocks = (
+      c: typeof comp.composition,
+    ): c is { heading?: string; description?: ReactNode; tree: string[] }[] =>
+      c.length > 0 &&
+      typeof c[0] === "object" &&
+      c[0] !== null &&
+      "tree" in c[0];
+    if (isBlocks(comp.composition)) {
+      for (const block of comp.composition) {
+        if (block.heading) {
+          lines.push(`### ${block.heading}`);
+          lines.push("");
+        }
+        if (typeof block.description === "string") {
+          lines.push(block.description);
+          lines.push("");
+        }
+        lines.push("```");
+        for (const line of block.tree) {
+          lines.push(line);
+        }
+        lines.push("```");
+        lines.push("");
+      }
+    } else {
+      lines.push("```");
+      for (const line of comp.composition as string[]) {
+        lines.push(line);
+      }
+      lines.push("```");
+      lines.push("");
     }
-    lines.push("```");
-    lines.push("");
   }
 
   return lines.join("\n").trim() + "\n";

@@ -101,6 +101,6 @@ export const sheetMeta: ComponentMeta = {
     "Escape closes the sheet",
     "Screen reader announcements via Dialog primitives",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };

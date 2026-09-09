@@ -52,6 +52,6 @@ export const popoverMeta: ComponentMeta = {
     "Escape key closes popover",
     "Click outside dismisses",
   ],
-  radixBased: true,
+  basedOn: "radix",
   isNew: false,
 };
