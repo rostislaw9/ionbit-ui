@@ -70,5 +70,4 @@ export const alertDialogMeta: ComponentMeta = {
     'role="alertdialog" for screen readers',
   ],
   basedOn: "radix",
-  isNew: false,
 };

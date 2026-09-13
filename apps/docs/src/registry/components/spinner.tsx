@@ -51,5 +51,4 @@ export const spinnerMeta: ComponentMeta = {
     'Wrap with aria-live="polite" for screen reader announcements during async operations.',
     "Use aria-label on the parent button when the spinner is the only content.",
   ],
-  isNew: false,
 };

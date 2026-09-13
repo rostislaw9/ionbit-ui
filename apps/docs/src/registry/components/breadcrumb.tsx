@@ -108,5 +108,4 @@ export const breadcrumbMeta: ComponentMeta = {
     'BreadcrumbSeparator has role="presentation".',
   ],
   basedOn: "radix",
-  isNew: false,
 };

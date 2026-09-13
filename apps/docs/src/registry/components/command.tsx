@@ -119,5 +119,4 @@ export const commandMeta: ComponentMeta = {
     "Escape closes the palette",
   ],
   basedOn: "radix",
-  isNew: false,
 };

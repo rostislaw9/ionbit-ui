@@ -58,5 +58,4 @@ export const hoverCardMeta: ComponentMeta = {
     "Keyboard accessible via focus",
   ],
   basedOn: "radix",
-  isNew: false,
 };

@@ -140,5 +140,4 @@ export const contextMenuMeta: ComponentMeta = {
     "Escape closes the menu",
   ],
   basedOn: "radix",
-  isNew: false,
 };

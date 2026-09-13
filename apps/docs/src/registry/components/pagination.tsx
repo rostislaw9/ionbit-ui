@@ -79,5 +79,4 @@ export const paginationMeta: ComponentMeta = {
     'aria-label="Go to previous page" / "Go to next page"',
     "sr-only text on ellipsis",
   ],
-  isNew: false,
 };

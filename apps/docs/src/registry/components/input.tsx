@@ -55,5 +55,4 @@ export const inputMeta: ComponentMeta = {
     "Focus visible ring via shadow-focus",
     "Placeholder uses foreground-subtle for sufficient contrast",
   ],
-  isNew: false,
 };

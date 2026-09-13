@@ -71,5 +71,4 @@ export const spotlightMeta: ComponentMeta = {
     "Purely decorative — disabled when reduced motion is active",
     "Does not interfere with keyboard navigation",
   ],
-  isNew: false,
 };

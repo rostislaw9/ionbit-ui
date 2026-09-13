@@ -118,5 +118,4 @@ export const badgeMeta: ComponentMeta = {
     "When using asChild with a link, the child element provides its own semantics.",
   ],
   basedOn: "radix",
-  isNew: false,
 };

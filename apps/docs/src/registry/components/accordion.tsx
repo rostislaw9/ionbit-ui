@@ -66,5 +66,4 @@ export const accordionMeta: ComponentMeta = {
     "Home/End to jump to first/last item",
   ],
   basedOn: "radix",
-  isNew: false,
 };

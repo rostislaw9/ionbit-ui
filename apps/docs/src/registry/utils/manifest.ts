@@ -12,6 +12,7 @@ export const utilManifest: ManifestEntry[] = [
     description:
       "Utilities for adding a scroll-aware fade effect to the edges of a scroll container.",
     exampleCount: 6,
+    isNew: false,
     kind: "util",
   },
   {
@@ -20,6 +21,7 @@ export const utilManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Utilities for adding a shimmer effect to text elements.",
     exampleCount: 7,
+    isNew: false,
     kind: "util",
   },
 ];

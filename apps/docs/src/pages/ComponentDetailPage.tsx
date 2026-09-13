@@ -140,17 +140,22 @@ export function ComponentDetailPage() {
         subsections,
       });
     }
-    if (comp?.apiReference || (comp?.props && comp.props.length > 0))
-      result.push({ id: "api", label: "API Reference" });
-    if (comp?.accessibility && comp.accessibility.length > 0)
-      result.push({ id: "accessibility", label: "Accessibility" });
-    if (comp?.primitives && comp.primitives.length > 0) {
-      const subsections = comp.primitives.map((primitive) => ({
-        id: `primitive-${slugify(primitive.name)}`,
-        label: primitive.name,
-      }));
+    if (
+      comp?.apiReference ||
+      (comp?.props && comp.props.length > 0) ||
+      (comp?.primitives && comp.primitives.length > 0)
+    ) {
+      const subsections =
+        comp?.primitives && comp.primitives.length > 0
+          ? comp.primitives.map((primitive) => ({
+              id: `primitive-${slugify(primitive.name)}`,
+              label: primitive.name,
+            }))
+          : undefined;
       result.push({ id: "api", label: "API Reference", subsections });
     }
+    if (comp?.accessibility && comp.accessibility.length > 0)
+      result.push({ id: "accessibility", label: "Accessibility" });
     return result;
   }, [comp]);
 
@@ -338,28 +343,65 @@ export function ComponentDetailPage() {
           />
         )}
 
-        {comp.apiReference && (
-          <section id="api" className="flex scroll-mt-24 flex-col gap-3">
+        {(comp.apiReference ||
+          (comp.props && comp.props.length > 0) ||
+          (comp.primitives && comp.primitives.length > 0)) && (
+          <section id="api" className="flex scroll-mt-24 flex-col gap-6">
             <SectionHeading id="api">API Reference</SectionHeading>
-            <p className="text-sm text-foreground-muted">
-              See the{" "}
-              <a
-                href={comp.apiReference.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-accent hover:underline"
-              >
-                {comp.apiReference.label}
-              </a>{" "}
-              for more information.
-            </p>
-          </section>
-        )}
 
-        {!comp.apiReference && comp.props && comp.props.length > 0 && (
-          <section id="api" className="flex scroll-mt-24 flex-col gap-3">
-            <SectionHeading id="api">API Reference</SectionHeading>
-            <ApiTable props={comp.props} />
+            {comp.props && comp.props.length > 0 && (
+              <ApiTable props={comp.props} />
+            )}
+
+            {comp.primitives &&
+              comp.primitives.map((primitive) => {
+                const sectionId = `primitive-${slugify(primitive.name)}`;
+                const key = `__primitive_${comp.name}_${primitive.name}__`;
+                const highlighted = highlightedInline[key];
+                return (
+                  <section
+                    key={primitive.name}
+                    id={sectionId}
+                    className="flex scroll-mt-24 flex-col gap-3"
+                  >
+                    <SectionHeading id={sectionId} as="h3">
+                      {primitive.name}
+                    </SectionHeading>
+                    <p className="text-sm text-foreground-muted">
+                      {primitive.description}
+                    </p>
+                    <ApiTable props={primitive.props} />
+                    {highlighted && (
+                      <CodeBlockWithCopy
+                        rawCode={highlighted.rawCode!}
+                        html={highlighted.codeHtml!}
+                        lineNumbers={false}
+                        filename={primitive.filename}
+                      />
+                    )}
+                    {primitive.after && (
+                      <div className="flex flex-col gap-3 text-base text-foreground-muted md:text-sm">
+                        {primitive.after}
+                      </div>
+                    )}
+                  </section>
+                );
+              })}
+
+            {comp.apiReference && (
+              <p className="text-sm text-foreground-muted">
+                See the{" "}
+                <a
+                  href={comp.apiReference.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-accent hover:underline"
+                >
+                  {comp.apiReference.label}
+                </a>{" "}
+                for the full Base UI API.
+              </p>
+            )}
           </section>
         )}
 
@@ -370,45 +412,6 @@ export function ComponentDetailPage() {
           >
             <SectionHeading id="accessibility">Accessibility</SectionHeading>
             <AccessibilityList notes={comp.accessibility} />
-          </section>
-        )}
-
-        {comp.primitives && comp.primitives.length > 0 && (
-          <section id="api" className="flex scroll-mt-24 flex-col gap-6">
-            <SectionHeading id="api">API Reference</SectionHeading>
-            {comp.primitives.map((primitive) => {
-              const sectionId = `primitive-${slugify(primitive.name)}`;
-              const key = `__primitive_${comp.name}_${primitive.name}__`;
-              const highlighted = highlightedInline[key];
-              return (
-                <section
-                  key={primitive.name}
-                  id={sectionId}
-                  className="flex scroll-mt-24 flex-col gap-3"
-                >
-                  <SectionHeading id={sectionId} as="h3">
-                    {primitive.name}
-                  </SectionHeading>
-                  <p className="text-sm text-foreground-muted">
-                    {primitive.description}
-                  </p>
-                  <ApiTable props={primitive.props} />
-                  {highlighted && (
-                    <CodeBlockWithCopy
-                      rawCode={highlighted.rawCode!}
-                      html={highlighted.codeHtml!}
-                      lineNumbers={false}
-                      filename={primitive.filename}
-                    />
-                  )}
-                  {primitive.after && (
-                    <div className="flex flex-col gap-3 text-base text-foreground-muted md:text-sm">
-                      {primitive.after}
-                    </div>
-                  )}
-                </section>
-              );
-            })}
           </section>
         )}
 

@@ -549,5 +549,4 @@ export const fieldMeta: ComponentMeta = {
     "Add data-invalid to Field to mark the entire block as invalid.",
     'FieldError uses role="alert" for screen reader announcements.',
   ],
-  isNew: true,
 };

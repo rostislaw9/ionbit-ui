@@ -125,6 +125,14 @@ export function Example() {
   ],
   usageImport: `import { Switch } from "@/components/ui/switch";`,
   usageCode: `<Switch />`,
+  props: [
+    {
+      name: "size",
+      type: '"sm" | "default"',
+      default: '"default"',
+      description: "Switch size.",
+    },
+  ],
   apiReference: {
     label: "Base UI Switch",
     url: "https://base-ui.com/react/components/switch#api-reference",
@@ -137,5 +145,4 @@ export function Example() {
     "data-disabled on Field dims the label when disabled",
   ],
   basedOn: "base",
-  isNew: false,
 };

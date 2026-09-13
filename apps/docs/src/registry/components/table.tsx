@@ -75,5 +75,4 @@ export const tableMeta: ComponentMeta = {
     "Provide a TableCaption or aria-label to give the table a descriptive name.",
     'Use scope="col" or scope="row" on TableHead for complex tables to improve screen reader navigation.',
   ],
-  isNew: false,
 };

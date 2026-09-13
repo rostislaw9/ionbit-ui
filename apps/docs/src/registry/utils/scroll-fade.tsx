@@ -28,7 +28,6 @@ export const scrollFadeMeta: UtilMeta = {
   description:
     "Utilities for adding a scroll-aware fade effect to the edges of a scroll container.",
   category: "Layout",
-  isNew: true,
   heroDemo: {
     render: () => <ScrollFadeDemo />,
     code: ScrollFadeDemoSource,

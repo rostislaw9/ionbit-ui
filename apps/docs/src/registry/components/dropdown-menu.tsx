@@ -69,5 +69,4 @@ export const dropdownMenuMeta: ComponentMeta = {
     "aria-haspopup on trigger",
   ],
   basedOn: "radix",
-  isNew: false,
 };

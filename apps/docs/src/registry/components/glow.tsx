@@ -104,5 +104,4 @@ import { Glow } from "@/components/motion/glow";`,
     "Triggered on hover and focus-visible for keyboard users",
     "Does not add ARIA attributes — decorative enhancement only",
   ],
-  isNew: false,
 };

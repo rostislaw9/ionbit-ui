@@ -145,5 +145,4 @@ export function Example() {
     "data-disabled on Field dims the label when disabled",
   ],
   basedOn: "base",
-  isNew: false,
 };

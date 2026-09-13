@@ -76,5 +76,4 @@ export const dialogMeta: ComponentMeta = {
     "Scroll lock when open",
   ],
   basedOn: "radix",
-  isNew: false,
 };

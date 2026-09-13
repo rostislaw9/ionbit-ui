@@ -142,5 +142,4 @@ export const emptyMeta: ComponentMeta = {
     'Add role="status" or aria-live="polite" if the empty state appears after an async operation.',
     "EmptyMedia is decorative by default — add aria-label if it conveys meaning.",
   ],
-  isNew: false,
 };

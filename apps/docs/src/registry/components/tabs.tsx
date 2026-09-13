@@ -63,5 +63,4 @@ export const tabsMeta: ComponentMeta = {
     "aria-selected on active tab",
   ],
   basedOn: "radix",
-  isNew: false,
 };

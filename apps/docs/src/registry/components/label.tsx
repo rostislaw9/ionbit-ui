@@ -48,5 +48,4 @@ export const labelMeta: ComponentMeta = {
     "Applies disabled styling when the peer control is disabled.",
   ],
   basedOn: "radix",
-  isNew: false,
 };

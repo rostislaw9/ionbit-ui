@@ -1,4 +1,4 @@
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import { Avatar as AvatarPrimitive } from "@base-ui/react/avatar";
 import { forwardRef, type HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
@@ -9,17 +9,19 @@ const avatarSizes = {
   lg: "size-12",
 } as const;
 
-export interface AvatarProps extends React.ComponentProps<
-  typeof AvatarPrimitive.Root
+export interface AvatarProps extends Omit<
+  AvatarPrimitive.Root.Props,
+  "className"
 > {
   /** Avatar size. @default "md" */
   size?: keyof typeof avatarSizes;
+  className?: string;
 }
 
 /**
  * Avatar — an image element with fallback, status, and badge support.
  *
- * Accessibility: Radix handles alt text via the `alt` prop on `AvatarImage`.
+ * Accessibility: Base UI handles alt text via the `alt` prop on `AvatarImage`.
  * When the image fails to load, `AvatarFallback` is shown. Provide a
  * meaningful fallback (initials or icon). Use `AvatarStatus` to show a
  * presence indicator (online/offline/busy) or `AvatarBadge` for custom
@@ -43,17 +45,20 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
   );
 });
 
-export type AvatarImageProps = React.ComponentProps<
-  typeof AvatarPrimitive.Image
->;
+export type AvatarImageProps = Omit<
+  AvatarPrimitive.Image.Props,
+  "className"
+> & {
+  className?: string;
+};
 
 /**
  * AvatarImage — the actual image displayed inside an Avatar.
  *
  * Renders an `<img>` absolutely positioned to fill the avatar's circular
  * container. Pass an `alt` prop for accessibility — screen readers use it
- * to describe the avatar. When the image fails to load, Radix automatically
- * swaps to `AvatarFallback`.
+ * to describe the avatar. When the image fails to load, Base UI
+ * automatically swaps to `AvatarFallback`.
  */
 export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
   function AvatarImage({ className, ...props }, ref) {
@@ -70,9 +75,12 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
   },
 );
 
-export type AvatarFallbackProps = React.ComponentProps<
-  typeof AvatarPrimitive.Fallback
->;
+export type AvatarFallbackProps = Omit<
+  AvatarPrimitive.Fallback.Props,
+  "className"
+> & {
+  className?: string;
+};
 
 /**
  * AvatarFallback — the content shown when `AvatarImage` fails to load.

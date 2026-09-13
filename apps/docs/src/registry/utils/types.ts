@@ -50,6 +50,4 @@ export interface UtilMeta {
   usageProseAfter?: ReactNode;
   /** Additional content sections. */
   sections: UtilSection[];
-  /** Whether this utility is newly added. */
-  isNew?: boolean;
 }

@@ -28,7 +28,6 @@ export const shimmerMeta: UtilMeta = {
   label: "Shimmer",
   description: "Utilities for adding a shimmer effect to text elements.",
   category: "Feedback",
-  isNew: true,
   heroDemo: {
     render: () => <ShimmerDemo />,
     code: ShimmerDemoSource,

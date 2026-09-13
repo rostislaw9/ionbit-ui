@@ -104,5 +104,4 @@ export function Example() {
     "When disabled, the trigger is not focusable or activatable.",
   ],
   basedOn: "base",
-  isNew: true,
 };

@@ -74,5 +74,4 @@ export const alertMeta: ComponentMeta = {
     'Default, accent, info, and success variants set role="status".',
     "Role can be overridden via the role prop.",
   ],
-  isNew: false,
 };

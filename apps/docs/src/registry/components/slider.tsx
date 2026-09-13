@@ -68,5 +68,4 @@ export const sliderMeta: ComponentMeta = {
     "Keyboard focusable",
   ],
   basedOn: "radix",
-  isNew: false,
 };

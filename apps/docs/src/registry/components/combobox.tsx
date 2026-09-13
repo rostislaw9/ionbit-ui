@@ -388,5 +388,4 @@ export function ExampleComboboxMultiple() {
     "Supply disabled on Combobox to disable the input and selection controls together.",
   ],
   basedOn: "base",
-  isNew: true,
 };

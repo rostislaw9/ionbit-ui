@@ -158,5 +158,4 @@ export const toggleGroupMeta: ComponentMeta = {
     "Use aria-label to label the group",
   ],
   basedOn: "radix",
-  isNew: false,
 };

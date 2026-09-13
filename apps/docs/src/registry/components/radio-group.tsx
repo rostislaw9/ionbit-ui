@@ -121,5 +121,4 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`,
     "RadioGroup sets role=radiogroup, items set role=radio",
   ],
   basedOn: "base",
-  isNew: false,
 };

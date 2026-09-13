@@ -65,5 +65,4 @@ export const revealMeta: ComponentMeta = {
     "Disabled when reduced motion is active",
     "Does not affect screen reader content order",
   ],
-  isNew: false,
 };

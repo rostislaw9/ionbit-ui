@@ -66,5 +66,4 @@ export const separatorMeta: ComponentMeta = {
     "The decorative prop is kept for API compatibility but has no effect — Base UI always exposes the separator to assistive technologies.",
   ],
   basedOn: "base",
-  isNew: false,
 };

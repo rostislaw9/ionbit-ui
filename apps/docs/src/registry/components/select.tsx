@@ -79,5 +79,4 @@ export const selectMeta: ComponentMeta = {
     "Escape closes",
   ],
   basedOn: "radix",
-  isNew: false,
 };

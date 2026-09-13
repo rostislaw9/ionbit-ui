@@ -39,5 +39,4 @@ export const scrollAreaMeta: ComponentMeta = {
     "Keyboard scrollable",
   ],
   basedOn: "radix",
-  isNew: false,
 };

@@ -129,5 +129,4 @@ export const buttonMeta: ComponentMeta = {
     "Icon-only buttons require an aria-label",
   ],
   basedOn: "radix",
-  isNew: false,
 };

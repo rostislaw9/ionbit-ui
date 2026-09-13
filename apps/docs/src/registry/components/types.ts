@@ -94,8 +94,6 @@ export interface ComponentMeta {
   about?: ReactNode;
   /** For grouped entries (e.g. motion): per-primitive API + accessibility. */
   primitives?: PrimitiveMeta[];
-  /** Whether this component is newly added (shows a "New" badge). */
-  isNew?: boolean;
   /** Import statement for the Usage section. */
   usageImport?: string;
   /** JSX usage example for the Usage section. */

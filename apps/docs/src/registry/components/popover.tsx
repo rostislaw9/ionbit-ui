@@ -53,5 +53,4 @@ export const popoverMeta: ComponentMeta = {
     "Click outside dismisses",
   ],
   basedOn: "radix",
-  isNew: false,
 };

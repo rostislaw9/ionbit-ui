@@ -102,5 +102,4 @@ export const sheetMeta: ComponentMeta = {
     "Screen reader announcements via Dialog primitives",
   ],
   basedOn: "radix",
-  isNew: false,
 };

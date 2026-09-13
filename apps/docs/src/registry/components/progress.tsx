@@ -87,5 +87,4 @@ export const progressMeta: ComponentMeta = {
     "Screen readers announce progress changes",
   ],
   basedOn: "base",
-  isNew: false,
 };

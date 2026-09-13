@@ -55,5 +55,4 @@ import { Magnetic } from "@/components/motion/magnetic";`,
     "Does not interfere with keyboard navigation",
     "Wrapped element remains fully focusable",
   ],
-  isNew: false,
 };

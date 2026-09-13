@@ -55,5 +55,4 @@ import { Tooltip } from "@/components/ui/tooltip";`,
     "Screen readers announce content",
   ],
   basedOn: "radix",
-  isNew: false,
 };

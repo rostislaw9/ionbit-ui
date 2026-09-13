@@ -1,5 +1,6 @@
 import type { ComponentMeta } from "./types";
 
+import { InlineCode } from "../../components/InlineCode";
 import { AvatarBadgeDemo } from "../../demos/avatar-badge-demo";
 import AvatarBadgeDemoSource from "../../demos/avatar-badge-demo.tsx?highlighted";
 import AvatarBadgeDemoRaw from "../../demos/avatar-badge-demo.tsx?raw";
@@ -41,22 +42,36 @@ export const avatarMeta: ComponentMeta = {
     },
     {
       title: "Group",
-      description: "Overlapping avatars with AvatarGroup.",
+      description: (
+        <p>
+          Use the <InlineCode>AvatarGroup</InlineCode> component to add a group
+          of avatars.
+        </p>
+      ),
       code: AvatarGroupDemoSource,
       rawCode: AvatarGroupDemoRaw,
       render: () => <AvatarGroupDemo />,
     },
     {
       title: "Group with Count",
-      description: "AvatarGroup with AvatarGroupCount showing overflow count.",
+      description: (
+        <p>
+          Use <InlineCode>AvatarGroupCount</InlineCode> to add a count to the
+          group.
+        </p>
+      ),
       code: AvatarGroupCountDemoSource,
       rawCode: AvatarGroupCountDemoRaw,
       render: () => <AvatarGroupCountDemo />,
     },
     {
       title: "Group with Icon",
-      description:
-        "AvatarGroupCount with an icon instead of text overflow count.",
+      description: (
+        <p>
+          You can also use an icon inside{" "}
+          <InlineCode>AvatarGroupCount</InlineCode>.
+        </p>
+      ),
       code: AvatarGroupIconDemoSource,
       rawCode: AvatarGroupIconDemoRaw,
       render: () => <AvatarGroupIconDemo />,
@@ -70,7 +85,12 @@ export const avatarMeta: ComponentMeta = {
     },
     {
       title: "Sizes",
-      description: "Avatars in different sizes via className.",
+      description: (
+        <p>
+          Use the <InlineCode>size</InlineCode> prop to change the size of the
+          avatar.
+        </p>
+      ),
       code: AvatarSizesDemoSource,
       rawCode: AvatarSizesDemoRaw,
       render: () => <AvatarSizesDemo />,
@@ -124,42 +144,87 @@ export const avatarMeta: ComponentMeta = {
     },
     {
       heading: "Avatar Group",
-      tree: ["AvatarGroup", "├── Avatar", "└── AvatarGroupCount"],
+      tree: [
+        "AvatarGroup",
+        "├── Avatar",
+        "│   ├── AvatarImage",
+        "│   ├── AvatarFallback",
+        "│   ├── AvatarStatus",
+        "│   └── AvatarBadge",
+        "├── Avatar",
+        "│   ├── AvatarImage",
+        "│   ├── AvatarFallback",
+        "│   ├── AvatarStatus",
+        "│   └── AvatarBadge",
+        "└── AvatarGroupCount",
+      ],
     },
   ],
-  props: [
+  primitives: [
     {
-      name: "size",
-      type: '"sm" | "md" | "lg"',
-      default: '"md"',
-      description: "Avatar size.",
-    },
-    {
-      name: "AvatarStatus.variant",
-      type: '"online" | "offline" | "busy" | "away"',
-      default: '"online"',
-      description: "Status indicator color.",
-    },
-    {
-      name: "AvatarStatus.position",
-      type: '"top-left" | "top-right" | "bottom-left" | "bottom-right"',
-      default: '"bottom-right"',
-      description: "Position of the status indicator.",
-    },
-    {
-      name: "AvatarBadge.className",
-      type: "string",
-      default: "—",
+      name: "Avatar",
       description:
-        "Size, color, and icon styling for the badge (e.g. size-5 bg-success).",
+        "The core wrapper for an avatar. Provides size control and a circular container for image, fallback, status, and badge.",
+      props: [
+        {
+          name: "size",
+          type: '"sm" | "md" | "lg"',
+          default: '"md"',
+          description: "Avatar size.",
+        },
+      ],
     },
     {
-      name: "AvatarGroupCount.children",
-      type: "string | ReactNode",
-      default: "—",
-      description: "Overflow count text (e.g. +5) or an icon element.",
+      name: "AvatarStatus",
+      description:
+        "A small presence indicator overlaid on the avatar. Place inside Avatar as a sibling of AvatarImage / AvatarFallback.",
+      props: [
+        {
+          name: "variant",
+          type: '"online" | "offline" | "busy" | "away"',
+          default: '"online"',
+          description: "Status indicator color.",
+        },
+        {
+          name: "position",
+          type: '"top-left" | "top-right" | "bottom-left" | "bottom-right"',
+          default: '"bottom-right"',
+          description: "Position of the status indicator.",
+        },
+      ],
+    },
+    {
+      name: "AvatarBadge",
+      description:
+        "A small status badge overlaid on the avatar corner. Similar to AvatarStatus but accepts arbitrary children (icon, dot).",
+      props: [
+        {
+          name: "className",
+          type: "string",
+          default: "—",
+          description:
+            "Size, color, and icon styling for the badge (e.g. size-5 bg-success).",
+        },
+      ],
+    },
+    {
+      name: "AvatarGroupCount",
+      description:
+        "Overflow count shown at the end of an AvatarGroup. Renders as a circular element matching avatar sizing.",
+      props: [
+        {
+          name: "children",
+          type: "string | ReactNode",
+          default: "—",
+          description: "Overflow count text (e.g. +5) or an icon element.",
+        },
+      ],
     },
   ],
+  apiReference: {
+    label: "Base UI Avatar",
+    url: "https://base-ui.com/react/components/avatar#api-reference",
+  },
   accessibility: [
     "Avatar root renders as a span.",
     "Fallback is shown when the image fails to load or while loading.",
@@ -168,6 +233,5 @@ export const avatarMeta: ComponentMeta = {
     "AvatarBadge does not have an implicit role — provide an aria-label.",
     "AvatarGroupCount should be readable text (e.g. +4) for screen readers.",
   ],
-  basedOn: "radix",
-  isNew: false,
+  basedOn: "base",
 };

@@ -108,5 +108,4 @@ export const toggleMeta: ComponentMeta = {
     "Icon-only toggles require an aria-label",
   ],
   basedOn: "radix",
-  isNew: false,
 };

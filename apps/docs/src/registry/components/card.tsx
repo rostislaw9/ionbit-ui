@@ -72,5 +72,4 @@ export const cardMeta: ComponentMeta = {
   accessibility: [
     "Semantic structure via CardHeader, CardTitle, CardDescription, CardContent, CardFooter",
   ],
-  isNew: false,
 };
