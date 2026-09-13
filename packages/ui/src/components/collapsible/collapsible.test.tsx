@@ -72,4 +72,15 @@ describe("Collapsible", () => {
     const trigger = screen.getByRole("button", { name: "Toggle" });
     expect(trigger).toHaveAttribute("aria-expanded", "false");
   });
+
+  it("sets data-open attribute when open", () => {
+    render(
+      <Collapsible defaultOpen>
+        <CollapsibleTrigger>Toggle</CollapsibleTrigger>
+        <CollapsibleContent>Content</CollapsibleContent>
+      </Collapsible>,
+    );
+    const trigger = screen.getByRole("button", { name: "Toggle" });
+    expect(trigger).toHaveAttribute("data-panel-open");
+  });
 });

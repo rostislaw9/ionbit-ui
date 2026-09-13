@@ -93,8 +93,7 @@ export const componentManifest: ManifestEntry[] = [
     name: "collapsible",
     label: "Collapsible",
     category: "Layout",
-    description:
-      "Single expand/collapse section. Simpler than Accordion for one toggle.",
+    description: "An interactive component which expands/collapses a panel.",
     exampleCount: 4,
     isNew: true,
   },

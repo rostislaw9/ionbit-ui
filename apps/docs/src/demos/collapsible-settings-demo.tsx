@@ -60,11 +60,13 @@ export function CollapsibleSettingsDemo() {
               </div>
             </CollapsibleContent>
           </div>
-          <CollapsibleTrigger asChild>
-            <Button variant="outline" size="icon">
-              {isOpen ? <Minimize /> : <Maximize />}
-            </Button>
-          </CollapsibleTrigger>
+          <CollapsibleTrigger
+            render={
+              <Button variant="outline" size="icon">
+                {isOpen ? <Minimize /> : <Maximize />}
+              </Button>
+            }
+          />
         </Collapsible>
       </CardContent>
     </Card>

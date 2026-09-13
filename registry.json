@@ -314,8 +314,8 @@
       "name": "collapsible",
       "type": "registry:ui",
       "title": "Collapsible",
-      "description": "Radix-based single expand/collapse section with animated height transitions.",
-      "dependencies": ["@radix-ui/react-collapsible", "clsx", "tailwind-merge"],
+      "description": "An interactive component which expands/collapses a panel.",
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn", "tokens"],
       "files": [
         {

@@ -1,21 +1,24 @@
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+import { Collapsible as CollapsiblePrimitive } from "@base-ui/react/collapsible";
 import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-export type CollapsibleProps = React.ComponentProps<
-  typeof CollapsiblePrimitive.Root
->;
+export type CollapsibleProps = Omit<
+  CollapsiblePrimitive.Root.Props,
+  "className"
+> & {
+  className?: string;
+};
 
 /**
  * Collapsible — a single expand/collapse section built on
- * `@radix-ui/react-collapsible`.
+ * `@base-ui/react`.
  *
  * Simpler than `Accordion` when you need a single toggle rather than a
  * coordinated set of sections. Compose with `CollapsibleTrigger` and
  * `CollapsibleContent`.
  *
- * Accessibility: Radix manages `aria-expanded`, `aria-controls`, and
+ * Accessibility: Base UI manages `aria-expanded`, `aria-controls`, and
  * keyboard activation (Enter/Space on the trigger).
  */
 export const Collapsible = forwardRef<HTMLDivElement, CollapsibleProps>(
@@ -31,21 +34,24 @@ export const Collapsible = forwardRef<HTMLDivElement, CollapsibleProps>(
   },
 );
 
-export type CollapsibleTriggerProps = React.ComponentProps<
-  typeof CollapsiblePrimitive.CollapsibleTrigger
->;
+export type CollapsibleTriggerProps = Omit<
+  CollapsiblePrimitive.Trigger.Props,
+  "className"
+> & {
+  className?: string;
+};
 
 /**
  * CollapsibleTrigger — the button that toggles the collapsible content.
  *
- * Use `asChild` to render as a custom trigger (e.g. a `Button`).
+ * Use the `render` prop to render as a custom trigger (e.g. a `Button`).
  */
 export const CollapsibleTrigger = forwardRef<
   HTMLButtonElement,
   CollapsibleTriggerProps
 >(function CollapsibleTrigger({ className, ...props }, ref) {
   return (
-    <CollapsiblePrimitive.CollapsibleTrigger
+    <CollapsiblePrimitive.Trigger
       ref={ref}
       data-slot="collapsible-trigger"
       className={cn(className)}
@@ -54,14 +60,17 @@ export const CollapsibleTrigger = forwardRef<
   );
 });
 
-export type CollapsibleContentProps = React.ComponentProps<
-  typeof CollapsiblePrimitive.Content
->;
+export type CollapsibleContentProps = Omit<
+  CollapsiblePrimitive.Panel.Props,
+  "className"
+> & {
+  className?: string;
+};
 
 /**
  * CollapsibleContent — the collapsible body.
  *
- * Unstyled by default; apply layout classes via `className`. Radix
+ * Unstyled by default; apply layout classes via `className`. Base UI
  * handles the open/closed state and mounts/unmounts the content.
  */
 export const CollapsibleContent = forwardRef<
@@ -69,7 +78,7 @@ export const CollapsibleContent = forwardRef<
   CollapsibleContentProps
 >(function CollapsibleContent({ className, ...props }, ref) {
   return (
-    <CollapsiblePrimitive.Content
+    <CollapsiblePrimitive.Panel
       ref={ref}
       data-slot="collapsible-content"
       className={cn(className)}

@@ -63,17 +63,19 @@ export function CollapsibleFileTreeDemo() {
     if ("items" in fileItem) {
       return (
         <Collapsible key={fileItem.name}>
-          <CollapsibleTrigger asChild>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="group w-full justify-start gap-1.5 hover:bg-surface-hover"
-            >
-              <ChevronRight className="size-4 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-standard)] group-data-[state=open]:rotate-90" />
-              <Folder className="size-4 text-foreground-muted" />
-              {fileItem.name}
-            </Button>
-          </CollapsibleTrigger>
+          <CollapsibleTrigger
+            render={
+              <Button
+                variant="ghost"
+                size="sm"
+                className="group w-full justify-start gap-1.5 hover:bg-surface-hover"
+              >
+                <ChevronRight className="size-4 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-standard)] group-data-[open]:rotate-90" />
+                <Folder className="size-4 text-foreground-muted" />
+                {fileItem.name}
+              </Button>
+            }
+          />
           <CollapsibleContent className="ms-4 mt-1">
             <div className="flex flex-col gap-1">
               {fileItem.items.map((child) => renderItem(child))}

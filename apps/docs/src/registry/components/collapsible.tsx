@@ -17,8 +17,7 @@ import CollapsibleSettingsDemoRaw from "../../demos/collapsible-settings-demo.ts
 export const collapsibleMeta: ComponentMeta = {
   name: "collapsible",
   label: "Collapsible",
-  description:
-    "Single expand/collapse section. Simpler than Accordion for one toggle.",
+  description: "An interactive component which expands/collapses a panel.",
   category: "Layout",
   examples: [
     {
@@ -56,14 +55,15 @@ export const collapsibleMeta: ComponentMeta = {
   ],
   usageImport: `import {
   Collapsible,
-  CollapsibleTrigger,
   CollapsibleContent,
-} from "@/components/ui/collapsible";`,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible"`,
   usageCode: `<Collapsible>
-  <CollapsibleTrigger asChild>
-    <Button variant="ghost">Toggle</Button>
-  </CollapsibleTrigger>
-  <CollapsibleContent>Content</CollapsibleContent>
+  <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
+  <CollapsibleContent>
+    Yes. Free to use for personal and commercial projects. No attribution
+    required.
+  </CollapsibleContent>
 </Collapsible>`,
   infoBlocks: [
     {
@@ -93,49 +93,16 @@ export function Example() {
     "├── CollapsibleTrigger",
     "└── CollapsibleContent",
   ],
-  props: [
-    {
-      name: "open",
-      type: "boolean",
-      description: "Controlled open state.",
-    },
-    {
-      name: "defaultOpen",
-      type: "boolean",
-      default: "false",
-      description: "Uncontrolled default open state.",
-    },
-    {
-      name: "onOpenChange",
-      type: "(open: boolean) => void",
-      description: "Called when the open state changes.",
-    },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disable the collapsible trigger.",
-    },
-    {
-      name: "CollapsibleTrigger.asChild",
-      type: "boolean",
-      default: "false",
-      description:
-        "Render as a child element (e.g. a Button) for custom triggers.",
-    },
-    {
-      name: "CollapsibleContent.asChild",
-      type: "boolean",
-      default: "false",
-      description: "Render the content as a child element.",
-    },
-  ],
+  apiReference: {
+    label: "Base UI Collapsible",
+    url: "https://base-ui.com/react/components/collapsible#api-reference",
+  },
   accessibility: [
-    "Radix manages aria-expanded and aria-controls on the trigger.",
+    "Base UI manages aria-expanded and aria-controls on the trigger.",
     "Enter and Space activate the trigger.",
     "Content is mounted when open and unmounted when closed.",
     "When disabled, the trigger is not focusable or activatable.",
   ],
-  basedOn: "radix",
+  basedOn: "base",
   isNew: true,
 };

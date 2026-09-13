@@ -12,13 +12,15 @@ export function CollapsibleBasicDemo() {
   return (
     <Card className="mx-auto w-full max-w-sm">
       <CardContent className="pt-5">
-        <Collapsible className="rounded-md data-[state=open]:bg-surface-hover">
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" className="group w-full">
-              Product details
-              <ChevronDown className="ms-auto group-data-[state=open]:rotate-180" />
-            </Button>
-          </CollapsibleTrigger>
+        <Collapsible className="rounded-md data-[open]:bg-surface-hover">
+          <CollapsibleTrigger
+            render={
+              <Button variant="ghost" className="group w-full">
+                Product details
+                <ChevronDown className="ms-auto group-data-[open]:rotate-180" />
+              </Button>
+            }
+          />
           <CollapsibleContent className="flex flex-col items-start gap-2 p-2.5 text-sm">
             <div>
               This panel can be expanded or collapsed to reveal additional
