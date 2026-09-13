@@ -349,8 +349,8 @@
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
-      "description": "Radix-based progress bar with accent range and semantic token styling.",
-      "dependencies": ["@radix-ui/react-progress", "clsx", "tailwind-merge"],
+      "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
         {
@@ -553,8 +553,8 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "Radix-based visual divider with horizontal/vertical orientation and decorative mode.",
-      "dependencies": ["@radix-ui/react-separator", "clsx", "tailwind-merge"],
+      "description": "Visually or semantically separates content.",
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
         {
@@ -723,9 +723,9 @@
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
-      "description": "Radix-based radio group with circular indicators and accent fill.",
+      "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
       "dependencies": [
-        "@radix-ui/react-radio-group",
+        "@base-ui/react",
         "clsx",
         "tailwind-merge",
         "lucide-react"

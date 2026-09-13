@@ -175,6 +175,7 @@ function extractUsageFields(filePath: string): {
   setup?: { filename: string; code: string };
   infoBlocks: { code: string; lang: string }[];
   primitives: { name: string; code: string; lang: string }[];
+  compositionBlocks: { code: string }[];
 } {
   const content = readFileSync(filePath, "utf-8");
   const nameMatch = content.match(/name:\s*"([^"]+)"/);
@@ -293,6 +294,36 @@ function extractUsageFields(filePath: string): {
       }
     }
   }
+  // Extract composition block codes: [ { code }, ... ]
+  const compositionBlocks: { code: string }[] = [];
+  const compStart = content.indexOf("composition:");
+  if (compStart !== -1) {
+    const bracketStart = content.indexOf("[", compStart);
+    if (bracketStart !== -1) {
+      let depth = 0;
+      let bracketEnd = -1;
+      for (let i = bracketStart; i < content.length; i++) {
+        if (content[i] === "[") depth++;
+        else if (content[i] === "]") {
+          depth--;
+          if (depth === 0) {
+            bracketEnd = i;
+            break;
+          }
+        }
+      }
+      if (bracketEnd !== -1) {
+        const compSection = content.slice(bracketStart + 1, bracketEnd);
+        const codeRegex = /code:\s*`([\s\S]*?)`/g;
+        let codeMatch;
+        while ((codeMatch = codeRegex.exec(compSection)) !== null) {
+          compositionBlocks.push({
+            code: unescapeTemplateLiteral(codeMatch[1]),
+          });
+        }
+      }
+    }
+  }
   return {
     name,
     usageImport,
@@ -301,6 +332,7 @@ function extractUsageFields(filePath: string): {
     setup,
     infoBlocks,
     primitives,
+    compositionBlocks,
   };
 }
 
@@ -405,6 +437,7 @@ export function shikiHighlightPlugin(): Plugin {
           setup,
           infoBlocks,
           primitives,
+          compositionBlocks,
         } of scanRegistryDir(componentDir)) {
           if (!name) continue;
           const entry: {
@@ -450,6 +483,14 @@ export function shikiHighlightPlugin(): Plugin {
                 primitives[i]!.lang,
               ),
               rawCode: primitives[i]!.code,
+              install: {},
+            };
+          }
+          // Pre-highlight composition block codes
+          for (let i = 0; i < compositionBlocks.length; i++) {
+            result[`__composition_${name}_${i}__`] = {
+              codeHtml: await highlight(compositionBlocks[i]!.code, "tsx"),
+              rawCode: compositionBlocks[i]!.code,
               install: {},
             };
           }

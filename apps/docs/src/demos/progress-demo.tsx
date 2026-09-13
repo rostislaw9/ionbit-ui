@@ -15,5 +15,5 @@ export function ProgressDemo() {
     return () => clearInterval(interval);
   }, []);
 
-  return <Progress value={progress} className="max-w-2xl" />;
+  return <Progress value={progress} className="max-w-sm" />;
 }

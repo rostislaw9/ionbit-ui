@@ -1,6 +1,6 @@
 import { Separator } from "@/components/ui/separator";
 
-export function SeparatorHorizontalDemo() {
+export function SeparatorDemo() {
   return (
     <div className="flex max-w-sm flex-col gap-4 text-sm">
       <div className="flex flex-col gap-1.5">

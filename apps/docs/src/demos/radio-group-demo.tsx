@@ -1,7 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-export function RadioGroupBasicDemo() {
+export function RadioGroupDemo() {
   return (
     <RadioGroup defaultValue="paypal" className="w-fit">
       <div className="flex items-center gap-2">

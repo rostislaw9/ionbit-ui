@@ -24,12 +24,10 @@ describe("RadioGroup", () => {
       </RadioGroup>,
     );
     expect(screen.getByRole("radio", { name: "Option B" })).toHaveAttribute(
-      "data-state",
-      "checked",
+      "data-checked",
     );
     expect(screen.getByRole("radio", { name: "Option A" })).toHaveAttribute(
-      "data-state",
-      "unchecked",
+      "data-unchecked",
     );
   });
 
@@ -43,8 +41,7 @@ describe("RadioGroup", () => {
     );
     await user.click(screen.getByRole("radio", { name: "Option A" }));
     expect(screen.getByRole("radio", { name: "Option A" })).toHaveAttribute(
-      "data-state",
-      "checked",
+      "data-checked",
     );
   });
 

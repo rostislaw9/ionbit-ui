@@ -63,6 +63,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Checkbox and Switch API reference:** both now link to the upstream
   Base UI documentation instead of inlining a props table, matching
   the shadcn pattern.
+- **Separator, Progress, and Radio Group migrated to Base UI:**
+  all three components now use `@base-ui/react` primitives instead
+  of `@radix-ui/react-*`. Radio Group data attributes updated from
+  `data-state` to `data-checked`/`data-unchecked`. Progress now uses
+  a Track/Indicator structure with automatic width-based fill.
+  Separator keeps the `decorative` prop for API compatibility.
+  All three link to upstream Base UI API reference docs.
 
 ### Changed
 

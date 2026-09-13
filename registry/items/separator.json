@@ -3,9 +3,9 @@
   "name": "separator",
   "type": "registry:ui",
   "title": "Separator",
-  "description": "Radix-based visual divider with horizontal/vertical orientation and decorative mode.",
+  "description": "Visually or semantically separates content.",
   "dependencies": [
-    "@radix-ui/react-separator",
+    "@base-ui/react",
     "clsx",
     "tailwind-merge"
   ],
@@ -17,7 +17,7 @@
     {
       "path": "components/ui/separator.tsx",
       "type": "registry:ui",
-      "content": "import * as SeparatorPrimitive from \"@radix-ui/react-separator\";\nimport { forwardRef } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport type SeparatorProps = React.ComponentProps<\n  typeof SeparatorPrimitive.Root\n>;\n\n/**\n * Separator — a visual divider between content sections.\n *\n * Built on `@radix-ui/react-separator`, shadcn-inspired. Renders a\n * 1px-wide line that spans the full width (horizontal) or height\n * (vertical) of its container. The `decorative` prop (default `true`)\n * marks it as presentational so it is excluded from the accessibility\n * tree.\n *\n * Accessibility: Radix sets `role=\"separator\"` with `aria-orientation`\n * based on the `orientation` prop. When the separator separates content\n * sections, it should not be focusable (default).\n */\nexport const Separator = forwardRef<HTMLDivElement, SeparatorProps>(\n  function Separator(\n    { className, orientation = \"horizontal\", decorative = true, ...props },\n    ref,\n  ) {\n    return (\n      <SeparatorPrimitive.Root\n        ref={ref}\n        orientation={orientation}\n        decorative={decorative}\n        className={cn(\n          \"shrink-0 bg-border\",\n          orientation === \"horizontal\" ? \"h-px w-full\" : \"w-px self-stretch\",\n          className,\n        )}\n        {...props}\n      />\n    );\n  },\n);\n"
+      "content": "import { Separator as SeparatorPrimitive } from \"@base-ui/react/separator\";\nimport { forwardRef } from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nexport interface SeparatorProps extends SeparatorPrimitive.Props {\n  /**\n   * Kept for API compatibility. Base UI always renders\n   * `role=\"separator\"` with `aria-orientation`.\n   */\n  decorative?: boolean;\n}\n\n/**\n * Separator — a visual divider between content sections.\n *\n * Built on `@base-ui/react`, shadcn-inspired. Renders a\n * 1px-wide line that spans the full width (horizontal) or height\n * (vertical) of its container.\n *\n * Accessibility: Base UI sets `role=\"separator\"` with\n * `aria-orientation` based on the `orientation` prop.\n */\nexport const Separator = forwardRef<HTMLDivElement, SeparatorProps>(\n  function Separator(\n    {\n      className,\n      orientation = \"horizontal\",\n      decorative: _decorative = true,\n      ...props\n    },\n    ref,\n  ) {\n    return (\n      <SeparatorPrimitive\n        ref={ref}\n        orientation={orientation}\n        className={cn(\n          \"shrink-0 bg-border\",\n          orientation === \"horizontal\" ? \"h-px w-full\" : \"w-px self-stretch\",\n          className,\n        )}\n        {...props}\n      />\n    );\n  },\n);\n"
     }
   ]
 }

@@ -59,6 +59,8 @@ export interface CompositionBlock {
   description?: ReactNode;
   /** ASCII tree diagram. */
   tree: string[];
+  /** Optional code example shown above the tree diagram. */
+  code?: string;
 }
 
 export interface ComponentMeta {

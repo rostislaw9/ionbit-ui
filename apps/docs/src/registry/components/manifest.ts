@@ -220,8 +220,9 @@ export const componentManifest: ManifestEntry[] = [
     name: "progress",
     label: "Progress",
     category: "Feedback",
-    description: "Progress bar.",
-    exampleCount: 1,
+    description:
+      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    exampleCount: 3,
   },
   {
     name: "pulse",
@@ -234,8 +235,9 @@ export const componentManifest: ManifestEntry[] = [
     name: "radio-group",
     label: "Radio Group",
     category: "Form",
-    description: "Single-choice option group.",
-    exampleCount: 1,
+    description:
+      "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
+    exampleCount: 6,
   },
   {
     name: "reveal",
@@ -262,8 +264,8 @@ export const componentManifest: ManifestEntry[] = [
     name: "separator",
     label: "Separator",
     category: "Layout",
-    description: "Visual divider.",
-    exampleCount: 2,
+    description: "Visually or semantically separates content.",
+    exampleCount: 4,
   },
   {
     name: "sheet",

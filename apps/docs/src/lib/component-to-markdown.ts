@@ -142,7 +142,12 @@ export function componentToMarkdown(comp: ComponentMeta): string {
     lines.push("");
     const isBlocks = (
       c: typeof comp.composition,
-    ): c is { heading?: string; description?: ReactNode; tree: string[] }[] =>
+    ): c is {
+      heading?: string;
+      description?: ReactNode;
+      tree: string[];
+      code?: string;
+    }[] =>
       c.length > 0 &&
       typeof c[0] === "object" &&
       c[0] !== null &&
@@ -155,6 +160,12 @@ export function componentToMarkdown(comp: ComponentMeta): string {
         }
         if (typeof block.description === "string") {
           lines.push(block.description);
+          lines.push("");
+        }
+        if (block.code) {
+          lines.push("```tsx");
+          lines.push(block.code);
+          lines.push("```");
           lines.push("");
         }
         lines.push("```");

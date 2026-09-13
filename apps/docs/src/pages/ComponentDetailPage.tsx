@@ -329,7 +329,11 @@ export function ComponentDetailPage() {
         )}
 
         {comp.composition && (
-          <CompositionSection tree={comp.composition} label={comp.label} />
+          <CompositionSection
+            tree={comp.composition}
+            label={comp.label}
+            name={comp.name}
+          />
         )}
 
         {comp.apiReference && (

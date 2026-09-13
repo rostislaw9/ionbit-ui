@@ -178,8 +178,16 @@ export type { SliderProps } from "./components/slider/index";
 export { Checkbox } from "./components/checkbox/index";
 export type { CheckboxProps } from "./components/checkbox/index";
 
-export { Progress } from "./components/progress/index";
-export type { ProgressProps } from "./components/progress/index";
+export {
+  Progress,
+  ProgressLabel,
+  ProgressValue,
+} from "./components/progress/index";
+export type {
+  ProgressLabelProps,
+  ProgressProps,
+  ProgressValueProps,
+} from "./components/progress/index";
 
 export { Skeleton } from "./components/skeleton/index";
 export type { SkeletonProps } from "./components/skeleton/index";

@@ -871,15 +871,15 @@ with the same tokens and components as a consumer would use.
 
 ### 17.2 Evaluated and rejected (for now)
 
-| Dependency                             | Decision              | Reason                                                                                                                                         |
-| -------------------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@base-ui/react`                       | Adopted per-component | Store-based model is a better fit for Combobox, Checkbox, and Switch. Migration is incremental; Radix remains for components not yet migrated. |
-| `react-aria` / `react-aria-components` | Rejected as primary   | Heavier, more granular API, less idiomatic with cva/cn workflow. Revisit for date/calendar post-MVP.                                           |
-| `tailwind-variants`                    | Rejected              | `cva` + `cn()` is clearer and more widely understood.                                                                                          |
-| `playwright`                           | Deferred              | Needed for registry/CLI E2E, not for the foundation.                                                                                           |
-| `changesets`                           | Deferred              | Add at first release prep.                                                                                                                     |
-| `sonner`                               | Adopted (Toast only)  | Toast re-exports Sonner and maps Ionbit UI tokens to Sonner's CSS variables. Credit: Emil Kowalski.                                            |
-| `lucide-react`                         | Not a hard dependency | Icons are consumer-chosen. Docs app may use it for demos, but it is not a runtime dependency of `ui`.                                          |
+| Dependency                             | Decision              | Reason                                                                                                                                                                           |
+| -------------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@base-ui/react`                       | Adopted per-component | Store-based model is a better fit for Combobox, Checkbox, Switch, Separator, Progress, and Radio Group. Migration is incremental; Radix remains for components not yet migrated. |
+| `react-aria` / `react-aria-components` | Rejected as primary   | Heavier, more granular API, less idiomatic with cva/cn workflow. Revisit for date/calendar post-MVP.                                                                             |
+| `tailwind-variants`                    | Rejected              | `cva` + `cn()` is clearer and more widely understood.                                                                                                                            |
+| `playwright`                           | Deferred              | Needed for registry/CLI E2E, not for the foundation.                                                                                                                             |
+| `changesets`                           | Deferred              | Add at first release prep.                                                                                                                                                       |
+| `sonner`                               | Adopted (Toast only)  | Toast re-exports Sonner and maps Ionbit UI tokens to Sonner's CSS variables. Credit: Emil Kowalski.                                                                              |
+| `lucide-react`                         | Not a hard dependency | Icons are consumer-chosen. Docs app may use it for demos, but it is not a runtime dependency of `ui`.                                                                            |
 
 ---
 
@@ -907,7 +907,8 @@ The exact commands and results are recorded in the final report.
 
 1. **Radix vs Base UI as the headless layer.** Radix is the default for
    ecosystem fit; Base UI is adopted per-component where its store-based
-   model is a better fit (currently `Combobox`, `Checkbox`, and `Switch`).
+   model is a better fit (currently `Combobox`, `Checkbox`, `Switch`,
+   `Separator`, `Progress`, and `Radio Group`).
    The `basedOn` registry field tracks which framework each component
    uses, and the docs render the correct dependency install commands and
    badge per component. ReUI's dual-version approach remains a precedent

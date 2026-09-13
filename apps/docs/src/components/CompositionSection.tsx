@@ -1,6 +1,9 @@
 import type { CompositionBlock } from "../registry/components/types";
 
+import highlightedInline from "virtual:highlighted-inline";
+
 import { slugify } from "../lib/slugify";
+import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
 import { InlineCode } from "./InlineCode";
 import { SectionHeading } from "./SectionHeading";
 
@@ -28,9 +31,11 @@ function Tree({ lines }: { lines: string[] }) {
 export function CompositionSection({
   tree,
   label,
+  name,
 }: {
   tree: string[] | CompositionBlock[];
   label: string;
+  name: string;
 }) {
   const article = /^[aeiou]/i.test(label) ? "an" : "a";
   return (
@@ -46,6 +51,8 @@ export function CompositionSection({
             const blockId = block.heading
               ? `composition-${slugify(block.heading)}`
               : undefined;
+            const key = `__composition_${name}_${index}__`;
+            const highlighted = highlightedInline[key];
             return (
               <div
                 key={block.heading ?? index}
@@ -61,6 +68,13 @@ export function CompositionSection({
                   <p className="text-base text-foreground-muted md:text-sm">
                     {block.description}
                   </p>
+                )}
+                {block.code && highlighted && (
+                  <CodeBlockWithCopy
+                    rawCode={highlighted.rawCode!}
+                    html={highlighted.codeHtml!}
+                    lineNumbers={false}
+                  />
                 )}
                 <Tree lines={block.tree} />
               </div>

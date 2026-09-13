@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 import { Separator } from "./index";
@@ -17,6 +17,12 @@ describe("Separator", () => {
     const sep = container.firstChild as HTMLElement;
     expect(sep.className).toContain("self-stretch");
     expect(sep.className).toContain("w-px");
+  });
+
+  it("sets role=separator with aria-orientation", () => {
+    render(<Separator orientation="vertical" />);
+    const sep = screen.getByRole("separator");
+    expect(sep).toHaveAttribute("aria-orientation", "vertical");
   });
 
   it("applies bg-border class", () => {

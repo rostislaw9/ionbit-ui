@@ -1,2 +1,6 @@
-export { Progress } from "./progress";
-export type { ProgressProps } from "./progress";
+export { Progress, ProgressLabel, ProgressValue } from "./progress";
+export type {
+  ProgressLabelProps,
+  ProgressProps,
+  ProgressValueProps,
+} from "./progress";
