@@ -335,8 +335,30 @@ export type {
   ComboboxValueProps,
 } from "./components/combobox/index";
 
-export { toast, Toaster } from "./components/toast/index";
-export type { IonBitToasterProps } from "./components/toast/index";
+export {
+  Toaster,
+  Toast,
+  ToastAction,
+  ToastClose,
+  ToastContent,
+  ToastDescription,
+  ToastIcon,
+  ToastList,
+  ToastPortal,
+  ToastProvider,
+  ToastTitle,
+  ToastViewport,
+  createToastManager,
+  toast,
+  toastManager,
+  useToastManager,
+} from "./components/toast/index";
+export type {
+  ToastOptions,
+  ToastAPI,
+  ToastPosition,
+  ToastType,
+} from "./components/toast/index";
 
 export {
   AlertDialog,

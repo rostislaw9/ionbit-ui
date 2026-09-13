@@ -4,7 +4,7 @@ import { forwardRef, type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 export const alertVariants = cva(
-  "relative flex w-full flex-col gap-2 rounded-lg border p-4 text-sm text-foreground transition-[border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+  "relative flex w-full flex-col gap-2 rounded-lg border-[1.5px] p-4 text-sm text-foreground transition-[border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
   {
     variants: {
       variant: {

@@ -1,25 +1,15 @@
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/toast";
 
-export function ToastTypesDemo() {
+export function ToastSoftDemo() {
   return (
     <div className="flex flex-wrap justify-center gap-2">
-      <Button
-        variant="secondary"
-        onClick={() =>
-          toast("Default", {
-            description: "A simple notification",
-          })
-        }
-      >
-        Default
-      </Button>
       <Button
         className="text-accent"
         variant="secondary"
         onClick={() =>
-          toast.accent("Accent", {
-            description: "Highlighted message",
+          toast.accent.soft("Accent", {
+            description: "Soft highlighted message",
           })
         }
       >
@@ -29,7 +19,7 @@ export function ToastTypesDemo() {
         className="text-info"
         variant="secondary"
         onClick={() =>
-          toast.info("Info", {
+          toast.info.soft("Info", {
             description: "Something to know",
           })
         }
@@ -40,7 +30,7 @@ export function ToastTypesDemo() {
         className="text-success"
         variant="secondary"
         onClick={() =>
-          toast.success("Success!", {
+          toast.success.soft("Success!", {
             description: "Operation completed",
           })
         }
@@ -51,7 +41,7 @@ export function ToastTypesDemo() {
         className="text-warning"
         variant="secondary"
         onClick={() =>
-          toast.warning("Warning", {
+          toast.warning.soft("Warning", {
             description: "Check before proceeding",
           })
         }
@@ -62,27 +52,12 @@ export function ToastTypesDemo() {
         className="text-error"
         variant="secondary"
         onClick={() =>
-          toast.error("Error", {
+          toast.error.soft("Error", {
             description: "Something went wrong",
           })
         }
       >
         Error
-      </Button>
-      <Button
-        variant="secondary"
-        onClick={() => {
-          const id = toast.loading("Creating event...");
-          setTimeout(() => {
-            toast.update(id, {
-              title: "Event created",
-              type: "success",
-              description: "Sunday, December 3 at 9:00 AM",
-            });
-          }, 1500);
-        }}
-      >
-        Promise
       </Button>
     </div>
   );

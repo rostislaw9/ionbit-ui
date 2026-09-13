@@ -453,9 +453,14 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "Sonner-based toast notifications with Ionbit UI-compatible CSS variables.",
-      "dependencies": ["sonner", "clsx", "tailwind-merge"],
-      "registryDependencies": ["cn"],
+      "description": "Toast notifications built on Base UI with stacking, swipe-to-dismiss, and status icons.",
+      "dependencies": [
+        "@base-ui/react",
+        "lucide-react",
+        "clsx",
+        "tailwind-merge"
+      ],
+      "registryDependencies": ["button", "cn"],
       "files": [
         {
           "path": "packages/ui/src/components/toast/toast.tsx",

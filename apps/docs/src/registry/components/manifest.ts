@@ -14,6 +14,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Layout",
     description: "Collapsible sections with chevron indicator.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "alert",
@@ -22,6 +23,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Callout for surfacing status messages with semantic variants.",
     exampleCount: 3,
+    isNew: false,
   },
   {
     name: "alert-dialog",
@@ -29,6 +31,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Modal confirmation dialog.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "avatar",
@@ -36,6 +39,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Layout",
     description: "Avatar with image and fallback support.",
     exampleCount: 4,
+    isNew: false,
   },
   {
     name: "badge",
@@ -43,6 +47,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Small status indicator with soft and text variants.",
     exampleCount: 8,
+    isNew: false,
   },
   {
     name: "breadcrumb",
@@ -50,6 +55,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Navigation",
     description: "Navigation trail showing the user's location in a hierarchy.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "button",
@@ -58,6 +64,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Triggers an action. Eight variants, icon support, accent glow.",
     exampleCount: 5,
+    isNew: false,
   },
   {
     name: "button-group",
@@ -66,6 +73,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Groups related buttons with separators, text, and nesting support.",
     exampleCount: 11,
+    isNew: false,
   },
   {
     name: "card",
@@ -73,6 +81,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Layout",
     description: "Container with header, content, and footer sections.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "empty",
@@ -80,6 +89,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Placeholder for empty states with structured subcomponents.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "checkbox",
@@ -88,6 +98,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "A control that allows the user to toggle between checked and not checked.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "collapsible",
@@ -120,6 +131,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Command palette built on cmdk.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "context-menu",
@@ -127,6 +139,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Right-click menu.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "dialog",
@@ -134,6 +147,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Modal window with overlay.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "dropdown-menu",
@@ -141,6 +155,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Menu triggered by a button.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "glow",
@@ -148,6 +163,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Motion",
     description: "State-driven accent halo on hover/focus.",
     exampleCount: 4,
+    isNew: false,
   },
   {
     name: "hover-card",
@@ -155,6 +171,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Card that appears on hover.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "input",
@@ -162,6 +179,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Text input field.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "input-group",
@@ -170,6 +188,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Groups an input with leading or trailing addons, buttons, and text.",
     exampleCount: 4,
+    isNew: false,
   },
   {
     name: "label",
@@ -177,6 +196,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Accessible form label.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "mode-switcher",
@@ -193,6 +213,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Styled native HTML select with custom chevron.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "magnetic",
@@ -200,6 +221,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Motion",
     description: "Spring-based cursor attraction.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "pagination",
@@ -207,6 +229,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Navigation",
     description: "Page navigation controls.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "popover",
@@ -214,6 +237,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Floating content triggered by click.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "progress",
@@ -222,6 +246,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
     exampleCount: 3,
+    isNew: false,
   },
   {
     name: "pulse",
@@ -229,6 +254,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Motion",
     description: "Periodic accent halo for active status.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "radio-group",
@@ -237,6 +263,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
     exampleCount: 6,
+    isNew: false,
   },
   {
     name: "reveal",
@@ -244,6 +271,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Motion",
     description: "In-view entrance animation.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "scroll-area",
@@ -251,6 +279,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Layout",
     description: "Custom-styled scrollable region.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "select",
@@ -258,6 +287,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Dropdown select input.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "separator",
@@ -265,6 +295,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Layout",
     description: "Visually or semantically separates content.",
     exampleCount: 4,
+    isNew: false,
   },
   {
     name: "sheet",
@@ -272,6 +303,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Side panel that slides in.",
     exampleCount: 3,
+    isNew: false,
   },
   {
     name: "skeleton",
@@ -279,6 +311,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Loading placeholder.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "spinner",
@@ -287,6 +320,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Animated loading indicator icon for buttons and async states.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "slider",
@@ -294,6 +328,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Range input slider.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "spotlight",
@@ -301,6 +336,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Motion",
     description: "Pointer-following radial highlight.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "switch",
@@ -309,6 +345,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "A control that allows the user to toggle between checked and not checked.",
     exampleCount: 6,
+    isNew: false,
   },
   {
     name: "table",
@@ -317,6 +354,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Responsive table with header, body, footer, rows, cells, and caption.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "tabs",
@@ -324,6 +362,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Navigation",
     description: "Tabbed content sections.",
     exampleCount: 1,
+    isNew: false,
   },
   {
     name: "textarea",
@@ -331,13 +370,15 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Multi-line text input.",
     exampleCount: 2,
+    isNew: false,
   },
   {
     name: "toast",
     label: "Toast",
     category: "Feedback",
-    description: "Transient notification. Built on Sonner.",
-    exampleCount: 5,
+    description: "Transient notification. Built on Base UI.",
+    exampleCount: 6,
+    isNew: true,
   },
   {
     name: "toggle",
@@ -345,6 +386,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "A two-state button that can be either on or off.",
     exampleCount: 5,
+    isNew: false,
   },
   {
     name: "toggle-group",
@@ -353,6 +395,7 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "A set of two-state buttons with single or multiple selection.",
     exampleCount: 6,
+    isNew: false,
   },
   {
     name: "tooltip",
@@ -360,6 +403,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Overlay",
     description: "Hover-triggered label.",
     exampleCount: 1,
+    isNew: false,
   },
 ];
 

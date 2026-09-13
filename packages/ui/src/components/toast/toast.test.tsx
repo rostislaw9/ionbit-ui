@@ -70,4 +70,46 @@ describe("Toast", () => {
       expect(screen.getByText("Failed!")).toBeInTheDocument();
     });
   });
+
+  it("shows accent toast", async () => {
+    const user = userEvent.setup();
+    render(
+      <>
+        <button onClick={() => toast.accent("Highlighted!")}>Show</button>
+        <Toaster />
+      </>,
+    );
+    await user.click(screen.getByText("Show"));
+    await waitFor(() => {
+      expect(screen.getByText("Highlighted!")).toBeInTheDocument();
+    });
+  });
+
+  it("shows soft info toast", async () => {
+    const user = userEvent.setup();
+    render(
+      <>
+        <button onClick={() => toast.info.soft("Soft info")}>Show</button>
+        <Toaster />
+      </>,
+    );
+    await user.click(screen.getByText("Show"));
+    await waitFor(() => {
+      expect(screen.getByText("Soft info")).toBeInTheDocument();
+    });
+  });
+
+  it("shows soft success toast", async () => {
+    const user = userEvent.setup();
+    render(
+      <>
+        <button onClick={() => toast.success.soft("Soft success")}>Show</button>
+        <Toaster />
+      </>,
+    );
+    await user.click(screen.getByText("Show"));
+    await waitFor(() => {
+      expect(screen.getByText("Soft success")).toBeInTheDocument();
+    });
+  });
 });

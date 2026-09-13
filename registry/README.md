@@ -67,7 +67,7 @@ npx shadcn@latest add ionbit-ui/accordion
 | `dropdown-menu` | `registry:ui` | @radix-ui/react-dropdown-menu     |
 | `select`        | `registry:ui` | @radix-ui/react-select, lucide    |
 | `accordion`     | `registry:ui` | @radix-ui/react-accordion, lucide |
-| `toast`         | `registry:ui` | sonner                            |
+| `toast`         | `registry:ui` | @base-ui/react, lucide-react      |
 
 ### Motion Primitives
 

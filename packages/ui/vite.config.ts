@@ -52,7 +52,7 @@ export default defineConfig({
         "motion",
         "motion/react",
         /^@radix-ui\//,
-        "sonner",
+        /^@base-ui\//,
         "lucide-react",
         "class-variance-authority",
         "clsx",

@@ -154,10 +154,8 @@ Ionbit UI stands on the shoulders of several excellent projects:
 - [Radix UI](https://www.radix-ui.com) — the headless, accessible
   primitives that power most of the overlay and form components.
 - [Base UI](https://base-ui.com) — the unstyled React components from
-  the MUI team that power `Combobox`.
-- [Sonner](https://sonner.emilkowal.ski) by
-  [Emil Kowalski](https://twitter.com/emilkowalski) — the toast engine
-  that `Toast` is built on.
+  the MUI team that power `Combobox`, `Toast`, and several other
+  components.
 - [cmdk](https://cmdk.paco.me) — the command menu primitive behind
   `Command`.
 - [Tailwind CSS](https://tailwindcss.com) — the utility-first styling

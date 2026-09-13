@@ -836,7 +836,7 @@ active. Highlighted output is exposed through virtual modules:
 `virtual:highlighted-source/<name>`.
 
 Vendor chunks: `vendor-react`, `vendor-radix`, `vendor-base-ui`,
-`vendor-motion`, `vendor-lucide`, `vendor-cmdk`, `vendor-sonner` are
+`vendor-motion`, `vendor-lucide`, `vendor-cmdk` are
 split in `vite.config.ts` for cacheability.
 
 ### 16.5 Why it matters
@@ -878,7 +878,7 @@ with the same tokens and components as a consumer would use.
 | `tailwind-variants`                    | Rejected              | `cva` + `cn()` is clearer and more widely understood.                                                                                                                            |
 | `playwright`                           | Deferred              | Needed for registry/CLI E2E, not for the foundation.                                                                                                                             |
 | `changesets`                           | Deferred              | Add at first release prep.                                                                                                                                                       |
-| `sonner`                               | Adopted (Toast only)  | Toast re-exports Sonner and maps Ionbit UI tokens to Sonner's CSS variables. Credit: Emil Kowalski.                                                                              |
+| `sonner`                               | Removed               | Toast was migrated to Base UI. Sonner is no longer a dependency.                                                                                                                 |
 | `lucide-react`                         | Not a hard dependency | Icons are consumer-chosen. Docs app may use it for demos, but it is not a runtime dependency of `ui`.                                                                            |
 
 ---

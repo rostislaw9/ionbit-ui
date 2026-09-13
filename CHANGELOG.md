@@ -70,6 +70,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   a Track/Indicator structure with automatic width-based fill.
   Separator keeps the `decorative` prop for API compatibility.
   All three link to upstream Base UI API reference docs.
+- **Toast migrated to Base UI:** Toast now uses `@base-ui/react/toast`
+  primitives instead of Sonner. Preserves the imperative `toast` API
+  (`toast`, `toast.success`, `toast.error`, `toast.info`,
+  `toast.warning`, `toast.accent`, `toast.loading`, `toast.promise`,
+  `toast.update`, `toast.close`). Adds `ToastPosition` type with all
+  six viewport positions (default `bottom-right`) and correct
+  top/bottom stacking direction. Adds `ToastType` with Alert-compatible
+  variants: `accent`, `info`, `success`, `warning`, `error`, plus
+  soft variants (`accent-soft`, `info-soft`, etc.) that color the
+  title and icon with a neutral border. Typed methods expose a
+  `.soft` accessor (e.g. `toast.info.soft(...)`). New `Toaster`
+  accepts `position`, `toastManager`, `timeout`, and `limit` props.
+  `sonner` dependency removed.
 
 ### Changed
 

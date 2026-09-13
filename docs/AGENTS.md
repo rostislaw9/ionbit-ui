@@ -57,7 +57,6 @@ The project may take inspiration from existing ecosystems, including:
 
 - shadcn/ui
 - Radix UI
-- Sonner
 - Base UI
 - Headless UI
 - Magic UI
@@ -79,9 +78,8 @@ The project must have its own:
 - documentation experience;
 - branding.
 
-When a component wraps a third-party library (e.g., Toast built on
-Sonner), its source JSDoc and registry `about` field must credit the
-original author (e.g., "Built on Sonner by Emil Kowalski").
+When a component wraps a third-party library, its source JSDoc and
+registry `about` field must credit the original author.
 
 Competitive research is encouraged.
 
@@ -472,7 +470,7 @@ Use:
   include a one-line purpose, a note that the component is
   Radix/shadcn-inspired where applicable, and a dedicated
   **Accessibility** section. Third-party dependencies used directly
-  (e.g., Sonner) must be credited.
+  must be credited.
 
 Avoid:
 

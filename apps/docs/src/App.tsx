@@ -142,7 +142,7 @@ export function App() {
           />
         </Routes>
       </main>
-      <Toaster position="top-center" />
+      <Toaster />
     </div>
   );
 }
