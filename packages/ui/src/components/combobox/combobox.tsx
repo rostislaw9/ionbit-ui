@@ -90,7 +90,7 @@ function ComboboxClear({ className, ...props }: ComboboxPrimitive.Clear.Props) {
       data-slot="combobox-clear"
       className={cn(className)}
       render={
-        <InputGroupButton variant="ghost" size="icon-xs">
+        <InputGroupButton variant="ghost" size="icon-xs" aria-label="Clear">
           <XIcon className="pointer-events-none" />
         </InputGroupButton>
       }
@@ -124,7 +124,8 @@ function ComboboxInput({
   return (
     <InputGroup className={cn("w-auto", className)}>
       <ComboboxPrimitive.Input
-        render={<InputGroupInput disabled={disabled} />}
+        render={<InputGroupInput />}
+        disabled={disabled}
         {...props}
       />
       <InputGroupAddon align="inline-end">
@@ -134,6 +135,7 @@ function ComboboxInput({
               <InputGroupButton
                 size="icon-xs"
                 variant="ghost"
+                aria-label="Toggle"
                 data-slot="input-group-button"
                 className="group-has-data-[slot=combobox-clear]/input-group:hidden data-pressed:bg-transparent"
                 disabled={disabled}

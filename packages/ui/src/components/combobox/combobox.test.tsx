@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 
@@ -6,8 +6,10 @@ import {
   Combobox,
   ComboboxContent,
   ComboboxEmpty,
+  ComboboxGroup,
   ComboboxInput,
   ComboboxItem,
+  ComboboxLabel,
   ComboboxList,
 } from "./combobox";
 
@@ -102,7 +104,7 @@ describe("Combobox", () => {
     const user = userEvent.setup();
     render(
       <Combobox items={names} disabled>
-        <ComboboxInput placeholder="Select a framework" showClear />
+        <ComboboxInput placeholder="Select a framework" showClear disabled />
         <ComboboxContent>
           <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>
@@ -122,27 +124,42 @@ describe("Combobox", () => {
 
   it("toggles the popup using the chevron without losing input focus", async () => {
     const user = userEvent.setup();
-    render(<BasicCombobox />);
-    const trigger = screen.getAllByRole("button")[0];
-    if (!trigger) throw new Error("expected a trigger button");
+    render(
+      <Combobox items={names}>
+        <ComboboxInput placeholder="Select a framework" />
+        <ComboboxContent>
+          <ComboboxEmpty>No items found.</ComboboxEmpty>
+          <ComboboxList>
+            {(item) => (
+              <ComboboxItem key={item} value={item}>
+                {item}
+              </ComboboxItem>
+            )}
+          </ComboboxList>
+        </ComboboxContent>
+      </Combobox>,
+    );
+    const trigger = screen.getByRole("button", { name: "Toggle" });
     await user.click(trigger);
-    expect(screen.getByRole("listbox")).toBeInTheDocument();
+    expect(await screen.findByRole("listbox")).toBeInTheDocument();
     await user.click(trigger);
-    expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+    });
   });
 
   it("dismisses on outside click without stealing outside focus", async () => {
     const user = userEvent.setup();
-    render(
+    const { container } = render(
       <>
         <BasicCombobox />
-        <button>Outside</button>
+        <button id="outside">Outside</button>
       </>,
     );
     const input = screen.getByRole("combobox");
     await user.click(input);
     expect(screen.getByRole("listbox")).toBeInTheDocument();
-    await user.click(screen.getByRole("button", { name: "Outside" }));
+    await user.click(container.querySelector("#outside")!);
     expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
   });
 
@@ -158,7 +175,7 @@ describe("Combobox", () => {
     if (!first || !second) throw new Error("expected two comboboxes");
     await user.click(first);
     await user.type(first, "svelte");
-    await user.keyboard("{Enter}");
+    await user.keyboard("{ArrowDown}{Enter}");
     expect(first).toHaveValue("SvelteKit");
     expect(second).toHaveValue("Astro");
   });
@@ -257,20 +274,22 @@ describe("Combobox with object items", () => {
         ],
       },
     ];
+    const allItems = groups.flatMap((g) => g.items);
     render(
-      <Combobox items={groups}>
+      <Combobox items={allItems}>
         <ComboboxInput placeholder="Select a city" />
         <ComboboxContent>
           <ComboboxEmpty>No items found.</ComboboxEmpty>
           <ComboboxList>
             {groups.map((group) => (
-              <ComboboxList key={group.label}>
-                {(item) => (
+              <ComboboxGroup key={group.label}>
+                <ComboboxLabel>{group.label}</ComboboxLabel>
+                {group.items.map((item) => (
                   <ComboboxItem key={item.value} value={item}>
                     {item.label}
                   </ComboboxItem>
-                )}
-              </ComboboxList>
+                ))}
+              </ComboboxGroup>
             ))}
           </ComboboxList>
         </ComboboxContent>
