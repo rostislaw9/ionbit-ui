@@ -161,12 +161,17 @@ function ToastPortal({ ...props }: ToastPrimitive.Portal.Props) {
 }
 
 const VIEWPORT_POSITION_CLASSES: Record<ToastPosition, string> = {
-  "top-left": "top-4 left-4 [--toast-dir:-1]",
+  // On mobile (below sm), all left/center/right collapse to centered.
+  "top-left":
+    "top-4 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 [--toast-dir:-1]",
   "top-center": "top-4 left-1/2 -translate-x-1/2 [--toast-dir:-1]",
-  "top-right": "top-4 right-4 [--toast-dir:-1]",
-  "bottom-left": "bottom-4 left-4 [--toast-dir:1]",
+  "top-right":
+    "top-4 left-1/2 -translate-x-1/2 sm:right-4 sm:left-auto sm:translate-x-0 [--toast-dir:-1]",
+  "bottom-left":
+    "bottom-4 left-1/2 -translate-x-1/2 sm:left-4 sm:translate-x-0 [--toast-dir:1]",
   "bottom-center": "bottom-4 left-1/2 -translate-x-1/2 [--toast-dir:1]",
-  "bottom-right": "bottom-4 right-4 [--toast-dir:1]",
+  "bottom-right":
+    "bottom-4 left-1/2 -translate-x-1/2 sm:right-4 sm:left-auto sm:translate-x-0 [--toast-dir:1]",
 };
 
 function ToastViewport({
@@ -181,7 +186,7 @@ function ToastViewport({
       data-position={position}
       data-vertical={vertical}
       className={cn(
-        "group/toast-viewport pointer-events-none fixed z-50 w-full max-w-sm outline-none",
+        "group/toast-viewport pointer-events-none fixed z-50 w-[calc(100%-2rem)] max-w-sm outline-none sm:w-full",
         VIEWPORT_POSITION_CLASSES[position],
         className,
       )}
