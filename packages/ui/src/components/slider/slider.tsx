@@ -39,24 +39,29 @@ export const Slider = forwardRef<HTMLSpanElement, SliderProps>(function Slider(
       value={value}
       min={min}
       max={max}
-      // prettier-ignore
-      className={cn("relative flex w-full touch-none select-none items-center cursor-grab active:cursor-grabbing data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col", className)}
+      className={cn(
+        "relative flex w-full cursor-grab touch-none items-center select-none active:cursor-grabbing data-[disabled]:opacity-50 data-[orientation=vertical]:h-full data-[orientation=vertical]:min-h-40 data-[orientation=vertical]:w-auto data-[orientation=vertical]:flex-col",
+        className,
+      )}
       {...props}
     >
       <SliderPrimitive.Track
-        // prettier-ignore
-        className={cn("relative grow overflow-hidden rounded-full bg-surface-elevated border border-border data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5")}
+        className={cn(
+          "relative grow overflow-hidden rounded-full border border-border bg-surface-elevated data-[orientation=horizontal]:h-1.5 data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-1.5",
+        )}
       >
         <SliderPrimitive.Range
-          // prettier-ignore
-          className={cn("absolute bg-accent data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full")}
+          className={cn(
+            "absolute bg-accent data-[orientation=horizontal]:h-full data-[orientation=vertical]:w-full",
+          )}
         />
       </SliderPrimitive.Track>
       {Array.from({ length: values.length }, (_, index) => (
         <SliderPrimitive.Thumb
           key={index}
-          // prettier-ignore
-          className={cn("relative block size-4 shrink-0 rounded-full border-2 border-background bg-accent shadow-sm transition-shadow duration-[var(--duration-fast)] ease-[var(--ease-standard)] after:absolute after:-inset-2 hover:shadow-[var(--shadow-focus)] focus-visible:shadow-[var(--shadow-focus)] focus-visible:outline-none active:shadow-[var(--shadow-focus)] disabled:pointer-events-none disabled:opacity-50")}
+          className={cn(
+            "relative block size-4 shrink-0 rounded-full border-2 border-background bg-accent shadow-sm transition-shadow duration-[var(--duration-fast)] ease-[var(--ease-standard)] after:absolute after:-inset-2 hover:shadow-[var(--shadow-focus)] focus-visible:shadow-[var(--shadow-focus)] focus-visible:outline-none active:shadow-[var(--shadow-focus)] disabled:pointer-events-none disabled:opacity-50",
+          )}
         />
       ))}
     </SliderPrimitive.Root>

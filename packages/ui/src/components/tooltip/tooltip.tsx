@@ -58,8 +58,11 @@ export function Tooltip({
           <TooltipPrimitive.Content
             side={side}
             sideOffset={6}
-            // prettier-ignore
-            className={cn("z-50 rounded-md border border-border-strong bg-surface-elevated px-2.5 py-1.5 text-xs text-foreground shadow-md data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=instant-open]:animate-in data-[state=instant-open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 duration-[var(--duration-fast)] ease-[var(--ease-standard)]", `data-[state=delayed-open]:${slideIn}`, `data-[state=instant-open]:${slideIn}`)}
+            className={cn(
+              "z-50 rounded-md border border-border-strong bg-surface-elevated px-2.5 py-1.5 text-xs text-foreground shadow-md duration-[var(--duration-fast)] ease-[var(--ease-standard)] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=instant-open]:animate-in data-[state=instant-open]:fade-in-0",
+              `data-[state=delayed-open]:${slideIn}`,
+              `data-[state=instant-open]:${slideIn}`,
+            )}
           >
             {content}
           </TooltipPrimitive.Content>

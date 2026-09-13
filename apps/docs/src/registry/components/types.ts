@@ -27,7 +27,14 @@ export interface PrimitiveMeta {
   name: string;
   description: string;
   props: PropMeta[];
-  accessibility: string[];
+  /** Optional content rendered after the code block (e.g. notes, bullet lists). */
+  after?: ReactNode;
+  /** Optional code example shown in a code block. */
+  code?: string;
+  /** Code language for syntax highlighting (defaults to "tsx"). */
+  lang?: string;
+  /** Optional filename header for the code block. */
+  filename?: string;
 }
 
 export interface InfoBlock {
@@ -41,6 +48,8 @@ export interface InfoBlock {
   lang?: string;
   /** Optional filename header for the code block (e.g. "src/index.css"). */
   filename?: string;
+  /** Optional content rendered after the code block (e.g. notes, bullet lists). */
+  after?: ReactNode;
 }
 
 export interface CompositionBlock {

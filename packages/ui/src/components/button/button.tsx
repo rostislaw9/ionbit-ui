@@ -4,19 +4,24 @@ import { forwardRef, type ButtonHTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
 export const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none rounded-md transition-[background-color,border-color,color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0 active:translate-y-px",
   {
     variants: {
       variant: {
-        primary: "bg-accent text-accent-foreground hover:bg-accent-hover hover:shadow-[var(--shadow-glow)]",
-        "primary-soft": "bg-accent-muted text-accent hover:shadow-[var(--shadow-glow)]",
-        secondary: "bg-surface-elevated text-foreground border border-border hover:bg-surface-hover hover:border-border-strong",
-        outline: "bg-transparent text-foreground border border-border-strong hover:bg-accent-muted hover:border-accent hover:text-accent",
+        primary:
+          "bg-accent text-accent-foreground hover:bg-accent-hover hover:shadow-[var(--shadow-glow)]",
+        "primary-soft":
+          "bg-accent-muted text-accent hover:shadow-[var(--shadow-glow)]",
+        secondary:
+          "bg-surface-elevated text-foreground border border-border hover:bg-surface-hover hover:border-border-strong",
+        outline:
+          "bg-transparent text-foreground border border-border-strong hover:bg-accent-muted hover:border-accent hover:text-accent",
         ghost: "bg-transparent text-foreground hover:bg-surface-hover",
-        destructive: "bg-error text-error-foreground hover:bg-error-hover hover:shadow-[var(--shadow-glow-error)]",
-        "destructive-soft": "bg-error-muted text-error hover:shadow-[var(--shadow-glow-error)]",
+        destructive:
+          "bg-error text-error-foreground hover:bg-error-hover hover:shadow-[var(--shadow-glow-error)]",
+        "destructive-soft":
+          "bg-error-muted text-error hover:shadow-[var(--shadow-glow-error)]",
         link: "bg-transparent text-accent underline-offset-4 hover:underline",
       },
       size: {

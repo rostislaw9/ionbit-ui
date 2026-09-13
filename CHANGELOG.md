@@ -44,9 +44,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   `--info-*` token colors and `role="status"`.
 - **Alert With Glow demo:** alerts wrapped in the Glow primitive for a
   colored halo on hover.
+- **Field** — composable field wrapper with `FieldSet`, `FieldGroup`,
+  `Field`, `FieldLabel`, `FieldContent`, `FieldTitle`,
+  `FieldDescription`, `FieldError`, `FieldSeparator`, and `FieldLegend`.
+  Supports `vertical`, `horizontal`, and `responsive` orientations.
+- **Field demos:** eleven demos added — Overview (payment form), Input,
+  Textarea, Select, Slider, Fieldset, Checkbox, Radio, Switch, Choice
+  Card, and Field Group.
+- **Field docs:** Anatomy and Validation info blocks, three composition
+  blocks (Field, FieldGroup, FieldSet), per-primitive API reference with
+  code examples and after-prose notes.
+- **Primitive API reference:** `PrimitiveMeta` now supports `code`,
+  `lang`, `filename`, and `after` fields. Primitives render as
+  subsections under a single "API Reference" heading with clickable
+  anchors, code examples, and after-prose content.
+- **Info block `after` field:** `InfoBlock` now supports an optional
+  `after` ReactNode rendered below the code block for notes and lists.
+- **Checkbox and Switch API reference:** both now link to the upstream
+  Base UI documentation instead of inlining a props table, matching
+  the shadcn pattern.
 
 ### Changed
 
+- **Switch and Checkbox migrated to Base UI:** both components now use
+  `@base-ui/react` primitives instead of `@radix-ui/react-*`. Data
+  attributes updated from `data-state` to `data-checked`/`data-unchecked`
+  and `data-disabled`. No visual or API changes.
 - **Component `basedOn` field:** replaced the boolean `radixBased` flag
   with `basedOn?: "radix" | "base" | undefined`, allowing the docs to
   show distinct "Radix" or "Base UI" badges and generate the correct
@@ -789,8 +812,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   instead of `buttonVariants()`. Command now imports Dialog via
   `@/components/ui/dialog`. All cross-component imports use
   `@/components/ui/*` paths.
-- Collapsed all component `cn()` style strings to single-line strings
-  with `// prettier-ignore` where needed.
 - Updated `registry.json` with component-to-component
   `registryDependencies` so `ionbit-ui add <component>` also
   installs dependencies (e.g. pagination → button, command → dialog).

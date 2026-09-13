@@ -31,15 +31,21 @@ export const NativeSelect = forwardRef<HTMLSelectElement, NativeSelectProps>(
         <select
           ref={ref}
           aria-invalid={invalid || undefined}
-          // prettier-ignore
-          className={cn("flex h-8 w-full appearance-none rounded-md border bg-surface px-3 py-1.5 pe-9 text-base sm:text-sm text-foreground transition-[border-color,box-shadow,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 border-border hover:border-border-strong focus-visible:shadow-focus", invalid && ["border-error hover:border-error", "focus-visible:shadow-focus-error"], className)}
+          className={cn(
+            "flex h-8 w-full appearance-none rounded-md border border-border bg-surface px-3 py-1.5 pe-9 text-base text-foreground transition-[border-color,box-shadow,background-color] duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-border-strong focus-visible:shadow-focus focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 sm:text-sm",
+            invalid && [
+              "border-error hover:border-error",
+              "focus-visible:shadow-focus-error",
+            ],
+            className,
+          )}
           {...props}
         >
           {children}
         </select>
         <ChevronDown
           aria-hidden="true"
-          // prettier-ignore
+
           className="pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2 text-foreground-muted"
         />
       </div>

@@ -4,24 +4,20 @@ import { forwardRef, type SVGProps } from "react";
 
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
-export const spinnerVariants = cva(
-  "animate-spin shrink-0 text-current",
-  {
-    variants: {
-      size: {
-        xs: "size-3",
-        sm: "size-3.5",
-        md: "size-4",
-        lg: "size-5",
-        xl: "size-6",
-      },
-    },
-    defaultVariants: {
-      size: "md",
+export const spinnerVariants = cva("animate-spin shrink-0 text-current", {
+  variants: {
+    size: {
+      xs: "size-3",
+      sm: "size-3.5",
+      md: "size-4",
+      lg: "size-5",
+      xl: "size-6",
     },
   },
-);
+  defaultVariants: {
+    size: "md",
+  },
+});
 
 export interface SpinnerProps
   extends

@@ -77,8 +77,10 @@ export const AccordionTrigger = forwardRef<
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
         ref={ref}
-        // prettier-ignore
-        className={cn("flex flex-1 items-center justify-between py-4 font-medium text-sm text-foreground hover:text-accent transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background group", className)}
+        className={cn(
+          "group flex flex-1 items-center justify-between py-4 text-sm font-medium text-foreground transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:text-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none",
+          className,
+        )}
         {...props}
       >
         {children}
@@ -110,8 +112,10 @@ export const AccordionContent = forwardRef<
   return (
     <AccordionPrimitive.Content
       ref={ref}
-      // prettier-ignore
-      className={cn("overflow-hidden text-sm text-foreground-muted data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down", className)}
+      className={cn(
+        "overflow-hidden text-sm text-foreground-muted data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down",
+        className,
+      )}
       {...props}
     >
       <div className="pt-1 pb-4">{children}</div>

@@ -3,22 +3,28 @@ import { forwardRef, type HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
 export const alertVariants = cva(
   "relative flex w-full flex-col gap-2 rounded-lg border p-4 text-sm text-foreground transition-[border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
   {
     variants: {
       variant: {
         default: "border-border bg-surface text-foreground",
-        accent: "border-border-accent bg-accent-subtle text-foreground [&_svg]:text-accent",
+        accent:
+          "border-border-accent bg-accent-subtle text-foreground [&_svg]:text-accent",
         info: "border-border-info bg-info-subtle text-foreground [&_svg]:text-info",
-        success: "border-border-success bg-success-muted text-foreground [&_svg]:text-success",
-        warning: "border-border-warning bg-warning-muted text-foreground [&_svg]:text-warning",
-        error: "border-border-error bg-error-muted text-foreground [&_svg]:text-error",
-        "accent-soft": "border-border bg-surface text-accent [&_svg]:text-accent",
+        success:
+          "border-border-success bg-success-muted text-foreground [&_svg]:text-success",
+        warning:
+          "border-border-warning bg-warning-muted text-foreground [&_svg]:text-warning",
+        error:
+          "border-border-error bg-error-muted text-foreground [&_svg]:text-error",
+        "accent-soft":
+          "border-border bg-surface text-accent [&_svg]:text-accent",
         "info-soft": "border-border bg-surface text-info [&_svg]:text-info",
-        "success-soft": "border-border bg-surface text-success [&_svg]:text-success",
-        "warning-soft": "border-border bg-surface text-warning [&_svg]:text-warning",
+        "success-soft":
+          "border-border bg-surface text-success [&_svg]:text-success",
+        "warning-soft":
+          "border-border bg-surface text-warning [&_svg]:text-warning",
         "error-soft": "border-border bg-surface text-error [&_svg]:text-error",
       },
     },
@@ -75,8 +81,10 @@ export const AlertTitle = forwardRef<HTMLDivElement, AlertTitleProps>(
     return (
       <div
         ref={ref}
-        // prettier-ignore
-        className={cn("flex items-center gap-2 font-medium leading-none tracking-tight [&_svg]:size-4 [&_svg]:shrink-0", className)}
+        className={cn(
+          "flex items-center gap-2 leading-none font-medium tracking-tight [&_svg]:size-4 [&_svg]:shrink-0",
+          className,
+        )}
         {...props}
       />
     );

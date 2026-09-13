@@ -85,7 +85,8 @@ export const componentManifest: ManifestEntry[] = [
     name: "checkbox",
     label: "Checkbox",
     category: "Form",
-    description: "Binary selector with indeterminate state.",
+    description:
+      "A control that allows the user to toggle between checked and not checked.",
     exampleCount: 1,
   },
   {
@@ -95,6 +96,15 @@ export const componentManifest: ManifestEntry[] = [
     description:
       "Single expand/collapse section. Simpler than Accordion for one toggle.",
     exampleCount: 4,
+    isNew: true,
+  },
+  {
+    name: "field",
+    label: "Field",
+    category: "Form",
+    description:
+      "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
+    exampleCount: 11,
     isNew: true,
   },
   {
@@ -295,8 +305,9 @@ export const componentManifest: ManifestEntry[] = [
     name: "switch",
     label: "Switch",
     category: "Form",
-    description: "Toggle switch.",
-    exampleCount: 1,
+    description:
+      "A control that allows the user to toggle between checked and not checked.",
+    exampleCount: 6,
   },
   {
     name: "table",

@@ -80,13 +80,16 @@ export const AlertDialogContent = forwardRef<
   return (
     <AlertDialogPrimitive.Portal>
       <AlertDialogPrimitive.Overlay
-        // prettier-ignore
-        className={cn("fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 duration-[var(--duration-normal)] ease-[var(--ease-standard)]")}
+        className={cn(
+          "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm duration-[var(--duration-normal)] ease-[var(--ease-standard)] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
+        )}
       />
       <AlertDialogPrimitive.Content
         ref={ref}
-        // prettier-ignore
-        className={cn("fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-lg rounded-lg border border-border-strong bg-surface-elevated shadow-lg p-6 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-[var(--duration-normal)] ease-[var(--ease-standard)] focus-visible:outline-none", className)}
+        className={cn(
+          "fixed top-1/2 left-1/2 z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg border border-border-strong bg-surface-elevated p-6 shadow-lg duration-[var(--duration-normal)] ease-[var(--ease-standard)] focus-visible:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+          className,
+        )}
         {...props}
       >
         {children}
@@ -135,8 +138,10 @@ export const AlertDialogDescription = forwardRef<
   return (
     <AlertDialogPrimitive.Description
       ref={ref}
-      // prettier-ignore
-      className={cn("text-sm text-foreground-muted leading-relaxed mt-2", className)}
+      className={cn(
+        "mt-2 text-sm leading-relaxed text-foreground-muted",
+        className,
+      )}
       {...props}
     />
   );

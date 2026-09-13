@@ -7,10 +7,7 @@ import { Checkbox } from "./checkbox";
 describe("Checkbox", () => {
   it("renders unchecked by default", () => {
     render(<Checkbox aria-label="Accept" />);
-    expect(screen.getByRole("checkbox")).toHaveAttribute(
-      "data-state",
-      "unchecked",
-    );
+    expect(screen.getByRole("checkbox")).toHaveAttribute("data-unchecked");
   });
 
   it("can be checked via click", async () => {
@@ -18,7 +15,7 @@ describe("Checkbox", () => {
     render(<Checkbox aria-label="Accept" />);
     const checkbox = screen.getByRole("checkbox");
     await user.click(checkbox);
-    expect(checkbox).toHaveAttribute("data-state", "checked");
+    expect(checkbox).toHaveAttribute("data-checked");
   });
 
   it("has the correct role", () => {
@@ -33,6 +30,6 @@ describe("Checkbox", () => {
     checkbox.focus();
     expect(checkbox).toHaveFocus();
     await user.keyboard(" ");
-    expect(checkbox).toHaveAttribute("data-state", "checked");
+    expect(checkbox).toHaveAttribute("data-checked");
   });
 });

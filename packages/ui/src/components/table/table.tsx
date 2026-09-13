@@ -76,8 +76,10 @@ export const TableFooter = forwardRef<
   return (
     <tfoot
       ref={ref}
-      // prettier-ignore
-      className={cn("border-t bg-surface-hover font-medium [&>tr]:last:border-b-0", className)}
+      className={cn(
+        "border-t bg-surface-hover font-medium [&>tr]:last:border-b-0",
+        className,
+      )}
       {...props}
     />
   );
@@ -94,8 +96,10 @@ export const TableRow = forwardRef<HTMLTableRowElement, TableRowProps>(
     return (
       <tr
         ref={ref}
-        // prettier-ignore
-        className={cn("border-b transition-colors hover:bg-surface-hover data-[state=selected]:bg-surface-hover", className)}
+        className={cn(
+          "border-b transition-colors hover:bg-surface-hover data-[state=selected]:bg-surface-hover",
+          className,
+        )}
         {...props}
       />
     );
@@ -113,8 +117,10 @@ export const TableHead = forwardRef<HTMLTableCellElement, TableHeadProps>(
     return (
       <th
         ref={ref}
-        // prettier-ignore
-        className={cn("h-10 px-2 text-start align-middle font-medium whitespace-nowrap text-foreground-muted [&:has([role=checkbox])]:pe-0", className)}
+        className={cn(
+          "h-10 px-2 text-start align-middle font-medium whitespace-nowrap text-foreground-muted [&:has([role=checkbox])]:pe-0",
+          className,
+        )}
         {...props}
       />
     );
@@ -132,8 +138,10 @@ export const TableCell = forwardRef<HTMLTableCellElement, TableCellProps>(
     return (
       <td
         ref={ref}
-        // prettier-ignore
-        className={cn("p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pe-0", className)}
+        className={cn(
+          "p-2 align-middle whitespace-nowrap [&:has([role=checkbox])]:pe-0",
+          className,
+        )}
         {...props}
       />
     );

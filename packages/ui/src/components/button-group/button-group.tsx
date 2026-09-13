@@ -4,7 +4,6 @@ import { forwardRef, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
 export const buttonGroupVariants = cva(
   "group/button-group flex w-fit items-stretch *:focus-visible:relative *:focus-visible:z-10 has-[>[data-slot=button-group]]:gap-2 [&>input]:flex-1",
   {
@@ -137,8 +136,10 @@ export const ButtonGroupText = forwardRef<HTMLDivElement, ButtonGroupTextProps>(
       <Comp
         ref={ref}
         data-slot="button-group-text"
-        // prettier-ignore
-        className={cn("flex items-center gap-2 rounded-md border border-border bg-surface px-2.5 text-sm font-medium text-foreground-muted [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4", className)}
+        className={cn(
+          "flex items-center gap-2 rounded-md border border-border bg-surface px-2.5 text-sm font-medium text-foreground-muted [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+          className,
+        )}
       >
         {children}
       </Comp>

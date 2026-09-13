@@ -1,13 +1,11 @@
-import { useState } from "react";
-
+import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 
 export function SwitchDemo() {
-  const [on, setOn] = useState(true);
   return (
-    <div className="flex items-center gap-4">
-      <Switch checked={on} onCheckedChange={setOn} />
-      <span className="text-sm text-foreground">{on ? "On" : "Off"}</span>
+    <div className="flex items-center space-x-2">
+      <Switch id="airplane-mode" />
+      <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>
   );
 }

@@ -81,19 +81,23 @@ export const DialogContent = forwardRef<HTMLDivElement, DialogContentProps>(
     return (
       <DialogPrimitive.Portal>
         <DialogPrimitive.Overlay
-          // prettier-ignore
-          className={cn("fixed inset-0 z-50 bg-background/80 backdrop-blur-sm data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 duration-[var(--duration-normal)] ease-[var(--ease-standard)]")}
+          className={cn(
+            "fixed inset-0 z-50 bg-background/80 backdrop-blur-sm duration-[var(--duration-normal)] ease-[var(--ease-standard)] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:animate-in data-[state=open]:fade-in-0",
+          )}
         />
         <DialogPrimitive.Content
           ref={ref}
-          // prettier-ignore
-          className={cn("fixed left-1/2 top-1/2 z-50 -translate-x-1/2 -translate-y-1/2 w-[calc(100%-2rem)] max-w-lg rounded-lg border border-border-strong bg-surface-elevated shadow-lg p-6 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-[var(--duration-normal)] ease-[var(--ease-standard)] focus-visible:outline-none", className)}
+          className={cn(
+            "fixed top-1/2 left-1/2 z-50 w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 rounded-lg border border-border-strong bg-surface-elevated p-6 shadow-lg duration-[var(--duration-normal)] ease-[var(--ease-standard)] focus-visible:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+            className,
+          )}
           {...props}
         >
           {children}
           <DialogPrimitive.Close
-            // prettier-ignore
-            className={cn("absolute end-4 top-4 rounded-md p-1 text-foreground-muted hover:text-foreground hover:bg-surface-hover transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background")}
+            className={cn(
+              "absolute end-4 top-4 rounded-md p-1 text-foreground-muted transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:bg-surface-hover hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:outline-none",
+            )}
             aria-label="Close"
           >
             <X className="h-4 w-4" />
@@ -118,8 +122,10 @@ export const DialogTitle = forwardRef<HTMLHeadingElement, DialogTitleProps>(
     return (
       <DialogPrimitive.Title
         ref={ref}
-        // prettier-ignore
-        className={cn("text-lg font-semibold tracking-tight text-foreground", className)}
+        className={cn(
+          "text-lg font-semibold tracking-tight text-foreground",
+          className,
+        )}
         {...props}
       />
     );

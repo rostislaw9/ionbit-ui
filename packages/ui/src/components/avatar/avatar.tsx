@@ -33,8 +33,11 @@ export const Avatar = forwardRef<HTMLSpanElement, AvatarProps>(function Avatar(
     <AvatarPrimitive.Root
       ref={ref}
       data-slot="avatar"
-      // prettier-ignore
-      className={cn("relative flex shrink-0 rounded-full", avatarSizes[size], className)}
+      className={cn(
+        "relative flex shrink-0 rounded-full",
+        avatarSizes[size],
+        className,
+      )}
       {...props}
     />
   );
@@ -57,8 +60,10 @@ export const AvatarImage = forwardRef<HTMLImageElement, AvatarImageProps>(
     return (
       <AvatarPrimitive.Image
         ref={ref}
-        // prettier-ignore
-        className={cn("absolute inset-0 size-full rounded-full object-cover border border-border bg-surface", className)}
+        className={cn(
+          "absolute inset-0 size-full rounded-full border border-border bg-surface object-cover",
+          className,
+        )}
         {...props}
       />
     );
@@ -81,8 +86,10 @@ export const AvatarFallback = forwardRef<HTMLSpanElement, AvatarFallbackProps>(
     return (
       <AvatarPrimitive.Fallback
         ref={ref}
-        // prettier-ignore
-        className={cn("absolute inset-0 flex items-center justify-center rounded-full border border-border bg-surface-elevated text-sm font-medium text-foreground-muted", className)}
+        className={cn(
+          "absolute inset-0 flex items-center justify-center rounded-full border border-border bg-surface-elevated text-sm font-medium text-foreground-muted",
+          className,
+        )}
         {...props}
       />
     );
@@ -131,8 +138,12 @@ export const AvatarStatus = forwardRef<HTMLSpanElement, AvatarStatusProps>(
       <span
         ref={ref}
         role="img"
-        // prettier-ignore
-        className={cn("absolute z-10 size-3.5 rounded-full border-2 border-background ring-2 ring-background/50 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)]", statusColors[variant], statusPositions[position], className)}
+        className={cn(
+          "absolute z-10 size-3.5 rounded-full border-2 border-background ring-2 ring-background/50 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+          statusColors[variant],
+          statusPositions[position],
+          className,
+        )}
         {...props}
       />
     );
@@ -154,8 +165,10 @@ export const AvatarGroup = forwardRef<HTMLDivElement, AvatarGroupProps>(
     return (
       <div
         ref={ref}
-        // prettier-ignore
-        className={cn("flex -space-x-2 [&_[data-slot=avatar]]:ring-2 [&_[data-slot=avatar]]:ring-background", className)}
+        className={cn(
+          "flex -space-x-2 [&_[data-slot=avatar]]:ring-2 [&_[data-slot=avatar]]:ring-background",
+          className,
+        )}
         {...props}
       />
     );
@@ -177,8 +190,10 @@ export const AvatarGroupCount = forwardRef<
   return (
     <div
       ref={ref}
-      // prettier-ignore
-      className={cn("relative flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface-elevated text-sm font-medium text-foreground-muted ring-2 ring-background", className)}
+      className={cn(
+        "relative flex size-10 shrink-0 items-center justify-center rounded-full border border-border bg-surface-elevated text-sm font-medium text-foreground-muted ring-2 ring-background",
+        className,
+      )}
       {...props}
     />
   );
@@ -198,8 +213,10 @@ export const AvatarBadge = forwardRef<HTMLSpanElement, AvatarBadgeProps>(
     return (
       <span
         ref={ref}
-        // prettier-ignore
-        className={cn("absolute bottom-0 right-0 z-10 flex items-center justify-center rounded-full ring-2 ring-background", className)}
+        className={cn(
+          "absolute right-0 bottom-0 z-10 flex items-center justify-center rounded-full ring-2 ring-background",
+          className,
+        )}
         {...props}
       />
     );

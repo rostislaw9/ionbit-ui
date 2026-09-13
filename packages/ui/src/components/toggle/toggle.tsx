@@ -4,14 +4,15 @@ import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
 export const toggleVariants = cva(
   "group/toggle inline-flex items-center justify-center gap-1 whitespace-nowrap font-medium select-none rounded-md transition-[background-color,border-color,color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-transparent text-foreground hover:bg-surface-hover data-[state=on]:bg-accent-muted data-[state=on]:text-accent",
-        outline: "bg-transparent text-foreground border border-border-strong hover:bg-surface-hover hover:border-border-strong data-[state=on]:text-accent data-[state=on]:bg-accent-muted data-[state=on]:border-accent-muted",
+        default:
+          "bg-transparent text-foreground hover:bg-surface-hover data-[state=on]:bg-accent-muted data-[state=on]:text-accent",
+        outline:
+          "bg-transparent text-foreground border border-border-strong hover:bg-surface-hover hover:border-border-strong data-[state=on]:text-accent data-[state=on]:bg-accent-muted data-[state=on]:border-accent-muted",
       },
       size: {
         xs: "h-6 min-w-6 px-2 text-xs has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_svg:not([class*='size-'])]:size-3",

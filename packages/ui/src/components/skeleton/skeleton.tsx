@@ -20,8 +20,10 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
     return (
       <div
         ref={ref}
-        // prettier-ignore
-        className={cn("animate-pulse rounded-md bg-surface-elevated", className)}
+        className={cn(
+          "animate-pulse rounded-md bg-surface-elevated",
+          className,
+        )}
         {...props}
       />
     );

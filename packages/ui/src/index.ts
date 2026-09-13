@@ -480,3 +480,16 @@ export type {
   ToggleGroupProps,
   ToggleGroupItemProps,
 } from "./components/toggle-group/index";
+
+export {
+  Field,
+  FieldContent,
+  FieldDescription,
+  FieldError,
+  FieldGroup,
+  FieldLabel,
+  FieldLegend,
+  FieldSeparator,
+  FieldSet,
+  FieldTitle,
+} from "./components/field/index";

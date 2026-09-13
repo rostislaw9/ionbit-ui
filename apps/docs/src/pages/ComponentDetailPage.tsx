@@ -3,12 +3,14 @@ import type { ComponentMeta } from "../registry/components/types";
 import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import highlightedInline from "virtual:highlighted-inline";
 
 import { Reveal } from "@ionbit-ui/motion";
 import { Badge, Button } from "@ionbit-ui/ui";
 
 import { AccessibilityList } from "../components/AccessibilityList";
 import { ApiTable } from "../components/ApiTable";
+import { CodeBlockWithCopy } from "../components/CodeBlockWithCopy";
 import { CompositionSection } from "../components/CompositionSection";
 import { ExampleSwitcher } from "../components/ExampleSwitcher";
 import { InfoBlocksSection } from "../components/InfoBlocksSection";
@@ -136,16 +138,16 @@ export function ComponentDetailPage() {
         subsections,
       });
     }
-    if (comp?.apiReference) result.push({ id: "api", label: "API Reference" });
-    if (comp?.props && comp.props.length > 0)
+    if (comp?.apiReference || (comp?.props && comp.props.length > 0))
       result.push({ id: "api", label: "API Reference" });
     if (comp?.accessibility && comp.accessibility.length > 0)
       result.push({ id: "accessibility", label: "Accessibility" });
-    if (comp?.primitives) {
-      for (const primitive of comp.primitives) {
-        const id = `primitive-${slugify(primitive.name)}`;
-        result.push({ id, label: `${primitive.name} API` });
-      }
+    if (comp?.primitives && comp.primitives.length > 0) {
+      const subsections = comp.primitives.map((primitive) => ({
+        id: `primitive-${slugify(primitive.name)}`,
+        label: primitive.name,
+      }));
+      result.push({ id: "api", label: "API Reference", subsections });
     }
     return result;
   }, [comp]);
@@ -365,29 +367,44 @@ export function ComponentDetailPage() {
           </section>
         )}
 
-        {comp.primitives &&
-          comp.primitives.map((primitive) => {
-            const sectionId = `primitive-${slugify(primitive.name)}`;
-            return (
-              <section
-                key={primitive.name}
-                id={sectionId}
-                className="flex scroll-mt-24 flex-col gap-3"
-              >
-                <SectionHeading id={sectionId}>
-                  {primitive.name} API
-                </SectionHeading>
-                <p className="text-sm text-foreground-muted">
-                  {primitive.description}
-                </p>
-                <ApiTable props={primitive.props} />
-                <h3 className="text-xs font-semibold text-foreground-muted">
-                  {primitive.name} Accessibility
-                </h3>
-                <AccessibilityList notes={primitive.accessibility} />
-              </section>
-            );
-          })}
+        {comp.primitives && comp.primitives.length > 0 && (
+          <section id="api" className="flex scroll-mt-24 flex-col gap-6">
+            <SectionHeading id="api">API Reference</SectionHeading>
+            {comp.primitives.map((primitive) => {
+              const sectionId = `primitive-${slugify(primitive.name)}`;
+              const key = `__primitive_${comp.name}_${primitive.name}__`;
+              const highlighted = highlightedInline[key];
+              return (
+                <section
+                  key={primitive.name}
+                  id={sectionId}
+                  className="flex scroll-mt-24 flex-col gap-3"
+                >
+                  <SectionHeading id={sectionId} as="h3">
+                    {primitive.name}
+                  </SectionHeading>
+                  <p className="text-sm text-foreground-muted">
+                    {primitive.description}
+                  </p>
+                  <ApiTable props={primitive.props} />
+                  {highlighted && (
+                    <CodeBlockWithCopy
+                      rawCode={highlighted.rawCode!}
+                      html={highlighted.codeHtml!}
+                      lineNumbers={false}
+                      filename={primitive.filename}
+                    />
+                  )}
+                  {primitive.after && (
+                    <div className="flex flex-col gap-3 text-base text-foreground-muted md:text-sm">
+                      {primitive.after}
+                    </div>
+                  )}
+                </section>
+              );
+            })}
+          </section>
+        )}
 
         <PrevNextNav prev={prev} next={next} />
       </div>

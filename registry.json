@@ -249,8 +249,8 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "Radix-based toggle switch with accent thumb and animated slide.",
-      "dependencies": ["@radix-ui/react-switch", "clsx", "tailwind-merge"],
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
         {
@@ -279,9 +279,9 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "Radix-based checkbox with circular shape, accent fill, and lucide Check indicator.",
+      "description": "A control that allows the user to toggle between checked and not checked.",
       "dependencies": [
-        "@radix-ui/react-checkbox",
+        "@base-ui/react",
         "clsx",
         "tailwind-merge",
         "lucide-react"
@@ -294,6 +294,21 @@
           "target": "components/ui/checkbox.tsx"
         }
       ]
+    },
+    {
+      "name": "field",
+      "type": "registry:component",
+      "title": "Field",
+      "description": "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
+      "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
+      "files": [
+        {
+          "path": "packages/ui/src/components/field/field.tsx",
+          "type": "registry:ui",
+          "target": "components/ui/field.tsx"
+        }
+      ],
+      "registryDependencies": ["label", "separator"]
     },
     {
       "name": "collapsible",

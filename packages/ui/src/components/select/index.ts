@@ -1,5 +1,6 @@
 export {
   Select,
+  SelectGroup,
   SelectTrigger,
   SelectValue,
   SelectContent,
@@ -9,6 +10,7 @@ export {
 } from "./select";
 export type {
   SelectProps,
+  SelectGroupProps,
   SelectTriggerProps,
   SelectValueProps,
   SelectContentProps,

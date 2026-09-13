@@ -9,7 +9,6 @@ import {
 import { Button, type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
 export const inputGroupVariants = cva(
   "group/input-group relative flex h-8 w-full min-w-0 items-center rounded-md border border-border bg-surface transition-[border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)] has-disabled:opacity-50 has-[[data-slot=input-group-control]:focus-visible]:border-border-strong has-[[data-slot=input-group-control]:focus-visible]:shadow-focus has-[[data-slot][aria-invalid=true]]:border-error has-[[data-slot][aria-invalid=true]]:shadow-focus-error has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>[data-align=block-end]]:[&>input]:pt-3 has-[>[data-align=block-start]]:[&>input]:pb-3 has-[>[data-align=inline-end]]:[&>input]:pe-1.5 has-[>[data-align=inline-start]]:[&>input]:ps-1.5",
   {
@@ -59,16 +58,13 @@ export const InputGroup = forwardRef<HTMLDivElement, InputGroupProps>(
   },
 );
 
-// prettier-ignore
 const inputGroupAddonVariants = cva(
   "flex h-auto cursor-text items-center justify-center gap-2 text-sm font-medium text-foreground-muted select-none group-data-[disabled=true]/input-group:opacity-50 [&>svg:not([class*='size-'])]:size-4 [&>svg]:pointer-events-none [&>svg]:shrink-0",
   {
     variants: {
       align: {
-        "inline-start":
-          "order-first ps-1.5 has-[>button]:-ms-0.5",
-        "inline-end":
-          "order-last pe-1.5 has-[>button]:-me-0.5",
+        "inline-start": "order-first ps-1.5 has-[>button]:-ms-0.5",
+        "inline-end": "order-last pe-1.5 has-[>button]:-me-0.5",
         "block-start":
           "order-first w-full justify-start px-2.5 pt-2 [.border-b]:pb-2",
         "block-end":
@@ -154,8 +150,10 @@ export const InputGroupText = forwardRef<HTMLSpanElement, InputGroupTextProps>(
       <span
         ref={ref}
         data-slot="input-group-text"
-        // prettier-ignore
-        className={cn("flex items-center gap-2 text-sm text-foreground-muted [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4", className)}
+        className={cn(
+          "flex items-center gap-2 text-sm text-foreground-muted [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+          className,
+        )}
         {...props}
       />
     );
@@ -180,8 +178,10 @@ export const InputGroupInput = forwardRef<
     <input
       ref={ref}
       data-slot="input-group-control"
-      // prettier-ignore
-      className={cn("flex flex-1 w-full min-w-0 bg-transparent px-3 py-1.5 text-base sm:text-sm text-foreground placeholder:text-foreground-subtle outline-none disabled:cursor-not-allowed disabled:opacity-40", className)}
+      className={cn(
+        "flex w-full min-w-0 flex-1 bg-transparent px-3 py-1.5 text-base text-foreground outline-none placeholder:text-foreground-subtle disabled:cursor-not-allowed disabled:opacity-40 sm:text-sm",
+        className,
+      )}
       {...props}
     />
   );
@@ -206,8 +206,10 @@ export const InputGroupTextarea = forwardRef<
     <textarea
       ref={ref}
       data-slot="input-group-control"
-      // prettier-ignore
-      className={cn("flex flex-1 w-full min-w-0 resize-none bg-transparent px-3 py-2 min-h-[80px] text-base sm:text-sm text-foreground placeholder:text-foreground-subtle outline-none disabled:cursor-not-allowed disabled:opacity-40", className)}
+      className={cn(
+        "flex min-h-[80px] w-full min-w-0 flex-1 resize-none bg-transparent px-3 py-2 text-base text-foreground outline-none placeholder:text-foreground-subtle disabled:cursor-not-allowed disabled:opacity-40 sm:text-sm",
+        className,
+      )}
       {...props}
     />
   );
@@ -230,8 +232,7 @@ export const InputGroupSeparator = forwardRef<
       ref={ref}
       aria-hidden="true"
       data-slot="input-group-separator"
-      // prettier-ignore
-      className={cn("mx-1 self-stretch w-px bg-border", className)}
+      className={cn("mx-1 w-px self-stretch bg-border", className)}
       {...props}
     />
   );

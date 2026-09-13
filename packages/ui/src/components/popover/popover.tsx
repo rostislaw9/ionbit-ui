@@ -80,8 +80,10 @@ export const PopoverContent = forwardRef<HTMLDivElement, PopoverContentProps>(
         <PopoverPrimitive.Content
           ref={ref}
           sideOffset={6}
-          // prettier-ignore
-          className={cn("z-50 w-72 rounded-md border border-border bg-surface-elevated p-4 text-foreground shadow-md data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-[var(--duration-normal)] ease-[var(--ease-standard)] focus-visible:outline-none", className)}
+          className={cn(
+            "z-50 w-72 rounded-md border border-border bg-surface-elevated p-4 text-foreground shadow-md duration-[var(--duration-normal)] ease-[var(--ease-standard)] focus-visible:outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+            className,
+          )}
           {...props}
         >
           {children}

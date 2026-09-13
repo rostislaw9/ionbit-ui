@@ -37,6 +37,11 @@ export function InfoBlocksSection({
                 filename={block.filename}
               />
             )}
+            {block.after && (
+              <div className="flex flex-col gap-3 text-base text-foreground-muted md:text-sm">
+                {block.after}
+              </div>
+            )}
           </section>
         );
       })}

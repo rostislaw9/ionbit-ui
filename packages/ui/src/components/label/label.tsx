@@ -18,8 +18,10 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   return (
     <LabelPrimitive.Root
       ref={ref}
-      // prettier-ignore
-      className={cn("text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-40 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)]", className)}
+      className={cn(
+        "text-sm leading-none font-medium text-foreground transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] peer-disabled:cursor-not-allowed peer-disabled:opacity-40",
+        className,
+      )}
       {...props}
     />
   );

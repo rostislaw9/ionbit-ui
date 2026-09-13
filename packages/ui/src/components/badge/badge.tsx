@@ -4,7 +4,6 @@ import { forwardRef, type HTMLAttributes } from "react";
 
 import { cn } from "@/lib/utils";
 
-// prettier-ignore
 export const badgeVariants = cva(
   "inline-flex h-5 items-center gap-1 rounded-sm border px-1.5 text-xs font-medium leading-none transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-3",
   {
@@ -13,27 +12,33 @@ export const badgeVariants = cva(
         // Neutral
         default: "border-transparent bg-surface-hover text-foreground",
         outline: "border-border-strong bg-transparent text-foreground",
-        ghost: "border-transparent bg-transparent text-foreground-muted hover:bg-surface-hover hover:text-foreground",
+        ghost:
+          "border-transparent bg-transparent text-foreground-muted hover:bg-surface-hover hover:text-foreground",
         // Accent
         accent: "border-border-accent bg-accent-muted text-accent",
         "accent-soft": "border-transparent bg-accent-muted text-accent",
-        "accent-text": "border-transparent bg-transparent text-accent hover:bg-surface-hover",
+        "accent-text":
+          "border-transparent bg-transparent text-accent hover:bg-surface-hover",
         // Success
         success: "border-border-success bg-success-muted text-success",
         "success-soft": "border-transparent bg-success-muted text-success",
-        "success-text": "border-transparent bg-transparent text-success hover:bg-surface-hover",
+        "success-text":
+          "border-transparent bg-transparent text-success hover:bg-surface-hover",
         // Warning
         warning: "border-border-warning bg-warning-muted text-warning",
         "warning-soft": "border-transparent bg-warning-muted text-warning",
-        "warning-text": "border-transparent bg-transparent text-warning hover:bg-surface-hover",
+        "warning-text":
+          "border-transparent bg-transparent text-warning hover:bg-surface-hover",
         // Error
         error: "border-border-error bg-error-muted text-error",
         "error-soft": "border-transparent bg-error-muted text-error",
-        "error-text": "border-transparent bg-transparent text-error hover:bg-surface-hover",
+        "error-text":
+          "border-transparent bg-transparent text-error hover:bg-surface-hover",
         // Info
         info: "border-border-info bg-info-muted text-info",
         "info-soft": "border-transparent bg-info-muted text-info",
-        "info-text": "border-transparent bg-transparent text-info hover:bg-surface-hover",
+        "info-text":
+          "border-transparent bg-transparent text-info hover:bg-surface-hover",
       },
     },
     defaultVariants: {

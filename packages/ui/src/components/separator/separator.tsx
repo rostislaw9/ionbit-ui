@@ -30,8 +30,11 @@ export const Separator = forwardRef<HTMLDivElement, SeparatorProps>(
         ref={ref}
         orientation={orientation}
         decorative={decorative}
-        // prettier-ignore
-        className={cn("shrink-0 bg-border", orientation === "horizontal" ? "h-px w-full" : "w-px self-stretch", className)}
+        className={cn(
+          "shrink-0 bg-border",
+          orientation === "horizontal" ? "h-px w-full" : "w-px self-stretch",
+          className,
+        )}
         {...props}
       />
     );

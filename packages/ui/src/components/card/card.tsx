@@ -23,8 +23,12 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   return (
     <div
       ref={ref}
-      // prettier-ignore
-      className={cn("rounded-lg border border-border bg-surface text-foreground transition-[background-color,border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)]", elevated && "border-border-strong bg-surface-elevated shadow-md", interactive && "hover:bg-surface-hover hover:border-border-strong", className)}
+      className={cn(
+        "rounded-lg border border-border bg-surface text-foreground transition-[background-color,border-color,box-shadow] duration-[var(--duration-fast)] ease-[var(--ease-standard)]",
+        elevated && "border-border-strong bg-surface-elevated shadow-md",
+        interactive && "hover:border-border-strong hover:bg-surface-hover",
+        className,
+      )}
       {...props}
     />
   );
@@ -62,8 +66,10 @@ export const CardTitle = forwardRef<HTMLHeadingElement, CardTitleProps>(
     return (
       <h3
         ref={ref}
-        // prettier-ignore
-        className={cn("text-base font-semibold leading-tight tracking-tight text-foreground", className)}
+        className={cn(
+          "text-base leading-tight font-semibold tracking-tight text-foreground",
+          className,
+        )}
         {...props}
       >
         {children}

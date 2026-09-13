@@ -16,6 +16,7 @@ import { contextMenuMeta } from "./context-menu";
 import { dialogMeta } from "./dialog";
 import { dropdownMenuMeta } from "./dropdown-menu";
 import { emptyMeta } from "./empty";
+import { fieldMeta } from "./field";
 import { glowMeta } from "./glow";
 import { hoverCardMeta } from "./hover-card";
 import { inputMeta } from "./input";
@@ -62,6 +63,7 @@ export const componentRegistry: ComponentMeta[] = [
   dialogMeta,
   dropdownMenuMeta,
   emptyMeta,
+  fieldMeta,
   glowMeta,
   hoverCardMeta,
   inputMeta,

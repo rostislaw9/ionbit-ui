@@ -37,8 +37,10 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     return (
       <SelectPrimitive.Trigger
         ref={ref}
-        // prettier-ignore
-        className={cn("flex h-8 items-center justify-between rounded-md border border-border bg-surface px-3 py-1.5 text-sm text-foreground hover:border-border-strong focus-visible:shadow-focus focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 data-[placeholder]:text-foreground-muted", className)}
+        className={cn(
+          "flex h-8 items-center justify-between rounded-md border border-border bg-surface px-3 py-1.5 text-sm text-foreground hover:border-border-strong focus-visible:shadow-focus focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 data-[placeholder]:text-foreground-muted",
+          className,
+        )}
         {...props}
       >
         {children}
@@ -88,8 +90,10 @@ export const SelectContent = forwardRef<HTMLDivElement, SelectContentProps>(
           ref={ref}
           position={position}
           sideOffset={sideOffset}
-          // prettier-ignore
-          className={cn("z-50 max-h-96 overflow-hidden rounded-md border border-border bg-surface-elevated p-1 text-foreground shadow-md min-w-[max(var(--radix-select-trigger-width),8rem)] data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-2 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 duration-[var(--duration-fast)] ease-[var(--ease-standard)]", className)}
+          className={cn(
+            "z-50 max-h-96 min-w-[max(var(--radix-select-trigger-width),8rem)] overflow-hidden rounded-md border border-border bg-surface-elevated p-1 text-foreground shadow-md duration-[var(--duration-fast)] ease-[var(--ease-standard)] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:slide-out-to-top-2 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:slide-in-from-top-2",
+            className,
+          )}
           {...props}
         >
           <SelectPrimitive.Viewport>{children}</SelectPrimitive.Viewport>
@@ -111,8 +115,10 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
     return (
       <SelectPrimitive.Item
         ref={ref}
-        // prettier-ignore
-        className={cn("relative flex select-none items-center rounded-sm py-2 ps-2 pe-8 text-sm text-foreground-muted outline-none transition-colors hover:bg-surface-hover hover:text-foreground focus:bg-surface-hover focus:text-foreground data-[state=checked]:text-accent data-[disabled]:opacity-40", className)}
+        className={cn(
+          "relative flex items-center rounded-sm py-2 ps-2 pe-8 text-sm text-foreground-muted transition-colors outline-none select-none hover:bg-surface-hover hover:text-foreground focus:bg-surface-hover focus:text-foreground data-[disabled]:opacity-40 data-[state=checked]:text-accent",
+          className,
+        )}
         {...props}
       >
         <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
@@ -122,6 +128,27 @@ export const SelectItem = forwardRef<HTMLDivElement, SelectItemProps>(
           </SelectPrimitive.ItemIndicator>
         </span>
       </SelectPrimitive.Item>
+    );
+  },
+);
+
+export type SelectGroupProps = React.ComponentProps<
+  typeof SelectPrimitive.Group
+>;
+/**
+ * SelectGroup — groups related items semantically.
+ *
+ * Use inside `SelectContent` to group related `SelectItem` components.
+ * Pair with `SelectLabel` to provide a visible heading for the group.
+ */
+export const SelectGroup = forwardRef<HTMLDivElement, SelectGroupProps>(
+  function SelectGroup({ className, ...props }, ref) {
+    return (
+      <SelectPrimitive.Group
+        ref={ref}
+        className={cn("p-1", className)}
+        {...props}
+      />
     );
   },
 );
@@ -140,8 +167,10 @@ export const SelectLabel = forwardRef<HTMLDivElement, SelectLabelProps>(
     return (
       <SelectPrimitive.Label
         ref={ref}
-        // prettier-ignore
-        className={cn("px-2 py-1.5 text-xs font-semibold text-foreground-subtle", className)}
+        className={cn(
+          "px-2 py-1.5 text-xs font-semibold text-foreground-subtle",
+          className,
+        )}
         {...props}
       />
     );

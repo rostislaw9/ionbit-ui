@@ -107,10 +107,12 @@ export function componentToMarkdown(comp: ComponentMeta): string {
     lines.push("");
   }
 
-  // Primitives (e.g. motion)
+  // Primitives (e.g. Field sub-components)
   if (comp.primitives) {
+    lines.push("## API Reference");
+    lines.push("");
     for (const prim of comp.primitives) {
-      lines.push(`## ${prim.name} API`);
+      lines.push(`### ${prim.name}`);
       lines.push("");
       lines.push(`${prim.description}`);
       lines.push("");
@@ -125,12 +127,10 @@ export function componentToMarkdown(comp: ComponentMeta): string {
         }
         lines.push("");
       }
-      if (prim.accessibility.length > 0) {
-        lines.push(`### ${prim.name} Accessibility`);
-        lines.push("");
-        for (const note of prim.accessibility) {
-          lines.push(`- ${note}`);
-        }
+      if (prim.code) {
+        lines.push("```tsx");
+        lines.push(prim.code);
+        lines.push("```");
         lines.push("");
       }
     }

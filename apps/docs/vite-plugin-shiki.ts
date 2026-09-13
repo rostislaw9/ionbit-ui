@@ -174,6 +174,7 @@ function extractUsageFields(filePath: string): {
   sectionCodes: string[];
   setup?: { filename: string; code: string };
   infoBlocks: { code: string; lang: string }[];
+  primitives: { name: string; code: string; lang: string }[];
 } {
   const content = readFileSync(filePath, "utf-8");
   const nameMatch = content.match(/name:\s*"([^"]+)"/);
@@ -237,7 +238,70 @@ function extractUsageFields(filePath: string): {
       });
     }
   }
-  return { name, usageImport, usageCode, sectionCodes, setup, infoBlocks };
+  // Extract primitives: [ { name, code, lang? }, ... ]
+  // Use bracket counting instead of regex because primitives contain nested
+  // arrays (props) with their own `]` that break non-greedy matching.
+  const primitives: { name: string; code: string; lang: string }[] = [];
+  const primStart = content.indexOf("primitives:");
+  if (primStart !== -1) {
+    const bracketStart = content.indexOf("[", primStart);
+    if (bracketStart !== -1) {
+      let depth = 0;
+      let bracketEnd = -1;
+      for (let i = bracketStart; i < content.length; i++) {
+        if (content[i] === "[") depth++;
+        else if (content[i] === "]") {
+          depth--;
+          if (depth === 0) {
+            bracketEnd = i;
+            break;
+          }
+        }
+      }
+      if (bracketEnd !== -1) {
+        const primSection = content.slice(bracketStart + 1, bracketEnd);
+        // Only match primitive-level names (followed by description:, not type:).
+        // Prop entries use name: followed by type:.
+        const nameRegex = /name:\s*"([^"]+)"\s*,\s*description:/g;
+        const namePositions: { start: number; end: number; name: string }[] =
+          [];
+        let nameMatch;
+        while ((nameMatch = nameRegex.exec(primSection)) !== null) {
+          namePositions.push({
+            start: nameMatch.index,
+            end: nameMatch.index + nameMatch[0].length,
+            name: nameMatch[1],
+          });
+        }
+        for (let i = 0; i < namePositions.length; i++) {
+          const territoryStart = namePositions[i]!.end;
+          const territoryEnd =
+            i + 1 < namePositions.length
+              ? namePositions[i + 1]!.start
+              : primSection.length;
+          const territory = primSection.slice(territoryStart, territoryEnd);
+          const codeMatch = territory.match(/code:\s*`([\s\S]*?)`/);
+          const langMatch = territory.match(/lang:\s*"([^"]*)"/);
+          if (codeMatch) {
+            primitives.push({
+              name: namePositions[i]!.name,
+              code: unescapeTemplateLiteral(codeMatch[1]),
+              lang: langMatch ? langMatch[1]! : "tsx",
+            });
+          }
+        }
+      }
+    }
+  }
+  return {
+    name,
+    usageImport,
+    usageCode,
+    sectionCodes,
+    setup,
+    infoBlocks,
+    primitives,
+  };
 }
 
 /** Scan a registry directory and return extracted fields for each file. */
@@ -340,6 +404,7 @@ export function shikiHighlightPlugin(): Plugin {
           usageCode,
           setup,
           infoBlocks,
+          primitives,
         } of scanRegistryDir(componentDir)) {
           if (!name) continue;
           const entry: {
@@ -374,6 +439,17 @@ export function shikiHighlightPlugin(): Plugin {
                 infoBlocks[i]!.lang,
               ),
               rawCode: infoBlocks[i]!.code,
+              install: {},
+            };
+          }
+          // Pre-highlight primitive codes
+          for (let i = 0; i < primitives.length; i++) {
+            result[`__primitive_${name}_${primitives[i]!.name}__`] = {
+              codeHtml: await highlight(
+                primitives[i]!.code,
+                primitives[i]!.lang,
+              ),
+              rawCode: primitives[i]!.code,
               install: {},
             };
           }

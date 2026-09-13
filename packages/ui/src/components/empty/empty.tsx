@@ -24,8 +24,10 @@ export const Empty = forwardRef<HTMLDivElement, EmptyProps>(function Empty(
     <div
       ref={ref}
       data-slot="empty"
-      // prettier-ignore
-      className={cn("flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-xl border-dashed p-6 text-center text-balance", className)}
+      className={cn(
+        "flex w-full min-w-0 flex-1 flex-col items-center justify-center gap-4 rounded-xl border-dashed p-6 text-center text-balance",
+        className,
+      )}
       {...props}
     />
   );
@@ -43,7 +45,6 @@ export const EmptyHeader = forwardRef<HTMLDivElement, EmptyHeaderProps>(
       <div
         ref={ref}
         data-slot="empty-header"
-        // prettier-ignore
         className={cn("flex max-w-sm flex-col items-center gap-2", className)}
         {...props}
       />
@@ -105,8 +106,10 @@ export const EmptyTitle = forwardRef<HTMLHeadingElement, EmptyTitleProps>(
       <h3
         ref={ref}
         data-slot="empty-title"
-        // prettier-ignore
-        className={cn("text-sm font-medium tracking-tight text-foreground", className)}
+        className={cn(
+          "text-sm font-medium tracking-tight text-foreground",
+          className,
+        )}
         {...props}
       >
         {children}
@@ -128,8 +131,10 @@ export const EmptyDescription = forwardRef<
     <p
       ref={ref}
       data-slot="empty-description"
-      // prettier-ignore
-      className={cn("text-sm text-foreground-muted [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-accent", className)}
+      className={cn(
+        "text-sm text-foreground-muted [&>a]:underline [&>a]:underline-offset-4 [&>a:hover]:text-accent",
+        className,
+      )}
       {...props}
     />
   );
@@ -147,8 +152,10 @@ export const EmptyContent = forwardRef<HTMLDivElement, EmptyContentProps>(
       <div
         ref={ref}
         data-slot="empty-content"
-        // prettier-ignore
-        className={cn("flex w-full max-w-sm min-w-0 flex-col items-center gap-2.5 text-sm text-balance", className)}
+        className={cn(
+          "flex w-full max-w-sm min-w-0 flex-col items-center gap-2.5 text-sm text-balance",
+          className,
+        )}
         {...props}
       />
     );
@@ -168,7 +175,6 @@ export const EmptyFooter = forwardRef<HTMLDivElement, EmptyFooterProps>(
       <div
         ref={ref}
         data-slot="empty-footer"
-        // prettier-ignore
         className={cn("flex items-center gap-2", className)}
         {...props}
       />

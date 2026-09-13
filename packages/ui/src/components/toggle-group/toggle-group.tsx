@@ -130,7 +130,6 @@ export const ToggleGroupItem = forwardRef<
       data-variant={effectiveVariant}
       asChild={asChild}
       className={cn(
-        // prettier-ignore
         toggleVariants({
           variant: effectiveVariant,
           size: ctx.size || size,

@@ -86,8 +86,10 @@ export const HoverCardContent = forwardRef<
       <HoverCardPrimitive.Content
         ref={ref}
         sideOffset={sideOffset}
-        // prettier-ignore
-        className={cn("z-50 w-64 rounded-md border border-border-strong bg-surface-elevated p-4 text-foreground shadow-md data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95 data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 duration-[var(--duration-fast)] ease-[var(--ease-standard)] outline-none", className)}
+        className={cn(
+          "z-50 w-64 rounded-md border border-border-strong bg-surface-elevated p-4 text-foreground shadow-md duration-[var(--duration-fast)] ease-[var(--ease-standard)] outline-none data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=closed]:zoom-out-95 data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95",
+          className,
+        )}
         {...props}
       />
     </HoverCardPrimitive.Portal>
