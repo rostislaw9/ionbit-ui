@@ -205,7 +205,7 @@
       "type": "registry:ui",
       "title": "Tooltip",
       "description": "Radix-based tooltip with animated open/close and semantic token styling.",
-      "dependencies": ["@radix-ui/react-tooltip", "clsx", "tailwind-merge"],
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
         {

@@ -56,7 +56,7 @@ export function ComponentsPage() {
         </Reveal>
 
         <Reveal direction="up">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col gap-4 2xl:flex-row 2xl:items-center 2xl:justify-between">
             <Input
               placeholder="Search components..."
               value={query}

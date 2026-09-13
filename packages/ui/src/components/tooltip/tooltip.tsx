@@ -1,10 +1,10 @@
-import * as TooltipPrimitive from "@radix-ui/react-tooltip";
-import { type ReactNode } from "react";
+import { Tooltip as TooltipPrimitive } from "@base-ui/react/tooltip";
+import { type ReactElement, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
 export interface TooltipProps {
-  children: ReactNode;
+  children: ReactElement;
   /** Tooltip content. */
   content: ReactNode;
   /** Side of the trigger the tooltip appears on. @default "top" */
@@ -15,27 +15,25 @@ export interface TooltipProps {
   disabled?: boolean;
 }
 
-const slideInBySide: Record<NonNullable<TooltipProps["side"]>, string> = {
-  top: "slide-in-from-bottom-2",
-  bottom: "slide-in-from-top-2",
-  right: "slide-in-from-left-2",
-  left: "slide-in-from-right-2",
-};
-
 /**
- * Tooltip — a Radix-based tooltip with Ionbit UI styling.
+ * Tooltip — a Base UI tooltip with Ionbit UI styling.
  *
- * Built on `@radix-ui/react-tooltip`, shadcn-inspired. Wraps Provider,
- * Root, Trigger, Portal, and Content into a single component for
- * convenience. Pass any element as `children` (rendered via `asChild`)
- * and tooltip text/JSX as `content`.
+ * Built on `@base-ui/react/tooltip`, shadcn-inspired. Wraps Provider,
+ * Root, Trigger, Portal, Positioner, Popup, and Arrow into a single
+ * component for convenience. Pass any element as `children` (rendered
+ * via the `render` prop) and tooltip text/JSX as `content`.
  *
- * Accessibility: Radix handles focus management, keyboard navigation
+ * Colors are inverted relative to the page: the tooltip uses the
+ * foreground color as its background and the background color as its
+ * text, making it readable in both light and dark themes.
+ *
+ * The arrow is a rotated square clipped by the popup, so the border
+ * follows the combined shape. It is rendered inside the popup so
+ * entrance/exit animations apply to both together.
+ *
+ * Accessibility: Base UI handles focus management, keyboard navigation
  * (Escape to dismiss), and ARIA attributes. The tooltip is announced to
  * screen readers via `aria-describedby`.
- *
- * Animation: appearance uses fade + slide-in from the trigger direction;
- * disappearance uses fade-out only (no movement on exit).
  *
  * Reduced motion: the CSS base layer collapses the animation duration.
  */
@@ -48,24 +46,28 @@ export function Tooltip({
 }: TooltipProps) {
   if (disabled) return <>{children}</>;
 
-  const slideIn = slideInBySide[side];
-
   return (
-    <TooltipPrimitive.Provider delayDuration={delayDuration}>
+    <TooltipPrimitive.Provider delay={delayDuration}>
       <TooltipPrimitive.Root>
-        <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
+        <TooltipPrimitive.Trigger render={children} />
         <TooltipPrimitive.Portal>
-          <TooltipPrimitive.Content
+          <TooltipPrimitive.Positioner
             side={side}
             sideOffset={6}
-            className={cn(
-              "z-50 rounded-md border border-border-strong bg-surface-elevated px-2.5 py-1.5 text-xs text-foreground shadow-md duration-[var(--duration-fast)] ease-[var(--ease-standard)] data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=delayed-open]:animate-in data-[state=delayed-open]:fade-in-0 data-[state=instant-open]:animate-in data-[state=instant-open]:fade-in-0",
-              `data-[state=delayed-open]:${slideIn}`,
-              `data-[state=instant-open]:${slideIn}`,
-            )}
+            className="z-50"
           >
-            {content}
-          </TooltipPrimitive.Content>
+            <TooltipPrimitive.Popup
+              className={cn(
+                "z-50 inline-flex w-fit max-w-xs items-center gap-1.5 rounded-md bg-foreground px-3 py-1.5 text-xs text-background",
+                "data-[closed]:animate-out data-[closed]:fade-out-0 data-[closed]:zoom-out-95",
+                "data-[open]:animate-in data-[open]:fade-in-0 data-[open]:zoom-in-95",
+                "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+              )}
+            >
+              {content}
+              <TooltipPrimitive.Arrow className="z-50 size-2.5 translate-y-[calc(-50%-2px)] rotate-45 rounded-[2px] bg-foreground fill-foreground data-[side=bottom]:top-1 data-[side=inline-end]:top-1/2! data-[side=inline-end]:-left-1 data-[side=inline-end]:-translate-y-1/2 data-[side=inline-start]:top-1/2! data-[side=inline-start]:-right-1 data-[side=inline-start]:-translate-y-1/2 data-[side=left]:top-1/2! data-[side=left]:-right-1 data-[side=left]:-translate-y-1/2 data-[side=right]:top-1/2! data-[side=right]:-left-1 data-[side=right]:-translate-y-1/2 data-[side=top]:-bottom-2.5" />
+            </TooltipPrimitive.Popup>
+          </TooltipPrimitive.Positioner>
         </TooltipPrimitive.Portal>
       </TooltipPrimitive.Root>
     </TooltipPrimitive.Provider>

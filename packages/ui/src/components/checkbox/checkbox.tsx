@@ -22,6 +22,7 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(
     return (
       <CheckboxPrimitive.Root
         ref={ref}
+        nativeButton
         render={<button type="button" />}
         data-slot="checkbox"
         className={cn(

@@ -50,9 +50,13 @@ import { Tooltip } from "@/components/ui/tooltip";`,
     },
   ],
   accessibility: [
-    "Radix handles ARIA attributes (aria-describedby)",
+    "Base UI handles ARIA attributes (aria-describedby)",
     "Keyboard focus triggers tooltip",
     "Screen readers announce content",
   ],
-  basedOn: "radix",
+  apiReference: {
+    label: "Base UI Tooltip",
+    url: "https://base-ui.com/react/components/tooltip#api-reference",
+  },
+  basedOn: "base",
 };

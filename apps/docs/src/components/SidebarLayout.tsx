@@ -39,7 +39,7 @@ export function SidebarLayout({
         </aside>
       ) : (
         /* Right spacer — balances the left sidebar for true centering */
-        <aside className="hidden w-60 shrink-0 lg:block" aria-hidden="true" />
+        <aside className="hidden w-60 shrink-0 xl:block" aria-hidden="true" />
       )}
     </div>
   );
