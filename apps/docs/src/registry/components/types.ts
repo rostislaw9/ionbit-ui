@@ -4,7 +4,18 @@ export type ComponentCategory =
   "Form" | "Layout" | "Overlay" | "Feedback" | "Navigation" | "Data" | "Motion";
 
 /** The underlying headless framework a component is built on. */
-export type BasedOn = "radix" | "base";
+export const BasedOn = {
+  radix: "radix",
+  base: "base",
+} as const;
+
+export type BasedOn = (typeof BasedOn)[keyof typeof BasedOn];
+
+/** Display name for a BasedOn value. */
+export const BASED_ON_LABEL: Record<BasedOn, string> = {
+  radix: "Radix UI",
+  base: "Base UI",
+};
 
 export interface ComponentExample {
   title: string;

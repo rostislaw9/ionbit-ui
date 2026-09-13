@@ -1,5 +1,3 @@
-import type { BasedOn } from "../registry/components/types";
-
 import { FileBracesCorner } from "lucide-react";
 import { useEffect, useState, type ReactNode } from "react";
 import highlightedInline from "virtual:highlighted-inline";
@@ -8,6 +6,7 @@ import sourceLoaders from "virtual:highlighted-sources-map";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ionbit-ui/ui";
 
 import { PACKAGE_MANAGERS, pmInstallCmd } from "../lib/package-managers";
+import { type BasedOn, BASED_ON_LABEL } from "../registry/components/types";
 import { CopyButton } from "./CopyButton";
 import { HighlightedCode } from "./HighlightedCode";
 import { PmCommandBlock } from "./PmCommandBlock";
@@ -134,8 +133,8 @@ export function InstallBlock({ name, basedOn, setup }: InstallBlockProps) {
           />
           {basedOn && (
             <p className="text-xs text-foreground-subtle">
-              Built on {basedOn === "radix" ? "Radix UI" : "Base UI"} — npm
-              dependencies will be installed automatically.
+              Built on {basedOn && BASED_ON_LABEL[basedOn]} — npm dependencies
+              will be installed automatically.
             </p>
           )}
         </>

@@ -1,5 +1,9 @@
-import type { ComponentMeta } from "../registry/components/types";
 import type { ReactNode } from "react";
+
+import {
+  type ComponentMeta,
+  BASED_ON_LABEL,
+} from "../registry/components/types";
 
 /**
  * Convert a ComponentMeta object into a markdown document suitable for
@@ -17,8 +21,7 @@ export function componentToMarkdown(comp: ComponentMeta): string {
 
   // Category / tags
   const tags: string[] = [comp.category];
-  if (comp.basedOn)
-    tags.push(comp.basedOn === "radix" ? "Radix UI" : "Base UI");
+  if (comp.basedOn) tags.push(BASED_ON_LABEL[comp.basedOn]);
   lines.push(`**Tags:** ${tags.join(", ")}`);
   lines.push("");
 

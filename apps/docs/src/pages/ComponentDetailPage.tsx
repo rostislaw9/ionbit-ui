@@ -1,5 +1,3 @@
-import type { ComponentMeta } from "../registry/components/types";
-
 import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
@@ -33,6 +31,10 @@ import { componentToMarkdown } from "../lib/component-to-markdown";
 import { getPrevNext } from "../lib/getPrevNext";
 import { scrollToSection } from "../lib/scroll-to-section";
 import { slugify } from "../lib/slugify";
+import {
+  type ComponentMeta,
+  BASED_ON_LABEL,
+} from "../registry/components/types";
 
 // Lazy-load registry files — only the requested component's metadata
 // (with demos, ?raw, ?highlighted) is imported, not the entire registry.
@@ -257,7 +259,7 @@ export function ComponentDetailPage() {
                         variant="outline"
                         className="font-mono text-[10px] tracking-wider uppercase"
                       >
-                        {comp.basedOn === "radix" ? "Radix UI" : "Base UI"}
+                        {comp.basedOn && BASED_ON_LABEL[comp.basedOn]}
                       </Badge>
                     )}
                   </div>
