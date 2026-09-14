@@ -1,9 +1,14 @@
-import { useEffect, useState } from "react";
+import {
+  CalculatorIcon,
+  CalendarIcon,
+  CreditCardIcon,
+  SettingsIcon,
+  SmileIcon,
+  UserIcon,
+} from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   Command,
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
@@ -14,53 +19,44 @@ import {
 } from "@/components/ui/command";
 
 export function CommandDemo() {
-  const [open, setOpen] = useState(false);
-
-  // ⌘K / Ctrl+K to toggle the palette
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
-        e.preventDefault();
-        setOpen((prev) => !prev);
-      }
-    };
-    window.addEventListener("keydown", handler);
-    return () => window.removeEventListener("keydown", handler);
-  }, []);
-
   return (
-    <>
-      <Button variant="secondary" onClick={() => setOpen(true)}>
-        Press ⌘K
-      </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <Command>
-          <CommandInput placeholder="Type a command or search…" />
-          <CommandList>
-            <CommandEmpty>No results found.</CommandEmpty>
-            <CommandGroup heading="Suggestions">
-              <CommandItem onSelect={() => setOpen(false)}>
-                Components
-              </CommandItem>
-              <CommandItem onSelect={() => setOpen(false)}>Tokens</CommandItem>
-              <CommandItem onSelect={() => setOpen(false)}>
-                Documentation
-              </CommandItem>
-            </CommandGroup>
-            <CommandSeparator />
-            <CommandGroup heading="Actions">
-              <CommandItem onSelect={() => setOpen(false)}>
-                Copy install command
-                <CommandShortcut>⌘C</CommandShortcut>
-              </CommandItem>
-              <CommandItem onSelect={() => setOpen(false)}>
-                View on GitHub
-                <CommandShortcut>⌘G</CommandShortcut>
-              </CommandItem>
-            </CommandGroup>
-          </CommandList>
-        </Command>
-      </CommandDialog>
-    </>
+    <Command className="max-w-sm rounded-lg border">
+      <CommandInput placeholder="Type a command or search..." />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem>
+            <CalendarIcon />
+            <span>Calendar</span>
+          </CommandItem>
+          <CommandItem>
+            <SmileIcon />
+            <span>Search Emoji</span>
+          </CommandItem>
+          <CommandItem>
+            <CalculatorIcon />
+            <span>Calculator</span>
+          </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          <CommandItem>
+            <UserIcon />
+            <span>Profile</span>
+            <CommandShortcut>⌘P</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <CreditCardIcon />
+            <span>Billing</span>
+            <CommandShortcut>⌘B</CommandShortcut>
+          </CommandItem>
+          <CommandItem>
+            <SettingsIcon />
+            <span>Settings</span>
+            <CommandShortcut>⌘S</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
   );
 }

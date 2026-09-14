@@ -79,18 +79,27 @@ export function CommandDialog({
 
 export type CommandInputProps = React.ComponentProps<
   typeof CommandPrimitive.Input
->;
+> & {
+  /** Classes for the wrapper div around the search icon and input. */
+  wrapperClassName?: string;
+};
 
 /**
  * CommandInput — the search input field for the command palette.
  *
  * Renders a search icon followed by the `cmdk` input. Filters the visible
- * items as the user types.
+ * items as the user types. Pass `wrapperClassName` to override the wrapper
+ * div styling (e.g. to remove the default bottom border).
  */
 export const CommandInput = forwardRef<HTMLInputElement, CommandInputProps>(
-  function CommandInput({ className, ...props }, ref) {
+  function CommandInput({ className, wrapperClassName, ...props }, ref) {
     return (
-      <div className="flex items-center border-b border-border px-3">
+      <div
+        className={cn(
+          "flex items-center border-b border-border px-3",
+          wrapperClassName,
+        )}
+      >
         <Search className="me-2 h-4 w-4 shrink-0 text-foreground-subtle" />
         <CommandPrimitive.Input
           ref={ref}

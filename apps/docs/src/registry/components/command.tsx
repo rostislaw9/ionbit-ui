@@ -1,8 +1,20 @@
 import type { ComponentMeta } from "./types";
 
+import { CommandBasicDemo } from "../../demos/command-basic-demo";
+import CommandBasicDemoSource from "../../demos/command-basic-demo.tsx?highlighted";
+import CommandBasicDemoRaw from "../../demos/command-basic-demo.tsx?raw";
 import { CommandDemo } from "../../demos/command-demo";
 import CommandDemoSource from "../../demos/command-demo.tsx?highlighted";
 import CommandDemoRaw from "../../demos/command-demo.tsx?raw";
+import { CommandGroupsDemo } from "../../demos/command-groups-demo";
+import CommandGroupsDemoSource from "../../demos/command-groups-demo.tsx?highlighted";
+import CommandGroupsDemoRaw from "../../demos/command-groups-demo.tsx?raw";
+import { CommandScrollableDemo } from "../../demos/command-scrollable-demo";
+import CommandScrollableDemoSource from "../../demos/command-scrollable-demo.tsx?highlighted";
+import CommandScrollableDemoRaw from "../../demos/command-scrollable-demo.tsx?raw";
+import { CommandShortcutsDemo } from "../../demos/command-shortcuts-demo";
+import CommandShortcutsDemoSource from "../../demos/command-shortcuts-demo.tsx?highlighted";
+import CommandShortcutsDemoRaw from "../../demos/command-shortcuts-demo.tsx?raw";
 
 export const commandMeta: ComponentMeta = {
   name: "command",
@@ -35,10 +47,40 @@ export const commandMeta: ComponentMeta = {
   examples: [
     {
       title: "Overview",
-      description: "Command palette with search, grouped items, and actions.",
+      description:
+        "A command palette rendered inline with groups and shortcuts.",
       code: CommandDemoSource,
       rawCode: CommandDemoRaw,
       render: () => <CommandDemo />,
+    },
+    {
+      title: "Basic",
+      description: "A command menu opened via a button, wrapped in a dialog.",
+      code: CommandBasicDemoSource,
+      rawCode: CommandBasicDemoRaw,
+      render: () => <CommandBasicDemo />,
+    },
+    {
+      title: "Shortcuts",
+      description: "Command items with keyboard shortcut hints.",
+      code: CommandShortcutsDemoSource,
+      rawCode: CommandShortcutsDemoRaw,
+      render: () => <CommandShortcutsDemo />,
+    },
+    {
+      title: "Groups",
+      description: "Command menu with groups, icons, and separators.",
+      code: CommandGroupsDemoSource,
+      rawCode: CommandGroupsDemoRaw,
+      render: () => <CommandGroupsDemo />,
+    },
+    {
+      title: "Scrollable",
+      description:
+        "Scrollable command menu with many items across multiple groups.",
+      code: CommandScrollableDemoSource,
+      rawCode: CommandScrollableDemoRaw,
+      render: () => <CommandScrollableDemo />,
     },
   ],
   usageImport: `import {

@@ -8,6 +8,7 @@ import { GitHubStarButton } from "./GitHubStarButton";
 import { Logo } from "./Logo";
 import { MenuButton } from "./MenuButton";
 import { navItems } from "./navItems";
+import { SearchBar } from "./SearchBar";
 import { Sidebar } from "./Sidebar";
 
 /** Top navigation bar. Desktop: nav links on the left, mode switcher
@@ -53,8 +54,10 @@ export function TopBar() {
             </nav>
           </div>
 
-          {/* Right: GitHub star button + mode switcher */}
+          {/* Right: search + GitHub star button + mode switcher */}
           <div className="flex items-center gap-2">
+            <SearchBar />
+            <Separator orientation="vertical" />
             <GitHubStarButton />
             <Separator orientation="vertical" />
             <ModeSwitcher mode={mode} onModeChange={setMode} />

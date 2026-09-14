@@ -38,7 +38,6 @@ export function GitHubStarButton() {
         rel="noopener noreferrer"
       >
         <MarkGithubIcon size={16} data-icon="inline-start" />
-        Star
         {stars !== null && (
           <span className="text-foreground-muted tabular-nums">
             {stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}

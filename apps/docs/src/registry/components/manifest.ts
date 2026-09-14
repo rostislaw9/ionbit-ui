@@ -130,7 +130,7 @@ export const componentManifest: ManifestEntry[] = [
     label: "Command",
     category: "Overlay",
     description: "Command palette built on cmdk.",
-    exampleCount: 1,
+    exampleCount: 5,
     isNew: false,
   },
   {
