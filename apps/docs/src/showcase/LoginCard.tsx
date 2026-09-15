@@ -13,7 +13,7 @@ import {
 } from "@ionbit-ui/ui";
 export function LoginCard() {
   return (
-    <Card>
+    <Card className="flex flex-col justify-between">
       <CardHeader>
         <CardTitle>Welcome back</CardTitle>
         <CardDescription>Sign in to your account to continue.</CardDescription>
@@ -35,14 +35,14 @@ export function LoginCard() {
             placeholder="••••••••"
           />
         </div>
+      </CardContent>
+      <CardFooter className="flex flex-col items-start gap-4">
         <div className="flex items-center gap-2">
           <Checkbox id="showcase-remember" defaultChecked />
           <Label htmlFor="showcase-remember" className="text-sm">
             Remember me
           </Label>
         </div>
-      </CardContent>
-      <CardFooter>
         <Button
           variant="primary"
           className="w-full"

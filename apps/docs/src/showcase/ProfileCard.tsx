@@ -23,7 +23,7 @@ export function ProfileCard() {
         </Avatar>
         <div className="flex flex-col items-center gap-1">
           <span className="text-sm font-semibold text-foreground">
-            IonBit User
+            Ionbit User
           </span>
           <span className="text-xs text-foreground-muted">
             developer@ionbit.ui

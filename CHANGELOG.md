@@ -7,6 +7,54 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Search bar:** `SearchBar` component in the docs top bar with an
+  inline command palette on desktop (input with dropdown) and a
+  full-screen command dialog on mobile. Supports ⌘K to activate,
+  arrow key navigation, and grouped results with icons across pages,
+  components, and utilities.
+- **Command palette demos:** expanded to match shadcn examples —
+  overview (inline), basic (dialog), shortcuts, groups, and
+  scrollable. Added `wrapperClassName` prop to `CommandInput` for
+  custom wrapper styling.
+- **Theme engine:** full theme system with a live customizer in the
+  docs app at `/themes`. Choose from 20 preset themes (Digital Sunset,
+  Ocean Slate, Emerald Nord, Banana Cake, Bubblegum, Matcha, Mint, and
+  more) or fine-tune every base color token, radius scale, and
+  motion-effect intensity. Derived tokens (hover, muted, subtle, border
+  variants) are calculated from the chosen base color via `color-mix`,
+  so editing one semantic color updates all of its dependents
+  automatically. The chosen theme persists across navigation via a
+  `useSyncExternalStore`-backed store in `sessionStorage` and
+  re-applies on tab reload.
+- **`ionbit-ui theme` CLI command:** install a preset
+  (`theme nord`) or a custom theme (`theme --custom '<json>'`).
+  Fetches the theme registry, writes `styles/theme.css`, and wires
+  the import into the configured global CSS file. The registry build
+  now generates `registry/themes.json` from the docs preset data so
+  the CLI and the live preview share the same CSS derivation.
+- **Themes page in docs:** new `/themes` route with live preview,
+  preset cards, color/radius/effect controls, package-manager-aware
+  install commands, and generated CSS output. Added to the sidebar
+  and top-bar navigation.
+
+### Changed
+
+- **Document title separator:** changed from dash to pipe.
+- **Docs performance:** single `ThemeControls` instance via
+  `useMediaQuery` instead of mounting desktop and mobile trees in
+  parallel; cached runtime Shiki results by language and source;
+  coalesced `ResizeObserver` anchor scrolls through
+  `requestAnimationFrame`; immediate scrolling for route changes with
+  smooth scrolling reserved for hash anchors; removed `Reveal` from
+  the left sidebar so it paints with the rest of the shell; fixed and
+  independently scrollable right sidebar on `xl+`.
+- **Homepage showcase grid:** direct card imports to remove a
+  circular chunk warning; two card sets per column so every column
+  reaches both top and bottom fades; stable keys for duplicated
+  cards.
+
 ## [0.1.14] — 2026-09-13
 
 ### Added

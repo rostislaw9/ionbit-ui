@@ -5,4 +5,5 @@ export const navItems = [
   { to: "/docs/components", label: "Components" },
   { to: "/docs/utils", label: "Utils" },
   { to: "/tokens", label: "Tokens" },
+  { to: "/themes", label: "Themes" },
 ];

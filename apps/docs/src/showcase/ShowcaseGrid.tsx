@@ -3,31 +3,29 @@ import { useEffect, useRef } from "react";
 import { useReducedMotion } from "@ionbit-ui/motion";
 import { cn } from "@ionbit-ui/ui";
 
-import {
-  ActivityCard,
-  AnalyticsCard,
-  ApiKeyCard,
-  BillingCard,
-  CommandCard,
-  DeployCard,
-  FeedbackCard,
-  IntegrationCard,
-  InviteCard,
-  LoginCard,
-  NewsletterCard,
-  NotificationsCard,
-  PricingCard,
-  ProfileCard,
-  SearchCard,
-  SecurityCard,
-  SettingsCard,
-  StatsCard,
-  StorageCard,
-  TaskCard,
-  TeamCard,
-  UptimeCard,
-  WebhookCard,
-} from ".";
+import { ActivityCard } from "./ActivityCard";
+import { AnalyticsCard } from "./AnalyticsCard";
+import { ApiKeyCard } from "./ApiKeyCard";
+import { BillingCard } from "./BillingCard";
+import { CommandCard } from "./CommandCard";
+import { DeployCard } from "./DeployCard";
+import { FeedbackCard } from "./FeedbackCard";
+import { IntegrationCard } from "./IntegrationCard";
+import { InviteCard } from "./InviteCard";
+import { LoginCard } from "./LoginCard";
+import { NewsletterCard } from "./NewsletterCard";
+import { NotificationsCard } from "./NotificationsCard";
+import { PricingCard } from "./PricingCard";
+import { ProfileCard } from "./ProfileCard";
+import { SearchCard } from "./SearchCard";
+import { SecurityCard } from "./SecurityCard";
+import { SettingsCard } from "./SettingsCard";
+import { StatsCard } from "./StatsCard";
+import { StorageCard } from "./StorageCard";
+import { TaskCard } from "./TaskCard";
+import { TeamCard } from "./TeamCard";
+import { UptimeCard } from "./UptimeCard";
+import { WebhookCard } from "./WebhookCard";
 
 const showcaseCards = [
   LoginCard,
@@ -107,7 +105,8 @@ export function ShowcaseGrid() {
     const start = () => {
       if (cancelled) return;
 
-      // Measure each column's single-set height.
+      // Measure each column's full height. Two card sets keep every
+      // responsive column tall enough to reach both fade edges.
       const heights: number[] = [];
       const speeds: number[] = [];
       refs.forEach((el, i) => {
@@ -115,13 +114,15 @@ export function ShowcaseGrid() {
           heights[i] = 0;
           return;
         }
-        heights[i] = Math.round(el.scrollHeight / 2);
+        heights[i] = el.scrollHeight;
         speeds[i] = BASE_PX_PER_SECOND / (columnSpeeds[i] ?? 1);
       });
 
       // Start each column at a different offset so they don't all
-      // show the same cards at the top.
-      const offsets = heights.map((h) => -Math.round(h * Math.random()));
+      // settle at the same time.
+      const offsets = heights.map(
+        (h) => -Math.min(Math.round(h * (0.15 + Math.random() * 0.2)), 160),
+      );
 
       // Apply initial positions immediately.
       refs.forEach((el, i) => {
@@ -146,10 +147,10 @@ export function ShowcaseGrid() {
             const h = heights[i];
             const sp = speeds[i];
             if (!el || !h || !sp) return;
-            let y = (offsets[i] ?? 0) + (sp / 1000) * delta * damp;
-            if (y >= 0) {
-              y -= h;
-            }
+            const y = Math.min(
+              0,
+              (offsets[i] ?? 0) + (sp / 1000) * delta * damp,
+            );
             offsets[i] = y;
             el.style.transform = `translateY(${y}px)`;
           });
@@ -195,7 +196,10 @@ export function ShowcaseGrid() {
                 className="flex w-full flex-col [will-change:transform]"
               >
                 {[...column, ...column].map((Card, j) => (
-                  <div key={j} className="pb-3 md:pb-4 2xl:pb-5">
+                  <div
+                    key={`${Card.name}-${j}`}
+                    className="pb-3 md:pb-4 2xl:pb-5"
+                  >
                     <Card />
                   </div>
                 ))}

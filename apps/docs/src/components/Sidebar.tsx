@@ -76,6 +76,13 @@ export function Sidebar({ onNavigate }: { onNavigate?: () => void }) {
               ref={pathname === "/tokens" ? activeRef : undefined}
               onClick={onNavigate}
             />
+            <SidebarLink
+              to="/themes"
+              label="Themes"
+              active={pathname === "/themes"}
+              ref={pathname === "/themes" ? activeRef : undefined}
+              onClick={onNavigate}
+            />
           </SidebarSection>
 
           {/* Components — shown on all devices */}

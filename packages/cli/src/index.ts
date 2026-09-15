@@ -3,6 +3,7 @@ import { Command } from "commander";
 import { add } from "./commands/add";
 import { init } from "./commands/init";
 import { list } from "./commands/list";
+import { theme } from "./commands/theme";
 
 const program = new Command();
 
@@ -38,5 +39,12 @@ program
   .command("list")
   .description("List all available components in the registry.")
   .action(list);
+
+program
+  .command("theme [id]")
+  .description("Install a preset or custom theme.")
+  .option("--custom <json>", "Install a custom theme from JSON")
+  .option("-o, --overwrite", "Overwrite the existing theme.css")
+  .action(theme);
 
 program.parse();

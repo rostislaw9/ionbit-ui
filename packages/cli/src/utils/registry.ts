@@ -1,10 +1,10 @@
-import type { Registry, RegistryItem } from "../config";
+import type { Registry, RegistryItem, ThemeRegistry } from "../config";
 
 import { existsSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { REGISTRY_ITEM_URL, REGISTRY_URL } from "../config";
+import { REGISTRY_ITEM_URL, REGISTRY_URL, THEME_REGISTRY_URL } from "../config";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -32,6 +32,18 @@ function findLocalRegistryItem(name: string): string | null {
     resolve(process.cwd(), "registry/items", `${name}.json`),
     resolve(__dirname, "../../../registry/items", `${name}.json`),
     resolve(__dirname, "../../../../registry/items", `${name}.json`),
+  ];
+  for (const p of candidates) {
+    if (existsSync(p)) return p;
+  }
+  return null;
+}
+
+function findLocalThemes(): string | null {
+  const candidates = [
+    resolve(process.cwd(), "registry/themes.json"),
+    resolve(__dirname, "../../../registry/themes.json"),
+    resolve(__dirname, "../../../../registry/themes.json"),
   ];
   for (const p of candidates) {
     if (existsSync(p)) return p;
@@ -73,4 +85,19 @@ export async function fetchRegistryItems(
   names: string[],
 ): Promise<RegistryItem[]> {
   return Promise.all(names.map(fetchRegistryItem));
+}
+
+export async function fetchThemeRegistry(): Promise<ThemeRegistry> {
+  const localPath = findLocalThemes();
+  if (localPath) {
+    return JSON.parse(readFileSync(localPath, "utf-8")) as ThemeRegistry;
+  }
+
+  const res = await fetch(THEME_REGISTRY_URL);
+  if (!res.ok) {
+    throw new Error(
+      `Failed to fetch theme registry: ${res.status} ${res.statusText}`,
+    );
+  }
+  return (await res.json()) as ThemeRegistry;
 }

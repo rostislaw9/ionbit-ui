@@ -3,6 +3,8 @@ export const REGISTRY_URL =
 
 export const REGISTRY_ITEM_URL =
   "https://raw.githubusercontent.com/rostislaw9/ionbit-ui/main/registry/items";
+export const THEME_REGISTRY_URL =
+  "https://raw.githubusercontent.com/rostislaw9/ionbit-ui/main/registry/themes.json";
 
 export interface RegistryItem {
   name: string;
@@ -26,6 +28,17 @@ export interface Registry {
   name: string;
   homepage: string;
   items: RegistryItem[];
+}
+
+export interface ThemeEntry {
+  id: string;
+  label: string;
+  description: string;
+  css: string;
+}
+
+export interface ThemeRegistry {
+  themes: ThemeEntry[];
 }
 
 export interface Config {

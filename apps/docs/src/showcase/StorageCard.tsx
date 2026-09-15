@@ -31,7 +31,7 @@ export function StorageCard() {
         </div>
       </CardContent>
       <CardFooter>
-        <Button variant="outline" className="w-full">
+        <Button variant="secondary" className="w-full">
           Upgrade storage
         </Button>
       </CardFooter>

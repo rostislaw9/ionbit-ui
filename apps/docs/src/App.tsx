@@ -31,6 +31,9 @@ const UtilDetailPage = lazy(() =>
 const TokensPage = lazy(() =>
   import("./pages/TokensPage").then((m) => ({ default: m.TokensPage })),
 );
+const ThemePage = lazy(() =>
+  import("./pages/ThemePage").then((m) => ({ default: m.ThemePage })),
+);
 const InstallationPage = lazy(() =>
   import("./pages/InstallationPage").then((m) => ({
     default: m.InstallationPage,
@@ -51,7 +54,7 @@ function PageLoader() {
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "auto" });
   }, [pathname]);
   return null;
 }
@@ -127,6 +130,14 @@ export function App() {
             element={
               <Suspense fallback={<PageLoader />}>
                 <TokensPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/themes"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <ThemePage />
               </Suspense>
             }
           />

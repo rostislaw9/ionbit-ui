@@ -20,13 +20,24 @@ export function useScrollToAnchor(sectionIds: string[]) {
     // (handled by ComponentDetailPage's demo-switching effect).
     if (!sectionIds.includes(id)) return;
 
-    const ro = new ResizeObserver(() => scrollToSection(id, sectionIds));
+    let frame: number | null = null;
+    const scheduleScroll = () => {
+      if (frame !== null) return;
+      frame = requestAnimationFrame(() => {
+        frame = null;
+        scrollToSection(id, sectionIds);
+      });
+    };
+
+    const ro = new ResizeObserver(scheduleScroll);
     ro.observe(document.body);
+    scheduleScroll();
 
     const stop = setTimeout(() => ro.disconnect(), 1000);
     return () => {
       clearTimeout(stop);
       ro.disconnect();
+      if (frame !== null) cancelAnimationFrame(frame);
     };
   }, [hash, sectionIds]);
 }
