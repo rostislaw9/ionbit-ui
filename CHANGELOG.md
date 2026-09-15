@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.15] — 2026-09-15
+
 ### Added
 
 - **Search bar:** `SearchBar` component in the docs top bar with an
