@@ -8,12 +8,12 @@ type SystemMode = Mode | "system";
 
 function getStoredMode(): SystemMode | null {
   try {
-    const value = localStorage.getItem(STORAGE_KEY);
+    const value = sessionStorage.getItem(STORAGE_KEY);
     if (value === "dark" || value === "light" || value === "system") {
       return value;
     }
   } catch {
-    // localStorage may be unavailable (private mode, SSR, etc.)
+    // sessionStorage may be unavailable (private mode, SSR, etc.)
   }
   return null;
 }
@@ -57,25 +57,13 @@ function getSnapshot(): State {
 
 function setMode(next: Mode): void {
   try {
-    localStorage.setItem(STORAGE_KEY, next);
+    sessionStorage.setItem(STORAGE_KEY, next);
   } catch {
     // ignore
   }
   applyMode(next);
   currentState = { mode: next };
   for (const listener of listeners) listener();
-}
-
-// Sync across tabs / windows.
-if (typeof window !== "undefined") {
-  window.addEventListener("storage", (e) => {
-    if (e.key === STORAGE_KEY) {
-      const next = resolveMode(getStoredMode());
-      applyMode(next);
-      currentState = { mode: next };
-      for (const listener of listeners) listener();
-    }
-  });
 }
 
 // React to system preference changes when the user chose "system"
@@ -100,7 +88,7 @@ if (typeof document !== "undefined") {
 // --- Hook -----------------------------------------------------------
 
 /** Theme hook — manages the `.dark` / `.light` class on `<html>`,
- * persists the user's choice to localStorage, and reacts to system
+ * persists the user's choice to sessionStorage, and reacts to system
  * preference changes when the user hasn't made an explicit choice.
  *
  * State is shared across all callers via a module-level store, so

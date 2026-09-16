@@ -113,8 +113,8 @@ function buildPreset(state: PersistedTheme): ThemePreset {
   };
 }
 
-// Apply the initial theme before first render to avoid flash.
-if (typeof document !== "undefined") {
+// Apply the persisted theme before first render to avoid flash.
+if (typeof document !== "undefined" && initial) {
   applyThemeToDocument(buildPreset(currentState));
 }
 

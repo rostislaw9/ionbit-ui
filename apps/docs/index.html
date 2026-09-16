@@ -10,7 +10,7 @@
       // before the first paint to avoid a flash of the wrong color scheme.
       (function () {
         try {
-          var stored = localStorage.getItem("ionbit-ui-theme");
+          var stored = sessionStorage.getItem("ionbit-ui-theme");
           var prefersLight = window.matchMedia(
             "(prefers-color-scheme: light)",
           ).matches;

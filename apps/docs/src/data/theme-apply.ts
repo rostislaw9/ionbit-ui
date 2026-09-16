@@ -16,8 +16,10 @@ export function applyThemeToDocument(preset: ThemePreset): void {
   if (!styleEl) {
     styleEl = document.createElement("style");
     styleEl.id = "ionbit-theme-preview";
-    document.head.appendChild(styleEl);
   }
+  // Keep the element last in <head> so it wins over app styles injected
+  // later (e.g. Vite dev-mode CSS injected after this module evaluates).
+  document.head.appendChild(styleEl);
   styleEl.textContent = generateThemeCss(preset);
 }
 
