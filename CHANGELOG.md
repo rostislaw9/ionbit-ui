@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Context Menu:** migrated from Radix UI to Base UI. Submenus now
+  use `floating-ui-react` collision detection, fixing off-screen
+  positioning on mobile. Added `data-slot` attributes and simplified
+  the component to plain function components (no `forwardRef`
+  boilerplate). Removed the `@radix-ui/react-context-menu` dependency.
+  Expanded docs with 10 demos (overview, basic, submenu, shortcuts,
+  groups, icons, checkboxes, radio, destructive, sides), grouped
+  props by sub-component, and added a Base UI API reference link.
+
 ## [0.1.15] — 2026-09-15
 
 ### Added

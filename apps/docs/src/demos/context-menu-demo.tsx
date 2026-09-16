@@ -18,7 +18,7 @@ import {
 export function ContextMenuDemo() {
   return (
     <ContextMenu>
-      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed border-border text-sm text-foreground-muted">
+      <ContextMenuTrigger className="flex aspect-video w-full max-w-xs items-center justify-center rounded-xl border border-dashed border-border text-sm">
         <span className="hidden pointer-fine:inline-block">
           Right click here
         </span>
@@ -26,31 +26,35 @@ export function ContextMenuDemo() {
           Long press here
         </span>
       </ContextMenuTrigger>
-      <ContextMenuContent className="w-52">
+      <ContextMenuContent className="w-48">
         <ContextMenuGroup>
           <ContextMenuItem>
-            Open
-            <ContextMenuShortcut>↵</ContextMenuShortcut>
+            Back
+            <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem disabled>
+            Forward
+            <ContextMenuShortcut>⌘]</ContextMenuShortcut>
           </ContextMenuItem>
           <ContextMenuItem>
-            Rename
-            <ContextMenuShortcut>F2</ContextMenuShortcut>
-          </ContextMenuItem>
-          <ContextMenuItem>
-            Duplicate
-            <ContextMenuShortcut>⌘D</ContextMenuShortcut>
+            Reload
+            <ContextMenuShortcut>⌘R</ContextMenuShortcut>
           </ContextMenuItem>
           <ContextMenuSub>
-            <ContextMenuSubTrigger>Share</ContextMenuSubTrigger>
+            <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>
             <ContextMenuSubContent className="w-44">
               <ContextMenuGroup>
-                <ContextMenuItem>Copy link</ContextMenuItem>
-                <ContextMenuItem>Email as attachment</ContextMenuItem>
-                <ContextMenuItem>Send to Slack</ContextMenuItem>
+                <ContextMenuItem>Save Page...</ContextMenuItem>
+                <ContextMenuItem>Create Shortcut...</ContextMenuItem>
+                <ContextMenuItem>Name Window...</ContextMenuItem>
               </ContextMenuGroup>
               <ContextMenuSeparator />
               <ContextMenuGroup>
-                <ContextMenuItem>Manage access...</ContextMenuItem>
+                <ContextMenuItem>Developer Tools</ContextMenuItem>
+              </ContextMenuGroup>
+              <ContextMenuSeparator />
+              <ContextMenuGroup>
+                <ContextMenuItem variant="destructive">Delete</ContextMenuItem>
               </ContextMenuGroup>
             </ContextMenuSubContent>
           </ContextMenuSub>
@@ -58,23 +62,20 @@ export function ContextMenuDemo() {
         <ContextMenuSeparator />
         <ContextMenuGroup>
           <ContextMenuCheckboxItem checked>
-            Show file extensions
+            Show Bookmarks
           </ContextMenuCheckboxItem>
-          <ContextMenuCheckboxItem>Show hidden files</ContextMenuCheckboxItem>
+          <ContextMenuCheckboxItem>Show Full URLs</ContextMenuCheckboxItem>
         </ContextMenuGroup>
         <ContextMenuSeparator />
         <ContextMenuGroup>
-          <ContextMenuRadioGroup value="grid">
-            <ContextMenuLabel>View layout</ContextMenuLabel>
-            <ContextMenuRadioItem value="grid">Grid</ContextMenuRadioItem>
-            <ContextMenuRadioItem value="list">List</ContextMenuRadioItem>
+          <ContextMenuRadioGroup value="alex">
+            <ContextMenuLabel>People</ContextMenuLabel>
+            <ContextMenuRadioItem value="alex">
+              Alex Morgan
+            </ContextMenuRadioItem>
+            <ContextMenuRadioItem value="sam">Sam Rivera</ContextMenuRadioItem>
           </ContextMenuRadioGroup>
         </ContextMenuGroup>
-        <ContextMenuSeparator />
-        <ContextMenuItem variant="destructive">
-          Move to trash
-          <ContextMenuShortcut>⌫</ContextMenuShortcut>
-        </ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );

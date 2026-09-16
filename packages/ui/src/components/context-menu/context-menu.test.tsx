@@ -14,8 +14,8 @@ describe("ContextMenu", () => {
     const user = userEvent.setup();
     render(
       <ContextMenu>
-        <ContextMenuTrigger asChild>
-          <div data-testid="target">Right click me</div>
+        <ContextMenuTrigger data-testid="target">
+          Right click me
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuItem>Action 1</ContextMenuItem>
@@ -34,8 +34,8 @@ describe("ContextMenu", () => {
     const user = userEvent.setup();
     render(
       <ContextMenu>
-        <ContextMenuTrigger asChild>
-          <div data-testid="target">Right click me</div>
+        <ContextMenuTrigger data-testid="target">
+          Right click me
         </ContextMenuTrigger>
         <ContextMenuContent>
           <ContextMenuItem>Cut</ContextMenuItem>

@@ -137,8 +137,8 @@ export const componentManifest: ManifestEntry[] = [
     name: "context-menu",
     label: "Context Menu",
     category: "Overlay",
-    description: "Right-click menu.",
-    exampleCount: 1,
+    description: "Displays a menu of actions triggered by a right click.",
+    exampleCount: 10,
     isNew: false,
   },
   {

@@ -782,12 +782,8 @@
       "name": "context-menu",
       "type": "registry:ui",
       "title": "Context Menu",
-      "description": "Radix-based right-click context menu with items, labels, and separators.",
-      "dependencies": [
-        "@radix-ui/react-context-menu",
-        "clsx",
-        "tailwind-merge"
-      ],
+      "description": "Displays a menu of actions triggered by a right click.",
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
         {
