@@ -24,7 +24,7 @@ export function TeamCard() {
           { name: "LM", role: "Viewer" },
         ].map((member, i) => (
           <div key={i} className="flex items-center gap-3">
-            <Avatar className="size-8">
+            <Avatar size="sm">
               <AvatarFallback>{member.name}</AvatarFallback>
             </Avatar>
             <div className="flex flex-1 flex-col">

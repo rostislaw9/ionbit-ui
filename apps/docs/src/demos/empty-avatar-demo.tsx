@@ -14,7 +14,7 @@ export function EmptyAvatarDemo() {
     <Empty className="max-w-sm">
       <EmptyHeader>
         <EmptyMedia>
-          <Avatar className="size-12">
+          <Avatar size="lg">
             <AvatarImage
               src="https://i.pravatar.cc/150?img=12"
               className="grayscale"

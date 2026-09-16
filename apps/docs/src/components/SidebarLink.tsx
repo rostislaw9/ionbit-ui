@@ -33,6 +33,7 @@ export const SidebarLink = forwardRef<
           {isNew && (
             <Pulse>
               <span
+                role="img"
                 aria-label="New"
                 className="size-1.5 rounded-full bg-accent"
               />
