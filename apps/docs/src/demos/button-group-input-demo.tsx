@@ -9,7 +9,7 @@ export function ButtonGroupInputDemo() {
     <ButtonGroup>
       <Input placeholder="Search..." />
       <Button variant="secondary" aria-label="Search">
-        <Search className="size-4" />
+        <Search />
       </Button>
     </ButtonGroup>
   );

@@ -11,7 +11,7 @@ export function ButtonGroupSizesDemo() {
           XS
         </Button>
         <Button variant="outline" size="icon-xs" aria-label="Add">
-          <Plus className="size-3" />
+          <Plus />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -19,7 +19,7 @@ export function ButtonGroupSizesDemo() {
           Small
         </Button>
         <Button variant="outline" size="icon-sm" aria-label="Add">
-          <Plus className="size-3.5" />
+          <Plus />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -27,7 +27,7 @@ export function ButtonGroupSizesDemo() {
           Medium
         </Button>
         <Button variant="outline" size="icon" aria-label="Add">
-          <Plus className="size-4" />
+          <Plus />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -36,7 +36,7 @@ export function ButtonGroupSizesDemo() {
         </Button>
 
         <Button variant="outline" size="icon-lg" aria-label="Add">
-          <Plus className="size-4" />
+          <Plus />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
@@ -44,7 +44,7 @@ export function ButtonGroupSizesDemo() {
           XL
         </Button>
         <Button variant="outline" size="icon-xl" aria-label="Add">
-          <Plus className="size-5" />
+          <Plus />
         </Button>
       </ButtonGroup>
     </div>

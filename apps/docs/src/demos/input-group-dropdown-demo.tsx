@@ -43,7 +43,7 @@ export function InputGroupDropdownDemo() {
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <InputGroupButton variant="ghost" className="pe-1.5 text-xs">
-                Search In... <ChevronDown className="size-3" />
+                Search In... <ChevronDown />
               </InputGroupButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">

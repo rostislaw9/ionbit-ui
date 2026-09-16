@@ -21,7 +21,7 @@ export function CollapsibleDemo() {
         <h4 className="text-sm font-semibold">Order #4189</h4>
         <CollapsibleTrigger
           render={
-            <Button variant="ghost" size="icon" className="size-8">
+            <Button variant="ghost" size="icon">
               <ChevronsUpDown />
               <span className="sr-only">Toggle details</span>
             </Button>

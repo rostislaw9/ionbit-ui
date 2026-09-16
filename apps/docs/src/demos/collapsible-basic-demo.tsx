@@ -17,7 +17,7 @@ export function CollapsibleBasicDemo() {
             render={
               <Button variant="ghost" className="group w-full">
                 Product details
-                <ChevronDown className="ms-auto group-data-[open]:rotate-180" />
+                <ChevronDown className="ms-auto group-data-[panel-open]:rotate-180" />
               </Button>
             }
           />

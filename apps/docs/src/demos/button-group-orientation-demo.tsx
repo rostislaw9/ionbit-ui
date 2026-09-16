@@ -11,13 +11,13 @@ export function ButtonGroupOrientationDemo() {
       className="h-fit"
     >
       <Button variant="outline" size="icon" aria-label="Zoom in">
-        <Plus className="size-4" />
+        <Plus />
       </Button>
       <Button variant="outline" size="icon" aria-label="Zoom out">
-        <Minus className="size-4" />
+        <Minus />
       </Button>
       <Button variant="outline" size="icon" aria-label="Fit to screen">
-        <Maximize className="size-4" />
+        <Maximize />
       </Button>
     </ButtonGroup>
   );

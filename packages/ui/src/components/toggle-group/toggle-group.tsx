@@ -1,5 +1,6 @@
-import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
-import { createContext, forwardRef, useContext, type ReactNode } from "react";
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
+import { ToggleGroup as ToggleGroupPrimitive } from "@base-ui/react/toggle-group";
+import { createContext, useContext, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -20,29 +21,33 @@ const ToggleGroupCtx = createContext<ToggleGroupContextValue>({
   spacing: 2,
 });
 
-type ToggleGroupSingleProps = Omit<
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & {
-    type: "single";
-  },
-  "asChild"
->;
-
-type ToggleGroupMultipleProps = Omit<
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & {
-    type: "multiple";
-  },
-  "asChild"
->;
-
-export type ToggleGroupProps = (
-  ToggleGroupSingleProps | ToggleGroupMultipleProps
-) & {
+interface ToggleGroupBaseProps {
   children: ReactNode;
   className?: string;
   variant?: ToggleGroupVariant;
   size?: ToggleGroupSize;
   spacing?: number;
-};
+  orientation?: "horizontal" | "vertical";
+  disabled?: boolean;
+  "aria-label"?: string;
+}
+
+interface ToggleGroupSingleProps extends ToggleGroupBaseProps {
+  type: "single";
+  value?: string;
+  defaultValue?: string;
+  onValueChange?: (value: string) => void;
+}
+
+interface ToggleGroupMultipleProps extends ToggleGroupBaseProps {
+  type: "multiple";
+  value?: string[];
+  defaultValue?: string[];
+  onValueChange?: (value: string[]) => void;
+}
+
+export type ToggleGroupProps =
+  ToggleGroupSingleProps | ToggleGroupMultipleProps;
 
 const spacingGapMap: Record<number, string> = {
   0: "gap-0",
@@ -58,55 +63,86 @@ const spacingGapMap: Record<number, string> = {
 /**
  * ToggleGroup — a set of two-state buttons with single or multiple selection.
  *
- * Built on `@radix-ui/react-toggle-group`, shadcn-inspired. Set `type` to
+ * Built on `@base-ui/react/toggle-group`, shadcn-inspired. Set `type` to
  * `"single"` for radio-like behavior or `"multiple"` for independent toggles.
  * Pass `variant`, `size`, and `spacing` on the group to propagate them to all
  * items.
  *
- * Accessibility: Radix sets `role="radiogroup"` (single) or `role="toolbar"`
- * (multiple) on the root and `aria-pressed` on each item. Keyboard navigation
- * is handled by Radix. Use `aria-label` to label the group.
+ * Accessibility: Base UI sets `role="group"` on the root and `aria-pressed`
+ * on each item. Keyboard navigation is handled by Base UI. Use `aria-label`
+ * to label the group.
  */
-export const ToggleGroup = forwardRef<HTMLDivElement, ToggleGroupProps>(
-  function ToggleGroup(
-    {
-      className,
-      variant = "default",
-      size = "md",
-      spacing = 2,
-      children,
-      ...props
-    },
-    ref,
-  ) {
-    const orientation = props.orientation ?? "horizontal";
-    return (
-      <ToggleGroupPrimitive.Root
-        ref={ref}
-        data-slot="toggle-group"
-        className={cn(
-          "group/toggle-group flex w-fit items-center",
-          spacingGapMap[spacing] ?? `gap-${spacing}`,
-          orientation === "vertical" && "flex-col",
-          className,
-        )}
-        {...props}
-      >
-        <ToggleGroupCtx.Provider value={{ variant, size, spacing }}>
-          {children}
-        </ToggleGroupCtx.Provider>
-      </ToggleGroupPrimitive.Root>
-    );
-  },
-);
+export function ToggleGroup({
+  className,
+  variant = "default",
+  size = "md",
+  spacing = 2,
+  orientation = "horizontal",
+  disabled,
+  children,
+  type,
+  value,
+  defaultValue,
+  onValueChange,
+  ...props
+}: ToggleGroupProps) {
+  const isMultiple = type === "multiple";
 
-export type ToggleGroupItemProps = Omit<
-  React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Item>,
-  "asChild"
-> &
-  Pick<ToggleProps, "variant" | "size"> & {
-    asChild?: boolean;
+  const handleValueChange = (groupValue: string[]) => {
+    if (type === "single") {
+      onValueChange?.(groupValue[0] ?? "");
+    } else {
+      onValueChange?.(groupValue);
+    }
   };
+
+  const controlledValue = value ? (isMultiple ? value : [value]) : undefined;
+
+  const defaultArrayValue = defaultValue
+    ? isMultiple
+      ? defaultValue
+      : [defaultValue]
+    : undefined;
+
+  return (
+    <ToggleGroupPrimitive
+      data-slot="toggle-group"
+      className={cn(
+        "group/toggle-group flex w-fit items-center",
+        spacingGapMap[spacing] ?? `gap-${spacing}`,
+        orientation === "vertical" && "flex-col",
+        // When spacing is 0, join items into a combined element
+        spacing === 0 &&
+          orientation === "horizontal" && [
+            "[&>[data-slot=toggle-group-item]:not(:first-child)]:rounded-s-none",
+            "[&>[data-slot=toggle-group-item]:not(:first-child)]:data-[variant=outline]:border-s-0",
+            "[&>[data-slot=toggle-group-item]:not(:last-child)]:rounded-e-none",
+          ],
+        spacing === 0 &&
+          orientation === "vertical" && [
+            "[&>[data-slot=toggle-group-item]:not(:first-child)]:rounded-t-none",
+            "[&>[data-slot=toggle-group-item]:not(:first-child)]:data-[variant=outline]:border-t-0",
+            "[&>[data-slot=toggle-group-item]:not(:last-child)]:rounded-b-none",
+          ],
+        className,
+      )}
+      multiple={isMultiple}
+      orientation={orientation}
+      disabled={disabled}
+      value={controlledValue as readonly string[] | undefined}
+      defaultValue={defaultArrayValue as readonly string[] | undefined}
+      onValueChange={handleValueChange}
+      {...props}
+    >
+      <ToggleGroupCtx.Provider value={{ variant, size, spacing }}>
+        {children}
+      </ToggleGroupCtx.Provider>
+    </ToggleGroupPrimitive>
+  );
+}
+
+export interface ToggleGroupItemProps
+  extends TogglePrimitive.Props, Pick<ToggleProps, "variant" | "size"> {}
 
 /**
  * ToggleGroupItem — a single toggle within a `ToggleGroup`.
@@ -114,35 +150,30 @@ export type ToggleGroupItemProps = Omit<
  * Inherits `variant`, `size`, and `spacing` from the parent group via context.
  * Override `variant` and `size` individually if needed.
  */
-export const ToggleGroupItem = forwardRef<
-  HTMLButtonElement,
-  ToggleGroupItemProps
->(function ToggleGroupItem(
-  { className, variant, size, asChild, children, ...props },
-  ref,
-) {
+export function ToggleGroupItem({
+  className,
+  variant,
+  size,
+  children,
+  ...props
+}: ToggleGroupItemProps) {
   const ctx = useContext(ToggleGroupCtx);
   const effectiveVariant = ctx.variant || variant;
   return (
-    <ToggleGroupPrimitive.Item
-      ref={ref}
+    <TogglePrimitive
       data-slot="toggle-group-item"
       data-variant={effectiveVariant}
-      asChild={asChild}
       className={cn(
         toggleVariants({
           variant: effectiveVariant,
           size: ctx.size || size,
         }),
         "focus-visible:z-10",
-        // When spacing is 0, join items together with shared borders
-        ctx.spacing === 0 &&
-          "rounded-sm border-0 first:rounded-s-md last:rounded-e-md data-[variant=outline]:border data-[variant=outline]:[border-inline-start-width:0] data-[variant=outline]:first:[border-inline-start-width:1px]",
         className,
       )}
       {...props}
     >
       {children}
-    </ToggleGroupPrimitive.Item>
+    </TogglePrimitive>
   );
-});
+}

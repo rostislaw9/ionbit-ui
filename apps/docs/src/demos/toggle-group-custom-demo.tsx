@@ -25,7 +25,6 @@ export function ToggleGroupCustomDemo() {
           <ToggleGroupItem
             key={w.value}
             value={w.value}
-            aria-label={w.label}
             className="flex size-16 flex-col items-center justify-center rounded-xl"
           >
             <span className={`text-2xl leading-none ${w.fontClass}`}>Aa</span>

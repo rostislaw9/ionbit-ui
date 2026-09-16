@@ -39,7 +39,7 @@ export function ButtonGroupSelectDemo() {
       </ButtonGroup>
       <ButtonGroup>
         <Button variant="outline" size="icon" aria-label="Transfer">
-          <ArrowRight className="size-4" />
+          <ArrowRight />
         </Button>
       </ButtonGroup>
     </ButtonGroup>

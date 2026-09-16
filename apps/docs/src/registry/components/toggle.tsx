@@ -1,5 +1,6 @@
 import type { ComponentMeta } from "./types";
 
+import { InlineCode } from "../../components/InlineCode";
 import { ToggleDemo } from "../../demos/toggle-demo";
 import ToggleDemoSource from "../../demos/toggle-demo.tsx?highlighted";
 import ToggleDemoRaw from "../../demos/toggle-demo.tsx?raw";
@@ -31,7 +32,12 @@ export const toggleMeta: ComponentMeta = {
     },
     {
       title: "Outline",
-      description: 'Use variant="outline" for a bordered style.',
+      description: (
+        <>
+          Use <InlineCode>variant=&quot;outline&quot;</InlineCode> for a
+          bordered style.
+        </>
+      ),
       code: ToggleOutlineDemoSource,
       rawCode: ToggleOutlineDemoRaw,
       render: () => <ToggleOutlineDemo />,
@@ -62,21 +68,6 @@ export const toggleMeta: ComponentMeta = {
   usageCode: `<Toggle pressed>Toggle</Toggle>`,
   props: [
     {
-      name: "pressed",
-      type: "boolean",
-      description: "Controlled pressed state.",
-    },
-    {
-      name: "defaultPressed",
-      type: "boolean",
-      description: "Uncontrolled default pressed state.",
-    },
-    {
-      name: "onPressedChange",
-      type: "(pressed: boolean) => void",
-      description: "Called when the pressed state changes.",
-    },
-    {
       name: "variant",
       type: '"default" | "outline"',
       default: '"default"',
@@ -88,18 +79,6 @@ export const toggleMeta: ComponentMeta = {
       default: '"md"',
       description: "Toggle size. Use icon variants for icon-only toggles.",
     },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Prevents interaction.",
-    },
-    {
-      name: "asChild",
-      type: "boolean",
-      default: "false",
-      description: "Render as child element via Radix Slot.",
-    },
   ],
   accessibility: [
     "aria-pressed reflects the on/off state",
@@ -107,5 +86,9 @@ export const toggleMeta: ComponentMeta = {
     "Focus visible ring",
     "Icon-only toggles require an aria-label",
   ],
-  basedOn: "radix",
+  apiReference: {
+    label: "Base UI Toggle",
+    url: "https://base-ui.com/react/components/toggle#api-reference",
+  },
+  basedOn: "base",
 };

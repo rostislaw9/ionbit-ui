@@ -12,7 +12,7 @@ export function ButtonGroupSplitDemo() {
       <Button variant="destructive">Archive</Button>
       <ButtonGroupSeparator />
       <Button variant="destructive" size="icon" aria-label="Delete">
-        <Trash2 className="size-4" />
+        <Trash2 />
       </Button>
     </ButtonGroup>
   );

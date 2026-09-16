@@ -1,5 +1,6 @@
 import type { ComponentMeta } from "./types";
 
+import { InlineCode } from "../../components/InlineCode";
 import { ToggleGroupCustomDemo } from "../../demos/toggle-group-custom-demo";
 import ToggleGroupCustomDemoSource from "../../demos/toggle-group-custom-demo.tsx?highlighted";
 import ToggleGroupCustomDemoRaw from "../../demos/toggle-group-custom-demo.tsx?raw";
@@ -38,38 +39,60 @@ export const toggleGroupMeta: ComponentMeta = {
     },
     {
       title: "Outline",
-      description:
-        'Set variant="outline" on the group to propagate to all items.',
+      description: (
+        <>
+          Set <InlineCode>variant=&quot;outline&quot;</InlineCode> on the group
+          to propagate to all items.
+        </>
+      ),
       code: ToggleGroupOutlineDemoSource,
       rawCode: ToggleGroupOutlineDemoRaw,
       render: () => <ToggleGroupOutlineDemo />,
     },
     {
       title: "Sizes",
-      description:
-        "Set size on the group — small, medium, and large with outline variant.",
+      description: (
+        <>
+          Set <InlineCode>size</InlineCode> on the group — small, medium, and
+          large with outline variant.
+        </>
+      ),
       code: ToggleGroupSizesDemoSource,
       rawCode: ToggleGroupSizesDemoRaw,
       render: () => <ToggleGroupSizesDemo />,
     },
     {
       title: "Spacing",
-      description:
-        "Use the spacing prop to control the gap between items. Default is 2; set to 0 for joined items.",
+      description: (
+        <>
+          Use the <InlineCode>spacing</InlineCode> prop to control the gap
+          between items. Default is 2; set to 0 for joined items.
+        </>
+      ),
       code: ToggleGroupSpacingDemoSource,
       rawCode: ToggleGroupSpacingDemoRaw,
       render: () => <ToggleGroupSpacingDemo />,
     },
     {
       title: "Vertical",
-      description: 'Use orientation="vertical" for stacked icon toggles.',
+      description: (
+        <>
+          Use <InlineCode>orientation=&quot;vertical&quot;</InlineCode> for
+          stacked icon toggles.
+        </>
+      ),
       code: ToggleGroupVerticalDemoSource,
       rawCode: ToggleGroupVerticalDemoRaw,
       render: () => <ToggleGroupVerticalDemo />,
     },
     {
       title: "Disabled",
-      description: "All items disabled via the group's disabled prop.",
+      description: (
+        <>
+          All items disabled via the group&lsquo;s{" "}
+          <InlineCode>disabled</InlineCode> prop.
+        </>
+      ),
       code: ToggleGroupDisabledDemoSource,
       rawCode: ToggleGroupDisabledDemoRaw,
       render: () => <ToggleGroupDisabledDemo />,
@@ -90,8 +113,9 @@ export const toggleGroupMeta: ComponentMeta = {
   usageCode: `<ToggleGroup type="single">
   <ToggleGroupItem value="a">A</ToggleGroupItem>
   <ToggleGroupItem value="b">B</ToggleGroupItem>
+  <ToggleGroupItem value="c">C</ToggleGroupItem>
 </ToggleGroup>`,
-  composition: ["ToggleGroup", "└── ToggleGroupItem"],
+  composition: ["ToggleGroup", "└── ToggleGroupItem", "└── ToggleGroupItem"],
   props: [
     {
       name: "type",
@@ -119,43 +143,21 @@ export const toggleGroupMeta: ComponentMeta = {
         "Gap between items in Tailwind spacing units. Set to 0 for joined items with shared borders.",
     },
     {
-      name: "value",
-      type: "string | string[]",
-      description: "Controlled selected value(s).",
-    },
-    {
-      name: "defaultValue",
-      type: "string | string[]",
-      description: "Uncontrolled default value(s).",
-    },
-    {
-      name: "onValueChange",
-      type: "(value: string | string[]) => void",
-      description: "Called when the selection changes.",
-    },
-    {
       name: "orientation",
       type: '"horizontal" | "vertical"',
       default: '"horizontal"',
       description: "Layout direction of the group.",
     },
-    {
-      name: "disabled",
-      type: "boolean",
-      default: "false",
-      description: "Disables all items in the group.",
-    },
-    {
-      name: "aria-label",
-      type: "string",
-      description: "Accessible label for the group.",
-    },
   ],
   accessibility: [
-    'role="radiogroup" (single) or role="toolbar" (multiple) on the root',
+    'role="group" on the root',
     "aria-pressed on each item reflects its state",
     "Keyboard navigation via Tab, Space, and Enter",
     "Use aria-label to label the group",
   ],
-  basedOn: "radix",
+  apiReference: {
+    label: "Base UI Toggle Group",
+    url: "https://base-ui.com/react/components/toggle-group#api-reference",
+  },
+  basedOn: "base",
 };

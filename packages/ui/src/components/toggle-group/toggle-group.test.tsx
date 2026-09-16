@@ -5,7 +5,7 @@ import { describe, expect, it } from "vitest";
 import { ToggleGroup, ToggleGroupItem } from "./toggle-group";
 
 describe("ToggleGroup", () => {
-  it("renders a radiogroup in single mode", () => {
+  it("renders a group in single mode", () => {
     render(
       <ToggleGroup type="single" aria-label="Alignment">
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
@@ -13,20 +13,20 @@ describe("ToggleGroup", () => {
       </ToggleGroup>,
     );
     expect(
-      screen.getByRole("radiogroup", { name: "Alignment" }),
+      screen.getByRole("group", { name: "Alignment" }),
     ).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "Left" })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: "Right" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Left" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Right" })).toBeInTheDocument();
   });
 
-  it("renders a toolbar in multiple mode", () => {
+  it("renders a group in multiple mode", () => {
     render(
       <ToggleGroup type="multiple" aria-label="Styles">
         <ToggleGroupItem value="bold">Bold</ToggleGroupItem>
         <ToggleGroupItem value="italic">Italic</ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("toolbar", { name: "Styles" })).toBeInTheDocument();
+    expect(screen.getByRole("group", { name: "Styles" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Bold" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "Italic" })).toBeInTheDocument();
   });
@@ -39,14 +39,14 @@ describe("ToggleGroup", () => {
         <ToggleGroupItem value="right">Right</ToggleGroupItem>
       </ToggleGroup>,
     );
-    const left = screen.getByRole("radio", { name: "Left" });
-    const right = screen.getByRole("radio", { name: "Right" });
+    const left = screen.getByRole("button", { name: "Left" });
+    const right = screen.getByRole("button", { name: "Right" });
     await user.click(left);
-    expect(left).toHaveAttribute("data-state", "on");
-    expect(right).toHaveAttribute("data-state", "off");
+    expect(left).toHaveAttribute("aria-pressed", "true");
+    expect(right).toHaveAttribute("aria-pressed", "false");
     await user.click(right);
-    expect(right).toHaveAttribute("data-state", "on");
-    expect(left).toHaveAttribute("data-state", "off");
+    expect(right).toHaveAttribute("aria-pressed", "true");
+    expect(left).toHaveAttribute("aria-pressed", "false");
   });
 
   it("toggles multiple type — independent toggles", async () => {
@@ -61,8 +61,8 @@ describe("ToggleGroup", () => {
     const italic = screen.getByRole("button", { name: "Italic" });
     await user.click(bold);
     await user.click(italic);
-    expect(bold).toHaveAttribute("data-state", "on");
-    expect(italic).toHaveAttribute("data-state", "on");
+    expect(bold).toHaveAttribute("aria-pressed", "true");
+    expect(italic).toHaveAttribute("aria-pressed", "true");
   });
 
   it("respects disabled on individual items", () => {
@@ -74,7 +74,7 @@ describe("ToggleGroup", () => {
         </ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("radio", { name: "Right" })).toBeDisabled();
+    expect(screen.getByRole("button", { name: "Right" })).toBeDisabled();
   });
 
   it("propagates variant from group to items via context", () => {
@@ -83,7 +83,7 @@ describe("ToggleGroup", () => {
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("radio", { name: "Left" }).className).toContain(
+    expect(screen.getByRole("button", { name: "Left" }).className).toContain(
       "border",
     );
   });
@@ -100,7 +100,7 @@ describe("ToggleGroup", () => {
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
       </ToggleGroup>,
     );
-    await user.click(screen.getByRole("radio", { name: "Left" }));
+    await user.click(screen.getByRole("button", { name: "Left" }));
     expect(value).toBe("left");
   });
 
@@ -110,7 +110,7 @@ describe("ToggleGroup", () => {
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("radiogroup", { name: "Alignment" })).toHaveClass(
+    expect(screen.getByRole("group", { name: "Alignment" })).toHaveClass(
       "gap-4",
     );
   });
@@ -121,7 +121,7 @@ describe("ToggleGroup", () => {
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("radiogroup", { name: "Alignment" })).toHaveClass(
+    expect(screen.getByRole("group", { name: "Alignment" })).toHaveClass(
       "gap-2",
     );
   });
@@ -132,19 +132,19 @@ describe("ToggleGroup", () => {
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("radio", { name: "Left" })).toHaveAttribute(
+    expect(screen.getByRole("button", { name: "Left" })).toHaveAttribute(
       "data-variant",
       "outline",
     );
   });
 
-  it("passes orientation to Radix for accessibility", () => {
+  it("passes orientation for accessibility", () => {
     render(
       <ToggleGroup type="single" orientation="vertical" aria-label="Alignment">
         <ToggleGroupItem value="left">Left</ToggleGroupItem>
       </ToggleGroup>,
     );
-    expect(screen.getByRole("radiogroup", { name: "Alignment" })).toHaveClass(
+    expect(screen.getByRole("group", { name: "Alignment" })).toHaveClass(
       "flex-col",
     );
   });

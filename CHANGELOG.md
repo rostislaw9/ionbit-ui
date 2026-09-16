@@ -17,6 +17,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Expanded docs with 10 demos (overview, basic, submenu, shortcuts,
   groups, icons, checkboxes, radio, destructive, sides), grouped
   props by sub-component, and added a Base UI API reference link.
+- **Toggle / Toggle Group:** migrated from Radix UI to Base UI.
+  Replaced `data-[state=on]` with `data-pressed` for pressed-state
+  styling. Simplified to plain function components (no `forwardRef`).
+  ToggleGroup now uses Base UI's `multiple` prop instead of Radix's
+  `type` prop internally, while preserving the `type="single" | "multiple"`
+  consumer API. `spacing={0}` now visually joins items into a combined
+  element with shared borders, matching ButtonGroup. Removed the `asChild`
+  prop (use Base UI's `render` prop). Removed `@radix-ui/react-toggle`
+  and `@radix-ui/react-toggle-group` dependencies. Updated registry
+  metadata with Base UI API reference links.
+- **Docs:** removed redundant `aria-label` attributes from demos where
+  visible text already labels the control, and redundant `size-*`
+  classes on icons inside components that auto-size svgs. Fixed
+  Collapsible demo chevron rotation to use Base UI's `data-panel-open`
+  trigger attribute.
 
 ## [0.1.15] — 2026-09-15
 

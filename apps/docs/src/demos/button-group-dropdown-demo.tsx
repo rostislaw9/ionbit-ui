@@ -17,7 +17,7 @@ export function ButtonGroupDropdownDemo() {
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="secondary" size="icon" aria-label="Publish options">
-            <ChevronDown className="size-4" />
+            <ChevronDown />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-44">

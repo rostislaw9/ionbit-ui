@@ -36,7 +36,7 @@ export const ExampleSwitcher = memo(function ExampleSwitcher({
             size="sm"
             spacing={1}
             value={String(activeExample)}
-            onValueChange={(v) => {
+            onValueChange={(v: string) => {
               if (v) onSelect(Number(v));
             }}
             aria-label="Demo switcher"

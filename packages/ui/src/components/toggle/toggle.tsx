@@ -1,6 +1,5 @@
-import * as TogglePrimitive from "@radix-ui/react-toggle";
+import { Toggle as TogglePrimitive } from "@base-ui/react/toggle";
 import { cva, type VariantProps } from "class-variance-authority";
-import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -10,9 +9,9 @@ export const toggleVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-transparent text-foreground hover:bg-surface-hover data-[state=on]:bg-accent-muted data-[state=on]:text-accent",
+          "bg-transparent text-foreground hover:bg-surface-hover data-pressed:bg-accent-muted data-pressed:text-accent",
         outline:
-          "bg-transparent text-foreground border border-border-strong hover:bg-surface-hover hover:border-border-strong data-[state=on]:text-accent data-[state=on]:bg-accent-muted data-[state=on]:border-accent-muted",
+          "bg-transparent text-foreground border border-border-strong hover:bg-surface-hover hover:border-border-strong data-pressed:text-accent data-pressed:bg-accent-muted data-pressed:border-accent-muted",
       },
       size: {
         xs: "h-6 min-w-6 px-2 text-xs has-data-[icon=inline-end]:pe-1.5 has-data-[icon=inline-start]:ps-1.5 [&_svg:not([class*='size-'])]:size-3",
@@ -35,33 +34,25 @@ export const toggleVariants = cva(
 );
 
 export interface ToggleProps
-  extends
-    Omit<React.ComponentProps<typeof TogglePrimitive.Root>, "asChild">,
-    VariantProps<typeof toggleVariants> {
-  asChild?: boolean;
-}
+  extends TogglePrimitive.Props, VariantProps<typeof toggleVariants> {}
 
 /**
  * Toggle — a two-state button that can be either on or off.
  *
- * Built on `@radix-ui/react-toggle`, shadcn-inspired. Visually similar to
+ * Built on `@base-ui/react/toggle`, shadcn-inspired. Visually similar to
  * Button but maintains a pressed/unpressed state. Use `defaultPressed` for
  * uncontrolled usage or `pressed`/`onPressedChange` for controlled usage.
  *
- * Accessibility: Radix sets `aria-pressed` based on the pressed state.
+ * Accessibility: Base UI sets `aria-pressed` based on the pressed state.
  * Keyboard toggle via Space and Enter. Label the control with text content
  * or `aria-label`.
  */
-export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
-  function Toggle({ className, variant, size, asChild, ...props }, ref) {
-    return (
-      <TogglePrimitive.Root
-        ref={ref}
-        data-slot="toggle"
-        asChild={asChild}
-        className={cn(toggleVariants({ variant, size, className }))}
-        {...props}
-      />
-    );
-  },
-);
+export function Toggle({ className, variant, size, ...props }: ToggleProps) {
+  return (
+    <TogglePrimitive
+      data-slot="toggle"
+      className={cn(toggleVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+}

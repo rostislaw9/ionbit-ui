@@ -70,8 +70,8 @@ export function CollapsibleFileTreeDemo() {
                 size="sm"
                 className="group w-full justify-start gap-1.5 hover:bg-surface-hover"
               >
-                <ChevronRight className="size-4 transition-transform duration-[var(--duration-normal)] ease-[var(--ease-standard)] group-data-[open]:rotate-90" />
-                <Folder className="size-4 text-foreground-muted" />
+                <ChevronRight className="transition-transform duration-[var(--duration-normal)] ease-[var(--ease-standard)] group-data-[panel-open]:rotate-90" />
+                <Folder className="text-foreground-muted" />
                 {fileItem.name}
               </Button>
             }
@@ -91,7 +91,7 @@ export function CollapsibleFileTreeDemo() {
         size="sm"
         className="w-full justify-start gap-1.5 text-foreground"
       >
-        <File className="size-4 text-foreground-subtle" />
+        <File className="text-foreground-subtle" />
         <span>{fileItem.name}</span>
       </Button>
     );

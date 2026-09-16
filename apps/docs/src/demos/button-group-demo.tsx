@@ -27,32 +27,32 @@ export function ButtonGroupDemo() {
     <ButtonGroup>
       <ButtonGroup className="hidden sm:flex">
         <Button variant="secondary" size="icon" aria-label="Go back">
-          <ArrowLeft className="size-4" />
+          <ArrowLeft />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
         <Button variant="secondary" size="icon" aria-label="Mark as read">
-          <MailCheck className="size-4 text-success" />
+          <MailCheck className="text-success" />
         </Button>
         <Button variant="secondary" size="icon" aria-label="Snooze">
-          <BellOff className="size-4 text-error" />
+          <BellOff className="text-error" />
         </Button>
         <Button variant="secondary" size="icon" aria-label="Flag">
-          <Flag className="size-4 text-warning" />
+          <Flag className="text-warning" />
         </Button>
         <Button variant="secondary" size="icon" aria-label="Archive">
-          <Archive className="size-4 text-info" />
+          <Archive className="text-info" />
         </Button>
       </ButtonGroup>
       <ButtonGroup>
         <Button variant="secondary">
-          <Reply className="size-4" />
+          <Reply />
           Reply
         </Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="secondary" size="icon" aria-label="More options">
-              <MoreHorizontal className="size-4" />
+              <MoreHorizontal />
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">

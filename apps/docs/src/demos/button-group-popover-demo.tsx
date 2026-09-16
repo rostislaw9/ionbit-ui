@@ -13,13 +13,13 @@ export function ButtonGroupPopoverDemo() {
   return (
     <ButtonGroup>
       <Button variant="outline">
-        <Sparkles className="size-4" />
+        <Sparkles />
         Generate
       </Button>
       <Popover>
         <PopoverTrigger asChild>
           <Button variant="outline" size="icon" aria-label="Prompt options">
-            <ChevronDown className="size-4" />
+            <ChevronDown />
           </Button>
         </PopoverTrigger>
         <PopoverContent align="end" className="w-72">

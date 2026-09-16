@@ -5,6 +5,7 @@ export function ToggleGroupSpacingDemo() {
     <div className="flex flex-col gap-4">
       <ToggleGroup
         type="single"
+        variant="outline"
         defaultValue="top"
         spacing={0}
         aria-label="Position no spacing"
