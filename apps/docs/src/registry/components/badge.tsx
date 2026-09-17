@@ -28,7 +28,8 @@ import BadgeVariantsDemoRaw from "../../demos/badge-variants-demo.tsx?raw";
 export const badgeMeta: ComponentMeta = {
   name: "badge",
   label: "Badge",
-  description: "Small status indicator with soft and text variants.",
+  description:
+    "A compact indicator for statuses, counts, and categories, available in soft and text variants.",
   category: "Form",
   examples: [
     {

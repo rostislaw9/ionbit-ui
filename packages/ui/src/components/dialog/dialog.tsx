@@ -189,9 +189,11 @@ export type DialogCloseProps = React.ComponentProps<
 export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
   function DialogClose({ className, ...props }, ref) {
     return (
-      <Button asChild variant="secondary" className={cn(className)}>
-        <DialogPrimitive.Close ref={ref} {...props} />
-      </Button>
+      <Button
+        variant="secondary"
+        className={cn(className)}
+        render={<DialogPrimitive.Close ref={ref} {...props} />}
+      />
     );
   },
 );
@@ -207,9 +209,11 @@ export type DialogActionProps = React.ComponentProps<"button">;
 export const DialogAction = forwardRef<HTMLButtonElement, DialogActionProps>(
   function DialogAction({ className, ...props }, ref) {
     return (
-      <Button asChild variant="primary" className={cn(className)}>
-        <DialogPrimitive.Close ref={ref} {...props} />
-      </Button>
+      <Button
+        variant="primary"
+        className={cn(className)}
+        render={<DialogPrimitive.Close ref={ref} {...props} />}
+      />
     );
   },
 );

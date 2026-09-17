@@ -7,7 +7,8 @@ import SkeletonBasicDemoRaw from "../../demos/skeleton-basic-demo.tsx?raw";
 export const skeletonMeta: ComponentMeta = {
   name: "skeleton",
   label: "Skeleton",
-  description: "Loading placeholder with pulse animation.",
+  description:
+    "A pulsing placeholder that mirrors the content layout while data loads.",
   category: "Feedback",
   examples: [
     {

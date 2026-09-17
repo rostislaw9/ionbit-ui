@@ -59,16 +59,26 @@ describe("Button", () => {
     );
   });
 
-  it("renders as the child element when asChild is set", () => {
+  it("composes another element via the render prop", () => {
     render(
-      <Button asChild>
-        <a href="/x">Link button</a>
-      </Button>,
+      <Button nativeButton={false} render={<a href="/x">Link button</a>} />,
     );
-    const link = screen.getByRole("link", { name: "Link button" });
-    expect(link).toBeInTheDocument();
+    const link = screen.getByRole("button", { name: "Link button" });
+    expect(link.tagName).toBe("A");
+    expect(link).toHaveAttribute("href", "/x");
     expect(link.className).toContain("bg-accent");
     expect(link).not.toHaveAttribute("type");
+  });
+
+  it("applies aria-disabled instead of disabled when focusableWhenDisabled", () => {
+    render(
+      <Button disabled focusableWhenDisabled>
+        Focusable
+      </Button>,
+    );
+    const btn = screen.getByRole("button", { name: "Focusable" });
+    expect(btn).toHaveAttribute("aria-disabled", "true");
+    expect(btn).not.toBeDisabled();
   });
 
   it("renders data-slot, data-variant, and data-size attributes", () => {

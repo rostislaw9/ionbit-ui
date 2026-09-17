@@ -3,7 +3,7 @@
   "name": "separator",
   "type": "registry:ui",
   "title": "Separator",
-  "description": "Visually or semantically separates content.",
+  "description": "Horizontal or vertical content divider.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

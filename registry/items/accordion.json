@@ -3,7 +3,7 @@
   "name": "accordion",
   "type": "registry:ui",
   "title": "Accordion",
-  "description": "Radix-based single-value collapsible accordion with chevron rotation and synced height animation.",
+  "description": "Collapsible sections with animated expand/collapse and rotating chevron indicators.",
   "dependencies": [
     "@radix-ui/react-accordion",
     "clsx",

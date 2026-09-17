@@ -10,7 +10,8 @@ import NativeSelectStatesDemoRaw from "../../demos/native-select-states-demo.tsx
 export const nativeSelectMeta: ComponentMeta = {
   name: "native-select",
   label: "Native Select",
-  description: "Styled native HTML select with custom chevron.",
+  description:
+    "A styled native HTML select with a custom chevron that keeps native behavior, validation, and mobile pickers.",
   category: "Form",
   examples: [
     {

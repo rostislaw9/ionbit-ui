@@ -3,7 +3,7 @@
   "name": "label",
   "type": "registry:ui",
   "title": "Label",
-  "description": "Radix-based form label with htmlFor association and disabled state styling.",
+  "description": "Form label with htmlFor association and disabled-state styling.",
   "dependencies": [
     "@radix-ui/react-label",
     "clsx",

@@ -3,7 +3,7 @@
   "name": "badge",
   "type": "registry:ui",
   "title": "Badge",
-  "description": "Small status indicator with soft and text variants.",
+  "description": "Compact status indicator with soft and text variants.",
   "dependencies": [
     "@radix-ui/react-slot",
     "class-variance-authority",

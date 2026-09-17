@@ -17,7 +17,8 @@ import CollapsibleSettingsDemoRaw from "../../demos/collapsible-settings-demo.ts
 export const collapsibleMeta: ComponentMeta = {
   name: "collapsible",
   label: "Collapsible",
-  description: "An interactive component which expands/collapses a panel.",
+  description:
+    "An expandable panel that reveals or hides content with animated height transitions and rotating indicators.",
   category: "Layout",
   examples: [
     {

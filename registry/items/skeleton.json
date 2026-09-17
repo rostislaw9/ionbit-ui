@@ -3,7 +3,7 @@
   "name": "skeleton",
   "type": "registry:ui",
   "title": "Skeleton",
-  "description": "Loading placeholder with pulse animation and semantic surface tokens.",
+  "description": "Pulsing placeholder that mirrors content layout while loading.",
   "dependencies": [
     "clsx",
     "tailwind-merge"

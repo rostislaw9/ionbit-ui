@@ -3,7 +3,7 @@
   "name": "native-select",
   "type": "registry:ui",
   "title": "Native Select",
-  "description": "Styled native HTML select with custom chevron and invalid state.",
+  "description": "Styled native select with custom chevron and invalid state.",
   "dependencies": [
     "lucide-react",
     "clsx",

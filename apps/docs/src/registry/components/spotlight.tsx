@@ -11,7 +11,7 @@ export const spotlightMeta: ComponentMeta = {
   name: "spotlight",
   label: "Spotlight",
   description:
-    "Pointer-following radial highlight for surfaces. Activates before the cursor reaches the element via a proximity threshold.",
+    "A radial highlight that follows the pointer across a surface, activating through a proximity threshold before the cursor arrives. Respects reduced motion.",
   category: "Motion",
   examples: [
     {

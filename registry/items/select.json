@@ -3,7 +3,7 @@
   "name": "select",
   "type": "registry:ui",
   "title": "Select",
-  "description": "Radix-based select with keyboard navigation, animated open/close, and trigger-width dropdown.",
+  "description": "Dropdown select with keyboard navigation, animated open/close, and trigger-width content.",
   "dependencies": [
     "@radix-ui/react-select",
     "clsx",

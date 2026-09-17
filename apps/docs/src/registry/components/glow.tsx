@@ -17,7 +17,7 @@ export const glowMeta: ComponentMeta = {
   name: "glow",
   label: "Glow",
   description:
-    "State-driven accent halo on hover/focus. Supports halo and text variants.",
+    "A state-driven accent halo that lights up on hover and focus, in halo and text variants. Respects reduced motion.",
   category: "Motion",
   examples: [
     {

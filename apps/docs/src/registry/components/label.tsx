@@ -10,7 +10,8 @@ import LabelDisabledDemoRaw from "../../demos/label-disabled-demo.tsx?raw";
 export const labelMeta: ComponentMeta = {
   name: "label",
   label: "Label",
-  description: "Form label with htmlFor association.",
+  description:
+    "An accessible label associated with a form control via htmlFor, with disabled-state styling.",
   category: "Form",
   examples: [
     {

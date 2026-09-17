@@ -3,7 +3,7 @@
   "name": "magnetic",
   "type": "registry:ui",
   "title": "Magnetic",
-  "description": "Magnetic pull effect that attracts the wrapped element toward the cursor.",
+  "description": "Spring-based cursor attraction with reduced-motion support.",
   "dependencies": [
     "clsx",
     "tailwind-merge",

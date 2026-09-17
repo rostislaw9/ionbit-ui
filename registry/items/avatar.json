@@ -3,7 +3,7 @@
   "name": "avatar",
   "type": "registry:ui",
   "title": "Avatar",
-  "description": "Radix-based avatar with image and fallback support.",
+  "description": "Avatar with image, fallback, status, badge, and group support.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

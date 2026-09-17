@@ -27,7 +27,7 @@ export const checkboxMeta: ComponentMeta = {
   name: "checkbox",
   label: "Checkbox",
   description:
-    "A control that allows the user to toggle between checked and not checked.",
+    "A control for toggling a single option or a group of options, with checked, unchecked, and indeterminate states.",
   category: "Form",
   examples: [
     {

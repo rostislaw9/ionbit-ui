@@ -3,7 +3,7 @@
   "name": "collapsible",
   "type": "registry:ui",
   "title": "Collapsible",
-  "description": "An interactive component which expands/collapses a panel.",
+  "description": "Base UI expandable panel with animated height transitions.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

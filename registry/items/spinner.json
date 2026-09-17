@@ -3,7 +3,7 @@
   "name": "spinner",
   "type": "registry:ui",
   "title": "Spinner",
-  "description": "Animated loading indicator icon for buttons and async states.",
+  "description": "Animated loading indicator sized to match button variants.",
   "dependencies": [
     "lucide-react",
     "class-variance-authority",

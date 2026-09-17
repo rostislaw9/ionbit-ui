@@ -22,7 +22,8 @@ import EmptyMediaDemoRaw from "../../demos/empty-media-demo.tsx?raw";
 export const emptyMeta: ComponentMeta = {
   name: "empty",
   label: "Empty",
-  description: "Placeholder for empty states with structured subcomponents.",
+  description:
+    "A structured placeholder for empty states, composing icon, title, description, and action content.",
   category: "Feedback",
   examples: [
     {

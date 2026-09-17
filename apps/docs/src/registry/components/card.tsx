@@ -11,7 +11,7 @@ export const cardMeta: ComponentMeta = {
   name: "card",
   label: "Card",
   description:
-    "Surface container with header, content, and footer. Elevated and interactive variants.",
+    "A surface container with composable header, content, and footer sections, in elevated and interactive variants.",
   category: "Layout",
   examples: [
     {

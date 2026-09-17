@@ -43,9 +43,9 @@
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "Radix Slot-based button with variants, sizes, loading state, and digital visual identity.",
+      "description": "Base UI button with eight variants, ten sizes, and automatic icon sizing.",
       "dependencies": [
-        "@radix-ui/react-slot",
+        "@base-ui/react",
         "class-variance-authority",
         "clsx",
         "tailwind-merge",
@@ -64,8 +64,8 @@
       "name": "button-group",
       "type": "registry:ui",
       "title": "Button Group",
-      "description": "Container that groups related buttons with separators, text labels, and nesting support.",
-      "dependencies": ["@radix-ui/react-slot", "clsx", "tailwind-merge"],
+      "description": "Container that groups related buttons with shared borders, separators, and text labels.",
+      "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
         {
@@ -79,7 +79,7 @@
       "name": "empty",
       "type": "registry:ui",
       "title": "Empty",
-      "description": "Placeholder for empty states with structured subcomponents.",
+      "description": "Structured placeholder for empty states with icon, title, and action slots.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -94,7 +94,7 @@
       "name": "input",
       "type": "registry:ui",
       "title": "Input",
-      "description": "Text input with focus ring, invalid state, and semantic token styling.",
+      "description": "Text input with accent focus ring, glow, and invalid state styling.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -109,7 +109,7 @@
       "name": "input-group",
       "type": "registry:ui",
       "title": "Input Group",
-      "description": "Groups an input with leading or trailing addons, buttons, and text.",
+      "description": "Input with leading and trailing addons, buttons, and text.",
       "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn", "button"],
       "files": [
@@ -124,7 +124,7 @@
       "name": "native-select",
       "type": "registry:ui",
       "title": "Native Select",
-      "description": "Styled native HTML select with custom chevron and invalid state.",
+      "description": "Styled native select with custom chevron and invalid state.",
       "dependencies": ["lucide-react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -139,7 +139,7 @@
       "name": "spinner",
       "type": "registry:ui",
       "title": "Spinner",
-      "description": "Animated loading indicator icon for buttons and async states.",
+      "description": "Animated loading indicator sized to match button variants.",
       "dependencies": [
         "lucide-react",
         "class-variance-authority",
@@ -159,7 +159,7 @@
       "name": "mode-switcher",
       "type": "registry:ui",
       "title": "Mode Switcher",
-      "description": "Dark/light theme toggle with a radial fullscreen reveal animation powered by the View Transitions API.",
+      "description": "Dark/light theme toggle with radial reveal via the View Transitions API.",
       "dependencies": ["lucide-react"],
       "registryDependencies": ["button"],
       "files": [
@@ -174,7 +174,7 @@
       "name": "textarea",
       "type": "registry:ui",
       "title": "Textarea",
-      "description": "Multi-line text input with the same focus and invalid states as Input.",
+      "description": "Multi-line text input with accent focus ring and invalid state.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -189,7 +189,7 @@
       "name": "card",
       "type": "registry:ui",
       "title": "Card",
-      "description": "Composable card with Header, Title, Description, Content, and Footer parts.",
+      "description": "Surface container with composable Header, Title, Description, Content, and Footer parts.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -204,7 +204,7 @@
       "name": "tooltip",
       "type": "registry:ui",
       "title": "Tooltip",
-      "description": "Radix-based tooltip with animated open/close and semantic token styling.",
+      "description": "Base UI tooltip with directional slide-in and keyboard accessibility.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -219,7 +219,7 @@
       "name": "popover",
       "type": "registry:ui",
       "title": "Popover",
-      "description": "Radix-based popover with anchored content and fade/zoom animation.",
+      "description": "Floating panel anchored to a trigger with fade/zoom animation.",
       "dependencies": ["@radix-ui/react-popover", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -234,7 +234,7 @@
       "name": "tabs",
       "type": "registry:ui",
       "title": "Tabs",
-      "description": "Radix-based tabs with animated active indicator and semantic token styling.",
+      "description": "Tabbed panels with sliding active indicator and directional transitions.",
       "dependencies": ["@radix-ui/react-tabs", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -249,7 +249,7 @@
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",
-      "description": "A control that allows the user to toggle between checked and not checked.",
+      "description": "Base UI switch with sliding thumb animation and accent styling.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -264,7 +264,7 @@
       "name": "slider",
       "type": "registry:ui",
       "title": "Slider",
-      "description": "Radix-based slider with accent range, hover-scaled thumb, and focus ring.",
+      "description": "Range input with accent track, hover-scaled thumb, and keyboard control.",
       "dependencies": ["@radix-ui/react-slider", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -279,7 +279,7 @@
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
-      "description": "A control that allows the user to toggle between checked and not checked.",
+      "description": "Base UI checkbox with checked, unchecked, and indeterminate states.",
       "dependencies": [
         "@base-ui/react",
         "clsx",
@@ -299,7 +299,7 @@
       "name": "field",
       "type": "registry:component",
       "title": "Field",
-      "description": "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
+      "description": "Composable form field primitives for labels, controls, descriptions, errors, and fieldsets.",
       "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "files": [
         {
@@ -314,7 +314,7 @@
       "name": "collapsible",
       "type": "registry:ui",
       "title": "Collapsible",
-      "description": "An interactive component which expands/collapses a panel.",
+      "description": "Base UI expandable panel with animated height transitions.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn", "tokens"],
       "files": [
@@ -329,7 +329,7 @@
       "name": "combobox",
       "type": "registry:ui",
       "title": "Combobox",
-      "description": "Composable autocomplete built on Base UI with InputGroup fields.",
+      "description": "Base UI autocomplete input with suggestion list and InputGroup fields.",
       "dependencies": [
         "@base-ui/react",
         "clsx",
@@ -349,7 +349,7 @@
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
-      "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "description": "Base UI progress bar with smooth value transitions and accent styling.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -364,7 +364,7 @@
       "name": "skeleton",
       "type": "registry:ui",
       "title": "Skeleton",
-      "description": "Loading placeholder with pulse animation and semantic surface tokens.",
+      "description": "Pulsing placeholder that mirrors content layout while loading.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -379,7 +379,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "title": "Dialog",
-      "description": "Radix-based dialog with overlay, animated content, and semantic token styling.",
+      "description": "Modal dialog with focus trap, blurred overlay, and animated content.",
       "dependencies": ["@radix-ui/react-dialog", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn", "button"],
       "files": [
@@ -394,7 +394,7 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "title": "Dropdown Menu",
-      "description": "Radix-based dropdown menu with items, labels, separators, and keyboard navigation.",
+      "description": "Button-triggered menu with items, labels, separators, and keyboard navigation.",
       "dependencies": [
         "@radix-ui/react-dropdown-menu",
         "clsx",
@@ -413,7 +413,7 @@
       "name": "select",
       "type": "registry:ui",
       "title": "Select",
-      "description": "Radix-based select with keyboard navigation, animated open/close, and trigger-width dropdown.",
+      "description": "Dropdown select with keyboard navigation, animated open/close, and trigger-width content.",
       "dependencies": [
         "@radix-ui/react-select",
         "clsx",
@@ -433,7 +433,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
-      "description": "Radix-based single-value collapsible accordion with chevron rotation and synced height animation.",
+      "description": "Collapsible sections with animated expand/collapse and rotating chevron indicators.",
       "dependencies": [
         "@radix-ui/react-accordion",
         "clsx",
@@ -453,7 +453,7 @@
       "name": "toast",
       "type": "registry:ui",
       "title": "Toast",
-      "description": "Toast notifications built on Base UI with stacking, swipe-to-dismiss, and status icons.",
+      "description": "Base UI toast notifications with stacking, swipe-to-dismiss, and status icons.",
       "dependencies": [
         "@base-ui/react",
         "lucide-react",
@@ -473,7 +473,7 @@
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
-      "description": "Callout for surfacing status messages with semantic variants (default, accent, success, warning, error).",
+      "description": "Status callout with semantic variants (default, accent, success, warning, error).",
       "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -488,7 +488,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
-      "description": "Radix-based avatar with image and fallback support.",
+      "description": "Avatar with image, fallback, status, badge, and group support.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -503,7 +503,7 @@
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",
-      "description": "Small status indicator with soft and text variants.",
+      "description": "Compact status indicator with soft and text variants.",
       "dependencies": [
         "@radix-ui/react-slot",
         "class-variance-authority",
@@ -523,7 +523,7 @@
       "name": "breadcrumb",
       "type": "registry:ui",
       "title": "Breadcrumb",
-      "description": "Navigation trail with list, items, links, separators, and ellipsis support.",
+      "description": "Navigation trail with items, links, separators, and ellipsis support.",
       "dependencies": [
         "@radix-ui/react-slot",
         "clsx",
@@ -543,7 +543,7 @@
       "name": "label",
       "type": "registry:ui",
       "title": "Label",
-      "description": "Radix-based form label with htmlFor association and disabled state styling.",
+      "description": "Form label with htmlFor association and disabled-state styling.",
       "dependencies": ["@radix-ui/react-label", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -558,7 +558,7 @@
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
-      "description": "Visually or semantically separates content.",
+      "description": "Horizontal or vertical content divider.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -573,7 +573,7 @@
       "name": "spotlight",
       "type": "registry:ui",
       "title": "Spotlight",
-      "description": "Pointer-following radial highlight with proximity activation and reduced-motion support.",
+      "description": "Pointer-following radial highlight with proximity activation.",
       "dependencies": ["clsx", "tailwind-merge", "motion"],
       "registryDependencies": ["cn"],
       "files": [
@@ -603,7 +603,7 @@
       "name": "glow",
       "type": "registry:ui",
       "title": "Glow",
-      "description": "Animated glow effect with intensity control and reduced-motion support.",
+      "description": "Accent halo on hover/focus with halo and text variants and reduced-motion support.",
       "dependencies": ["clsx", "tailwind-merge", "motion"],
       "registryDependencies": ["cn"],
       "files": [
@@ -633,7 +633,7 @@
       "name": "magnetic",
       "type": "registry:ui",
       "title": "Magnetic",
-      "description": "Magnetic pull effect that attracts the wrapped element toward the cursor.",
+      "description": "Spring-based cursor attraction with reduced-motion support.",
       "dependencies": ["clsx", "tailwind-merge", "motion"],
       "registryDependencies": ["cn"],
       "files": [
@@ -663,7 +663,7 @@
       "name": "pulse",
       "type": "registry:ui",
       "title": "Pulse",
-      "description": "Subtle pulsing animation for drawing attention to elements.",
+      "description": "Periodic pulsing halo for active status with reduced-motion support.",
       "dependencies": ["clsx", "tailwind-merge", "motion"],
       "registryDependencies": ["cn"],
       "files": [
@@ -693,7 +693,7 @@
       "name": "reveal",
       "type": "registry:ui",
       "title": "Reveal",
-      "description": "Scroll-triggered reveal animation with reduced-motion support.",
+      "description": "Scroll-triggered entrance animation with directional offset and reduced-motion support.",
       "dependencies": ["clsx", "tailwind-merge", "motion"],
       "registryDependencies": ["cn"],
       "files": [
@@ -728,7 +728,7 @@
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
-      "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
+      "description": "Base UI radio group with single selection and keyboard navigation.",
       "dependencies": [
         "@base-ui/react",
         "clsx",
@@ -748,7 +748,7 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "title": "Alert Dialog",
-      "description": "Radix-based alert dialog for destructive confirmations with overlay and zoom animations.",
+      "description": "Modal dialog for destructive confirmations with overlay and zoom animations.",
       "dependencies": [
         "@radix-ui/react-alert-dialog",
         "clsx",
@@ -767,7 +767,7 @@
       "name": "hover-card",
       "type": "registry:ui",
       "title": "Hover Card",
-      "description": "Radix-based hover card with delayed open/close and zoom animation.",
+      "description": "Hover-revealed preview card with delayed open/close and zoom animation.",
       "dependencies": ["@radix-ui/react-hover-card", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -782,7 +782,7 @@
       "name": "context-menu",
       "type": "registry:ui",
       "title": "Context Menu",
-      "description": "Displays a menu of actions triggered by a right click.",
+      "description": "Base UI context menu with submenus, checkbox and radio items, and shortcuts.",
       "dependencies": ["@base-ui/react", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -797,7 +797,7 @@
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "Scroll Area",
-      "description": "Radix-based scroll area with custom styled scrollbars.",
+      "description": "Scrollable region with custom styled scrollbars.",
       "dependencies": ["@radix-ui/react-scroll-area", "clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -812,7 +812,7 @@
       "name": "sheet",
       "type": "registry:ui",
       "title": "Sheet",
-      "description": "Slide-in panel built on Radix Dialog with top/right/bottom/left sides.",
+      "description": "Slide-in panel built on dialog primitives with four side options.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "clsx",
@@ -832,7 +832,7 @@
       "name": "table",
       "type": "registry:ui",
       "title": "Table",
-      "description": "Responsive table with header, body, footer, rows, cells, and caption.",
+      "description": "Responsive table with composable header, body, footer, row, and cell parts.",
       "dependencies": ["clsx", "tailwind-merge"],
       "registryDependencies": ["cn"],
       "files": [
@@ -847,7 +847,7 @@
       "name": "pagination",
       "type": "registry:ui",
       "title": "Pagination",
-      "description": "Pagination control with ellipsis, sibling count, and prev/next buttons.",
+      "description": "Composable pagination with prev/next links, page numbers, and ellipsis.",
       "dependencies": ["clsx", "tailwind-merge", "lucide-react"],
       "registryDependencies": ["cn", "button"],
       "files": [
@@ -862,7 +862,7 @@
       "name": "command",
       "type": "registry:ui",
       "title": "Command Palette",
-      "description": "Cmd+k command palette built on Radix Dialog with search input, groups, and items.",
+      "description": "Keyboard-driven command palette built on cmdk with search and grouped items.",
       "dependencies": [
         "@radix-ui/react-dialog",
         "clsx",
@@ -883,7 +883,7 @@
       "name": "toggle",
       "type": "registry:ui",
       "title": "Toggle",
-      "description": "A two-state button that can be either on or off.",
+      "description": "Base UI toggle button with pressed state and variant options.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority",
@@ -903,7 +903,7 @@
       "name": "toggle-group",
       "type": "registry:ui",
       "title": "Toggle Group",
-      "description": "A set of two-state buttons that can be toggled on or off.",
+      "description": "Base UI toggle group with single/multiple selection and joinable spacing.",
       "dependencies": [
         "@base-ui/react",
         "class-variance-authority",

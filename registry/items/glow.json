@@ -3,7 +3,7 @@
   "name": "glow",
   "type": "registry:ui",
   "title": "Glow",
-  "description": "Animated glow effect with intensity control and reduced-motion support.",
+  "description": "Accent halo on hover/focus with halo and text variants and reduced-motion support.",
   "dependencies": [
     "clsx",
     "tailwind-merge",

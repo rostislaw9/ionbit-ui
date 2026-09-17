@@ -3,7 +3,7 @@
   "name": "tooltip",
   "type": "registry:ui",
   "title": "Tooltip",
-  "description": "Radix-based tooltip with animated open/close and semantic token styling.",
+  "description": "Base UI tooltip with directional slide-in and keyboard accessibility.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

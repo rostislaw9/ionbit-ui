@@ -35,7 +35,8 @@ import ComboboxPopupDemoRaw from "../../demos/combobox-popup-demo.tsx?raw";
 export const comboboxMeta: ComponentMeta = {
   name: "combobox",
   label: "Combobox",
-  description: "Autocomplete input with a list of suggestions.",
+  description:
+    "An autocomplete input that filters a list of suggestions, composed from Base UI primitives with InputGroup fields, clear and toggle buttons.",
   category: "Form",
   examples: [
     {

@@ -10,7 +10,8 @@ import BreadcrumbDefaultDemoRaw from "../../demos/breadcrumb-default-demo.tsx?ra
 export const breadcrumbMeta: ComponentMeta = {
   name: "breadcrumb",
   label: "Breadcrumb",
-  description: "Navigation trail showing the user's location in a hierarchy.",
+  description:
+    "A navigation trail that shows the user's location in a hierarchy, with separators and an ellipsis for long paths.",
   category: "Layout",
   examples: [
     {

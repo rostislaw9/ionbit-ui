@@ -8,7 +8,7 @@ export const sliderMeta: ComponentMeta = {
   name: "slider",
   label: "Slider",
   description:
-    "Slider with accent range and thumb, focus ring and hover scale.",
+    "A draggable range input with an accent track, hover-scaled thumb, and keyboard control.",
   category: "Form",
   examples: [
     {

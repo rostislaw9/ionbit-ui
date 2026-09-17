@@ -8,7 +8,7 @@ export const modeSwitcherMeta: ComponentMeta = {
   name: "mode-switcher",
   label: "Mode Switcher",
   description:
-    "Dark/light theme toggle with a radial fullscreen reveal animation powered by the View Transitions API.",
+    "A dark/light mode toggle that reveals the new theme in a radial wipe from the button, powered by the View Transitions API with instant fallback.",
   category: "Feedback",
   examples: [
     {

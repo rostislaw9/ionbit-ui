@@ -27,6 +27,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   prop (use Base UI's `render` prop). Removed `@radix-ui/react-toggle`
   and `@radix-ui/react-toggle-group` dependencies. Updated registry
   metadata with Base UI API reference links.
+- **Button / Button Group:** migrated from Radix `Slot` to Base UI.
+  `Button` is built on `@base-ui/react/button` — `asChild` replaced by
+  the `render` prop (set `nativeButton={false}` for non-`<button>`
+  elements). Base UI applies `type="button"` and disabled handling
+  automatically; `focusableWhenDisabled` keeps disabled buttons
+  focusable via `aria-disabled`. `ButtonGroupText` replaces `asChild`
+  with `render` powered by Base UI's `useRender` hook. Internal
+  consumers updated: `PaginationLink`, docs nav links, dialog,
+  alert-dialog, and sheet all compose through the `render` prop.
 - **Docs:** removed redundant `aria-label` attributes from demos where
   visible text already labels the control, and redundant `size-*`
   classes on icons inside components that auto-size svgs. Fixed

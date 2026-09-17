@@ -31,19 +31,24 @@ export function GitHubStarButton() {
   }, []);
 
   return (
-    <Button asChild variant="ghost" aria-label="Star ionbit-ui on GitHub">
-      <Link
-        to={`https://github.com/${REPO}`}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <MarkGithubIcon size={16} data-icon="inline-start" />
-        {stars !== null && (
-          <span className="text-foreground-muted tabular-nums">
-            {stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}
-          </span>
-        )}
-      </Link>
+    <Button
+      variant="ghost"
+      nativeButton={false}
+      aria-label="Star ionbit-ui on GitHub"
+      render={
+        <Link
+          to={`https://github.com/${REPO}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        />
+      }
+    >
+      <MarkGithubIcon size={16} data-icon="inline-start" />
+      {stars !== null && (
+        <span className="text-foreground-muted tabular-nums">
+          {stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}
+        </span>
+      )}
     </Button>
   );
 }

@@ -8,7 +8,7 @@ export const tableMeta: ComponentMeta = {
   name: "table",
   label: "Table",
   description:
-    "Responsive table with header, body, footer, rows, cells, and caption.",
+    "A responsive table with composable header, body, footer, row, cell, and caption parts.",
   category: "Data",
   examples: [
     {

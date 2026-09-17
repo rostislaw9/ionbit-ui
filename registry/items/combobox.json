@@ -3,7 +3,7 @@
   "name": "combobox",
   "type": "registry:ui",
   "title": "Combobox",
-  "description": "Composable autocomplete built on Base UI with InputGroup fields.",
+  "description": "Base UI autocomplete input with suggestion list and InputGroup fields.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

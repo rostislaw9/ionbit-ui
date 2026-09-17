@@ -3,7 +3,7 @@
   "name": "hover-card",
   "type": "registry:ui",
   "title": "Hover Card",
-  "description": "Radix-based hover card with delayed open/close and zoom animation.",
+  "description": "Hover-revealed preview card with delayed open/close and zoom animation.",
   "dependencies": [
     "@radix-ui/react-hover-card",
     "clsx",

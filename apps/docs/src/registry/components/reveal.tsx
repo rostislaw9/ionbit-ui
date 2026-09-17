@@ -7,7 +7,8 @@ import RevealDemoRaw from "../../demos/reveal-demo.tsx?raw";
 export const revealMeta: ComponentMeta = {
   name: "reveal",
   label: "Reveal",
-  description: "In-view entrance animation with directional offset.",
+  description:
+    "An in-view entrance animation with directional offset and stagger support. Respects reduced motion.",
   category: "Motion",
   examples: [
     {

@@ -13,7 +13,8 @@ import SheetSideDemoRaw from "../../demos/sheet-side-demo.tsx?raw";
 export const sheetMeta: ComponentMeta = {
   name: "sheet",
   label: "Sheet",
-  description: "Slide-in panel with top/right/bottom/left sides.",
+  description:
+    "A panel that slides in from any edge of the screen, built on dialog primitives with focus trapping and overlay.",
   category: "Overlay",
   examples: [
     {

@@ -24,7 +24,7 @@ export const switchMeta: ComponentMeta = {
   name: "switch",
   label: "Switch",
   description:
-    "A control that allows the user to toggle between checked and not checked.",
+    "A switch for toggling a setting between on and off, with sliding thumb animation and accent styling.",
   category: "Form",
   examples: [
     {

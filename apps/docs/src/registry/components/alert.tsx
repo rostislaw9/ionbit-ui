@@ -16,7 +16,8 @@ import AlertVariantsDemoRaw from "../../demos/alert-variants-demo.tsx?raw";
 export const alertMeta: ComponentMeta = {
   name: "alert",
   label: "Alert",
-  description: "Callout for surfacing status messages with semantic variants.",
+  description:
+    "A callout for surfacing status messages, with semantic variants for default, accent, success, warning, and error.",
   category: "Feedback",
   examples: [
     {

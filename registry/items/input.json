@@ -3,7 +3,7 @@
   "name": "input",
   "type": "registry:ui",
   "title": "Input",
-  "description": "Text input with focus ring, invalid state, and semantic token styling.",
+  "description": "Text input with accent focus ring, glow, and invalid state styling.",
   "dependencies": [
     "clsx",
     "tailwind-merge"

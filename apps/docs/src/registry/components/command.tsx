@@ -19,7 +19,8 @@ import CommandShortcutsDemoRaw from "../../demos/command-shortcuts-demo.tsx?raw"
 export const commandMeta: ComponentMeta = {
   name: "command",
   label: "Command Palette",
-  description: "Cmd+k command palette with search input, groups, and items.",
+  description:
+    "A fast keyboard-driven command palette with fuzzy search, grouped items, and full keyboard navigation. Built on cmdk.",
   about: (
     <>
       Built on{" "}

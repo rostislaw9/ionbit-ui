@@ -11,7 +11,7 @@ export const pulseMeta: ComponentMeta = {
   name: "pulse",
   label: "Pulse",
   description:
-    "Periodic accent halo for active status. Supports halo and text variants.",
+    "A periodic accent halo that marks active or live status, in halo and text variants. Respects reduced motion.",
   category: "Motion",
   examples: [
     {

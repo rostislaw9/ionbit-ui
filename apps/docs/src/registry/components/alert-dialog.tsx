@@ -8,7 +8,7 @@ export const alertDialogMeta: ComponentMeta = {
   name: "alert-dialog",
   label: "Alert Dialog",
   description:
-    "Alert dialog for destructive confirmations with overlay and zoom animations.",
+    "A modal dialog that interrupts the user to confirm a destructive or irreversible action. Animated overlay with zoom-in content.",
   category: "Overlay",
   examples: [
     {

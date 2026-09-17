@@ -105,9 +105,10 @@ export const ModeSwitcher = forwardRef<HTMLButtonElement, ModeSwitcherProps>(
     return (
       <Button
         ref={(node) => {
-          buttonRef.current = node;
-          if (typeof ref === "function") ref(node);
-          else if (ref) ref.current = node;
+          const el = node as HTMLButtonElement | null;
+          buttonRef.current = el;
+          if (typeof ref === "function") ref(el);
+          else if (ref) ref.current = el;
         }}
         variant="ghost"
         size="icon"

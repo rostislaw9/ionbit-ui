@@ -7,7 +7,8 @@ import HoverCardDemoRaw from "../../demos/hover-card-demo.tsx?raw";
 export const hoverCardMeta: ComponentMeta = {
   name: "hover-card",
   label: "Hover Card",
-  description: "Hover card with delayed open/close and zoom animation.",
+  description:
+    "A floating card revealed on hover after a short delay, for previews and supplementary content.",
   category: "Overlay",
   examples: [
     {

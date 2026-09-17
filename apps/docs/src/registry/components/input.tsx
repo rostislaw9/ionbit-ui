@@ -11,7 +11,7 @@ export const inputMeta: ComponentMeta = {
   name: "input",
   label: "Input",
   description:
-    "Text input with semantic tokens. Focus uses accent ring + glow. Invalid state switches to error.",
+    "A text input styled with semantic tokens. Focus shows an accent ring with glow; the invalid state switches to error styling.",
   category: "Form",
   examples: [
     {

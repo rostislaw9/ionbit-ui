@@ -3,7 +3,7 @@
   "name": "table",
   "type": "registry:ui",
   "title": "Table",
-  "description": "Responsive table with header, body, footer, rows, cells, and caption.",
+  "description": "Responsive table with composable header, body, footer, row, and cell parts.",
   "dependencies": [
     "clsx",
     "tailwind-merge"

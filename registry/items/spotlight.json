@@ -3,7 +3,7 @@
   "name": "spotlight",
   "type": "registry:ui",
   "title": "Spotlight",
-  "description": "Pointer-following radial highlight with proximity activation and reduced-motion support.",
+  "description": "Pointer-following radial highlight with proximity activation.",
   "dependencies": [
     "clsx",
     "tailwind-merge",

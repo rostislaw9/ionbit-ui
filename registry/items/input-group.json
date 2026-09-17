@@ -3,7 +3,7 @@
   "name": "input-group",
   "type": "registry:ui",
   "title": "Input Group",
-  "description": "Groups an input with leading or trailing addons, buttons, and text.",
+  "description": "Input with leading and trailing addons, buttons, and text.",
   "dependencies": [
     "class-variance-authority",
     "clsx",

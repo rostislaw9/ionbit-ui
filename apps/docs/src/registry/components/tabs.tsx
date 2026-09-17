@@ -8,7 +8,7 @@ export const tabsMeta: ComponentMeta = {
   name: "tabs",
   label: "Tabs",
   description:
-    "Tabs with sliding active indicator. Content slides in horizontally based on switch direction.",
+    "Tabbed navigation between content panels, with a sliding active indicator and directional content transitions.",
   category: "Layout",
   examples: [
     {

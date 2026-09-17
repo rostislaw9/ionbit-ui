@@ -3,7 +3,7 @@
   "name": "pulse",
   "type": "registry:ui",
   "title": "Pulse",
-  "description": "Subtle pulsing animation for drawing attention to elements.",
+  "description": "Periodic pulsing halo for active status with reduced-motion support.",
   "dependencies": [
     "clsx",
     "tailwind-merge",

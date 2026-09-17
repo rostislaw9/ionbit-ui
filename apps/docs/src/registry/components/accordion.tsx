@@ -8,7 +8,7 @@ export const accordionMeta: ComponentMeta = {
   name: "accordion",
   label: "Accordion",
   description:
-    "Collapsible sections with animated expand/collapse and chevron rotation.",
+    "A vertical stack of collapsible sections with smooth height animation and rotating chevron indicators.",
   category: "Layout",
   examples: [
     {

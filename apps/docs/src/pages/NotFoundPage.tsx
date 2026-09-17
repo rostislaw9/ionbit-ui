@@ -18,8 +18,8 @@ export function NotFoundPage() {
           moved.
         </p>
       </div>
-      <Button variant="primary" asChild>
-        <Link to="/">Back to home</Link>
+      <Button variant="primary" nativeButton={false} render={<Link to="/" />}>
+        Back to home
       </Button>
     </div>
   );

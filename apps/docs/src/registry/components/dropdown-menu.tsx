@@ -8,7 +8,7 @@ export const dropdownMenuMeta: ComponentMeta = {
   name: "dropdown-menu",
   label: "Dropdown Menu",
   description:
-    "Dropdown menu with items, labels, separators, and keyboard navigation.",
+    "A menu of actions triggered by a button, with items, labels, separators, shortcuts, and full keyboard navigation.",
   category: "Overlay",
   examples: [
     {

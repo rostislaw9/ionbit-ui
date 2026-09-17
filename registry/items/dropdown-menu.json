@@ -3,7 +3,7 @@
   "name": "dropdown-menu",
   "type": "registry:ui",
   "title": "Dropdown Menu",
-  "description": "Radix-based dropdown menu with items, labels, separators, and keyboard navigation.",
+  "description": "Button-triggered menu with items, labels, separators, and keyboard navigation.",
   "dependencies": [
     "@radix-ui/react-dropdown-menu",
     "clsx",

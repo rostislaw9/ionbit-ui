@@ -115,10 +115,12 @@ export function UtilDetailPage() {
         <p className="text-base text-foreground-muted md:text-sm">
           No utility named &quot;{name}&quot;.
         </p>
-        <Button asChild variant="outline">
-          <Link to="/docs/utils">
-            <ArrowLeft data-icon="inline-start" /> Back to all utilities
-          </Link>
+        <Button
+          variant="outline"
+          nativeButton={false}
+          render={<Link to="/docs/utils" />}
+        >
+          <ArrowLeft data-icon="inline-start" /> Back to all utilities
         </Button>
       </div>
     );

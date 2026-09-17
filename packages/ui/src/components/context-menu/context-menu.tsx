@@ -8,7 +8,7 @@ import { cn } from "@/lib/utils";
 export type ContextMenuProps = ContextMenuPrimitive.Root.Props;
 
 /**
- * ContextMenu — displays a menu of actions triggered by a right click.
+ * ContextMenu — a menu of contextual actions triggered by right-click.
  */
 export function ContextMenu({ ...props }: ContextMenuProps) {
   return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;

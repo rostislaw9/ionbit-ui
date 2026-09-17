@@ -7,7 +7,8 @@ import ScrollAreaDemoRaw from "../../demos/scroll-area-demo.tsx?raw";
 export const scrollAreaMeta: ComponentMeta = {
   name: "scroll-area",
   label: "Scroll Area",
-  description: "Scroll area with custom styled scrollbars.",
+  description:
+    "A scrollable region with custom-styled scrollbars that match the design system.",
   category: "Layout",
   examples: [
     {

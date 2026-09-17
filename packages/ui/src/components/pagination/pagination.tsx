@@ -12,7 +12,7 @@ export type PaginationProps = ComponentProps<"nav">;
  * Built on native HTML, shadcn-inspired.
  * Composes `PaginationContent` (a `<ul>`), `PaginationItem`, `PaginationLink`,
  * `PaginationPrevious`, `PaginationNext`, and `PaginationEllipsis`. Links
- * render as `Button` with `asChild`, so they inherit button sizing and
+ * render a `Button` via its `render` prop, so they inherit button sizing and
  * variants. The active page uses `aria-current="page"`.
  *
  * Accessibility: the `<nav>` has `aria-label="pagination"`. Provide
@@ -79,7 +79,7 @@ export type PaginationLinkProps = {
 /**
  * PaginationLink — a clickable page link rendered as a styled button.
  *
- * Uses `Button` with `asChild` to wrap an `<a>` element, inheriting button
+ * Uses `Button`'s `render` prop to wrap an `<a>` element, inheriting button
  * sizing and variant styles. When `isActive` is true, the link uses the
  * `secondary` variant and sets `aria-current="page"`. Supports `size`
  * prop (defaults to `"icon"`).
@@ -93,21 +93,22 @@ export const PaginationLink = forwardRef<
 ) {
   return (
     <Button
-      asChild
       variant={isActive ? "secondary" : "ghost"}
       size={size}
       className={cn(className)}
-    >
-      <a
-        ref={ref}
-        aria-current={isActive ? "page" : undefined}
-        data-slot="pagination-link"
-        data-active={isActive}
-        {...props}
-      >
-        {children}
-      </a>
-    </Button>
+      nativeButton={false}
+      render={
+        <a
+          ref={ref}
+          aria-current={isActive ? "page" : undefined}
+          data-slot="pagination-link"
+          data-active={isActive}
+          {...props}
+        >
+          {children}
+        </a>
+      }
+    />
   );
 });
 

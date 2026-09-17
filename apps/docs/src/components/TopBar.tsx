@@ -45,10 +45,13 @@ export function TopBar() {
             <Separator orientation="vertical" className="hidden lg:block" />
             <nav className="hidden items-center gap-1 lg:flex">
               {navItems.map((item) => (
-                <Button asChild variant="ghost" key={item.to}>
-                  <NavLink to={item.to} end={item.to === "/"}>
-                    {item.label}
-                  </NavLink>
+                <Button
+                  key={item.to}
+                  variant="ghost"
+                  nativeButton={false}
+                  render={<NavLink to={item.to} end={item.to === "/"} />}
+                >
+                  {item.label}
                 </Button>
               ))}
             </nav>

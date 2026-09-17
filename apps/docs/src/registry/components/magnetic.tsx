@@ -7,7 +7,8 @@ import MagneticDemoRaw from "../../demos/magnetic-demo.tsx?raw";
 export const magneticMeta: ComponentMeta = {
   name: "magnetic",
   label: "Magnetic",
-  description: "Spring-based cursor attraction for interactive elements.",
+  description:
+    "A spring-based attraction that gently pulls the wrapped element toward the cursor. Respects reduced motion.",
   category: "Motion",
   examples: [
     {

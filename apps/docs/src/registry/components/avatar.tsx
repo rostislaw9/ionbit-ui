@@ -29,7 +29,8 @@ import AvatarStatusDemoRaw from "../../demos/avatar-status-demo.tsx?raw";
 export const avatarMeta: ComponentMeta = {
   name: "avatar",
   label: "Avatar",
-  description: "Avatar with image, fallback, status, badge, and group support.",
+  description:
+    "A user or entity image with graceful fallback, plus status, badge, and group composition support.",
   category: "Feedback",
   examples: [
     {

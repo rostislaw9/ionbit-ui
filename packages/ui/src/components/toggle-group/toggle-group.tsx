@@ -61,7 +61,7 @@ const spacingGapMap: Record<number, string> = {
 };
 
 /**
- * ToggleGroup — a set of two-state buttons with single or multiple selection.
+ * ToggleGroup — a group of toggles with single or multiple selection.
  *
  * Built on `@base-ui/react/toggle-group`, shadcn-inspired. Set `type` to
  * `"single"` for radio-like behavior or `"multiple"` for independent toggles.

@@ -3,7 +3,7 @@
   "name": "checkbox",
   "type": "registry:ui",
   "title": "Checkbox",
-  "description": "A control that allows the user to toggle between checked and not checked.",
+  "description": "Base UI checkbox with checked, unchecked, and indeterminate states.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

@@ -38,7 +38,7 @@ export const inputGroupMeta: ComponentMeta = {
   name: "input-group",
   label: "Input Group",
   description:
-    "Groups an input with leading or trailing addons, buttons, and text.",
+    "Groups an input with leading and trailing addons — buttons, text, icons, and dropdowns — inside a single bordered field.",
   category: "Form",
   examples: [
     {

@@ -3,7 +3,7 @@
   "name": "scroll-area",
   "type": "registry:ui",
   "title": "Scroll Area",
-  "description": "Radix-based scroll area with custom styled scrollbars.",
+  "description": "Scrollable region with custom styled scrollbars.",
   "dependencies": [
     "@radix-ui/react-scroll-area",
     "clsx",

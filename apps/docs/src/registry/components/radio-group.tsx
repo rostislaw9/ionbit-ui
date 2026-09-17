@@ -24,7 +24,7 @@ export const radioGroupMeta: ComponentMeta = {
   name: "radio-group",
   label: "Radio Group",
   description:
-    "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
+    "A set of options where exactly one can be selected, with roving tabindex keyboard navigation.",
   category: "Form",
   examples: [
     {

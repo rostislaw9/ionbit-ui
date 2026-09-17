@@ -35,7 +35,8 @@ import ContextMenuSubmenuDemoRaw from "../../demos/context-menu-submenu-demo.tsx
 export const contextMenuMeta: ComponentMeta = {
   name: "context-menu",
   label: "Context Menu",
-  description: "Displays a menu of actions triggered by a right click.",
+  description:
+    "A menu of contextual actions triggered by right-click or long-press, with submenus, checkbox and radio items, and keyboard shortcuts.",
   category: "Overlay",
   examples: [
     {

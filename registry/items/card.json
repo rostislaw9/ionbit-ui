@@ -3,7 +3,7 @@
   "name": "card",
   "type": "registry:ui",
   "title": "Card",
-  "description": "Composable card with Header, Title, Description, Content, and Footer parts.",
+  "description": "Surface container with composable Header, Title, Description, Content, and Footer parts.",
   "dependencies": [
     "clsx",
     "tailwind-merge"

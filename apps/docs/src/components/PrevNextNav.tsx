@@ -20,19 +20,25 @@ export function PrevNextNav({
   return (
     <div className="flex items-center justify-between border-t border-border pt-6">
       {prev ? (
-        <Button asChild variant="outline" size="sm">
-          <Link to={docPath(prev)}>
-            <ArrowLeft data-icon="inline-start" /> {prev.label}
-          </Link>
+        <Button
+          variant="outline"
+          size="sm"
+          nativeButton={false}
+          render={<Link to={docPath(prev)} />}
+        >
+          <ArrowLeft data-icon="inline-start" /> {prev.label}
         </Button>
       ) : (
         <span />
       )}
       {next ? (
-        <Button asChild variant="outline" size="sm">
-          <Link to={docPath(next)}>
-            {next.label} <ArrowRight data-icon="inline-end" />
-          </Link>
+        <Button
+          variant="outline"
+          size="sm"
+          nativeButton={false}
+          render={<Link to={docPath(next)} />}
+        >
+          {next.label} <ArrowRight data-icon="inline-end" />
         </Button>
       ) : (
         <span />

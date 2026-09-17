@@ -37,7 +37,7 @@ export interface ToggleProps
   extends TogglePrimitive.Props, VariantProps<typeof toggleVariants> {}
 
 /**
- * Toggle — a two-state button that can be either on or off.
+ * Toggle — a button that switches between pressed and unpressed states.
  *
  * Built on `@base-ui/react/toggle`, shadcn-inspired. Visually similar to
  * Button but maintains a pressed/unpressed state. Use `defaultPressed` for

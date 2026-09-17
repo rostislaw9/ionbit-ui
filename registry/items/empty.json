@@ -3,7 +3,7 @@
   "name": "empty",
   "type": "registry:ui",
   "title": "Empty",
-  "description": "Placeholder for empty states with structured subcomponents.",
+  "description": "Structured placeholder for empty states with icon, title, and action slots.",
   "dependencies": [
     "clsx",
     "tailwind-merge"

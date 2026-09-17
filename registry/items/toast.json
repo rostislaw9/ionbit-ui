@@ -3,7 +3,7 @@
   "name": "toast",
   "type": "registry:ui",
   "title": "Toast",
-  "description": "Toast notifications built on Base UI with stacking, swipe-to-dismiss, and status icons.",
+  "description": "Base UI toast notifications with stacking, swipe-to-dismiss, and status icons.",
   "dependencies": [
     "@base-ui/react",
     "lucide-react",

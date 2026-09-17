@@ -3,7 +3,7 @@
   "name": "textarea",
   "type": "registry:ui",
   "title": "Textarea",
-  "description": "Multi-line text input with the same focus and invalid states as Input.",
+  "description": "Multi-line text input with accent focus ring and invalid state.",
   "dependencies": [
     "clsx",
     "tailwind-merge"

@@ -22,25 +22,23 @@ export const SidebarLink = forwardRef<
 >(function SidebarLink({ to, label, active, isNew, onClick }, ref) {
   return (
     <Button
-      asChild
       variant="ghost"
-      // size="sm"
+      nativeButton={false}
       className={cn(mobileClass, active && activeClass)}
+      render={<Link ref={ref} to={to} onClick={onClick} />}
     >
-      <Link ref={ref} to={to} onClick={onClick}>
-        <span className="flex items-center gap-1.5">
-          {label}
-          {isNew && (
-            <Pulse>
-              <span
-                role="img"
-                aria-label="New"
-                className="size-1.5 rounded-full bg-accent"
-              />
-            </Pulse>
-          )}
-        </span>
-      </Link>
+      <span className="flex items-center gap-1.5">
+        {label}
+        {isNew && (
+          <Pulse>
+            <span
+              role="img"
+              aria-label="New"
+              className="size-1.5 rounded-full bg-accent"
+            />
+          </Pulse>
+        )}
+      </span>
     </Button>
   );
 });

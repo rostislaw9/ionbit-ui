@@ -4,6 +4,9 @@ import { InlineCode } from "../../components/InlineCode";
 import { ButtonIconVariantsDemo } from "../../demos/button-icon-variants-demo";
 import ButtonIconVariantsDemoSource from "../../demos/button-icon-variants-demo.tsx?highlighted";
 import ButtonIconVariantsDemoRaw from "../../demos/button-icon-variants-demo.tsx?raw";
+import { ButtonRenderDemo } from "../../demos/button-render-demo";
+import ButtonRenderDemoSource from "../../demos/button-render-demo.tsx?highlighted";
+import ButtonRenderDemoRaw from "../../demos/button-render-demo.tsx?raw";
 import { ButtonSizesDemo } from "../../demos/button-sizes-demo";
 import ButtonSizesDemoSource from "../../demos/button-sizes-demo.tsx?highlighted";
 import ButtonSizesDemoRaw from "../../demos/button-sizes-demo.tsx?raw";
@@ -21,28 +24,43 @@ export const buttonMeta: ComponentMeta = {
   name: "button",
   label: "Button",
   description:
-    "Triggers an action. Eight variants, five text sizes with matching icon sizes, hover scale, accent glow on primary, focus ring. Icons with data-icon adjust padding automatically.",
+    "The primary action trigger. Eight variants, five text sizes and five icon sizes, automatic icon sizing with data-icon, accent glow on primary, and tactile press feedback.",
   category: "Form",
   examples: [
     {
       title: "Variants",
-      description:
-        "All eight variants including soft styles. Icons with data-icon adjust padding automatically.",
+      description: (
+        <>
+          All eight variants including soft styles. Icons with{" "}
+          <InlineCode>data-icon</InlineCode> adjust padding automatically.
+        </>
+      ),
       code: ButtonVariantsDemoSource,
       rawCode: ButtonVariantsDemoRaw,
       render: () => <ButtonVariantsDemo />,
     },
     {
       title: "With Icon",
-      description:
-        'Remember to add data-icon="inline-start" or data-icon="inline-end" to the icon for correct spacing.',
+      description: (
+        <>
+          Remember to add{" "}
+          <InlineCode>data-icon=&quot;inline-start&quot;</InlineCode> or{" "}
+          <InlineCode>data-icon=&quot;inline-end&quot;</InlineCode> to the icon
+          for correct spacing.
+        </>
+      ),
       code: ButtonWithIconDemoSource,
       rawCode: ButtonWithIconDemoRaw,
       render: () => <ButtonWithIconDemo />,
     },
     {
       title: "Icon Variants",
-      description: 'Icon-only buttons using size="icon". Requires aria-label.',
+      description: (
+        <>
+          Icon-only buttons using <InlineCode>size=&quot;icon&quot;</InlineCode>
+          . Requires <InlineCode>aria-label</InlineCode>.
+        </>
+      ),
       code: ButtonIconVariantsDemoSource,
       rawCode: ButtonIconVariantsDemoRaw,
       render: () => <ButtonIconVariantsDemo />,
@@ -60,6 +78,20 @@ export const buttonMeta: ComponentMeta = {
       code: ButtonStatesDemoSource,
       rawCode: ButtonStatesDemoRaw,
       render: () => <ButtonStatesDemo />,
+    },
+    {
+      title: "Render",
+      description: (
+        <>
+          Use the <InlineCode>render</InlineCode> prop to compose another
+          element or component, like a router link. Set{" "}
+          <InlineCode>nativeButton=&#123;false&#125;</InlineCode> when the
+          rendered element is not a <InlineCode>&lt;button&gt;</InlineCode>.
+        </>
+      ),
+      code: ButtonRenderDemoSource,
+      rawCode: ButtonRenderDemoRaw,
+      render: () => <ButtonRenderDemo />,
     },
   ],
   usageImport: `import { Button } from "@/components/ui/button";`,
@@ -115,18 +147,17 @@ export const buttonMeta: ComponentMeta = {
       default: '"md"',
       description: "Button size. Use icon variants for icon-only buttons.",
     },
-    {
-      name: "asChild",
-      type: "boolean",
-      default: "false",
-      description: "Render as child element via Radix Slot.",
-    },
   ],
   accessibility: [
-    "Supports keyboard navigation via native button element",
-    "Focus visible ring via shadow-focus token",
-    "Disabled state prevents interaction and reduces opacity",
+    'Base UI applies type="button" and disabled handling automatically',
+    "Keyboard activation via Space and Enter on native buttons",
+    "Focus-visible ring via the ring token",
+    "focusableWhenDisabled keeps disabled buttons in the tab order with aria-disabled",
     "Icon-only buttons require an aria-label",
   ],
-  basedOn: "radix",
+  apiReference: {
+    label: "Base UI Button",
+    url: "https://base-ui.com/react/components/button#api-reference",
+  },
+  basedOn: "base",
 };

@@ -3,7 +3,7 @@
   "name": "command",
   "type": "registry:ui",
   "title": "Command Palette",
-  "description": "Cmd+k command palette built on Radix Dialog with search input, groups, and items.",
+  "description": "Keyboard-driven command palette built on cmdk with search and grouped items.",
   "dependencies": [
     "@radix-ui/react-dialog",
     "clsx",

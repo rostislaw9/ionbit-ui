@@ -92,16 +92,16 @@ export const SheetContent = forwardRef<HTMLDivElement, SheetContentProps>(
           {children}
           {showCloseButton && (
             <Button
-              asChild
               variant="ghost"
               size="icon"
               className={cn("absolute end-3 top-3")}
-            >
-              <DialogPrimitive.Close aria-label="Close">
-                <X className="h-4 w-4" />
-                <span className="sr-only">Close</span>
-              </DialogPrimitive.Close>
-            </Button>
+              render={
+                <DialogPrimitive.Close aria-label="Close">
+                  <X />
+                  <span className="sr-only">Close</span>
+                </DialogPrimitive.Close>
+              }
+            />
           )}
         </DialogPrimitive.Content>
       </DialogPrimitive.Portal>

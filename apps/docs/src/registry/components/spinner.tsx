@@ -10,7 +10,8 @@ import SpinnerDemoRaw from "../../demos/spinner-demo.tsx?raw";
 export const spinnerMeta: ComponentMeta = {
   name: "spinner",
   label: "Spinner",
-  description: "Animated loading indicator for buttons and async states.",
+  description:
+    "An animated loading icon for buttons and async states, sized to match button variants.",
   category: "Feedback",
   examples: [
     {

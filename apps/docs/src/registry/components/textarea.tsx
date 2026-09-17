@@ -10,7 +10,8 @@ import TextareaInvalidDemoRaw from "../../demos/textarea-invalid-demo.tsx?raw";
 export const textareaMeta: ComponentMeta = {
   name: "textarea",
   label: "Textarea",
-  description: "Multi-line text input. Same focus and invalid states as Input.",
+  description:
+    "A multi-line text input with the same accent focus ring and invalid states as Input.",
   category: "Form",
   examples: [
     {

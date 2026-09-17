@@ -20,7 +20,8 @@ import ToggleTextDemoRaw from "../../demos/toggle-text-demo.tsx?raw";
 export const toggleMeta: ComponentMeta = {
   name: "toggle",
   label: "Toggle",
-  description: "A two-state button that can be either on or off.",
+  description:
+    "A button that toggles between pressed and unpressed states, in default and outline variants.",
   category: "Form",
   examples: [
     {

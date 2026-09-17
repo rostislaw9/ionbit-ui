@@ -26,7 +26,7 @@ import ShimmerSpreadDemoRaw from "../../demos/shimmer-spread-demo.tsx?raw";
 export const shimmerMeta: UtilMeta = {
   name: "shimmer",
   label: "Shimmer",
-  description: "Utilities for adding a shimmer effect to text elements.",
+  description: "CSS utilities that add an animated shimmer effect to text.",
   category: "Feedback",
   heroDemo: {
     render: () => <ShimmerDemo />,

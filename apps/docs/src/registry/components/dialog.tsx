@@ -8,7 +8,7 @@ export const dialogMeta: ComponentMeta = {
   name: "dialog",
   label: "Dialog",
   description:
-    "Modal dialog with focus trap, Escape to close, and backdrop blur.",
+    "A modal window with focus trapping, Escape to close, and animated zoom-in content over a blurred backdrop.",
   category: "Overlay",
   examples: [
     {

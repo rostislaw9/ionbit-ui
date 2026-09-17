@@ -3,7 +3,7 @@
   "name": "popover",
   "type": "registry:ui",
   "title": "Popover",
-  "description": "Radix-based popover with anchored content and fade/zoom animation.",
+  "description": "Floating panel anchored to a trigger with fade/zoom animation.",
   "dependencies": [
     "@radix-ui/react-popover",
     "clsx",

@@ -8,7 +8,7 @@ export const selectMeta: ComponentMeta = {
   name: "select",
   label: "Select",
   description:
-    "Select dropdown with keyboard navigation and animated open/close.",
+    "A dropdown for picking from a list of options, with keyboard navigation, animated open/close, and trigger-width content.",
   category: "Form",
   examples: [
     {

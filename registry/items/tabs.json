@@ -3,7 +3,7 @@
   "name": "tabs",
   "type": "registry:ui",
   "title": "Tabs",
-  "description": "Radix-based tabs with animated active indicator and semantic token styling.",
+  "description": "Tabbed panels with sliding active indicator and directional transitions.",
   "dependencies": [
     "@radix-ui/react-tabs",
     "clsx",

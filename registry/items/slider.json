@@ -3,7 +3,7 @@
   "name": "slider",
   "type": "registry:ui",
   "title": "Slider",
-  "description": "Radix-based slider with accent range, hover-scaled thumb, and focus ring.",
+  "description": "Range input with accent track, hover-scaled thumb, and keyboard control.",
   "dependencies": [
     "@radix-ui/react-slider",
     "clsx",

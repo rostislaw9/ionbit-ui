@@ -32,14 +32,24 @@ export function HomePage() {
           <div className="flex flex-wrap justify-center gap-3">
             {/* <Magnetic intensity={0.15}> */}
             <Glow intensity={0.7}>
-              <Button variant="primary" size="lg" asChild>
-                <Link to="/docs">Get Started</Link>
+              <Button
+                variant="primary"
+                size="lg"
+                nativeButton={false}
+                render={<Link to="/docs" />}
+              >
+                Get Started
               </Button>
             </Glow>
             {/* </Magnetic> */}
             <Glow intensity={0.7}>
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/docs/components">Browse Components</Link>
+              <Button
+                variant="outline"
+                size="lg"
+                nativeButton={false}
+                render={<Link to="/docs/components" />}
+              >
+                Browse Components
               </Button>
             </Glow>
           </div>

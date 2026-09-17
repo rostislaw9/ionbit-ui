@@ -41,34 +41,24 @@ export function PageActions({
         </Button>
       )}
       <Button
-        asChild={!!prev}
         variant="outline"
         size="icon-sm"
         disabled={!prev}
+        nativeButton={!prev}
         aria-label={prev ? `Previous: ${prev.label}` : "No previous page"}
+        render={prev ? <Link to={docPath(prev)} /> : undefined}
       >
-        {prev ? (
-          <Link to={docPath(prev)}>
-            <ChevronLeft />
-          </Link>
-        ) : (
-          <ChevronLeft />
-        )}
+        <ChevronLeft />
       </Button>
       <Button
-        asChild={!!next}
         variant="outline"
         size="icon-sm"
         disabled={!next}
+        nativeButton={!next}
         aria-label={next ? `Next: ${next.label}` : "No next page"}
+        render={next ? <Link to={docPath(next)} /> : undefined}
       >
-        {next ? (
-          <Link to={docPath(next)}>
-            <ChevronRight />
-          </Link>
-        ) : (
-          <ChevronRight />
-        )}
+        <ChevronRight />
       </Button>
     </>
   );

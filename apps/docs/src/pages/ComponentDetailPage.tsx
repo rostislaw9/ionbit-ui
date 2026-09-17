@@ -218,10 +218,12 @@ export function ComponentDetailPage() {
         <p className="text-sm text-foreground-muted">
           No component named &quot;{name}&quot;.
         </p>
-        <Button asChild variant="outline">
-          <Link to="/docs/components">
-            <ArrowLeft data-icon="inline-start" /> Back to all components
-          </Link>
+        <Button
+          variant="outline"
+          nativeButton={false}
+          render={<Link to="/docs/components" />}
+        >
+          <ArrowLeft data-icon="inline-start" /> Back to all components
         </Button>
       </div>
     );

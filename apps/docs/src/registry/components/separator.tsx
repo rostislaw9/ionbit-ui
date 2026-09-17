@@ -17,7 +17,8 @@ import SeparatorVerticalDemoRaw from "../../demos/separator-vertical-demo.tsx?ra
 export const separatorMeta: ComponentMeta = {
   name: "separator",
   label: "Separator",
-  description: "Visually or semantically separates content.",
+  description:
+    "A horizontal or vertical divider that visually or semantically separates content.",
   category: "Layout",
   examples: [
     {

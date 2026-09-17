@@ -12,7 +12,7 @@ export interface ProgressProps extends Omit<
 }
 
 /**
- * Progress — displays an indicator showing the completion progress of a
+ * Progress — a horizontal bar showing the completion progress of a
  * task, typically displayed as a progress bar.
  *
  * Built on `@base-ui/react`, shadcn-inspired.

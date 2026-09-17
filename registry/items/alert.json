@@ -3,7 +3,7 @@
   "name": "alert",
   "type": "registry:ui",
   "title": "Alert",
-  "description": "Callout for surfacing status messages with semantic variants (default, accent, success, warning, error).",
+  "description": "Status callout with semantic variants (default, accent, success, warning, error).",
   "dependencies": [
     "class-variance-authority",
     "clsx",

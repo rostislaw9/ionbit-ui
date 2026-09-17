@@ -3,7 +3,7 @@
   "name": "breadcrumb",
   "type": "registry:ui",
   "title": "Breadcrumb",
-  "description": "Navigation trail with list, items, links, separators, and ellipsis support.",
+  "description": "Navigation trail with items, links, separators, and ellipsis support.",
   "dependencies": [
     "@radix-ui/react-slot",
     "clsx",

@@ -8,7 +8,7 @@ export const tooltipMeta: ComponentMeta = {
   name: "tooltip",
   label: "Tooltip",
   description:
-    "Tooltip with directional slide-in on appearance, fade-out on dismiss, and keyboard accessibility.",
+    "A floating label that appears on hover or focus, with directional slide-in and keyboard accessibility.",
   category: "Overlay",
   examples: [
     {

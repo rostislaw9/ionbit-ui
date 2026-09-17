@@ -7,7 +7,8 @@ import PopoverBasicDemoRaw from "../../demos/popover-basic-demo.tsx?raw";
 export const popoverMeta: ComponentMeta = {
   name: "popover",
   label: "Popover",
-  description: "Popover with anchored content, fade and zoom animation.",
+  description:
+    "A floating panel anchored to a trigger, with fade and zoom animation and collision-aware placement.",
   category: "Overlay",
   examples: [
     {

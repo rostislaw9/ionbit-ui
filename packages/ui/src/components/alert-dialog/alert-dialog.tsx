@@ -184,9 +184,11 @@ export const AlertDialogAction = forwardRef<
   AlertDialogActionProps
 >(function AlertDialogAction({ className, ...props }, ref) {
   return (
-    <Button asChild variant="destructive" className={cn(className)}>
-      <AlertDialogPrimitive.Action ref={ref} {...props} />
-    </Button>
+    <Button
+      variant="destructive"
+      className={cn(className)}
+      render={<AlertDialogPrimitive.Action ref={ref} {...props} />}
+    />
   );
 });
 
@@ -205,8 +207,10 @@ export const AlertDialogCancel = forwardRef<
   AlertDialogCancelProps
 >(function AlertDialogCancel({ className, ...props }, ref) {
   return (
-    <Button asChild variant="secondary" className={cn(className)}>
-      <AlertDialogPrimitive.Cancel ref={ref} {...props} />
-    </Button>
+    <Button
+      variant="secondary"
+      className={cn(className)}
+      render={<AlertDialogPrimitive.Cancel ref={ref} {...props} />}
+    />
   );
 });

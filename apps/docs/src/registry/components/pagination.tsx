@@ -8,7 +8,7 @@ export const paginationMeta: ComponentMeta = {
   name: "pagination",
   label: "Pagination",
   description:
-    "Composable pagination with prev/next, page links, and ellipsis.",
+    "Composable pagination with previous/next links, page numbers, and an ellipsis for skipped ranges.",
   category: "Navigation",
   examples: [
     {

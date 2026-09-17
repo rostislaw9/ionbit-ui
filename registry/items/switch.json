@@ -3,7 +3,7 @@
   "name": "switch",
   "type": "registry:ui",
   "title": "Switch",
-  "description": "A control that allows the user to toggle between checked and not checked.",
+  "description": "Base UI switch with sliding thumb animation and accent styling.",
   "dependencies": [
     "@base-ui/react",
     "clsx",

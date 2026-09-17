@@ -23,7 +23,7 @@ export const toastMeta: ComponentMeta = {
   name: "toast",
   label: "Toast",
   description:
-    "Toast notifications with smooth stacking, swipe to dismiss, and status icons.",
+    "Transient notifications with smooth stacking, swipe to dismiss, and status icons. Built on Base UI.",
   category: "Feedback",
   examples: [
     {

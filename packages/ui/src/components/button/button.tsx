@@ -1,11 +1,11 @@
-import { Slot } from "@radix-ui/react-slot";
+import { Button as ButtonPrimitive } from "@base-ui/react/button";
 import { cva, type VariantProps } from "class-variance-authority";
-import { forwardRef, type ButtonHTMLAttributes } from "react";
+import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none rounded-md transition-[background-color,border-color,color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0 active:translate-y-px",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap font-medium select-none rounded-md transition-[background-color,border-color,color,box-shadow,transform] duration-[var(--duration-fast)] ease-[var(--ease-standard)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:pointer-events-none disabled:opacity-40 data-disabled:cursor-not-allowed data-disabled:pointer-events-none data-disabled:opacity-40 [&_svg]:pointer-events-none [&_svg]:shrink-0 shrink-0 active:translate-y-px",
   {
     variants: {
       variant: {
@@ -45,40 +45,33 @@ export const buttonVariants = cva(
 );
 
 export interface ButtonProps
-  extends
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
+  extends ButtonPrimitive.Props, VariantProps<typeof buttonVariants> {}
 
 /**
  * Button — the primary action trigger.
  *
- * Built on `@radix-ui/react-slot` (for `asChild` composition), shadcn-inspired.
- * Variants cover primary, secondary, outline, ghost, destructive, and link.
- * Sizes include text buttons (`xs`–`xl`) and icon-only buttons (`icon-xs`–
- * `icon-xl`). On active, the button shifts 1px down for tactile feedback.
+ * Built on `@base-ui/react/button`, shadcn-inspired. Variants cover primary,
+ * secondary, outline, ghost, destructive, and link. Sizes include text
+ * buttons (`xs`–`xl`) and icon-only buttons (`icon-xs`–`icon-xl`). On active,
+ * the button shifts 1px down for tactile feedback.
  *
- * Accessibility: renders a native `<button>` with `type="button"` by default.
- * Use `asChild` to render as a link or other element; the `type` prop is
- * ignored when `asChild` is set.
+ * Accessibility: renders a native `<button>` with `type="button"` applied
+ * automatically by Base UI. Use `render` to compose another element or
+ * component — set `nativeButton={false}` when it is not a `<button>` (e.g.
+ * a link). `focusableWhenDisabled` keeps disabled buttons in the tab order.
  */
-export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  function Button(
-    { className, variant, size, asChild = false, type, ...props },
-    ref,
-  ) {
-    const Comp = asChild ? Slot : "button";
-    return (
-      <Comp
-        ref={ref}
-        data-slot="button"
-        data-variant={variant}
-        data-size={size}
-        type={asChild ? undefined : (type ?? "button")}
-        className={cn(buttonVariants({ variant, size, className }))}
-        {...props}
-      />
-    );
-  },
-);
+export const Button = forwardRef<HTMLElement, ButtonProps>(function Button(
+  { className, variant, size, ...props },
+  ref,
+) {
+  return (
+    <ButtonPrimitive
+      ref={ref}
+      data-slot="button"
+      data-variant={variant}
+      data-size={size}
+      className={cn(buttonVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+});

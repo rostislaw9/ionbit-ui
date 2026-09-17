@@ -15,7 +15,7 @@ export const progressMeta: ComponentMeta = {
   name: "progress",
   label: "Progress",
   description:
-    "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+    "A horizontal bar that shows task completion, with smooth value transitions and accent styling.",
   category: "Feedback",
   examples: [
     {

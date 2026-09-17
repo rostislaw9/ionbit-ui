@@ -9,8 +9,7 @@ export const utilManifest: ManifestEntry[] = [
     name: "scroll-fade",
     label: "Scroll Fade",
     category: "Layout",
-    description:
-      "Utilities for adding a scroll-aware fade effect to the edges of a scroll container.",
+    description: "Scroll-aware edge fade for containers.",
     exampleCount: 6,
     isNew: false,
     kind: "util",
@@ -19,7 +18,7 @@ export const utilManifest: ManifestEntry[] = [
     name: "shimmer",
     label: "Shimmer",
     category: "Feedback",
-    description: "Utilities for adding a shimmer effect to text elements.",
+    description: "Shimmer effect for text elements.",
     exampleCount: 7,
     isNew: false,
     kind: "util",

@@ -1,6 +1,6 @@
-import { Slot } from "@radix-ui/react-slot";
+import { useRender } from "@base-ui/react/use-render";
 import { cva, type VariantProps } from "class-variance-authority";
-import { forwardRef, type ReactNode } from "react";
+import { forwardRef } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -53,18 +53,16 @@ export const buttonGroupVariants = cva(
 export interface ButtonGroupProps
   extends
     React.ComponentProps<"div">,
-    VariantProps<typeof buttonGroupVariants> {
-  children?: ReactNode;
-}
+    VariantProps<typeof buttonGroupVariants> {}
 
 /**
  * ButtonGroup — a container that groups related buttons with consistent
  * styling.
  *
- * Not built on Radix — a lightweight wrapper that applies `role="group"`
- * and connected border styling. Children share borders so inner edges have
- * no gap: the first child keeps its left/top rounding, the last keeps its
- * right/bottom rounding, and middle children have both squared. Use
+ * A lightweight wrapper that applies `role="group"` and connected border
+ * styling. Children share borders so inner edges have no gap: the first
+ * child keeps its left/top rounding, the last keeps its right/bottom
+ * rounding, and middle children have both squared. Use
  * `ButtonGroupSeparator` to visually divide sections, and `ButtonGroupText`
  * for non-interactive labels within the group.
  *
@@ -117,32 +115,29 @@ export function ButtonGroupSeparator({
   );
 }
 
-export interface ButtonGroupTextProps {
-  children: ReactNode;
-  asChild?: boolean;
-  className?: string;
-}
+export type ButtonGroupTextProps = useRender.ComponentProps<"div">;
 
 /**
  * ButtonGroupText — non-interactive text within a button group.
  *
- * Useful for labels or descriptions placed alongside buttons. Use
- * `asChild` to render a custom element (e.g. a `Label`).
+ * Useful for labels or descriptions placed alongside buttons. Use `render`
+ * to render a custom element (e.g. a `Label`).
  */
 export const ButtonGroupText = forwardRef<HTMLDivElement, ButtonGroupTextProps>(
-  function ButtonGroupText({ children, asChild, className }, ref) {
-    const Comp = asChild ? Slot : "div";
-    return (
-      <Comp
-        ref={ref}
-        data-slot="button-group-text"
-        className={cn(
+  function ButtonGroupText({ children, render, className, ...props }, ref) {
+    return useRender({
+      defaultTagName: "div",
+      ref,
+      render,
+      props: {
+        "data-slot": "button-group-text",
+        ...props,
+        className: cn(
           "flex items-center gap-2 rounded-md border border-border bg-surface px-2.5 text-sm font-medium text-foreground-muted [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
           className,
-        )}
-      >
-        {children}
-      </Comp>
-    );
+        ),
+        children,
+      },
+    });
   },
 );

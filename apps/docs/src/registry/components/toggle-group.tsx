@@ -26,7 +26,8 @@ import ToggleGroupVerticalDemoRaw from "../../demos/toggle-group-vertical-demo.t
 export const toggleGroupMeta: ComponentMeta = {
   name: "toggle-group",
   label: "Toggle Group",
-  description: "A set of two-state buttons that can be toggled on or off.",
+  description:
+    "A group of toggles with single or multiple selection, joinable into a connected control at zero spacing.",
   category: "Form",
   examples: [
     {

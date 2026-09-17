@@ -39,7 +39,7 @@ export const fieldMeta: ComponentMeta = {
   name: "field",
   label: "Field",
   description:
-    "Combine labels, controls, and help text to compose accessible form fields and grouped inputs.",
+    "Composable primitives for building accessible form fields — labels, controls, descriptions, errors, and grouped fieldsets.",
   category: "Form",
   examples: [
     {

@@ -1,5 +1,6 @@
 import type { ComponentMeta } from "./types";
 
+import { InlineCode } from "../../components/InlineCode";
 import { ButtonGroupDemo } from "../../demos/button-group-demo";
 import ButtonGroupDemoSource from "../../demos/button-group-demo.tsx?highlighted";
 import ButtonGroupDemoRaw from "../../demos/button-group-demo.tsx?raw";
@@ -41,7 +42,7 @@ export const buttonGroupMeta: ComponentMeta = {
   name: "button-group",
   label: "Button Group",
   description:
-    "A container that groups related buttons with consistent styling.",
+    "Joins related buttons into a single connected control with shared borders. Supports separators, text labels, nested groups, and vertical orientation.",
   category: "Form",
   examples: [
     {
@@ -54,32 +55,52 @@ export const buttonGroupMeta: ComponentMeta = {
     },
     {
       title: "Orientation",
-      description:
-        "Vertical layout for stacked icon controls like zoom buttons.",
+      description: (
+        <>
+          Set <InlineCode>orientation=&quot;vertical&quot;</InlineCode> for
+          stacked icon controls like zoom buttons.
+        </>
+      ),
       code: ButtonGroupOrientationDemoSource,
       rawCode: ButtonGroupOrientationDemoRaw,
       render: () => <ButtonGroupOrientationDemo />,
     },
     {
       title: "Sizes",
-      description:
-        "All five button sizes (xs through xl) with matching icon buttons.",
+      description: (
+        <>
+          All five <InlineCode>Button</InlineCode> sizes (
+          <InlineCode>xs</InlineCode> through <InlineCode>xl</InlineCode>) with
+          matching icon buttons.
+        </>
+      ),
       code: ButtonGroupSizesDemoSource,
       rawCode: ButtonGroupSizesDemoRaw,
       render: () => <ButtonGroupSizesDemo />,
     },
     {
       title: "Nested",
-      description:
-        "Compose groups inside groups for input-plus-action patterns.",
+      description: (
+        <>
+          Compose <InlineCode>ButtonGroup</InlineCode> inside{" "}
+          <InlineCode>ButtonGroup</InlineCode> for input-plus-action patterns.
+        </>
+      ),
       code: ButtonGroupNestedDemoSource,
       rawCode: ButtonGroupNestedDemoRaw,
       render: () => <ButtonGroupNestedDemo />,
     },
     {
       title: "Separator",
-      description:
-        "Divides buttons within a group. Unnecessary for outline or secondary variants — recommended for others.",
+      description: (
+        <>
+          <InlineCode>ButtonGroupSeparator</InlineCode> divides buttons within a
+          group. Unnecessary for{" "}
+          <InlineCode>variant=&quot;outline&quot;</InlineCode> or{" "}
+          <InlineCode>variant=&quot;secondary&quot;</InlineCode> — recommended
+          for others.
+        </>
+      ),
       code: ButtonGroupSeparatorDemoSource,
       rawCode: ButtonGroupSeparatorDemoRaw,
       render: () => <ButtonGroupSeparatorDemo />,
@@ -94,23 +115,37 @@ export const buttonGroupMeta: ComponentMeta = {
     },
     {
       title: "Input",
-      description: "Attach a button to an input for inline search.",
+      description: (
+        <>
+          Attach a <InlineCode>Button</InlineCode> to an{" "}
+          <InlineCode>Input</InlineCode> for inline search.
+        </>
+      ),
       code: ButtonGroupInputDemoSource,
       rawCode: ButtonGroupInputDemoRaw,
       render: () => <ButtonGroupInputDemo />,
     },
     {
       title: "Input Group",
-      description:
-        "Wrap an InputGroup inside ButtonGroup for complex input layouts with addons.",
+      description: (
+        <>
+          Wrap an <InlineCode>InputGroup</InlineCode> inside{" "}
+          <InlineCode>ButtonGroup</InlineCode> for complex input layouts with
+          addons.
+        </>
+      ),
       code: ButtonGroupInputGroupDemoSource,
       rawCode: ButtonGroupInputGroupDemoRaw,
       render: () => <ButtonGroupInputGroupDemo />,
     },
     {
       title: "Text",
-      description:
-        "ButtonGroupText labels a field inside the group without borders.",
+      description: (
+        <>
+          <InlineCode>ButtonGroupText</InlineCode> labels a field inside the
+          group without borders.
+        </>
+      ),
       code: ButtonGroupTextDemoSource,
       rawCode: ButtonGroupTextDemoRaw,
       render: () => <ButtonGroupTextDemo />,
@@ -170,10 +205,33 @@ export const buttonGroupMeta: ComponentMeta = {
       default: '"horizontal"',
       description: "Layout direction of the group.",
     },
+  ],
+  primitives: [
     {
-      name: "aria-label",
-      type: "string",
-      description: "Accessible label for the group.",
+      name: "ButtonGroupSeparator",
+      description:
+        "A 1px visual divider between buttons. For horizontal groups the separator is vertical and vice versa.",
+      props: [
+        {
+          name: "orientation",
+          type: '"horizontal" | "vertical"',
+          default: '"vertical"',
+          description: "Axis of the separator line.",
+        },
+      ],
+    },
+    {
+      name: "ButtonGroupText",
+      description:
+        "Non-interactive text within a button group, styled as a bordered field label.",
+      props: [
+        {
+          name: "render",
+          type: "ReactElement | ((props) => ReactElement)",
+          description:
+            "Replace the rendered element (e.g. a Label). Powered by Base UI useRender.",
+        },
+      ],
     },
   ],
   accessibility: [
@@ -181,4 +239,5 @@ export const buttonGroupMeta: ComponentMeta = {
     "Tab to navigate between buttons in the group",
     "Use aria-label or aria-labelledby to label the group",
   ],
+  basedOn: "base",
 };

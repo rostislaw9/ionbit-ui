@@ -3,7 +3,7 @@
   "name": "reveal",
   "type": "registry:ui",
   "title": "Reveal",
-  "description": "Scroll-triggered reveal animation with reduced-motion support.",
+  "description": "Scroll-triggered entrance animation with directional offset and reduced-motion support.",
   "dependencies": [
     "clsx",
     "tailwind-merge",
