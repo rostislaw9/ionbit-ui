@@ -41,6 +41,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   classes on icons inside components that auto-size svgs. Fixed
   Collapsible demo chevron rotation to use Base UI's `data-panel-open`
   trigger attribute.
+- **Docs:** rewrote component descriptions across all contexts —
+  short card copy in the components manifest, custom detail-page
+  text replacing shadcn-derived wording, and concise consumer-facing
+  registry metadata.
+- **Theme persistence:** both the site mode (`ionbit-ui-theme`) and the
+  customizer selection now persist in `sessionStorage` instead of
+  `localStorage`, and a customized theme applies on load across every
+  route instead of only after visiting `/themes`.
 
 ## [0.1.15] — 2026-09-15
 
