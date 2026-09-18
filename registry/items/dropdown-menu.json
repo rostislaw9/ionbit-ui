@@ -5,9 +5,10 @@
   "title": "Dropdown Menu",
   "description": "Button-triggered menu with items, labels, separators, and keyboard navigation.",
   "dependencies": [
-    "@radix-ui/react-dropdown-menu",
+    "@base-ui/react",
     "clsx",
-    "tailwind-merge"
+    "tailwind-merge",
+    "lucide-react"
   ],
   "devDependencies": [],
   "registryDependencies": [

@@ -33,15 +33,15 @@ It **is**:
 
 ## Components
 
-**UI (42):** Accordion, Alert, AlertDialog, Avatar, Badge, Breadcrumb,
+**UI (43):** Accordion, Alert, AlertDialog, Avatar, Badge, Breadcrumb,
 Button, ButtonGroup, Card, Checkbox, Collapsible, Combobox, Command,
-ContextMenu, Dialog, DropdownMenu, Empty, HoverCard, Input, InputGroup,
-Label, ModeSwitcher, NativeSelect, Pagination, Popover, Progress,
-RadioGroup, ScrollArea, Select, Separator, Sheet, Skeleton, Slider,
-Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle, ToggleGroup,
-Tooltip.
+ContextMenu, Dialog, DropdownMenu, Empty, Field, HoverCard, Input,
+InputGroup, Label, ModeSwitcher, NativeSelect, Pagination, Popover,
+Progress, RadioGroup, ScrollArea, Select, Separator, Sheet, Skeleton,
+Slider, Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle,
+ToggleGroup, Tooltip.
 
-**Motion (6):** Glow, Pulse, Spotlight, Magnetic, Reveal, Ripple.
+**Motion (7):** Glow, Magnetic, Pulse, Reveal, Ripple, Spotlight, Tilt.
 
 ## Quick start
 
@@ -62,7 +62,7 @@ dependencies, and tells you which npm packages to install.
 ## Motion primitives
 
 ```tsx
-import { Spotlight, Glow, Magnetic, Pulse, Reveal, Ripple } from "@/components/motion";
+import { Glow, Magnetic, Pulse, Reveal, Ripple, Spotlight, Tilt } from "@/components/motion";
 
 // Spotlight — cursor-following radial light on hover
 <Spotlight>
@@ -83,6 +83,11 @@ import { Spotlight, Glow, Magnetic, Pulse, Reveal, Ripple } from "@/components/m
 <Ripple>
   <Button>Press</Button>
 </Ripple>
+
+// Tilt — card tilts toward the cursor while hovering
+<Tilt>
+  <Card>...</Card>
+</Tilt>
 ```
 
 All motion primitives respect `prefers-reduced-motion` automatically.

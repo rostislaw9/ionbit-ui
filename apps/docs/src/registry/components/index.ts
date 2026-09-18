@@ -44,6 +44,7 @@ import { switchMeta } from "./switch";
 import { tableMeta } from "./table";
 import { tabsMeta } from "./tabs";
 import { textareaMeta } from "./textarea";
+import { tiltMeta } from "./tilt";
 import { toastMeta } from "./toast";
 import { tooltipMeta } from "./tooltip";
 
@@ -92,6 +93,7 @@ export const componentRegistry: ComponentMeta[] = [
   tableMeta,
   tabsMeta,
   textareaMeta,
+  tiltMeta,
   toastMeta,
   tooltipMeta,
 ];

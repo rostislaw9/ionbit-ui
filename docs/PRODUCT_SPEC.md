@@ -96,60 +96,73 @@ It should NOT feel:
 
 The first MVP iteration is complete (source, registry, CLI, and docs
 app). No package has been published to npm yet — publishing is a
-follow-up task. The MVP contains 31 UI components and 5 motion
+follow-up task. The library contains 43 UI components and 7 motion
 primitives:
 
 ### Foundation
 
 - Button
-- Input
-- Textarea
-- Select
+- ButtonGroup
 - Checkbox
-- Switch
-- Slider
+- Combobox
+- Field
+- Input
+- InputGroup
 - Label
+- ModeSwitcher
+- NativeSelect
 - RadioGroup
 - ScrollArea
+- Select
 - Separator
+- Slider
+- Switch
+- Textarea
+- Toggle
+- ToggleGroup
 
 ### Surfaces
 
+- AlertDialog
 - Card
 - Dialog
-- AlertDialog
-- Sheet
-- Popover
-- Tooltip
 - HoverCard
+- Popover
+- Sheet
+- Table
+- Tooltip
 
 ### Feedback
 
-- Toast
-- Progress
-- Skeleton
-- Badge
 - Alert
 - Avatar
+- Badge
+- Empty
+- Progress
+- Skeleton
+- Spinner
+- Toast
 
 ### Navigation
 
-- Tabs
 - Accordion
-- Pagination
 - Breadcrumb
+- Collapsible
+- Command
 - ContextMenu
 - DropdownMenu
-- Command
+- Pagination
+- Tabs
 
 ### Motion
 
 - Glow
-- Spotlight
 - Magnetic
 - Pulse
 - Reveal
 - Ripple
+- Spotlight
+- Tilt
 
 ---
 
@@ -158,12 +171,37 @@ primitives:
 Initial motion primitives:
 
 - Glow
-- Spotlight
 - Magnetic
 - Pulse
 - Reveal
+- Spotlight
 
 Additional effects should come later.
+
+## Motion Roadmap
+
+Next motion primitives, in planned implementation order. All follow the
+shared primitive contract: `intensity`/`disabled` props, composable
+wrappers, `prefers-reduced-motion` self-disable, compositor-only
+properties.
+
+1. **Scramble** — text "decodes" into place: characters cycle random
+   glyphs then settle, on state change or first reveal. For stat
+   values, version strings, status transitions. Reduced motion: final
+   text renders instantly.
+2. **Trace** — a single accent point traveling along an element's
+   border, for processing/focus/active states on cards and inputs.
+   Conic-gradient mask or `offset-path`, CSS-only. Reduced motion:
+   static border highlight.
+3. **Morph** — element morphs between states (button → spinner →
+   check; chip → expanded panel) via FLIP or the View Transitions API.
+   Reduced motion: instant swap.
+4. **Scan** — a light sweep crossing a surface once, on trigger only
+   (success, verified, copy confirmation). Never loops. Reduced
+   motion: skipped entirely.
+
+Deliberately not planned: Parallax (scroll-jacking risk, low product
+value) and Distortion (too close to generic cyberpunk decoration).
 
 ---
 
@@ -174,13 +212,13 @@ particularly strongly.
 
 Examples:
 
+- Animated Tabs
+- Digital Command Palette
+- Energy Progress
+- Glow Input
 - Magnetic Button
 - Spotlight Card
-- Digital Command Palette
-- Animated Tabs
-- Energy Progress
 - Status Indicator
-- Glow Input
 
 ---
 

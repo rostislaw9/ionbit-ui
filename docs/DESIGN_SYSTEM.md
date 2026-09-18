@@ -217,7 +217,35 @@ Infinite pulse animations must be used sparingly.
 
 ---
 
-## 12. Scan
+## 12. Tilt
+
+Tilt adds subtle perspective rotation toward the cursor while hovering.
+
+Use it primarily for:
+
+- cards;
+- panels;
+- feature blocks.
+
+Keep the angle small — a few degrees, spring-smoothed. It composes
+with Spotlight on the same surface and must never shift layout.
+
+---
+
+## 13. Ripple
+
+Ripple communicates:
+
+- press confirmation;
+- direct interaction feedback.
+
+A single radial expansion from the press point, clipped to the
+element's shape. It should feel like the surface responds to touch,
+not like a splash. Keyboard activation produces a centered ripple.
+
+---
+
+## 14. Scan
 
 Scan is a decorative effect resembling a light passing through a digital
 surface.
@@ -233,7 +261,7 @@ It should never become the default animation for all cards.
 
 ---
 
-## 13. Distortion
+## 15. Distortion
 
 Distortion is an advanced effect.
 
@@ -249,7 +277,7 @@ It must always have a fallback.
 
 ---
 
-## 14. Interaction Hierarchy
+## 16. Interaction Hierarchy
 
 Visual intensity should roughly follow:
 
@@ -267,7 +295,7 @@ The strongest effects should communicate the strongest states.
 
 ---
 
-## 15. Accessibility
+## 17. Accessibility
 
 Visual effects must never be the only indication of state.
 
@@ -283,7 +311,7 @@ Good:
 
 ---
 
-## 16. Component Consistency
+## 18. Component Consistency
 
 Components should share:
 
@@ -299,7 +327,7 @@ Do not design each component independently.
 
 ---
 
-## 17. Design Tokens
+## 19. Design Tokens
 
 Use centralized tokens.
 
@@ -347,7 +375,7 @@ At minimum:
 
 ---
 
-## 18. Dark and Light Themes
+## 20. Dark and Light Themes
 
 Both dark and light modes are first-class. The tokens package ships
 `.dark` and `.light` variable sets with adjusted foreground, border,
@@ -362,7 +390,7 @@ Do not hardcode colors directly into individual components.
 
 ---
 
-## 19. Design Review Rule
+## 21. Design Review Rule
 
 Before adding a visual effect, ask:
 

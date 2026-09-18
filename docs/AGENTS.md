@@ -274,17 +274,17 @@ Decorative animation must be optional where practical.
 
 The design system may contain the following interaction primitives:
 
+- Distortion
 - Glow
 - Magnetic
-- Spotlight
+- Morph
+- Parallax
 - Pulse
-- Scan
-- Tilt
 - Reveal
 - Ripple
-- Morph
-- Distortion
-- Parallax
+- Scan
+- Spotlight
+- Tilt
 
 These are NOT automatically appropriate for every component.
 

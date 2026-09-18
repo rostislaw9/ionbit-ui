@@ -9,6 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Tilt motion primitive** (`@ionbit-ui/motion`): a subtle perspective
+  tilt toward the cursor while hovering, spring-smoothed via
+  `motion/react` and capped by `maxAngle` (default 6°) scaled by
+  `intensity`. Composes with Spotlight on the same element; disabled
+  under `prefers-reduced-motion`. Includes two docs demos (card,
+  Tilt + Spotlight composition).
 - **Ripple motion primitive** (`@ionbit-ui/motion`): a radial circle that
   expands from the press point and fades out, contained to the wrapped
   element — like the Mode Switcher's radial reveal. The ripple color
@@ -56,7 +62,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Motion registry items declare only real dependencies.** `ripple`,
   `glow`, `pulse`, `spotlight`, and `reveal` no longer install
   `clsx`/`tailwind-merge`/`motion` or fetch `cn` unnecessarily;
-  `magnetic` keeps only `motion`.
+  `magnetic` and `tilt` keep only `motion`.
+- **Dropdown Menu registry dependencies.** The item now installs
+  `@base-ui/react` + `lucide-react` instead of the removed
+  `@radix-ui/react-dropdown-menu` package.
 
 ## [0.1.16] — 2026-09-17
 

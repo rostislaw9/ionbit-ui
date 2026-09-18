@@ -184,8 +184,8 @@ runtime, no bundle cost.
 
 ### 4.2 `@ionbit-ui/motion`
 
-**Purpose:** Reusable motion primitives (`Glow`, `Spotlight`,
-`Magnetic`, `Pulse`, `Reveal`, `Ripple`) plus shared motion tokens
+**Purpose:** Reusable motion primitives (`Glow`, `Magnetic`, `Pulse`,
+`Reveal`, `Ripple`, `Spotlight`, `Tilt`) plus shared motion tokens
 (timing, easing, intensity) and reduced-motion utilities.
 
 **Contents:**
@@ -424,12 +424,13 @@ libraries and matches AGENTS §8.
 | Focus-visible ring transition                | CSS                        | Same                                                                                         |
 | Active/press scale                           | CSS (`active:scale-[.98]`) | Trivial, no JS needed                                                                        |
 | State open/close (dialog, popover)           | CSS via `data-state`       | Radix exposes `data-state`; CSS transitions on opacity/transform are sufficient              |
-| Magnetic (pointer-following translate)       | Motion                     | Requires spring physics + pointer tracking                                                   |
-| Spotlight (pointer-position radial gradient) | CSS + light JS             | CSS custom property updated via `rAF`-throttled pointer handler; no animation library needed |
 | Glow (focus/hover halo)                      | CSS                        | `box-shadow` transitions; no JS                                                              |
+| Magnetic (pointer-following translate)       | Motion                     | Requires spring physics + pointer tracking                                                   |
 | Pulse (status/activity)                      | CSS keyframes              | Infinite animation only when explicitly enabled; disabled under reduced motion               |
 | Reveal (in-view entrance)                    | Motion or CSS              | CSS `@keyframes` + `animation-timeline: view()` where supported, Motion fallback otherwise   |
 | Ripple (press radial expansion)              | CSS keyframes + light JS   | Span spawned at press point animates via shared keyframes; removed on `animationend`         |
+| Spotlight (pointer-position radial gradient) | CSS + light JS             | CSS custom property updated via `rAF`-throttled pointer handler; no animation library needed |
+| Tilt (hover perspective tilt)                | Motion                     | Spring-driven `rotateX`/`rotateY` via shared spring tokens; hover-gated element listeners    |
 
 **Rule: one owner per animated property.** If Motion animates
 `transform`, no Tailwind `hover:scale-*` class touches `transform` on
@@ -494,11 +495,12 @@ Example (illustrative, not final):
 | Primitive | Reduced-motion behavior                                   |
 | --------- | --------------------------------------------------------- |
 | Glow      | Disabled. Focus/hover still indicated by color/contrast.  |
-| Spotlight | Disabled. Surface remains usable.                         |
 | Magnetic  | Disabled. Element does not move. Click target unchanged.  |
 | Pulse     | Disabled. Status indicated by color/shape only.           |
 | Reveal    | Replaced by instant appearance (opacity 1, no transform). |
 | Ripple    | Disabled. Press feedback remains unchanged.               |
+| Spotlight | Disabled. Surface remains usable.                         |
+| Tilt      | Disabled. Element does not rotate; content unchanged.     |
 
 ### 7.5 Performance rules
 
@@ -742,7 +744,7 @@ ARIA roles, or keyboard navigation.
   defined at the design-system level, not per component.
 - **Semantic color:** state is never communicated by motion/glow alone
   — there is always a contrast/color/shape signal (per DESIGN_SYSTEM
-  §15).
+  §17).
 
 ### 15.3 Keyboard navigation
 
@@ -877,7 +879,7 @@ with the same tokens and components as a consumer would use.
 
 | Dependency                             | Decision              | Reason                                                                                                                                                                           |
 | -------------------------------------- | --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@base-ui/react`                       | Adopted per-component | Store-based model is a better fit for Combobox, Checkbox, Switch, Separator, Progress, and Radio Group. Migration is incremental; Radix remains for components not yet migrated. |
+| `@base-ui/react`                       | Adopted per-component | Store-based model is a better fit for Checkbox, Combobox, Progress, Radio Group, Separator, and Switch. Migration is incremental; Radix remains for components not yet migrated. |
 | `react-aria` / `react-aria-components` | Rejected as primary   | Heavier, more granular API, less idiomatic with cva/cn workflow. Revisit for date/calendar post-MVP.                                                                             |
 | `tailwind-variants`                    | Rejected              | `cva` + `cn()` is clearer and more widely understood.                                                                                                                            |
 | `playwright`                           | Deferred              | Needed for registry/CLI E2E, not for the foundation.                                                                                                                             |

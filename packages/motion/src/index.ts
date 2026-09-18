@@ -19,4 +19,7 @@ export type { RevealProps } from "./primitives/reveal";
 export { Ripple } from "./primitives/ripple";
 export type { RippleProps } from "./primitives/ripple";
 
+export { Tilt } from "./primitives/tilt";
+export type { TiltProps } from "./primitives/tilt";
+
 export { useReducedMotion } from "./hooks/use-reduced-motion";

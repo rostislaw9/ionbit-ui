@@ -4,8 +4,8 @@ Last updated: 2026-09-18
 
 ## Status
 
-- **Migrated to Base UI:** 18 components
-- **Still on Radix:** 12 components
+- **Migrated to Base UI:** 17 components
+- **Still on Radix:** 13 components
 - **No Base UI equivalent:** 3 components
 
 ## Migrated to Base UI
@@ -32,15 +32,16 @@ Last updated: 2026-09-18
 
 ## Still on Radix — Base UI equivalent available
 
-| Component    | Radix package                  | Base UI package               | Priority | Notes                    |
-| ------------ | ------------------------------ | ----------------------------- | -------- | ------------------------ |
-| alert-dialog | `@radix-ui/react-alert-dialog` | `@base-ui/react/alert-dialog` | Medium   | Used widely              |
-| dialog       | `@radix-ui/react-dialog`       | `@base-ui/react/dialog`       | Medium   | Used widely              |
-| popover      | `@radix-ui/react-popover`      | `@base-ui/react/popover`      | Medium   | Used by other components |
-| scroll-area  | `@radix-ui/react-scroll-area`  | `@base-ui/react/scroll-area`  | Low      | Works fine on Radix      |
-| select       | `@radix-ui/react-select`       | `@base-ui/react/select`       | High     | Higher complexity        |
-| slider       | `@radix-ui/react-slider`       | `@base-ui/react/slider`       | Medium   | Medium complexity        |
-| tabs         | `@radix-ui/react-tabs`         | `@base-ui/react/tabs`         | Medium   | Self-contained           |
+| Component    | Radix package                  | Base UI package               | Priority | Notes                                              |
+| ------------ | ------------------------------ | ----------------------------- | -------- | -------------------------------------------------- |
+| alert-dialog | `@radix-ui/react-alert-dialog` | `@base-ui/react/alert-dialog` | Medium   | Used widely                                        |
+| command      | `@radix-ui/react-dialog`       | `@base-ui/react/dialog`       | Medium   | Uses Radix Dialog internally; migrates with dialog |
+| dialog       | `@radix-ui/react-dialog`       | `@base-ui/react/dialog`       | Medium   | Used widely                                        |
+| popover      | `@radix-ui/react-popover`      | `@base-ui/react/popover`      | Medium   | Used by other components                           |
+| scroll-area  | `@radix-ui/react-scroll-area`  | `@base-ui/react/scroll-area`  | Low      | Works fine on Radix                                |
+| select       | `@radix-ui/react-select`       | `@base-ui/react/select`       | High     | Higher complexity                                  |
+| slider       | `@radix-ui/react-slider`       | `@base-ui/react/slider`       | Medium   | Medium complexity                                  |
+| tabs         | `@radix-ui/react-tabs`         | `@base-ui/react/tabs`         | Medium   | Self-contained                                     |
 
 ## Still on Radix — uses `@radix-ui/react-slot` only
 
@@ -65,7 +66,8 @@ established pattern: `useRender` hook for non-primitive elements).
 
 1. **tabs** — self-contained, low risk
 2. **slider** — medium complexity
-3. **dialog / alert-dialog** — used widely, higher impact
+3. **dialog / alert-dialog** — used widely, higher impact (command
+   rides on the dialog migration — same package swap)
 4. **select** — higher complexity
 5. **popover** — used by other components
 6. **scroll-area** — low priority, works fine on Radix
