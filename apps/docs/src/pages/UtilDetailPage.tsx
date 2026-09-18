@@ -7,14 +7,14 @@ import { Link, useParams } from "react-router-dom";
 import { Reveal } from "@ionbit-ui/motion";
 import { Badge, Button } from "@ionbit-ui/ui";
 
-import { OnThisPage } from "../components/OnThisPage";
-import { PageActions } from "../components/PageActions";
-import { PreviewCodeBlock } from "../components/PreviewCodeBlock";
-import { PrevNextNav } from "../components/PrevNextNav";
-import { SidebarLayout } from "../components/SidebarLayout";
-import { UtilInstallation } from "../components/UtilInstallation";
-import { UtilSections } from "../components/UtilSections";
-import { UtilUsage } from "../components/UtilUsage";
+import { PreviewCodeBlock } from "../components/code/PreviewCodeBlock";
+import { SidebarLayout } from "../components/layout/SidebarLayout";
+import { OnThisPage } from "../components/page/OnThisPage";
+import { PageActions } from "../components/page/PageActions";
+import { PrevNextNav } from "../components/page/PrevNextNav";
+import { UtilInstallation } from "../components/page/UtilInstallation";
+import { UtilSections } from "../components/page/UtilSections";
+import { UtilUsage } from "../components/page/UtilUsage";
 import { useCopyPage } from "../hooks/useCopyPage";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import {
@@ -23,7 +23,7 @@ import {
   type Section,
 } from "../hooks/useScrollSpy";
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
-import { getPrevNext } from "../lib/getPrevNext";
+import { getPrevNext } from "../lib/get-prev-next";
 import { slugify } from "../lib/slugify";
 import { utilToMarkdown } from "../lib/util-to-markdown";
 

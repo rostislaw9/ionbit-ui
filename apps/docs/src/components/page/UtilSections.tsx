@@ -1,13 +1,13 @@
 import type {
   UtilBlock,
   UtilSection as UtilSectionMeta,
-} from "../registry/utils/types";
+} from "../../registry/utils/types";
 
 import highlightedInline from "virtual:highlighted-inline";
 
-import { slugify } from "../lib/slugify";
-import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
-import { PreviewCodeBlock } from "./PreviewCodeBlock";
+import { slugify } from "../../lib/slugify";
+import { CodeBlockWithCopy } from "../code/CodeBlockWithCopy";
+import { PreviewCodeBlock } from "../code/PreviewCodeBlock";
 import { SectionHeading } from "./SectionHeading";
 
 export function UtilSections({

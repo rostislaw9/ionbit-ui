@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { CheckboxBasicDemo } from "../../demos/checkbox-basic-demo";
 import CheckboxBasicDemoSource from "../../demos/checkbox-basic-demo.tsx?highlighted";
 import CheckboxBasicDemoRaw from "../../demos/checkbox-basic-demo.tsx?raw";

@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ButtonGroupDemo } from "../../demos/button-group-demo";
 import ButtonGroupDemoSource from "../../demos/button-group-demo.tsx?highlighted";
 import ButtonGroupDemoRaw from "../../demos/button-group-demo.tsx?raw";

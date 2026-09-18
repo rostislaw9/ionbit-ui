@@ -1,4 +1,4 @@
-import type { Section } from "../hooks/useScrollSpy";
+import type { Section } from "../../hooks/useScrollSpy";
 import type { ReactNode } from "react";
 
 import { memo } from "react";

@@ -1,18 +1,23 @@
-import { ArrowRight } from "lucide-react";
-import { useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import type { ManifestEntry } from "../registry/manifest";
 
-import { Pulse, Reveal } from "@ionbit-ui/motion";
-import {
-  Badge,
-  Button,
-  Input,
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@ionbit-ui/ui";
+import { LayoutGrid, Text } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
 
-import { SidebarLayout } from "../components/SidebarLayout";
+import { Reveal } from "@ionbit-ui/motion";
+import { Button, Input, ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
+
+import { ComponentCards } from "../components/browser/ComponentCards";
+import { ComponentLinks } from "../components/browser/ComponentLinks";
+import { SidebarLayout } from "../components/layout/SidebarLayout";
+import { OnThisPage } from "../components/page/OnThisPage";
+import { SectionHeading } from "../components/page/SectionHeading";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
+import {
+  flattenSectionIds,
+  useScrollSpy,
+  type Section,
+} from "../hooks/useScrollSpy";
+import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
 import {
   componentCategories,
   componentManifest,
@@ -20,10 +25,30 @@ import {
 
 const categories = ["All", ...componentCategories];
 
+const VIEW_STORAGE_KEY = "ionbit-ui-components-view";
+
+type ViewMode = "cards" | "links";
+
 export function ComponentsPage() {
   useDocumentTitle("Components");
   const [query, setQuery] = useState("");
   const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [view, setView] = useState<ViewMode>(() => {
+    try {
+      const stored = localStorage.getItem(VIEW_STORAGE_KEY);
+      return stored === "cards" || stored === "links" ? stored : "cards";
+    } catch {
+      return "cards";
+    }
+  });
+
+  useEffect(() => {
+    try {
+      localStorage.setItem(VIEW_STORAGE_KEY, view);
+    } catch {
+      // Storage may be unavailable (private mode, SSR, etc.)
+    }
+  }, [view]);
 
   const filtered = useMemo(() => {
     const q = query.toLowerCase();
@@ -37,8 +62,46 @@ export function ComponentsPage() {
     });
   }, [query, activeCategory]);
 
+  const newComps = useMemo(() => filtered.filter((c) => c.isNew), [filtered]);
+  const showSections = activeCategory === "All";
+
+  const sections = useMemo<Section[]>(() => {
+    if (!showSections) return [];
+    return [
+      ...(newComps.length > 0
+        ? [{ id: "new-components", label: "New Components" }]
+        : []),
+      { id: "all-components", label: "All Components" },
+    ];
+  }, [showSections, newComps.length]);
+
+  const sectionIds = useMemo(() => flattenSectionIds(sections), [sections]);
+  const depKey = useMemo(() => sectionIds.join(","), [sectionIds]);
+  const { activeSection, handleSectionClick } = useScrollSpy(
+    sectionIds,
+    depKey,
+  );
+  useScrollToAnchor(sectionIds);
+
+  const renderList = (items: ManifestEntry[], hideNewBadges = false) =>
+    view === "links" ? (
+      <ComponentLinks items={items} hideNewBadges={hideNewBadges} />
+    ) : (
+      <ComponentCards items={items} hideNewBadges={hideNewBadges} />
+    );
+
   return (
-    <SidebarLayout>
+    <SidebarLayout
+      rightSidebar={
+        sections.length > 0 ? (
+          <OnThisPage
+            sections={sections}
+            activeSection={activeSection}
+            onSectionClick={handleSectionClick}
+          />
+        ) : undefined
+      }
+    >
       <div className="flex flex-col gap-8">
         <Reveal direction="up">
           <header className="flex flex-col gap-2">
@@ -46,7 +109,7 @@ export function ComponentsPage() {
               Component browser
             </p>
             <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-              All components
+              Components
             </h1>
             <p className="text-sm text-foreground-muted">
               {componentManifest.length} primitives. Click any component for
@@ -57,12 +120,30 @@ export function ComponentsPage() {
 
         <Reveal direction="up">
           <div className="flex flex-col gap-4 2xl:flex-row 2xl:items-center 2xl:justify-between">
-            <Input
-              placeholder="Search components..."
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              className="w-full sm:max-w-xs"
-            />
+            <div className="flex w-full items-center gap-3 sm:max-w-xs">
+              <Input
+                placeholder="Search components..."
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <ToggleGroup
+                type="single"
+                variant="outline"
+                spacing={0}
+                value={view}
+                onValueChange={(v: string) => {
+                  if (v === "cards" || v === "links") setView(v);
+                }}
+                aria-label="Show as"
+              >
+                <ToggleGroupItem value="cards" aria-label="Show as cards">
+                  <LayoutGrid />
+                </ToggleGroupItem>
+                <ToggleGroupItem value="links" aria-label="Show as links">
+                  <Text />
+                </ToggleGroupItem>
+              </ToggleGroup>
+            </div>
             <ToggleGroup
               type="single"
               size="sm"
@@ -81,42 +162,26 @@ export function ComponentsPage() {
           </div>
         </Reveal>
 
-        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-          {filtered.map((comp, i) => (
-            <Reveal key={comp.name} direction="up" delay={(i % 3) * 60}>
-              <Link
-                to={`/docs/components/${comp.name}`}
-                className="group flex h-full flex-col gap-3 rounded-lg border border-border bg-surface p-5 transition-colors duration-[var(--duration-fast)] ease-[var(--ease-standard)] hover:border-border-strong hover:bg-surface-hover"
-              >
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-sm font-semibold text-foreground transition-colors duration-[var(--duration-fast)] group-hover:text-accent">
-                      {comp.label}
-                    </h3>
-                    {comp.isNew && (
-                      <Pulse intensity={0.3}>
-                        <Badge variant="accent">New</Badge>
-                      </Pulse>
-                    )}
-                  </div>
-                  <span className="font-mono text-[10px] tracking-wider text-foreground-subtle uppercase">
-                    {comp.category}
-                  </span>
-                </div>
-                <p className="line-clamp-2 text-sm leading-relaxed text-foreground-muted">
-                  {comp.description}
-                </p>
-                <div className="mt-auto flex items-center gap-1 text-xs text-foreground-subtle">
-                  <span>
-                    {comp.exampleCount} example
-                    {comp.exampleCount > 1 ? "s" : ""}
-                  </span>
-                  <ArrowRight className="size-3" />
-                </div>
-              </Link>
-            </Reveal>
-          ))}
-        </div>
+        {showSections ? (
+          <div className="flex flex-col gap-12">
+            {newComps.length > 0 && (
+              <section id="new-components" className="flex flex-col gap-4">
+                <SectionHeading id="new-components">
+                  New Components
+                </SectionHeading>
+                {renderList(newComps, true)}
+              </section>
+            )}
+            <section id="all-components" className="flex flex-col gap-4">
+              <SectionHeading id="all-components">
+                All Components
+              </SectionHeading>
+              {renderList(filtered)}
+            </section>
+          </div>
+        ) : (
+          renderList(filtered)
+        )}
 
         {filtered.length === 0 && (
           <div className="flex flex-col items-center gap-2 py-16 text-center">

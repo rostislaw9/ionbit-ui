@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ToggleGroupCustomDemo } from "../../demos/toggle-group-custom-demo";
 import ToggleGroupCustomDemoSource from "../../demos/toggle-group-custom-demo.tsx?highlighted";
 import ToggleGroupCustomDemoRaw from "../../demos/toggle-group-custom-demo.tsx?raw";

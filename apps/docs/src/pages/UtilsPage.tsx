@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Reveal } from "@ionbit-ui/motion";
 import { Badge } from "@ionbit-ui/ui";
 
-import { SidebarLayout } from "../components/SidebarLayout";
+import { SidebarLayout } from "../components/layout/SidebarLayout";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { utilManifest } from "../registry/utils/manifest";
 

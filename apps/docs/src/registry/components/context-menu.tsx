@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ContextMenuBasicDemo } from "../../demos/context-menu-basic-demo";
 import ContextMenuBasicDemoSource from "../../demos/context-menu-basic-demo.tsx?highlighted";
 import ContextMenuBasicDemoRaw from "../../demos/context-menu-basic-demo.tsx?raw";

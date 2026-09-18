@@ -1,4 +1,4 @@
-import type { ManifestEntry } from "../registry/manifest";
+import type { ManifestEntry } from "../../registry/manifest";
 
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";

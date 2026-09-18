@@ -2,7 +2,7 @@ import type { UtilMeta } from "./types";
 
 import { Link } from "react-router-dom";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ScrollFadeDemo } from "../../demos/scroll-fade-demo";
 import ScrollFadeDemoSource from "../../demos/scroll-fade-demo.tsx?highlighted";
 import ScrollFadeDemoRaw from "../../demos/scroll-fade-demo.tsx?raw";

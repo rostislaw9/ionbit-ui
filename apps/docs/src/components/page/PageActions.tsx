@@ -1,4 +1,4 @@
-import type { ManifestEntry } from "../registry/manifest";
+import type { ManifestEntry } from "../../registry/manifest";
 
 import { Check, ChevronLeft, ChevronRight, Copy } from "lucide-react";
 import { Link } from "react-router-dom";

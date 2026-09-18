@@ -1,11 +1,11 @@
-import type { ComponentMeta } from "../registry/components/types";
+import type { ComponentMeta } from "../../registry/components/types";
 
 import { memo } from "react";
 
 import { Reveal } from "@ionbit-ui/motion";
 import { ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
 
-import { PreviewCodeBlock } from "./PreviewCodeBlock";
+import { PreviewCodeBlock } from "../code/PreviewCodeBlock";
 
 /**
  * Example switcher + preview area.

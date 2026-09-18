@@ -1,14 +1,14 @@
-import type { ThemeColors } from "../data/theme-presets";
-import type { ThemeCustomizerState } from "../hooks/useThemeCustomizer";
+import type { ThemeColors } from "../../data/theme-presets";
+import type { ThemeCustomizerState } from "../../hooks/useThemeCustomizer";
 
 import { Separator } from "@ionbit-ui/ui";
 
-import { THEME_PRESETS } from "../data/theme-presets";
-import { useTheme } from "../hooks/useTheme";
-import { ColorField } from "./theme/ColorField";
-import { EffectSlider } from "./theme/EffectSlider";
-import { PresetCard } from "./theme/PresetCard";
-import { RadiusSlider } from "./theme/RadiusSlider";
+import { THEME_PRESETS } from "../../data/theme-presets";
+import { useTheme } from "../../hooks/useTheme";
+import { ColorField } from "./ColorField";
+import { EffectSlider } from "./EffectSlider";
+import { PresetCard } from "./PresetCard";
+import { RadiusSlider } from "./RadiusSlider";
 
 /* -------------------------------------------------------------------------- */
 /* ThemeControls — right sidebar (w-60)                                       */

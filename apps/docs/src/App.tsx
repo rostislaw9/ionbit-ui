@@ -3,7 +3,7 @@ import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import { Spinner, Toaster } from "@ionbit-ui/ui";
 
-import { TopBar } from "./components/TopBar";
+import { TopBar } from "./components/layout/TopBar";
 
 const HomePage = lazy(() =>
   import("./pages/HomePage").then((m) => ({ default: m.HomePage })),

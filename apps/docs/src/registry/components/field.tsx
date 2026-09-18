@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { FieldCheckboxDemo } from "../../demos/field-checkbox-demo";
 import FieldCheckboxDemoSource from "../../demos/field-checkbox-demo.tsx?highlighted";
 import FieldCheckboxDemoRaw from "../../demos/field-checkbox-demo.tsx?raw";

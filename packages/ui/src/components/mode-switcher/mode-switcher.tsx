@@ -89,7 +89,7 @@ export const ModeSwitcher = forwardRef<HTMLButtonElement, ModeSwitcherProps>(
           document.documentElement.animate(
             { clipPath },
             {
-              duration: 400,
+              duration: 600,
               easing: "cubic-bezier(0.2, 0.8, 0.2, 1)",
               pseudoElement: "::view-transition-new(root)",
             },

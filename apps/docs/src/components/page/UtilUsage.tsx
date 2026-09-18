@@ -1,4 +1,4 @@
-import type { UtilClassEntry } from "../registry/utils/types";
+import type { UtilClassEntry } from "../../registry/utils/types";
 
 import highlightedInline from "virtual:highlighted-inline";
 
@@ -11,7 +11,7 @@ import {
   TableRow,
 } from "@ionbit-ui/ui";
 
-import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
+import { CodeBlockWithCopy } from "../code/CodeBlockWithCopy";
 import { SectionHeading } from "./SectionHeading";
 
 export function UtilUsage({

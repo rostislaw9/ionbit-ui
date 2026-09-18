@@ -6,19 +6,19 @@ import highlightedInline from "virtual:highlighted-inline";
 import { Reveal } from "@ionbit-ui/motion";
 import { Badge, Button } from "@ionbit-ui/ui";
 
-import { AccessibilityList } from "../components/AccessibilityList";
-import { ApiTable } from "../components/ApiTable";
-import { CodeBlockWithCopy } from "../components/CodeBlockWithCopy";
-import { CompositionSection } from "../components/CompositionSection";
-import { ExampleSwitcher } from "../components/ExampleSwitcher";
-import { InfoBlocksSection } from "../components/InfoBlocksSection";
-import { InstallBlock } from "../components/InstallBlock";
-import { OnThisPage } from "../components/OnThisPage";
-import { PageActions } from "../components/PageActions";
-import { PrevNextNav } from "../components/PrevNextNav";
-import { SectionHeading } from "../components/SectionHeading";
-import { SidebarLayout } from "../components/SidebarLayout";
-import { UsageSection } from "../components/UsageSection";
+import { CodeBlockWithCopy } from "../components/code/CodeBlockWithCopy";
+import { SidebarLayout } from "../components/layout/SidebarLayout";
+import { AccessibilityList } from "../components/page/AccessibilityList";
+import { ApiTable } from "../components/page/ApiTable";
+import { CompositionSection } from "../components/page/CompositionSection";
+import { ExampleSwitcher } from "../components/page/ExampleSwitcher";
+import { InfoBlocksSection } from "../components/page/InfoBlocksSection";
+import { InstallBlock } from "../components/page/InstallBlock";
+import { OnThisPage } from "../components/page/OnThisPage";
+import { PageActions } from "../components/page/PageActions";
+import { PrevNextNav } from "../components/page/PrevNextNav";
+import { SectionHeading } from "../components/page/SectionHeading";
+import { UsageSection } from "../components/page/UsageSection";
 import { useCopyPage } from "../hooks/useCopyPage";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import {
@@ -28,7 +28,7 @@ import {
 } from "../hooks/useScrollSpy";
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
 import { componentToMarkdown } from "../lib/component-to-markdown";
-import { getPrevNext } from "../lib/getPrevNext";
+import { getPrevNext } from "../lib/get-prev-next";
 import { scrollToSection } from "../lib/scroll-to-section";
 import { slugify } from "../lib/slugify";
 import {

@@ -30,8 +30,8 @@ import {
   CommandSeparator,
 } from "@ionbit-ui/ui";
 
-import { componentManifest } from "../registry/components/manifest";
-import { utilManifest } from "../registry/utils/manifest";
+import { componentManifest } from "../../registry/components/manifest";
+import { utilManifest } from "../../registry/utils/manifest";
 import { navItems } from "./navItems";
 
 interface SearchEntry {

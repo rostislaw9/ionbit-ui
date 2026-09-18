@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { SwitchChoiceCardDemo } from "../../demos/switch-choice-card-demo";
 import SwitchChoiceCardDemoSource from "../../demos/switch-choice-card-demo.tsx?highlighted";
 import SwitchChoiceCardDemoRaw from "../../demos/switch-choice-card-demo.tsx?raw";

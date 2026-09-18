@@ -2,13 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 
 import { Reveal } from "@ionbit-ui/motion";
 
-import { CopyButton } from "../components/CopyButton";
-import { HighlightedCode } from "../components/HighlightedCode";
-import { PmCommandBlock } from "../components/PmCommandBlock";
-import { SectionHeading } from "../components/SectionHeading";
-import { SidebarLayout } from "../components/SidebarLayout";
+import { CopyButton } from "../components/code/CopyButton";
+import { HighlightedCode } from "../components/code/HighlightedCode";
+import { PmCommandBlock } from "../components/code/PmCommandBlock";
+import { SidebarLayout } from "../components/layout/SidebarLayout";
+import { SectionHeading } from "../components/page/SectionHeading";
+import { ThemeControls } from "../components/theme/ThemeCustomizer";
 import { ThemePreview } from "../components/theme/ThemePreview";
-import { ThemeControls } from "../components/ThemeCustomizer";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";

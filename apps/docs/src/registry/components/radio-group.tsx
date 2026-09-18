@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { RadioGroupChoiceCardDemo } from "../../demos/radio-group-choice-card-demo";
 import RadioGroupChoiceCardDemoSource from "../../demos/radio-group-choice-card-demo.tsx?highlighted";
 import RadioGroupChoiceCardDemoRaw from "../../demos/radio-group-choice-card-demo.tsx?raw";

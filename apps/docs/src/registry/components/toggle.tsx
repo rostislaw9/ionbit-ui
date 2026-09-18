@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ToggleDemo } from "../../demos/toggle-demo";
 import ToggleDemoSource from "../../demos/toggle-demo.tsx?highlighted";
 import ToggleDemoRaw from "../../demos/toggle-demo.tsx?raw";

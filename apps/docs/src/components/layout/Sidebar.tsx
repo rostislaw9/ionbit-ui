@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
-import { componentManifest } from "../registry/components/manifest";
-import { utilManifest } from "../registry/utils/manifest";
+import { componentManifest } from "../../registry/components/manifest";
+import { utilManifest } from "../../registry/utils/manifest";
 import { navItems } from "./navItems";
 import { SidebarLink } from "./SidebarLink";
 import { SidebarSection } from "./SidebarSection";

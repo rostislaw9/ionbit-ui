@@ -3,7 +3,7 @@ import { useState } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ionbit-ui/ui";
 
-import { PACKAGE_MANAGERS } from "../lib/package-managers";
+import { PACKAGE_MANAGERS } from "../../lib/package-managers";
 import { CopyButton } from "./CopyButton";
 import { HighlightedCode } from "./HighlightedCode";
 

@@ -1,9 +1,9 @@
-import type { InfoBlock } from "../registry/components/types";
+import type { InfoBlock } from "../../registry/components/types";
 
 import highlightedInline from "virtual:highlighted-inline";
 
-import { slugify } from "../lib/slugify";
-import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
+import { slugify } from "../../lib/slugify";
+import { CodeBlockWithCopy } from "../code/CodeBlockWithCopy";
 import { SectionHeading } from "./SectionHeading";
 
 export function InfoBlocksSection({

@@ -1,6 +1,6 @@
 import type { UtilMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ShimmerAngleDemo } from "../../demos/shimmer-angle-demo";
 import ShimmerAngleDemoSource from "../../demos/shimmer-angle-demo.tsx?highlighted";
 import ShimmerAngleDemoRaw from "../../demos/shimmer-angle-demo.tsx?raw";

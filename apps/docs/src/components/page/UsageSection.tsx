@@ -1,6 +1,6 @@
 import highlightedInline from "virtual:highlighted-inline";
 
-import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
+import { CodeBlockWithCopy } from "../code/CodeBlockWithCopy";
 import { SectionHeading } from "./SectionHeading";
 
 export function UsageSection({

@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ComboboxAutoHighlightDemo } from "../../demos/combobox-auto-highlight-demo";
 import ComboboxAutoHighlightDemoSource from "../../demos/combobox-auto-highlight-demo.tsx?highlighted";
 import ComboboxAutoHighlightDemoRaw from "../../demos/combobox-auto-highlight-demo.tsx?raw";

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { Button, ModeSwitcher, Separator } from "@ionbit-ui/ui";
 
-import { useTheme } from "../hooks/useTheme";
+import { useTheme } from "../../hooks/useTheme";
 import { GitHubStarButton } from "./GitHubStarButton";
 import { Logo } from "./Logo";
 import { MenuButton } from "./MenuButton";

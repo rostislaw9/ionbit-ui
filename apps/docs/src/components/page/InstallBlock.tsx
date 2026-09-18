@@ -5,12 +5,12 @@ import sourceLoaders from "virtual:highlighted-sources-map";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ionbit-ui/ui";
 
-import { PACKAGE_MANAGERS, pmInstallCmd } from "../lib/package-managers";
-import { type BasedOn, BASED_ON_LABEL } from "../registry/components/types";
-import { CopyButton } from "./CopyButton";
-import { HighlightedCode } from "./HighlightedCode";
-import { PmCommandBlock } from "./PmCommandBlock";
-import { SourceCodeBlock, type SourceFile } from "./SourceCodeBlock";
+import { PACKAGE_MANAGERS, pmInstallCmd } from "../../lib/package-managers";
+import { type BasedOn, BASED_ON_LABEL } from "../../registry/components/types";
+import { CopyButton } from "../code/CopyButton";
+import { HighlightedCode } from "../code/HighlightedCode";
+import { PmCommandBlock } from "../code/PmCommandBlock";
+import { SourceCodeBlock, type SourceFile } from "../code/SourceCodeBlock";
 
 interface SourceEntry {
   sourceFiles: SourceFile[];

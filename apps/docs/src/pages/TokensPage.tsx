@@ -4,9 +4,9 @@ import { useMemo } from "react";
 import { Reveal } from "@ionbit-ui/motion";
 import { Button } from "@ionbit-ui/ui";
 
-import { OnThisPage } from "../components/OnThisPage";
-import { SectionHeading } from "../components/SectionHeading";
-import { SidebarLayout } from "../components/SidebarLayout";
+import { SidebarLayout } from "../components/layout/SidebarLayout";
+import { OnThisPage } from "../components/page/OnThisPage";
+import { SectionHeading } from "../components/page/SectionHeading";
 import tokensMarkdown from "../content/tokens.md?raw";
 import { useCopyPage } from "../hooks/useCopyPage";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
@@ -86,7 +86,7 @@ export function TokensPage() {
 
         <section id="colors" className="flex scroll-mt-24 flex-col gap-4">
           <SectionHeading id="colors">Colors</SectionHeading>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
             <Reveal direction="up">
               <SubGroup id="surfaces" title="Surfaces">
                 <Swatch name="background" var="--background" />
@@ -168,151 +168,144 @@ export function TokensPage() {
             </Reveal>
           </div>
         </section>
-        <Reveal direction="up">
-          <TokenGroup id="typography" title="Typography">
-            <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
-              <Row k="--font-sans" v="ui-sans-serif, system-ui, ..." />
-              <Row k="--font-mono" v="ui-monospace, SF Mono, ..." />
-              <Row k="--text-xs" v="0.75rem" />
-              <Row k="--text-sm" v="0.875rem" />
-              <Row k="--text-base" v="1rem" />
-              <Row k="--text-lg" v="1.125rem" />
-              <Row k="--text-xl" v="1.25rem" />
-              <Row k="--text-2xl" v="1.5rem" />
-              <Row k="--text-3xl" v="1.875rem" />
-              <Row k="--leading-tight" v="1.2" />
-              <Row k="--leading-normal" v="1.5" />
-              <Row k="--leading-relaxed" v="1.65" />
-              <Row k="--tracking-tight" v="-0.01em" />
-              <Row k="--tracking-normal" v="0" />
-              <Row k="--tracking-wide" v="0.02em" />
-              <Row k="--weight-normal" v="400" />
-              <Row k="--weight-medium" v="500" />
-              <Row k="--weight-semibold" v="600" />
-              <Row k="--weight-bold" v="700" />
-            </div>
-          </TokenGroup>
-        </Reveal>
-        <Reveal direction="up">
-          <TokenGroup id="spacing" title="Spacing">
-            <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
-              <Row k="--space-1" v="0.25rem" />
-              <Row k="--space-2" v="0.5rem" />
-              <Row k="--space-3" v="0.75rem" />
-              <Row k="--space-4" v="1rem" />
-              <Row k="--space-5" v="1.25rem" />
-              <Row k="--space-6" v="1.5rem" />
-              <Row k="--space-8" v="2rem" />
-              <Row k="--space-10" v="2.5rem" />
-              <Row k="--space-12" v="3rem" />
-              <Row k="--space-16" v="4rem" />
-            </div>
-          </TokenGroup>
-        </Reveal>
-        <Reveal direction="up">
-          <TokenGroup id="radius" title="Radius">
-            <div className="flex flex-wrap items-end gap-4">
-              {(["sm", "md", "lg", "xl", "full"] as const).map((r) => (
-                <div key={r} className="flex flex-col items-center gap-2">
-                  <div
-                    className="h-16 w-16 border border-border-strong bg-surface-elevated"
-                    style={{ borderRadius: `var(--radius-${r})` }}
-                  />
-                  <span className="font-mono text-xs text-foreground-muted">
-                    {r}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </TokenGroup>
-        </Reveal>
-        <Reveal direction="up">
-          <TokenGroup id="shadows" title="Shadows">
-            <div className="flex flex-wrap gap-6 rounded-lg border border-border bg-surface p-6">
-              {(["xs", "sm", "md", "lg"] as const).map((s) => (
-                <div key={s} className="flex flex-col items-center gap-2">
-                  <div
-                    className="h-16 w-16 rounded-md bg-surface-elevated"
-                    style={{ boxShadow: `var(--shadow-${s})` }}
-                  />
-                  <span className="font-mono text-xs text-foreground-muted">
-                    {s}
-                  </span>
-                </div>
-              ))}
-              <div className="flex flex-col items-center gap-2">
+
+        <TokenGroup id="typography" title="Typography">
+          <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
+            <Row k="--font-sans" v="ui-sans-serif, system-ui, ..." />
+            <Row k="--font-mono" v="ui-monospace, SF Mono, ..." />
+            <Row k="--text-xs" v="0.75rem" />
+            <Row k="--text-sm" v="0.875rem" />
+            <Row k="--text-base" v="1rem" />
+            <Row k="--text-lg" v="1.125rem" />
+            <Row k="--text-xl" v="1.25rem" />
+            <Row k="--text-2xl" v="1.5rem" />
+            <Row k="--text-3xl" v="1.875rem" />
+            <Row k="--leading-tight" v="1.2" />
+            <Row k="--leading-normal" v="1.5" />
+            <Row k="--leading-relaxed" v="1.65" />
+            <Row k="--tracking-tight" v="-0.01em" />
+            <Row k="--tracking-normal" v="0" />
+            <Row k="--tracking-wide" v="0.02em" />
+            <Row k="--weight-normal" v="400" />
+            <Row k="--weight-medium" v="500" />
+            <Row k="--weight-semibold" v="600" />
+            <Row k="--weight-bold" v="700" />
+          </div>
+        </TokenGroup>
+
+        <TokenGroup id="spacing" title="Spacing">
+          <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
+            <Row k="--space-1" v="0.25rem" />
+            <Row k="--space-2" v="0.5rem" />
+            <Row k="--space-3" v="0.75rem" />
+            <Row k="--space-4" v="1rem" />
+            <Row k="--space-5" v="1.25rem" />
+            <Row k="--space-6" v="1.5rem" />
+            <Row k="--space-8" v="2rem" />
+            <Row k="--space-10" v="2.5rem" />
+            <Row k="--space-12" v="3rem" />
+            <Row k="--space-16" v="4rem" />
+          </div>
+        </TokenGroup>
+
+        <TokenGroup id="radius" title="Radius">
+          <div className="flex flex-wrap items-end gap-4">
+            {(["sm", "md", "lg", "xl", "full"] as const).map((r) => (
+              <div key={r} className="flex flex-col items-center gap-2">
                 <div
-                  className="h-16 w-16 rounded-md bg-surface-elevated"
-                  style={{ boxShadow: "var(--shadow-glow)" }}
+                  className="h-16 w-16 border border-border-strong bg-surface-elevated"
+                  style={{ borderRadius: `var(--radius-${r})` }}
                 />
                 <span className="font-mono text-xs text-foreground-muted">
-                  glow
+                  {r}
                 </span>
               </div>
-              <div className="flex flex-col items-center gap-2">
+            ))}
+          </div>
+        </TokenGroup>
+
+        <TokenGroup id="shadows" title="Shadows">
+          <div className="flex flex-wrap gap-6 rounded-lg border border-border bg-surface p-6">
+            {(["xs", "sm", "md", "lg"] as const).map((s) => (
+              <div key={s} className="flex flex-col items-center gap-2">
                 <div
                   className="h-16 w-16 rounded-md bg-surface-elevated"
-                  style={{ boxShadow: "var(--shadow-glow-error)" }}
+                  style={{ boxShadow: `var(--shadow-${s})` }}
                 />
                 <span className="font-mono text-xs text-foreground-muted">
-                  glow-error
+                  {s}
                 </span>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <div
-                  className="h-16 w-16 rounded-md bg-surface-elevated"
-                  style={{ boxShadow: "var(--shadow-focus)" }}
-                />
-                <span className="font-mono text-xs text-foreground-muted">
-                  focus
-                </span>
-              </div>
-              <div className="flex flex-col items-center gap-2">
-                <div
-                  className="h-16 w-16 rounded-md bg-surface-elevated"
-                  style={{ boxShadow: "var(--shadow-focus-error)" }}
-                />
-                <span className="font-mono text-xs text-foreground-muted">
-                  focus-error
-                </span>
-              </div>
-            </div>
-          </TokenGroup>
-        </Reveal>
-        <Reveal direction="up">
-          <TokenGroup id="motion" title="Motion">
-            <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
-              <Row k="--duration-fast" v="140ms" />
-              <Row k="--duration-normal" v="220ms" />
-              <Row k="--duration-slow" v="420ms" />
-              <Row k="--ease-standard" v="cubic-bezier(.2,.8,.2,1)" />
-              <Row k="--ease-emphasized" v="cubic-bezier(.3,0,0,1)" />
-              <Row k="--ease-exit" v="cubic-bezier(.4,0,1,1)" />
-            </div>
-          </TokenGroup>
-        </Reveal>
-        <Reveal direction="up">
-          <TokenGroup id="effect-intensities" title="Effect intensities">
-            <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
-              <Row k="--spotlight-intensity" v="0.4" />
-              <Row k="--magnetic-intensity" v="0.25" />
-            </div>
-          </TokenGroup>
-        </Reveal>
-        <Reveal direction="up">
-          <TokenGroup id="animations" title="Animations">
-            <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
-              <Row
-                k="--animate-accordion-down"
-                v="accordion-down 220ms ease-standard"
+            ))}
+            <div className="flex flex-col items-center gap-2">
+              <div
+                className="h-16 w-16 rounded-md bg-surface-elevated"
+                style={{ boxShadow: "var(--shadow-glow)" }}
               />
-              <Row
-                k="--animate-accordion-up"
-                v="accordion-up 220ms ease-standard"
-              />
+              <span className="font-mono text-xs text-foreground-muted">
+                glow
+              </span>
             </div>
-          </TokenGroup>
-        </Reveal>
+            <div className="flex flex-col items-center gap-2">
+              <div
+                className="h-16 w-16 rounded-md bg-surface-elevated"
+                style={{ boxShadow: "var(--shadow-glow-error)" }}
+              />
+              <span className="font-mono text-xs text-foreground-muted">
+                glow-error
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div
+                className="h-16 w-16 rounded-md bg-surface-elevated"
+                style={{ boxShadow: "var(--shadow-focus)" }}
+              />
+              <span className="font-mono text-xs text-foreground-muted">
+                focus
+              </span>
+            </div>
+            <div className="flex flex-col items-center gap-2">
+              <div
+                className="h-16 w-16 rounded-md bg-surface-elevated"
+                style={{ boxShadow: "var(--shadow-focus-error)" }}
+              />
+              <span className="font-mono text-xs text-foreground-muted">
+                focus-error
+              </span>
+            </div>
+          </div>
+        </TokenGroup>
+
+        <TokenGroup id="motion" title="Motion">
+          <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
+            <Row k="--duration-fast" v="140ms" />
+            <Row k="--duration-normal" v="220ms" />
+            <Row k="--duration-slow" v="420ms" />
+            <Row k="--ease-standard" v="cubic-bezier(.2,.8,.2,1)" />
+            <Row k="--ease-emphasized" v="cubic-bezier(.3,0,0,1)" />
+            <Row k="--ease-exit" v="cubic-bezier(.4,0,1,1)" />
+          </div>
+        </TokenGroup>
+
+        <TokenGroup id="effect-intensities" title="Effect intensities">
+          <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
+            <Row k="--spotlight-intensity" v="0.4" />
+            <Row k="--magnetic-intensity" v="0.25" />
+          </div>
+        </TokenGroup>
+
+        <TokenGroup id="animations" title="Animations">
+          <div className="grid gap-2 font-mono text-xs text-foreground-muted sm:grid-cols-2">
+            <Row
+              k="--animate-accordion-down"
+              v="accordion-down 220ms ease-standard"
+            />
+            <Row
+              k="--animate-accordion-up"
+              v="accordion-up 220ms ease-standard"
+            />
+          </div>
+        </TokenGroup>
       </div>
     </SidebarLayout>
   );

@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { SeparatorDemo } from "../../demos/separator-demo";
 import SeparatorDemoSource from "../../demos/separator-demo.tsx?highlighted";
 import SeparatorDemoRaw from "../../demos/separator-demo.tsx?raw";

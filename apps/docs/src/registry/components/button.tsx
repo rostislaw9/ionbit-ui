@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ButtonIconVariantsDemo } from "../../demos/button-icon-variants-demo";
 import ButtonIconVariantsDemoSource from "../../demos/button-icon-variants-demo.tsx?highlighted";
 import ButtonIconVariantsDemoRaw from "../../demos/button-icon-variants-demo.tsx?raw";

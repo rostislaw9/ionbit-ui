@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { CollapsibleBasicDemo } from "../../demos/collapsible-basic-demo";
 import CollapsibleBasicDemoSource from "../../demos/collapsible-basic-demo.tsx?highlighted";
 import CollapsibleBasicDemoRaw from "../../demos/collapsible-basic-demo.tsx?raw";

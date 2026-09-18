@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { AvatarBadgeDemo } from "../../demos/avatar-badge-demo";
 import AvatarBadgeDemoSource from "../../demos/avatar-badge-demo.tsx?highlighted";
 import AvatarBadgeDemoRaw from "../../demos/avatar-badge-demo.tsx?raw";

@@ -1,8 +1,9 @@
 import { forwardRef } from "react";
 import { Link } from "react-router-dom";
 
-import { Pulse } from "@ionbit-ui/motion";
 import { Button, cn } from "@ionbit-ui/ui";
+
+import { NewDot } from "../browser/NewDot";
 
 const activeClass =
   "lg:bg-accent-muted lg:text-accent lg:hover:bg-accent-muted lg:hover:text-accent";
@@ -29,15 +30,7 @@ export const SidebarLink = forwardRef<
     >
       <span className="flex items-center gap-1.5">
         {label}
-        {isNew && (
-          <Pulse>
-            <span
-              role="img"
-              aria-label="New"
-              className="size-1.5 rounded-full bg-accent"
-            />
-          </Pulse>
-        )}
+        {isNew && <NewDot />}
       </span>
     </Button>
   );

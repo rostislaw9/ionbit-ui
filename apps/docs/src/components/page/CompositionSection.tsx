@@ -1,10 +1,10 @@
-import type { CompositionBlock } from "../registry/components/types";
+import type { CompositionBlock } from "../../registry/components/types";
 
 import highlightedInline from "virtual:highlighted-inline";
 
-import { slugify } from "../lib/slugify";
-import { CodeBlockWithCopy } from "./CodeBlockWithCopy";
-import { InlineCode } from "./InlineCode";
+import { slugify } from "../../lib/slugify";
+import { CodeBlockWithCopy } from "../code/CodeBlockWithCopy";
+import { InlineCode } from "../code/InlineCode";
 import { SectionHeading } from "./SectionHeading";
 
 function isBlocks(

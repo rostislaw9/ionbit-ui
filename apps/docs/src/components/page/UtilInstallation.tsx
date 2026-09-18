@@ -1,10 +1,10 @@
 import highlightedInline from "virtual:highlighted-inline";
 
-import { PM_INSTALL_PREFIX } from "../lib/package-managers";
-import { CopyButton } from "./CopyButton";
-import { HighlightedCode } from "./HighlightedCode";
-import { InlineCode } from "./InlineCode";
-import { PmCommandBlock } from "./PmCommandBlock";
+import { PM_INSTALL_PREFIX } from "../../lib/package-managers";
+import { CopyButton } from "../code/CopyButton";
+import { HighlightedCode } from "../code/HighlightedCode";
+import { InlineCode } from "../code/InlineCode";
+import { PmCommandBlock } from "../code/PmCommandBlock";
 import { SectionHeading } from "./SectionHeading";
 
 export function UtilInstallation({

@@ -1,6 +1,6 @@
 import type { ComponentMeta } from "./types";
 
-import { InlineCode } from "../../components/InlineCode";
+import { InlineCode } from "../../components/code/InlineCode";
 import { ProgressControlledDemo } from "../../demos/progress-controlled-demo";
 import ProgressControlledDemoSource from "../../demos/progress-controlled-demo.tsx?highlighted";
 import ProgressControlledDemoRaw from "../../demos/progress-controlled-demo.tsx?raw";
