@@ -31,6 +31,7 @@ import { progressMeta } from "./progress";
 import { pulseMeta } from "./pulse";
 import { radioGroupMeta } from "./radio-group";
 import { revealMeta } from "./reveal";
+import { rippleMeta } from "./ripple";
 import { scrollAreaMeta } from "./scroll-area";
 import { selectMeta } from "./select";
 import { separatorMeta } from "./separator";
@@ -78,6 +79,7 @@ export const componentRegistry: ComponentMeta[] = [
   pulseMeta,
   radioGroupMeta,
   revealMeta,
+  rippleMeta,
   scrollAreaMeta,
   selectMeta,
   separatorMeta,

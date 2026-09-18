@@ -5,14 +5,10 @@
   "title": "Magnetic",
   "description": "Spring-based cursor attraction with reduced-motion support.",
   "dependencies": [
-    "clsx",
-    "tailwind-merge",
     "motion"
   ],
   "devDependencies": [],
-  "registryDependencies": [
-    "cn"
-  ],
+  "registryDependencies": [],
   "files": [
     {
       "path": "components/motion/magnetic.tsx",

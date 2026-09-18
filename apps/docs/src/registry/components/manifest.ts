@@ -265,6 +265,14 @@ export const componentManifest: ManifestEntry[] = [
     isNew: false,
   },
   {
+    name: "ripple",
+    label: "Ripple",
+    category: "Motion",
+    description: "Radial expanding circle on press.",
+    exampleCount: 3,
+    isNew: true,
+  },
+  {
     name: "scroll-area",
     label: "Scroll Area",
     category: "Layout",

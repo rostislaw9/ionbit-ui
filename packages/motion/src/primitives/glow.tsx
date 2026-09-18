@@ -43,6 +43,9 @@ export interface GlowProps {
  *
  * For halo variant, the wrapper automatically inherits the wrapped
  * element's border-radius — no need to pass `className` for rounding.
+ * The halo also follows press feedback: while the wrapped control is
+ * `:active`, the wrapper itself takes over its 1px press shift so the
+ * element and halo move together.
  *
  * Reduced motion: handled globally by the base CSS layer, which collapses
  * transition durations. The glow still appears (it is a state signal, not
@@ -89,17 +92,16 @@ export const Glow = forwardRef<HTMLSpanElement, GlowProps>(function Glow(
     : `0 0 ${maxBlur}px -2px color-mix(in oklab, ${glowColor} ${maxAlpha}%, transparent)`;
 
   const transitionProp = isText ? "text-shadow" : "box-shadow";
-  const transitionPropCamel = isText ? "textShadow" : "boxShadow";
 
   const wrapperStyle: CSSProperties = {
     display: "inline-flex",
-    transition: `${transitionProp} ${motionTokens.duration.fast}ms var(--ease-standard, ease-out)`,
-    ...(onHover || onFocus
-      ? isText
-        ? { ["--glow-text-shadow" as string]: shadow }
-        : { ["--glow-shadow" as string]: shadow }
-      : {}),
-    ...(always ? { [transitionPropCamel]: shadow } : {}),
+    // translate: the wrapper takes over the child's :active press shift
+    // (see styles.ts) so the halo moves with the element — animated at
+    // the same fast duration as Button's own transform transition.
+    transition: `${transitionProp} ${motionTokens.duration.fast}ms var(--ease-standard, ease-out), translate ${motionTokens.duration.fast}ms var(--ease-standard, ease-out)`,
+    ...(isText
+      ? { ["--glow-text-shadow" as string]: shadow }
+      : { ["--glow-shadow" as string]: shadow }),
     ...style,
   };
 
@@ -112,6 +114,7 @@ export const Glow = forwardRef<HTMLSpanElement, GlowProps>(function Glow(
       data-glow-variant={variant}
       data-glow-hover={onHover ? "true" : "false"}
       data-glow-focus={onFocus ? "true" : "false"}
+      data-glow-always={always ? "true" : "false"}
     >
       {children}
     </span>

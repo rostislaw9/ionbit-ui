@@ -4,15 +4,9 @@
   "type": "registry:ui",
   "title": "Spotlight",
   "description": "Pointer-following radial highlight with proximity activation.",
-  "dependencies": [
-    "clsx",
-    "tailwind-merge",
-    "motion"
-  ],
+  "dependencies": [],
   "devDependencies": [],
-  "registryDependencies": [
-    "cn"
-  ],
+  "registryDependencies": [],
   "files": [
     {
       "path": "components/motion/spotlight.tsx",

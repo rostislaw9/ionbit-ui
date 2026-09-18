@@ -16,4 +16,7 @@ export type { PulseProps } from "./primitives/pulse";
 export { Reveal } from "./primitives/reveal";
 export type { RevealProps } from "./primitives/reveal";
 
+export { Ripple } from "./primitives/ripple";
+export type { RippleProps } from "./primitives/ripple";
+
 export { useReducedMotion } from "./hooks/use-reduced-motion";

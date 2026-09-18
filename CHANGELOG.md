@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Ripple motion primitive** (`@ionbit-ui/motion`): a radial circle that
+  expands from the press point and fades out, contained to the wrapped
+  element — like the Mode Switcher's radial reveal. The ripple color
+  defaults to the wrapped element's computed text color, sampled at
+  press time, so it reads correctly on any variant without manual
+  overrides. Keyboard users get a centered ripple on Enter/Space;
+  `centered`, `color`, `intensity`, and `duration` props; disabled
+  under `prefers-reduced-motion`. Includes three docs demos (buttons,
+  centered icon button, card).
+
 ### Changed
 
 - **Dropdown Menu migrated from Radix UI to Base UI** (`@base-ui/react/menu`).
@@ -31,6 +43,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   values. Height animation driven by `--accordion-panel-height`.
   Note: keyboard navigation follows the updated APG model — each trigger
   is a tab stop; Arrow/Home/End no longer move focus between triggers.
+
+### Fixed
+
+- **Glow halo follows press feedback.** When the wrapped control shifts
+  down on `:active` (e.g. Button's `translate-y-px`), the Glow wrapper
+  takes over the 1px shift so the element and halo move together —
+  previously the halo stayed behind and a gap opened at the top edge.
+- **Motion styles refresh after HMR.** `ensureMotionStyles` now updates
+  the injected `<style>` content when it is stale instead of keeping
+  outdated rules for the session.
+- **Motion registry items declare only real dependencies.** `ripple`,
+  `glow`, `pulse`, `spotlight`, and `reveal` no longer install
+  `clsx`/`tailwind-merge`/`motion` or fetch `cn` unnecessarily;
+  `magnetic` keeps only `motion`.
 
 ## [0.1.16] — 2026-09-17
 

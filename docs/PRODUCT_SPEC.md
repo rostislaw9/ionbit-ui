@@ -149,6 +149,7 @@ primitives:
 - Magnetic
 - Pulse
 - Reveal
+- Ripple
 
 ---
 

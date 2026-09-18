@@ -41,7 +41,7 @@ RadioGroup, ScrollArea, Select, Separator, Sheet, Skeleton, Slider,
 Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle, ToggleGroup,
 Tooltip.
 
-**Motion (5):** Glow, Pulse, Spotlight, Magnetic, Reveal.
+**Motion (6):** Glow, Pulse, Spotlight, Magnetic, Reveal, Ripple.
 
 ## Quick start
 
@@ -62,7 +62,7 @@ dependencies, and tells you which npm packages to install.
 ## Motion primitives
 
 ```tsx
-import { Spotlight, Glow, Magnetic, Pulse, Reveal } from "@/components/motion";
+import { Spotlight, Glow, Magnetic, Pulse, Reveal, Ripple } from "@/components/motion";
 
 // Spotlight — cursor-following radial light on hover
 <Spotlight>
@@ -78,6 +78,11 @@ import { Spotlight, Glow, Magnetic, Pulse, Reveal } from "@/components/motion";
 <Magnetic>
   <Button>Click me</Button>
 </Magnetic>
+
+// Ripple — radial circle expands from the press point
+<Ripple>
+  <Button>Press</Button>
+</Ripple>
 ```
 
 All motion primitives respect `prefers-reduced-motion` automatically.

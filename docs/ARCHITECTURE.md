@@ -185,8 +185,8 @@ runtime, no bundle cost.
 ### 4.2 `@ionbit-ui/motion`
 
 **Purpose:** Reusable motion primitives (`Glow`, `Spotlight`,
-`Magnetic`, `Pulse`, `Reveal`) plus shared motion tokens (timing,
-easing, intensity) and reduced-motion utilities.
+`Magnetic`, `Pulse`, `Reveal`, `Ripple`) plus shared motion tokens
+(timing, easing, intensity) and reduced-motion utilities.
 
 **Contents:**
 
@@ -429,6 +429,7 @@ libraries and matches AGENTS §8.
 | Glow (focus/hover halo)                      | CSS                        | `box-shadow` transitions; no JS                                                              |
 | Pulse (status/activity)                      | CSS keyframes              | Infinite animation only when explicitly enabled; disabled under reduced motion               |
 | Reveal (in-view entrance)                    | Motion or CSS              | CSS `@keyframes` + `animation-timeline: view()` where supported, Motion fallback otherwise   |
+| Ripple (press radial expansion)              | CSS keyframes + light JS   | Span spawned at press point animates via shared keyframes; removed on `animationend`         |
 
 **Rule: one owner per animated property.** If Motion animates
 `transform`, no Tailwind `hover:scale-*` class touches `transform` on
@@ -497,6 +498,7 @@ Example (illustrative, not final):
 | Magnetic  | Disabled. Element does not move. Click target unchanged.  |
 | Pulse     | Disabled. Status indicated by color/shape only.           |
 | Reveal    | Replaced by instant appearance (opacity 1, no transform). |
+| Ripple    | Disabled. Press feedback remains unchanged.               |
 
 ### 7.5 Performance rules
 

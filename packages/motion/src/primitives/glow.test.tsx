@@ -43,24 +43,34 @@ describe("Glow", () => {
     expect(wrapper?.style.transition).toContain("text-shadow");
   });
 
-  it("applies inline shadow when always is true", () => {
+  it("marks the wrapper as always-on when always is true", () => {
     const { container } = render(
       <Glow always intensity={0.6}>
         <button>Active</button>
       </Glow>,
     );
     const wrapper = container.querySelector("span");
-    expect(wrapper?.style.boxShadow).not.toBe("");
+    expect(wrapper?.getAttribute("data-glow-always")).toBe("true");
   });
 
-  it("does not apply inline shadow when always is false", () => {
+  it("does not mark the wrapper as always-on by default", () => {
     const { container } = render(
       <Glow intensity={0.6}>
         <button>Active</button>
       </Glow>,
     );
     const wrapper = container.querySelector("span");
-    expect(wrapper?.style.boxShadow).toBe("");
+    expect(wrapper?.getAttribute("data-glow-always")).toBe("false");
+  });
+
+  it("transitions translate so the halo follows press feedback", () => {
+    const { container } = render(
+      <Glow intensity={0.6}>
+        <button>Active</button>
+      </Glow>,
+    );
+    const wrapper = container.querySelector("span");
+    expect(wrapper?.style.transition).toContain("translate");
   });
 
   it("wrapped element remains keyboard focusable", async () => {
