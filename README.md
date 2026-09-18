@@ -123,7 +123,7 @@ npx ionbit-ui@latest theme nord --overwrite
 
 The command writes `styles/theme.css` and adds the import to your
 configured global CSS file. Browse and customize themes live in the
-[docs theme editor](https://ionbit-ui.vercel.app/themes), then copy
+[docs theme editor](https://ionbit-ui-docs.onrender.com/themes), then copy
 the generated CLI command or CSS output.
 
 ## Requirements
