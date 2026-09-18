@@ -173,10 +173,10 @@ Ionbit UI stands on the shoulders of several excellent projects:
 
 - [shadcn/ui](https://ui.shadcn.com) — the source-ownership model and
   component composition patterns that inspired this project.
-- [Radix UI](https://www.radix-ui.com) — the headless, accessible
-  primitives that power most of the overlay and form components.
 - [Base UI](https://base-ui.com) — the unstyled React components from
-  the MUI team that power `Combobox`, `Toast`, and several other
+  the MUI team that power most of our interactive primitives.
+- [Radix UI](https://www.radix-ui.com) — the headless, accessible
+  primitives that still power the remaining overlay and form
   components.
 - [cmdk](https://cmdk.paco.me) — the command menu primitive behind
   `Command`.

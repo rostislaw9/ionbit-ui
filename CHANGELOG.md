@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Dropdown Menu migrated from Radix UI to Base UI** (`@base-ui/react/menu`).
+  `asChild` replaced by the `render` prop; added `DropdownMenuPortal`,
+  `DropdownMenuSub`/`SubTrigger`/`SubContent`, `DropdownMenuCheckboxItem`,
+  `DropdownMenuRadioGroup`/`RadioItem`, `DropdownMenuShortcut`, an
+  `inset` prop, and a `destructive` item variant. Positioner props
+  (`side`, `sideOffset`, `align`, `alignOffset`) are flattened onto
+  `DropdownMenuContent`. Menu items no longer wrap — popups grow to fit
+  content instead. Removed the `@radix-ui/react-dropdown-menu`
+  dependency. Expanded docs to 12 demos; API tables now show only
+  custom props and defer native props to the Base UI reference.
+- **Button Group:** positional selectors now ignore floating-ui's
+  injected focus sentinels, fixing rounded corners on open dropdown
+  triggers inside groups.
+- **Test setup:** `requestAnimationFrame`/`cancelAnimationFrame`
+  polyfills added for jsdom so Base UI's deferred open-state updates
+  run in tests.
 - **Accordion migrated from Radix UI to Base UI** (`@base-ui/react/accordion`).
   `type="single"`/`collapsible` replaced by Base UI's `multiple` prop;
   `value`, `defaultValue`, and `onValueChange` now use arrays of item

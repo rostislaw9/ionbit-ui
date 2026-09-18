@@ -2,6 +2,7 @@ import { Pencil } from "lucide-react";
 import { memo, useCallback, useEffect, useMemo, useState } from "react";
 
 import {
+  Button,
   Input,
   Label,
   Popover,
@@ -78,7 +79,7 @@ function ColorFieldImpl({
         {/* Swatch — opens the native color picker directly */}
         {editable ? (
           <label
-            className="relative size-5 shrink-0 cursor-pointer rounded-[var(--radius-sm)] ring-1 ring-foreground/20 transition-shadow ring-inset focus-within:shadow-focus focus-within:outline-none hover:shadow-sm"
+            className="relative size-6 shrink-0 cursor-pointer rounded-[var(--radius-sm)] border-accent ring-1 ring-foreground/20 transition-shadow ring-inset focus-within:shadow-focus focus-within:outline-none hover:border hover:shadow-sm"
             style={{ backgroundColor: value }}
           >
             <input
@@ -91,7 +92,7 @@ function ColorFieldImpl({
           </label>
         ) : (
           <span
-            className="size-5 shrink-0 rounded-[var(--radius-sm)] ring-1 ring-foreground/20 ring-inset"
+            className="size-6 shrink-0 rounded-[var(--radius-sm)] ring-1 ring-foreground/20 ring-inset"
             style={{ backgroundColor: value }}
             aria-label={`${label}: calculated`}
           />
@@ -100,13 +101,13 @@ function ColorFieldImpl({
           /* Value editor — icon button opens a popover with the text input */
           <Popover>
             <PopoverTrigger asChild>
-              <button
-                type="button"
-                className="flex size-5 shrink-0 items-center justify-center rounded-[var(--radius-sm)] border border-border text-foreground-subtle transition-colors hover:border-border-strong hover:text-foreground focus-visible:shadow-focus focus-visible:outline-none"
+              <Button
+                variant="outline"
+                size="icon-xs"
                 aria-label={`Edit ${label} value`}
               >
-                <Pencil className="size-3" />
-              </button>
+                <Pencil />
+              </Button>
             </PopoverTrigger>
             <PopoverContent align="end" className="w-auto p-6">
               <Input

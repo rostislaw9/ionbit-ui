@@ -119,7 +119,7 @@ export function componentToMarkdown(comp: ComponentMeta): string {
       lines.push("");
       lines.push(`${prim.description}`);
       lines.push("");
-      if (prim.props.length > 0) {
+      if (prim.props && prim.props.length > 0) {
         lines.push("| Prop | Type | Default | Description |");
         lines.push("| --- | --- | --- | --- |");
         for (const prop of prim.props) {

@@ -5,6 +5,7 @@ import { describe, expect, it } from "vitest";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -15,9 +16,7 @@ describe("DropdownMenu", () => {
   it("renders the trigger", () => {
     render(
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button>Open menu</button>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Item one</DropdownMenuItem>
         </DropdownMenuContent>
@@ -29,9 +28,7 @@ describe("DropdownMenu", () => {
   it("does not show menu items initially", () => {
     render(
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button>Open menu</button>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Item one</DropdownMenuItem>
         </DropdownMenuContent>
@@ -44,36 +41,34 @@ describe("DropdownMenu", () => {
     const user = userEvent.setup();
     render(
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button>Open menu</button>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Item one</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>,
     );
     await user.click(screen.getByText("Open menu"));
-    expect(screen.getByText("Item one")).toBeInTheDocument();
+    expect(await screen.findByText("Item one")).toBeInTheDocument();
   });
 
   it("shows all menu items when open", async () => {
     const user = userEvent.setup();
     render(
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button>Open menu</button>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>Actions</DropdownMenuLabel>
-          <DropdownMenuItem>Item one</DropdownMenuItem>
-          <DropdownMenuItem>Item two</DropdownMenuItem>
+          <DropdownMenuGroup>
+            <DropdownMenuLabel>Actions</DropdownMenuLabel>
+            <DropdownMenuItem>Item one</DropdownMenuItem>
+            <DropdownMenuItem>Item two</DropdownMenuItem>
+          </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem>Item three</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>,
     );
     await user.click(screen.getByText("Open menu"));
-    expect(screen.getByText("Actions")).toBeInTheDocument();
+    expect(await screen.findByText("Actions")).toBeInTheDocument();
     expect(screen.getByText("Item one")).toBeInTheDocument();
     expect(screen.getByText("Item two")).toBeInTheDocument();
     expect(screen.getByText("Item three")).toBeInTheDocument();
@@ -83,16 +78,14 @@ describe("DropdownMenu", () => {
     const user = userEvent.setup();
     render(
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button>Open menu</button>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Item one</DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>,
     );
     await user.click(screen.getByText("Open menu"));
-    expect(screen.getByText("Item one")).toBeInTheDocument();
+    expect(await screen.findByText("Item one")).toBeInTheDocument();
     await user.keyboard("{Escape}");
     expect(screen.queryByText("Item one")).not.toBeInTheDocument();
   });
@@ -100,9 +93,7 @@ describe("DropdownMenu", () => {
   it("trigger has aria-haspopup", () => {
     render(
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <button>Open menu</button>
-        </DropdownMenuTrigger>
+        <DropdownMenuTrigger>Open menu</DropdownMenuTrigger>
         <DropdownMenuContent>
           <DropdownMenuItem>Item one</DropdownMenuItem>
         </DropdownMenuContent>

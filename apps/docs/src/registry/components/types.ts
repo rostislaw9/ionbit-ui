@@ -37,7 +37,8 @@ export interface PropMeta {
 export interface PrimitiveMeta {
   name: string;
   description: string;
-  props: PropMeta[];
+  /** Custom props added by the component. Native primitive props are documented in the apiReference link instead. */
+  props?: PropMeta[];
   /** Optional content rendered after the code block (e.g. notes, bullet lists). */
   after?: ReactNode;
   /** Optional code example shown in a code block. */

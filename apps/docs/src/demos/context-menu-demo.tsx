@@ -26,7 +26,7 @@ export function ContextMenuDemo() {
           Long press here
         </span>
       </ContextMenuTrigger>
-      <ContextMenuContent className="w-48">
+      <ContextMenuContent className="min-w-48">
         <ContextMenuGroup>
           <ContextMenuItem>
             Back
@@ -42,7 +42,7 @@ export function ContextMenuDemo() {
           </ContextMenuItem>
           <ContextMenuSub>
             <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>
-            <ContextMenuSubContent className="w-44">
+            <ContextMenuSubContent className="min-w-44">
               <ContextMenuGroup>
                 <ContextMenuItem>Save Page...</ContextMenuItem>
                 <ContextMenuItem>Create Shortcut...</ContextMenuItem>

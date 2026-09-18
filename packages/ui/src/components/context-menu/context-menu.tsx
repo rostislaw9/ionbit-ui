@@ -135,7 +135,7 @@ export function ContextMenuItem({
       data-inset={inset}
       data-variant={variant}
       className={cn(
-        "group/context-menu-item relative flex cursor-default items-center gap-1.5 rounded-sm px-2 py-1.5 text-sm text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 data-inset:ps-7 data-[variant=destructive]:text-error data-[variant=destructive]:focus:bg-error-muted data-[variant=destructive]:focus:text-error [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 focus:*:[svg]:text-foreground data-[variant=destructive]:*:[svg]:text-error",
+        "group/context-menu-item relative flex cursor-default items-center gap-1.5 rounded-sm px-2 py-1.5 text-sm whitespace-nowrap text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 data-inset:ps-7 data-[variant=destructive]:text-error data-[variant=destructive]:focus:bg-error-muted data-[variant=destructive]:focus:text-error [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4 focus:*:[svg]:text-foreground data-[variant=destructive]:*:[svg]:text-error",
         className,
       )}
       {...props}
@@ -161,7 +161,7 @@ export function ContextMenuSubTrigger({
       data-slot="context-menu-sub-trigger"
       data-inset={inset}
       className={cn(
-        "flex cursor-default items-center gap-1.5 rounded-sm px-2 py-1.5 text-sm text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-inset:ps-7 data-popup-open:bg-surface-hover data-popup-open:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "flex cursor-default items-center gap-1.5 rounded-sm px-2 py-1.5 text-sm whitespace-nowrap text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-inset:ps-7 data-popup-open:bg-surface-hover data-popup-open:text-foreground [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -211,7 +211,7 @@ export function ContextMenuCheckboxItem({
       data-slot="context-menu-checkbox-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center gap-1.5 rounded-sm py-1.5 ps-2 pe-8 text-sm text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 data-inset:ps-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-default items-center gap-1.5 rounded-sm py-1.5 ps-2 pe-8 text-sm whitespace-nowrap text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 data-inset:ps-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -244,7 +244,7 @@ export function ContextMenuRadioItem({
       data-slot="context-menu-radio-item"
       data-inset={inset}
       className={cn(
-        "relative flex cursor-default items-center gap-1.5 rounded-sm py-1.5 ps-2 pe-8 text-sm text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 data-inset:ps-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
+        "relative flex cursor-default items-center gap-1.5 rounded-sm py-1.5 ps-2 pe-8 text-sm whitespace-nowrap text-foreground-muted outline-hidden transition-colors select-none focus:bg-surface-hover focus:text-foreground data-disabled:pointer-events-none data-disabled:opacity-40 data-inset:ps-7 [&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg:not([class*='size-'])]:size-4",
         className,
       )}
       {...props}
@@ -276,7 +276,7 @@ export function ContextMenuLabel({
       data-slot="context-menu-label"
       data-inset={inset}
       className={cn(
-        "px-2 py-1.5 text-xs font-semibold tracking-wider text-foreground-subtle uppercase data-inset:ps-7",
+        "px-2 py-1.5 text-xs font-semibold tracking-wider whitespace-nowrap text-foreground-subtle uppercase data-inset:ps-7",
         className,
       )}
       {...props}

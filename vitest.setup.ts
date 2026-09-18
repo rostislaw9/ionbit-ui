@@ -27,6 +27,13 @@ if (typeof Element !== "undefined" && !Element.prototype.scrollIntoView) {
   Element.prototype.scrollIntoView = () => {};
 }
 
+// Base UI defers popup opening to requestAnimationFrame which jsdom doesn't implement.
+if (typeof globalThis.requestAnimationFrame === "undefined") {
+  globalThis.requestAnimationFrame = (cb: FrameRequestCallback) =>
+    setTimeout(() => cb(Date.now()), 0) as unknown as number;
+  globalThis.cancelAnimationFrame = (id: number) => clearTimeout(id);
+}
+
 // Base UI uses PointerEvent which jsdom doesn't implement.
 if (typeof globalThis.PointerEvent === "undefined") {
   globalThis.PointerEvent = class PointerEvent extends MouseEvent {

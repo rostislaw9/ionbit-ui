@@ -22,25 +22,25 @@ export const buttonGroupVariants = cva(
         variant: "overlapped",
         orientation: "horizontal",
         className:
-          "[&>*:not(:first-child)]:-ms-px [&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child):not(:hover)]:border-s-border-strong/50 [&>*:hover+*]:border-s-border-strong! [&>*:not(:last-child)]:rounded-e-none [&>*:not(:last-child):not(:hover)]:border-e-border-strong/50 [&>*:not(:last-child):has(+ *:hover)]:border-e-border-strong!",
+          "[&>*:is([data-slot],input)~*]:-ms-px [&>*:is([data-slot],input)~*]:rounded-s-none [&>*:is([data-slot],input)~*:not(:hover)]:border-s-border-strong/50 [&>*:hover~*:not(*:hover~*:is([data-slot],input)~*)]:border-s-border-strong! [&>*:has(~*:is([data-slot],input))]:rounded-e-none [&>*:has(~*:is([data-slot],input)):not(:hover)]:border-e-border-strong/50 [&>*:has(~*:hover):not(:has(~*:is([data-slot],input)~*:hover))]:border-e-border-strong!",
       },
       {
         variant: "overlapped",
         orientation: "vertical",
         className:
-          "[&>*:not(:first-child)]:-mt-px [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child):not(:hover)]:border-t-border-strong/50 [&>*:hover+*]:border-t-border-strong! [&>*:not(:last-child)]:rounded-b-none [&>*:not(:last-child):not(:hover)]:border-b-border-strong/50 [&>*:not(:last-child):has(+ *:hover)]:border-b-border-strong!",
+          "[&>*:is([data-slot],input)~*]:-mt-px [&>*:is([data-slot],input)~*]:rounded-t-none [&>*:is([data-slot],input)~*:not(:hover)]:border-t-border-strong/50 [&>*:hover~*:not(*:hover~*:is([data-slot],input)~*)]:border-t-border-strong! [&>*:has(~*:is([data-slot],input))]:rounded-b-none [&>*:has(~*:is([data-slot],input)):not(:hover)]:border-b-border-strong/50 [&>*:has(~*:hover):not(:has(~*:is([data-slot],input)~*:hover))]:border-b-border-strong!",
       },
       {
         variant: "separated",
         orientation: "horizontal",
         className:
-          "[&>*:not(:first-child)]:rounded-s-none [&>*:not(:first-child)]:border-s-0 [&>*:not(:last-child)]:rounded-e-none [&>*:hover]:border-border-strong!",
+          "[&>*:is([data-slot],input)~*]:rounded-s-none [&>*:is([data-slot],input)~*]:border-s-0 [&>*:has(~*:is([data-slot],input))]:rounded-e-none [&>*:hover]:border-border-strong!",
       },
       {
         variant: "separated",
         orientation: "vertical",
         className:
-          "[&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none [&>*:hover]:border-border-strong!",
+          "[&>*:is([data-slot],input)~*]:rounded-t-none [&>*:is([data-slot],input)~*]:border-t-0 [&>*:has(~*:is([data-slot],input))]:rounded-b-none [&>*:hover]:border-border-strong!",
       },
     ],
     defaultVariants: {

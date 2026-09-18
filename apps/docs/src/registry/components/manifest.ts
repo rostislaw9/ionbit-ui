@@ -149,7 +149,7 @@ export const componentManifest: ManifestEntry[] = [
     label: "Dropdown Menu",
     category: "Overlay",
     description: "Button-triggered action menu.",
-    exampleCount: 1,
+    exampleCount: 12,
     isNew: false,
   },
   {

@@ -24,7 +24,7 @@ export function AvatarGroupIconDemo() {
         <AvatarFallback>SC</AvatarFallback>
       </Avatar>
       <AvatarGroupCount>
-        <Plus className="size-4" />
+        <Plus />
       </AvatarGroupCount>
     </AvatarGroup>
   );

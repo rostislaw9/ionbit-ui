@@ -723,15 +723,17 @@ repository.
 
 ### 15.1 Headless base
 
-Complex interactive components (Dialog, Popover, Tooltip, Select,
-Tabs, Dropdown Menu, Checkbox, Switch, Slider) wrap Radix Primitives.
-We do not reimplement focus trapping, ARIA roles, or keyboard
-navigation.
+Complex interactive components wrap headless primitives — most now use
+Base UI, with the rest still on Radix Primitives (Dialog, Popover,
+Select, Tabs, Slider, and a few others; see
+`docs/MIGRATION_TRACKER.md`). We do not reimplement focus trapping,
+ARIA roles, or keyboard navigation.
 
 ### 15.2 What Ionbit UI owns
 
 - **Focus-visible treatment:** a consistent, token-driven focus ring
-  across all components, layered on top of Radix's focus management.
+  across all components, layered on top of the primitives' focus
+  management.
 - **Reduced-motion:** the global base CSS disables animations under
   `prefers-reduced-motion: reduce`; motion primitives self-disable.
 - **Disabled and loading states:** consistent visual + ARIA treatment

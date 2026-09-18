@@ -50,27 +50,33 @@ export function ButtonGroupDemo() {
           Reply
         </Button>
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="secondary" size="icon" aria-label="More options">
-              <MoreHorizontal />
-            </Button>
+          <DropdownMenuTrigger
+            render={
+              <Button
+                variant="secondary"
+                size="icon"
+                aria-label="More options"
+              />
+            }
+          >
+            <MoreHorizontal />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>
-              <Forward className="size-4" />
+              <Forward />
               Forward
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Printer className="size-4" />
+              <Printer />
               Print
             </DropdownMenuItem>
             <DropdownMenuItem>
-              <Save className="size-4" />
+              <Save />
               Save as PDF
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem className="text-error hover:bg-error-muted! hover:text-error! focus:bg-error-muted! focus:text-error!">
-              <Trash2 className="size-4" />
+              <Trash2 />
               Delete forever
             </DropdownMenuItem>
           </DropdownMenuContent>

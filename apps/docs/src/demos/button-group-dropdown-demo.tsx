@@ -15,10 +15,16 @@ export function ButtonGroupDropdownDemo() {
     <ButtonGroup>
       <Button variant="secondary">Publish</Button>
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button variant="secondary" size="icon" aria-label="Publish options">
-            <ChevronDown />
-          </Button>
+        <DropdownMenuTrigger
+          render={
+            <Button
+              variant="secondary"
+              size="icon"
+              aria-label="Publish options"
+            />
+          }
+        >
+          <ChevronDown />
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-44">
           <DropdownMenuItem>Schedule for later</DropdownMenuItem>
@@ -26,7 +32,7 @@ export function ButtonGroupDropdownDemo() {
           <DropdownMenuItem>Share link</DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem className="text-error hover:bg-error-muted! hover:text-error! focus:bg-error-muted! focus:text-error!">
-            <Trash2 className="size-4" />
+            <Trash2 />
             Discard post
           </DropdownMenuItem>
         </DropdownMenuContent>

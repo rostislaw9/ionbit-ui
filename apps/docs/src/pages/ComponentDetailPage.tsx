@@ -372,7 +372,9 @@ export function ComponentDetailPage() {
                     <p className="text-sm text-foreground-muted">
                       {primitive.description}
                     </p>
-                    <ApiTable props={primitive.props} />
+                    {primitive.props && primitive.props.length > 0 && (
+                      <ApiTable props={primitive.props} />
+                    )}
                     {highlighted && (
                       <CodeBlockWithCopy
                         rawCode={highlighted.rawCode!}

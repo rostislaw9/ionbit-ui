@@ -1,31 +1,39 @@
+import { Pencil, Share2, Trash2 } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-export function DropdownMenuBasicDemo() {
+export function DropdownMenuDestructiveDemo() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger render={<Button variant="secondary" />}>
-        Open Menu
+        Actions
       </DropdownMenuTrigger>
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          <DropdownMenuLabel>My Workspace</DropdownMenuLabel>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
-          <DropdownMenuItem>Billing</DropdownMenuItem>
-          <DropdownMenuItem>Settings</DropdownMenuItem>
+          <DropdownMenuItem>
+            <Pencil />
+            Edit
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <Share2 />
+            Share
+          </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>Documentation</DropdownMenuItem>
-        <DropdownMenuItem>Support</DropdownMenuItem>
-        <DropdownMenuItem disabled>API access</DropdownMenuItem>
+        <DropdownMenuGroup>
+          <DropdownMenuItem variant="destructive">
+            <Trash2 />
+            Delete project
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
       </DropdownMenuContent>
     </DropdownMenu>
   );

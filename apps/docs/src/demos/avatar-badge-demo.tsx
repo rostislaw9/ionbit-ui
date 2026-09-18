@@ -16,7 +16,7 @@ export function AvatarBadgeDemo() {
         className="flex size-3 items-center justify-center bg-foreground text-background"
         aria-label="Add member"
       >
-        <Plus className="size-2" />
+        <Plus />
       </AvatarBadge>
     </Avatar>
   );
