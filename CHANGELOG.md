@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Accordion migrated from Radix UI to Base UI** (`@base-ui/react/accordion`).
+  `type="single"`/`collapsible` replaced by Base UI's `multiple` prop;
+  `value`, `defaultValue`, and `onValueChange` now use arrays of item
+  values. Height animation driven by `--accordion-panel-height`.
+  Note: keyboard navigation follows the updated APG model — each trigger
+  is a tab stop; Arrow/Home/End no longer move focus between triggers.
+
 ## [0.1.16] — 2026-09-17
 
 ### Changed

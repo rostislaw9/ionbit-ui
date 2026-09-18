@@ -13,7 +13,7 @@ export const componentManifest: ManifestEntry[] = [
     label: "Accordion",
     category: "Layout",
     description: "Collapsible content sections.",
-    exampleCount: 1,
+    exampleCount: 6,
     isNew: false,
   },
   {

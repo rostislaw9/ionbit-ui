@@ -4,35 +4,35 @@ Last updated: 2026-09-15
 
 ## Status
 
-- **Migrated to Base UI:** 16 components
-- **Still on Radix:** 13 components
+- **Migrated to Base UI:** 17 components
+- **Still on Radix:** 12 components
 - **No Base UI equivalent:** 4 components
 
 ## Migrated to Base UI
 
-| Component    | Package                       | Notes                                                |
-| ------------ | ----------------------------- | ---------------------------------------------------- |
-| avatar       | `@base-ui/react/avatar`       |                                                      |
-| button       | `@base-ui/react/button`       | `asChild` → `render` prop                            |
-| button-group | `@base-ui/react/use-render`   | `ButtonGroupText` uses `useRender` for `render` prop |
-| checkbox     | `@base-ui/react/checkbox`     |                                                      |
-| collapsible  | `@base-ui/react/collapsible`  |                                                      |
-| combobox     | `@base-ui/react/combobox`     |                                                      |
-| context-menu | `@base-ui/react/context-menu` | Migrated from `@radix-ui/react-context-menu`         |
-| progress     | `@base-ui/react/progress`     |                                                      |
-| radio-group  | `@base-ui/react/radio-group`  |                                                      |
-| separator    | `@base-ui/react/separator`    |                                                      |
-| switch       | `@base-ui/react/switch`       |                                                      |
-| toast        | `@base-ui/react/toast`        | Migrated from Sonner                                 |
-| toggle       | `@base-ui/react/toggle`       | Migrated from `@radix-ui/react-toggle`               |
-| toggle-group | `@base-ui/react/toggle-group` | Migrated from `@radix-ui/react-toggle-group`         |
-| tooltip      | `@base-ui/react/tooltip`      |                                                      |
+| Component    | Package                       | Notes                                                      |
+| ------------ | ----------------------------- | ---------------------------------------------------------- |
+| accordion    | `@base-ui/react/accordion`    | `type`/`collapsible` → `multiple`; `value` is now an array |
+| avatar       | `@base-ui/react/avatar`       |                                                            |
+| button       | `@base-ui/react/button`       | `asChild` → `render` prop                                  |
+| button-group | `@base-ui/react/use-render`   | `ButtonGroupText` uses `useRender` for `render` prop       |
+| checkbox     | `@base-ui/react/checkbox`     |                                                            |
+| collapsible  | `@base-ui/react/collapsible`  |                                                            |
+| combobox     | `@base-ui/react/combobox`     |                                                            |
+| context-menu | `@base-ui/react/context-menu` | Migrated from `@radix-ui/react-context-menu`               |
+| progress     | `@base-ui/react/progress`     |                                                            |
+| radio-group  | `@base-ui/react/radio-group`  |                                                            |
+| separator    | `@base-ui/react/separator`    |                                                            |
+| switch       | `@base-ui/react/switch`       |                                                            |
+| toast        | `@base-ui/react/toast`        | Migrated from Sonner                                       |
+| toggle       | `@base-ui/react/toggle`       | Migrated from `@radix-ui/react-toggle`                     |
+| toggle-group | `@base-ui/react/toggle-group` | Migrated from `@radix-ui/react-toggle-group`               |
+| tooltip      | `@base-ui/react/tooltip`      |                                                            |
 
 ## Still on Radix — Base UI equivalent available
 
 | Component    | Radix package                  | Base UI package               | Priority | Notes                    |
 | ------------ | ------------------------------ | ----------------------------- | -------- | ------------------------ |
-| accordion    | `@radix-ui/react-accordion`    | `@base-ui/react/accordion`    | Medium   | Self-contained, low risk |
 | alert-dialog | `@radix-ui/react-alert-dialog` | `@base-ui/react/alert-dialog` | Medium   | Used widely              |
 | dialog       | `@radix-ui/react-dialog`       | `@base-ui/react/dialog`       | Medium   | Used widely              |
 | popover      | `@radix-ui/react-popover`      | `@base-ui/react/popover`      | Medium   | Used by other components |
@@ -64,17 +64,16 @@ established pattern: `useRender` hook for non-primitive elements).
 ## Suggested migration order
 
 1. **dropdown-menu** — reuses `@base-ui/react/menu` primitives (same patterns as context-menu migration)
-2. **accordion** — self-contained, low risk
-3. **tabs** — self-contained, low risk
-4. **slider** — medium complexity
-5. **dialog / alert-dialog** — used widely, higher impact
-6. **select** — higher complexity
-7. **popover** — used by other components
-8. **scroll-area** — low priority, works fine on Radix
-9. **badge / breadcrumb** — only uses `Slot`, follow the `useRender` pattern from `ButtonGroupText`
-10. **sheet** — needs `dialog` → `drawer` refactor
-11. **hover-card** — no Base UI equivalent, keep on Radix
-12. **label** — no Base UI equivalent, keep on Radix or use native `<label>`
+2. **tabs** — self-contained, low risk
+3. **slider** — medium complexity
+4. **dialog / alert-dialog** — used widely, higher impact
+5. **select** — higher complexity
+6. **popover** — used by other components
+7. **scroll-area** — low priority, works fine on Radix
+8. **badge / breadcrumb** — only uses `Slot`, follow the `useRender` pattern from `ButtonGroupText`
+9. **sheet** — needs `dialog` → `drawer` refactor
+10. **hover-card** — no Base UI equivalent, keep on Radix
+11. **label** — no Base UI equivalent, keep on Radix or use native `<label>`
 
 ## Notes
 
@@ -85,5 +84,11 @@ established pattern: `useRender` hook for non-primitive elements).
   element (e.g. a link), pass `nativeButton={false}`.
 - Base UI's `menu` primitives are shared between context-menu, dropdown-menu,
   and menubar. Migrating context-menu first (done) established the patterns.
+- Accordion: Radix's `type="single"`/`collapsible` and string `value` became
+  Base UI's array `value`/`defaultValue` plus `multiple`. Base UI has no
+  `collapsible` prop — an open item can always be closed. Height animation
+  uses `--accordion-panel-height` (was `--radix-accordion-content-height`).
+  Roving focus was removed upstream per the APG guidance update — triggers
+  are individual tab stops; Arrow/Home/End no longer move focus.
 - Base UI's `drawer` is a slide-in panel, not a direct replacement for
   Radix's `dialog`-based sheet. The sheet component needs a larger refactor.

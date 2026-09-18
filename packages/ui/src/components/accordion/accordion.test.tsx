@@ -12,7 +12,7 @@ import {
 describe("Accordion", () => {
   it("renders with items", () => {
     render(
-      <Accordion defaultValue="item-1">
+      <Accordion defaultValue={["item-1"]}>
         <AccordionItem value="item-1">
           <AccordionTrigger>First</AccordionTrigger>
           <AccordionContent>Content one</AccordionContent>
@@ -49,14 +49,14 @@ describe("Accordion", () => {
 
   it("has appropriate accessibility roles", () => {
     render(
-      <Accordion defaultValue="item-1">
+      <Accordion defaultValue={["item-1"]}>
         <AccordionItem value="item-1">
           <AccordionTrigger>First</AccordionTrigger>
           <AccordionContent>Content one</AccordionContent>
         </AccordionItem>
       </Accordion>,
     );
-    // Radix exposes triggers as buttons and content as region.
+    // Base UI exposes triggers as buttons and content as region.
     expect(screen.getByRole("button", { name: "First" })).toBeInTheDocument();
     expect(screen.getByRole("region")).toBeInTheDocument();
   });

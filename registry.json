@@ -435,7 +435,7 @@
       "title": "Accordion",
       "description": "Collapsible sections with animated expand/collapse and rotating chevron indicators.",
       "dependencies": [
-        "@radix-ui/react-accordion",
+        "@base-ui/react",
         "clsx",
         "tailwind-merge",
         "lucide-react"

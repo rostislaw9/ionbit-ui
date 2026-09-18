@@ -298,7 +298,7 @@
   --ease-emphasized: var(--ease-emphasized);
   --ease-exit: var(--ease-exit);
 
-  /* Accordion expand/collapse — syncs with Radix's --radix-accordion-content-height */
+  /* Accordion expand/collapse — syncs with Base UI's --accordion-panel-height */
   --animate-accordion-down: accordion-down var(--duration-normal)
     var(--ease-standard);
   --animate-accordion-up: accordion-up var(--duration-normal)
@@ -309,13 +309,13 @@
       height: 0;
     }
     to {
-      height: var(--radix-accordion-content-height);
+      height: var(--accordion-panel-height);
     }
   }
 
   @keyframes accordion-up {
     from {
-      height: var(--radix-accordion-content-height);
+      height: var(--accordion-panel-height);
     }
     to {
       height: 0;
