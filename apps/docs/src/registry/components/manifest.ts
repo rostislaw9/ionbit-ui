@@ -416,6 +416,14 @@ export const componentManifest: ManifestEntry[] = [
     exampleCount: 1,
     isNew: false,
   },
+  {
+    name: "trace",
+    label: "Trace",
+    category: "Motion",
+    description: "Accent beam along element's border.",
+    exampleCount: 2,
+    isNew: true,
+  },
 ];
 
 export const componentCategories: ComponentCategory[] = [

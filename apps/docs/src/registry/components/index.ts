@@ -48,6 +48,7 @@ import { textareaMeta } from "./textarea";
 import { tiltMeta } from "./tilt";
 import { toastMeta } from "./toast";
 import { tooltipMeta } from "./tooltip";
+import { traceMeta } from "./trace";
 
 export const componentRegistry: ComponentMeta[] = [
   accordionMeta,
@@ -98,6 +99,7 @@ export const componentRegistry: ComponentMeta[] = [
   tiltMeta,
   toastMeta,
   tooltipMeta,
+  traceMeta,
 ];
 
 export { componentCategories } from "./manifest";

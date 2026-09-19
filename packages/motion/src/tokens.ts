@@ -32,6 +32,7 @@ export const motionTokens = {
     spotlight: 0.4,
     tilt: 0.5,
     tiltReflection: 0.35,
+    trace: 0.6,
   },
 } as const;
 

@@ -185,7 +185,7 @@ runtime, no bundle cost.
 ### 4.2 `@ionbit-ui/motion`
 
 **Purpose:** Reusable motion primitives (`Glow`, `Magnetic`, `Pulse`,
-`Reveal`, `Ripple`, `Scramble`, `Spotlight`, `Tilt`) plus shared
+`Reveal`, `Ripple`, `Scramble`, `Spotlight`, `Tilt`, `Trace`) plus shared
 motion tokens (timing, easing, intensity) and reduced-motion
 utilities.
 
@@ -419,20 +419,21 @@ libraries and matches AGENTS §8.
 
 ### 7.1 Division of labor: CSS vs Motion
 
-| Effect type                                  | Owner                      | Reason                                                                                        |
-| -------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------- |
-| Hover color/border/background transition     | CSS (`transition-*`)       | Compositor-friendly, no JS, works without Motion installed                                    |
-| Focus-visible ring transition                | CSS                        | Same                                                                                          |
-| Active/press scale                           | CSS (`active:scale-[.98]`) | Trivial, no JS needed                                                                         |
-| State open/close (dialog, popover)           | CSS via `data-state`       | Radix exposes `data-state`; CSS transitions on opacity/transform are sufficient               |
-| Glow (focus/hover halo)                      | CSS                        | `box-shadow` transitions; no JS                                                               |
-| Magnetic (pointer-following translate)       | Motion                     | Requires spring physics + pointer tracking                                                    |
-| Pulse (status/activity)                      | CSS keyframes              | Infinite animation only when explicitly enabled; disabled under reduced motion                |
-| Reveal (in-view entrance)                    | Motion or CSS              | CSS `@keyframes` + `animation-timeline: view()` where supported, Motion fallback otherwise    |
-| Ripple (press radial expansion)              | CSS keyframes + light JS   | Span spawned at press point animates via shared keyframes; removed on `animationend`          |
-| Scramble (text decode)                       | Light JS only              | Descendant text nodes mutated on a throttled `rAF` loop; staggered per-character settle times |
-| Spotlight (pointer-position radial gradient) | CSS + light JS             | CSS custom property updated via `rAF`-throttled pointer handler; no animation library needed  |
-| Tilt (hover perspective tilt)                | Motion                     | Spring-driven `rotateX`/`rotateY` via shared spring tokens; hover-gated element listeners     |
+| Effect type                                  | Owner                      | Reason                                                                                         |
+| -------------------------------------------- | -------------------------- | ---------------------------------------------------------------------------------------------- |
+| Hover color/border/background transition     | CSS (`transition-*`)       | Compositor-friendly, no JS, works without Motion installed                                     |
+| Focus-visible ring transition                | CSS                        | Same                                                                                           |
+| Active/press scale                           | CSS (`active:scale-[.98]`) | Trivial, no JS needed                                                                          |
+| State open/close (dialog, popover)           | CSS via `data-state`       | Radix exposes `data-state`; CSS transitions on opacity/transform are sufficient                |
+| Glow (focus/hover halo)                      | CSS                        | `box-shadow` transitions; no JS                                                                |
+| Magnetic (pointer-following translate)       | Motion                     | Requires spring physics + pointer tracking                                                     |
+| Pulse (status/activity)                      | CSS keyframes              | Infinite animation only when explicitly enabled; disabled under reduced motion                 |
+| Reveal (in-view entrance)                    | Motion or CSS              | CSS `@keyframes` + `animation-timeline: view()` where supported, Motion fallback otherwise     |
+| Ripple (press radial expansion)              | CSS keyframes + light JS   | Span spawned at press point animates via shared keyframes; removed on `animationend`           |
+| Scramble (text decode)                       | Light JS only              | Descendant text nodes mutated on a throttled `rAF` loop; staggered per-character settle times  |
+| Spotlight (pointer-position radial gradient) | CSS + light JS             | CSS custom property updated via `rAF`-throttled pointer handler; no animation library needed   |
+| Tilt (hover perspective tilt)                | Motion                     | Spring-driven `rotateX`/`rotateY` via shared spring tokens; hover-gated element listeners      |
+| Trace (border beam)                          | CSS keyframes              | `conic-gradient` masked to the border ring; `@property`-registered angle animated once per lap |
 
 **Rule: one owner per animated property.** If Motion animates
 `transform`, no Tailwind `hover:scale-*` class touches `transform` on
@@ -509,6 +510,7 @@ Example (illustrative, not final):
 | Scramble  | Disabled. Content renders as-is.                          |
 | Spotlight | Disabled. Surface remains usable.                         |
 | Tilt      | Disabled. Element does not rotate; content unchanged.     |
+| Trace     | Replaced by a static accent ring.                         |
 
 ### 7.5 Performance rules
 

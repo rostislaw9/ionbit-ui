@@ -9,6 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Trace motion primitive** (`@ionbit-ui/motion`): a single accent
+  point travels along an element's border — for processing and active
+  states on cards and inputs. An absolutely positioned overlay paints
+  a `conic-gradient` masked to the border ring (content-box XOR
+  border-box); the shared `ionbit-ui-trace` keyframes rotate the
+  `@property`-registered `--ionbit-trace-angle` once per lap, so the
+  effect is CSS-only with no per-frame JS. The wrapper mirrors the
+  wrapped child's border-radius automatically. `intensity` scales the
+  beam opacity, `color`/`duration`/`thickness`/`arc` tune the beam,
+  `as="div"` supports block children, `active` toggles the beam without
+  unmounting the wrapper (for processing states), `disabled` removes
+  the effect entirely.
+  Under `prefers-reduced-motion` the animated beam is replaced by a
+  static accent ring; browsers without `@property` support get a
+  static beam. Includes two docs demos (card + chip overview,
+  state-driven beam toggle).
 - **Scramble motion primitive** (`@ionbit-ui/motion`): text decodes
   into place — characters cycle random glyphs, then settle
   left-to-right with slight jitter after a short all-glyph lead-in.

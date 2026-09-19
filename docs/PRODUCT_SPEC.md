@@ -164,6 +164,7 @@ primitives:
 - Scramble
 - Spotlight
 - Tilt
+- Trace
 
 ---
 
@@ -186,14 +187,10 @@ shared primitive contract: `intensity`/`disabled` props, composable
 wrappers, `prefers-reduced-motion` self-disable, compositor-only
 properties.
 
-1. **Trace** — a single accent point traveling along an element's
-   border, for processing/focus/active states on cards and inputs.
-   Conic-gradient mask or `offset-path`, CSS-only. Reduced motion:
-   static border highlight.
-2. **Morph** — element morphs between states (button → spinner →
+1. **Morph** — element morphs between states (button → spinner →
    check; chip → expanded panel) via FLIP or the View Transitions API.
    Reduced motion: instant swap.
-3. **Scan** — a light sweep crossing a surface once, on trigger only
+2. **Scan** — a light sweep crossing a surface once, on trigger only
    (success, verified, copy confirmation). Never loops. Reduced
    motion: skipped entirely.
 

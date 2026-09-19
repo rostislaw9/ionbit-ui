@@ -74,6 +74,23 @@ const STYLES = `
     opacity: 0;
   }
 }
+
+/* Trace — an accent beam travels along the element's border. The beam
+   overlay paints a conic-gradient masked to the border ring; rotating
+   --ionbit-trace-angle moves the bright segment around the perimeter.
+   @property registration is required for the angle to interpolate —
+   browsers without it get a static beam (graceful degradation). */
+@property --ionbit-trace-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes ionbit-ui-trace {
+  to {
+    --ionbit-trace-angle: 1turn;
+  }
+}
 `;
 
 let injected = false;

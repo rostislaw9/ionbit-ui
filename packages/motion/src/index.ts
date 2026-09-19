@@ -25,4 +25,7 @@ export type { RippleProps } from "./primitives/ripple";
 export { Tilt } from "./primitives/tilt";
 export type { TiltProps } from "./primitives/tilt";
 
+export { Trace } from "./primitives/trace";
+export type { TraceProps } from "./primitives/trace";
+
 export { useReducedMotion } from "./hooks/use-reduced-motion";

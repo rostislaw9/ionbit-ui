@@ -843,6 +843,45 @@
       ]
     },
     {
+      "name": "trace",
+      "type": "registry:ui",
+      "title": "Trace",
+      "description": "Accent beam that travels along an element's border for processing and active states, with reduced-motion support.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/motion/src/primitives/trace.tsx",
+          "type": "registry:ui",
+          "target": "components/motion/trace.tsx"
+        },
+        {
+          "path": "packages/motion/src/hooks/use-reduced-motion.ts",
+          "type": "registry:lib",
+          "target": "components/motion/hooks/use-reduced-motion.ts"
+        },
+        {
+          "path": "packages/motion/src/hooks/use-inherited-radius.ts",
+          "type": "registry:lib",
+          "target": "components/motion/hooks/use-inherited-radius.ts"
+        },
+        {
+          "path": "packages/motion/src/style-observer.ts",
+          "type": "registry:lib",
+          "target": "components/motion/style-observer.ts"
+        },
+        {
+          "path": "packages/motion/src/styles.ts",
+          "type": "registry:lib",
+          "target": "components/motion/styles.ts"
+        },
+        {
+          "path": "packages/motion/src/tokens.ts",
+          "type": "registry:lib",
+          "target": "components/motion/tokens.ts"
+        }
+      ]
+    },
+    {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",
