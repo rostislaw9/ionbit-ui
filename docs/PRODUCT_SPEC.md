@@ -161,6 +161,7 @@ primitives:
 - Pulse
 - Reveal
 - Ripple
+- Scramble
 - Spotlight
 - Tilt
 
@@ -185,18 +186,14 @@ shared primitive contract: `intensity`/`disabled` props, composable
 wrappers, `prefers-reduced-motion` self-disable, compositor-only
 properties.
 
-1. **Scramble** — text "decodes" into place: characters cycle random
-   glyphs then settle, on state change or first reveal. For stat
-   values, version strings, status transitions. Reduced motion: final
-   text renders instantly.
-2. **Trace** — a single accent point traveling along an element's
+1. **Trace** — a single accent point traveling along an element's
    border, for processing/focus/active states on cards and inputs.
    Conic-gradient mask or `offset-path`, CSS-only. Reduced motion:
    static border highlight.
-3. **Morph** — element morphs between states (button → spinner →
+2. **Morph** — element morphs between states (button → spinner →
    check; chip → expanded panel) via FLIP or the View Transitions API.
    Reduced motion: instant swap.
-4. **Scan** — a light sweep crossing a surface once, on trigger only
+3. **Scan** — a light sweep crossing a surface once, on trigger only
    (success, verified, copy confirmation). Never loops. Reduced
    motion: skipped entirely.
 

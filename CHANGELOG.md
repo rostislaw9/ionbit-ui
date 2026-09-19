@@ -9,6 +9,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Scramble motion primitive** (`@ionbit-ui/motion`): text decodes
+  into place — characters cycle random glyphs, then settle
+  left-to-right with slight jitter after a short all-glyph lead-in.
+  Accepts any `children`: every descendant text node decodes in place
+  while the markup stays intact, so a `Button`, paragraph, or `Card`
+  can be wrapped whole (nested `Scramble` instances keep their own
+  text). Plays on first viewport reveal (`trigger="view"`, shared
+  IntersectionObserver pool), on `trigger="hover"`, on
+  `trigger="focus"` (element or descendant gains focus — never
+  `aria-hidden`s the focused element), and re-decodes
+  whenever `children` changes — suited to stat values, version
+  strings, and status transitions. `intensity` scales `duration`
+  (0 settles instantly), `characters` sets the glyph pool, `speed`
+  the churn interval, `onComplete` fires after each decode. While
+  decoding, the element is `aria-hidden` and a transient
+  visually-hidden sibling exposes the real text to assistive
+  technology; content renders as-is under `prefers-reduced-motion`
+  or `disabled`. During a decode each text node is swapped for a
+  `visibility:hidden` clone plus an absolutely positioned,
+  overflow-clipped glyph layer, so the rendered layout is identical
+  to the final state — a wrapped `Button` can't resize, centered
+  text can't drift, and lines never re-wrap. No runtime
+  dependencies — decode runs through a
+  throttled `requestAnimationFrame` loop mutating text nodes, not
+  React state. Includes three docs demos (reveal decode, status
+  cycling, nested content).
 - **Ripple and Tilt controls on the Theme page.** The customizer's
   Effects section now has sliders for all six motion primitives plus
   Tilt's reflection (alphabetically ordered after Translucency); the

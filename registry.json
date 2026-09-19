@@ -814,6 +814,35 @@
       ]
     },
     {
+      "name": "scramble",
+      "type": "registry:ui",
+      "title": "Scramble",
+      "description": "Text decode effect that cycles random glyphs before settling, with reduced-motion support.",
+      "dependencies": [],
+      "files": [
+        {
+          "path": "packages/motion/src/primitives/scramble.tsx",
+          "type": "registry:ui",
+          "target": "components/motion/scramble.tsx"
+        },
+        {
+          "path": "packages/motion/src/hooks/use-reduced-motion.ts",
+          "type": "registry:lib",
+          "target": "components/motion/hooks/use-reduced-motion.ts"
+        },
+        {
+          "path": "packages/motion/src/intersection-observer-pool.ts",
+          "type": "registry:lib",
+          "target": "components/motion/intersection-observer-pool.ts"
+        },
+        {
+          "path": "packages/motion/src/tokens.ts",
+          "type": "registry:lib",
+          "target": "components/motion/tokens.ts"
+        }
+      ]
+    },
+    {
       "name": "radio-group",
       "type": "registry:ui",
       "title": "Radio Group",

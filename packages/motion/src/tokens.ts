@@ -28,6 +28,7 @@ export const motionTokens = {
     magnetic: 0.2,
     pulse: 0.65,
     ripple: 0.3,
+    scramble: 0.6,
     spotlight: 0.4,
     tilt: 0.5,
     tiltReflection: 0.35,

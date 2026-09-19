@@ -281,6 +281,14 @@ export const componentManifest: ManifestEntry[] = [
     isNew: false,
   },
   {
+    name: "scramble",
+    label: "Scramble",
+    category: "Motion",
+    description: "Text decoding visual effect.",
+    exampleCount: 2,
+    isNew: true,
+  },
+  {
     name: "select",
     label: "Select",
     category: "Form",
