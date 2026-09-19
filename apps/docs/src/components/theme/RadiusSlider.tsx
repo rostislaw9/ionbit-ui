@@ -1,11 +1,13 @@
 import type { ThemeRadius } from "../../data/theme-presets";
 
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 
 import { Label, Slider } from "@ionbit-ui/ui";
 
+import { useCommittedLocal } from "./useCommittedLocal";
+
 /* -------------------------------------------------------------------------- */
-/* RadiusSlider — local state for instant label feedback, commits on drag end */
+/* RadiusSlider — local state for instant label feedback, commits on release  */
 /* -------------------------------------------------------------------------- */
 
 interface RadiusSliderProps {
@@ -25,20 +27,16 @@ function RadiusSliderImpl({
   // Local state mirrors the global value but updates instantly during drag
   // so the label stays responsive. The global state (and all downstream
   // re-renders: ThemePreview, CSS generation, shiki highlight, DOM apply)
-  // only updates on `onValueCommit` — i.e. when the user releases the thumb.
+  // only updates on release — `releaseProps` guarantees the commit lands
+  // even when Radix's `onValueCommit` doesn't fire.
   const numeric = parseFloat(value) || 0;
-  const [local, setLocal] = useState(numeric);
-
-  // Sync local when the global value changes externally (e.g. selecting a
-  // different preset resets all settings). During a drag the global `value`
-  // prop does NOT change (we only commit on drag end), so this effect does
-  // not fire mid-drag and fight the local state.
-  useEffect(() => {
-    setLocal(numeric);
-  }, [numeric]);
+  const { local, setLocal, commit, releaseProps } = useCommittedLocal(
+    numeric,
+    (v) => onChange(radiusKey, `${v.toFixed(2)}rem`),
+  );
 
   return (
-    <div className="flex flex-col gap-1.5">
+    <div className="flex flex-col gap-1.5" {...releaseProps}>
       <div className="flex items-center justify-between">
         <Label className="text-xs text-foreground-muted">{label}</Label>
         <span className="font-mono text-xs text-foreground">
@@ -51,9 +49,7 @@ function RadiusSliderImpl({
         max={2}
         step={0.05}
         onValueChange={(v) => setLocal(v[0] ?? 0)}
-        onValueCommit={(v) =>
-          onChange(radiusKey, `${(v[0] ?? 0).toFixed(2)}rem`)
-        }
+        onValueCommit={(v) => commit(v[0] ?? 0)}
       />
     </div>
   );

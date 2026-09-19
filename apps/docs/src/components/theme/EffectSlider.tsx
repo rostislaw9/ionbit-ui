@@ -3,12 +3,14 @@ import type {
   ThemeSettings,
 } from "../../data/theme-presets";
 
-import { memo, useEffect, useState } from "react";
+import { memo } from "react";
 
 import { Label, Slider } from "@ionbit-ui/ui";
 
+import { useCommittedLocal } from "./useCommittedLocal";
+
 /* -------------------------------------------------------------------------- */
-/* EffectSlider — local state for instant label feedback, commits on drag end */
+/* EffectSlider — local state for instant label feedback, commits on release  */
 /* -------------------------------------------------------------------------- */
 
 type EffectKey = NumericThemeSettingKey;
@@ -38,20 +40,16 @@ function EffectSliderImpl({
 }: EffectSliderProps) {
   // Local state mirrors the global value but updates instantly during drag
   // so the label stays responsive. The global state (and all downstream
-  // re-renders: ThemePreview, CSS generation, shiki highlight, DOM apply)
-  // only updates on `onValueCommit` — i.e. when the user releases the thumb.
-  const [local, setLocal] = useState(value);
-
-  // Sync local when the global value changes externally (e.g. selecting a
-  // different preset resets all settings). During a drag the global `value`
-  // prop does NOT change (we only commit on drag end), so this effect does
-  // not fire mid-drag and fight the local state.
-  useEffect(() => {
-    setLocal(value);
-  }, [value]);
+  // re-renders: ThemePreview, CSS generation, DOM apply) only updates on
+  // release — `releaseProps` guarantees the commit lands even when Radix's
+  // `onValueCommit` doesn't fire.
+  const { local, setLocal, commit, releaseProps } = useCommittedLocal(
+    value,
+    (v) => onCommit(effectKey, v / displayMultiplier),
+  );
 
   return (
-    <div>
+    <div {...releaseProps}>
       <Label className="mb-2 block text-xs text-foreground-muted">
         {label} ({((local / displayMultiplier) * 100).toFixed(0)}%)
       </Label>
@@ -61,9 +59,7 @@ function EffectSliderImpl({
         max={max}
         step={step}
         onValueChange={(v) => setLocal(v[0] ?? 0)}
-        onValueCommit={(v) =>
-          onCommit(effectKey, (v[0] ?? 0) / displayMultiplier)
-        }
+        onValueCommit={(v) => commit(v[0] ?? 0)}
       />
     </div>
   );
