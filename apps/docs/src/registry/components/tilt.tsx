@@ -84,7 +84,7 @@ import { Tilt } from "@/components/motion/tilt";`,
       type: "boolean",
       default: "false",
       description:
-        "Add a specular sheen driven by the surface orientation — the reflection band sweeps across the card as it tilts, like light on a coated surface. A flat card shows no reflection.",
+        "Add a specular sheen driven by the surface orientation — the reflection band sweeps across the card as it tilts, like light on a coated surface. A flat card shows no reflection. The sheen color follows the element's text color so it reads on light and dark surfaces.",
     },
     {
       name: "reflectionIntensity",

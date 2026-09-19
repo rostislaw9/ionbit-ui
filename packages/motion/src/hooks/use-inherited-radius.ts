@@ -1,5 +1,7 @@
 import { useEffect, useRef, type MutableRefObject } from "react";
 
+import { observeStyleChanges } from "../style-observer";
+
 export interface UseInheritedRadiusOptions<T extends HTMLElement> {
   /**
    * Resolve the element whose computed border-radius should be
@@ -47,19 +49,7 @@ export function useInheritedRadius<T extends HTMLElement = HTMLElement>(
 
     sample();
 
-    const observer = new MutationObserver(sample);
-    observer.observe(document.head, {
-      childList: true,
-      characterData: true,
-      subtree: true,
-    });
-    observer.observe(document.documentElement, { attributes: true });
-    el.addEventListener("pointerenter", sample);
-
-    return () => {
-      observer.disconnect();
-      el.removeEventListener("pointerenter", sample);
-    };
+    return observeStyleChanges(el, sample);
   }, []);
 
   return ref;

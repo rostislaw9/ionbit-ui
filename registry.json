@@ -588,6 +588,16 @@
           "target": "components/motion/hooks/use-reduced-motion.ts"
         },
         {
+          "path": "packages/motion/src/hooks/use-inherited-radius.ts",
+          "type": "registry:lib",
+          "target": "components/motion/hooks/use-inherited-radius.ts"
+        },
+        {
+          "path": "packages/motion/src/style-observer.ts",
+          "type": "registry:lib",
+          "target": "components/motion/style-observer.ts"
+        },
+        {
           "path": "packages/motion/src/pointer-coordinator.ts",
           "type": "registry:lib",
           "target": "components/motion/pointer-coordinator.ts"
@@ -615,6 +625,11 @@
           "path": "packages/motion/src/hooks/use-inherited-radius.ts",
           "type": "registry:lib",
           "target": "components/motion/hooks/use-inherited-radius.ts"
+        },
+        {
+          "path": "packages/motion/src/style-observer.ts",
+          "type": "registry:lib",
+          "target": "components/motion/style-observer.ts"
         },
         {
           "path": "packages/motion/src/styles.ts",
@@ -673,6 +688,11 @@
           "path": "packages/motion/src/hooks/use-inherited-radius.ts",
           "type": "registry:lib",
           "target": "components/motion/hooks/use-inherited-radius.ts"
+        },
+        {
+          "path": "packages/motion/src/style-observer.ts",
+          "type": "registry:lib",
+          "target": "components/motion/style-observer.ts"
         },
         {
           "path": "packages/motion/src/styles.ts",
@@ -738,6 +758,11 @@
           "target": "components/motion/hooks/use-inherited-radius.ts"
         },
         {
+          "path": "packages/motion/src/style-observer.ts",
+          "type": "registry:lib",
+          "target": "components/motion/style-observer.ts"
+        },
+        {
           "path": "packages/motion/src/hooks/use-reduced-motion.ts",
           "type": "registry:lib",
           "target": "components/motion/hooks/use-reduced-motion.ts"
@@ -775,6 +800,11 @@
           "path": "packages/motion/src/hooks/use-inherited-radius.ts",
           "type": "registry:lib",
           "target": "components/motion/hooks/use-inherited-radius.ts"
+        },
+        {
+          "path": "packages/motion/src/style-observer.ts",
+          "type": "registry:lib",
+          "target": "components/motion/style-observer.ts"
         },
         {
           "path": "packages/motion/src/tokens.ts",

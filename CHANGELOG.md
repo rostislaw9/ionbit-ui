@@ -80,6 +80,49 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Tilt jiggles when the cursor nears the card edges.** Pointer
+  hit-testing and `getBoundingClientRect` both saw the _rotated_
+  element, so the tilted edge moved away from the cursor — firing
+  enter/leave in a loop. Tilt now renders a static outer wrapper that
+  owns the hit area and provides the stable layout rect, while only
+  the inner element rotates.
+- **Tilt reflection glare invisible on light surfaces.** The glare was
+  hardcoded white; it now samples the wrapped element's computed text
+  color — the same "ink" approach as Ripple — so the sheen reads in
+  both light and dark modes. Re-sampled on theme/mode changes via the
+  shared `observeStyleChanges` helper extracted from
+  `useInheritedRadius`. The `style-observer.ts` module is now shipped
+  by every registry item that bundles the hook, and Spotlight's
+  registry item gains the previously missing
+  `use-inherited-radius.ts` file.
+- **Theme sliders occasionally lost their value on release (Chrome).**
+  Radix's `onValueCommit` only fires when the internal value differs
+  from slide start and never fires on interrupted pointer captures —
+  a slow grab-and-release could leave the theme store stale while the
+  slider showed the new value. Radius and effect sliders now share a
+  `useCommittedLocal` hook that keeps local state during the gesture
+  and commits on `pointerup`/`pointercancel`/`keyup`/`blur` at the
+  wrapper level, deduplicated against the last committed value.
+  Track clicks, drags, and keyboard changes all land reliably.
+- **Native color pickers re-rendered the theme page on every drag
+  tick.** `input` events fire ~60/s while the OS picker is open; each
+  triggered a store write, full page re-render, and throttled theme-CSS
+  regeneration. The swatch now previews the picked color locally and
+  commits to the store once on the native `change` event (picker
+  close), with `blur` as a deduplicated fallback.
+- **Custom color swatches rendered wrong colors for oklch themes.**
+  `cssColorToHex` assumed `getComputedStyle` returns `rgb()`, but
+  modern browsers keep `oklch()` in its own space — the regex grabbed
+  raw oklch channels and produced garbage hex. Color conversion now
+  uses [culori](https://culorijs.org), which parses every CSS color
+  format natively (no DOM probing). The value-editor popover gains a
+  second, synchronized **Hex** input alongside the **OKLCH** input:
+  each field displays its canonical form and live-syncs while typing —
+  clearing one clears the other, a valid value converts into the other
+  field's format, and unparseable in-progress text leaves it alone.
+  Both commit any valid CSS color verbatim (`CSS.supports` validation,
+  revert on invalid), so consumers can paste `oklch(...)`, `#rrggbb`,
+  `rgb()`, or any other format in whichever field they prefer.
 - **Motion wrappers keep a stale radius after live theme changes.**
   `useInheritedRadius` (and Spotlight's own one-off sampler) read the
   wrapped element's `border-radius` once at mount, so radius sliders

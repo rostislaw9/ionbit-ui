@@ -9,6 +9,7 @@ import {
 
 import { useInheritedRadius } from "../hooks/use-inherited-radius";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
+import { sampleInkColor } from "../style-observer";
 import { ensureMotionStyles } from "../styles";
 import { motionTokens } from "../tokens";
 
@@ -103,12 +104,7 @@ export const Ripple = forwardRef<HTMLSpanElement, RippleProps>(function Ripple(
       ]);
     };
 
-    const resolveColor = () => {
-      if (color) return color;
-      const target = el.firstElementChild ?? el;
-      const computed = getComputedStyle(target).color;
-      return computed && computed !== "transparent" ? computed : "currentColor";
-    };
+    const resolveColor = () => color ?? sampleInkColor(el);
 
     const onPointerDown = (e: PointerEvent) => {
       if (e.button !== 0) return;

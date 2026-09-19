@@ -38,10 +38,9 @@ for (const item of registry.items) {
     let content = readFileSync(resolve(root, file.path), "utf-8");
 
     // Motion primitives live in packages/motion/src/primitives/ and import
-    // from ../hooks/, ../tokens, ../styles, and ../pointer-coordinator.
-    // When installed to components/motion/ (flattened, no primitives/
-    // subdir), these must become ./hooks/, ./tokens, ./styles, and
-    // ./pointer-coordinator.
+    // sibling modules via ../ (../hooks/, ../tokens, ../style-observer,
+    // etc.). When installed to components/motion/ the primitives/ segment
+    // is flattened away, so every ../ import must become ./.
     const target = file.target ?? file.path;
     if (
       target.startsWith("components/motion/") &&
@@ -49,17 +48,10 @@ for (const item of registry.items) {
       !target.endsWith("/tokens.ts") &&
       !target.endsWith("/styles.ts") &&
       !target.endsWith("/pointer-coordinator.ts") &&
-      !target.endsWith("/intersection-observer-pool.ts")
+      !target.endsWith("/intersection-observer-pool.ts") &&
+      !target.endsWith("/style-observer.ts")
     ) {
-      content = content
-        .replace(/\.\.\/hooks\//g, "./hooks/")
-        .replace(/\.\.\/tokens/g, "./tokens")
-        .replace(/\.\.\/styles/g, "./styles")
-        .replace(/\.\.\/pointer-coordinator/g, "./pointer-coordinator")
-        .replace(
-          /\.\.\/intersection-observer-pool/g,
-          "./intersection-observer-pool",
-        );
+      content = content.replace(/\.\.\//g, "./");
     }
 
     itemWithContent.files.push({
