@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { useInheritedRadius } from "../hooks/use-inherited-radius";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { subscribePointerMove } from "../pointer-coordinator";
 import { motionTokens } from "../tokens";
@@ -68,7 +69,12 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
   ) {
     const reduced = useReducedMotion();
     const frame = useRef<number | null>(null);
-    const innerRef = useRef<HTMLDivElement | null>(null);
+    // The first element child is the overlay span, so resolve the
+    // content child through the trailing `display: contents` wrapper.
+    const innerRef = useInheritedRadius<HTMLDivElement>({
+      resolveChild: (el) =>
+        (el.lastElementChild?.firstElementChild as HTMLElement | null) ?? null,
+    });
     const overlayRef = useRef<HTMLSpanElement | null>(null);
     const activeRef = useRef(false);
     const rectRef = useRef<DOMRect | null>(null);
@@ -81,7 +87,7 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
       const el = innerRef.current;
       if (!el) return;
       rectRef.current = el.getBoundingClientRect();
-    }, []);
+    }, [innerRef]);
 
     const updateSpotlight = useCallback(
       (clientX: number, clientY: number) => {
@@ -122,7 +128,7 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
           frame.current = null;
         });
       },
-      [intensity, proximity],
+      [intensity, proximity, innerRef],
     );
 
     useEffect(() => {
@@ -138,30 +144,6 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
         if (frame.current != null) cancelAnimationFrame(frame.current);
       };
     }, [enabled, updateSpotlight, refreshRect]);
-
-    // Inherit border-radius from the actual content child (not the overlay).
-    // The wrapper has overflow:hidden, so the overlay is clipped to the
-    // wrapper's radius. We read the content's radius and apply it to the
-    // wrapper so the clip matches the visual shape of the wrapped element.
-    const syncRadius = useCallback(() => {
-      const el = innerRef.current;
-      if (!el) return;
-      const contentWrapper = el.lastElementChild as HTMLElement | null;
-      if (!contentWrapper) return;
-      const contentChild =
-        contentWrapper.firstElementChild as HTMLElement | null;
-      if (!contentChild) return;
-      const childRadius = getComputedStyle(contentChild).borderRadius;
-      if (childRadius && childRadius !== "0px") {
-        el.style.borderRadius = childRadius;
-      }
-    }, []);
-
-    useEffect(() => {
-      syncRadius();
-      window.addEventListener("resize", syncRadius, { passive: true });
-      return () => window.removeEventListener("resize", syncRadius);
-    }, [syncRadius]);
 
     const handlePointerMove = useCallback(
       (e: React.PointerEvent<HTMLDivElement>) => {
@@ -180,8 +162,8 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     const surfaceStyle: CSSProperties = {
       position: "relative",
       isolation: "isolate",
-      // Clip the overlay to the wrapper's border radius. The radius is
-      // automatically inherited from the first child element.
+      // Clip the overlay to the wrapper's border radius, inherited
+      // from the content child via `useInheritedRadius`.
       overflow: "hidden",
       ...style,
     };

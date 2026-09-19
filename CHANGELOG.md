@@ -80,6 +80,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Motion wrappers keep a stale radius after live theme changes.**
+  `useInheritedRadius` (and Spotlight's own one-off sampler) read the
+  wrapped element's `border-radius` once at mount, so radius sliders
+  on the Theme page only applied after a reload. The hook now
+  re-samples when document styles change (injected stylesheets, root
+  class/attribute changes) and on `pointerenter`, correctly clears
+  down to `0px`, and Spotlight uses it via a `resolveChild` option
+  instead of duplicating the logic.
 - **Motion overlays repaint every frame.** Spotlight's highlight and
   Tilt's reflection glare previously animated `background` /
   `--digital-spot-*` custom properties, forcing a repaint on every
