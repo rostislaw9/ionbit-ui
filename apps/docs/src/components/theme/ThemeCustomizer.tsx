@@ -257,6 +257,15 @@ export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
             onCommit={updateSettings}
           />
           <EffectSlider
+            label="Scramble"
+            value={settings.scrambleIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="scrambleIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
             label="Spotlight"
             value={settings.spotlightIntensity * 100}
             min={0}
@@ -281,6 +290,15 @@ export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
             max={100}
             step={5}
             effectKey="reflectionIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Trace"
+            value={settings.traceIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="traceIntensity"
             onCommit={updateSettings}
           />
         </div>

@@ -51,15 +51,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   throttled `requestAnimationFrame` loop mutating text nodes, not
   React state. Includes three docs demos (reveal decode, status
   cycling, nested content).
-- **Ripple and Tilt controls on the Theme page.** The customizer's
-  Effects section now has sliders for all six motion primitives plus
-  Tilt's reflection (alphabetically ordered after Translucency); the
-  preview shows Spotlight and Tilt hero cards plus Glow, Ripple, and
-  Magnetic buttons responding to their settings. `rippleIntensity`, `tiltIntensity`,
-  and `reflectionIntensity` are emitted as `--ripple-intensity` /
-  `--tilt-intensity` / `--reflection-intensity` in the generated
-  theme CSS, and persisted customizer state backfills missing
-  settings keys.
+- **Motion effect controls on the Theme page.** The customizer's
+  Effects section now has sliders for every intensity-capable motion
+  primitive (Glow, Magnetic, Pulse, Ripple, Scramble, Spotlight, Tilt,
+  Tilt Reflection, Trace), alphabetically ordered after Translucency.
+  The preview shows Spotlight, Tilt, Scramble, and Trace hero cards —
+  Scramble decodes a whole card's text on hover, Trace runs a beam
+  along its card's border — plus Glow/Ripple/Magnetic buttons, all
+  responding to their settings.
+  `rippleIntensity`, `tiltIntensity`, `reflectionIntensity`,
+  `scrambleIntensity`, and `traceIntensity` are emitted as
+  `--ripple-intensity` / `--tilt-intensity` / `--reflection-intensity` /
+  `--scramble-intensity` / `--trace-intensity` in the generated theme
+  CSS, and persisted customizer state backfills missing settings keys.
 - **Shadow intensity control on the Theme page.** A segmented
   Subtle/Normal/Dramatic control scales the elevation shadow alphas
   (`--shadow-xs`–`--shadow-lg`) in the generated theme CSS — the
@@ -122,6 +126,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Scramble collapses wrapped text into a narrow column.** The glyph
+  overlay is absolutely positioned inside an inline holder, and per
+  CSS spec an inline element fragmented across lines resolves the
+  layer's `left`/`right` against its first and last line fragments —
+  for multi-line text the overlay shrank to roughly the last line's
+  width, so the scrambling text wrapped into many lines. When the
+  text node is the sole child of a non-inline parent, the holder now
+  becomes a full-width atomic box (`inline-block; width: 100%`), so
+  the clone wraps exactly like the original text and the layer gets a
+  proper rectangular containing block.
+- **Scramble adds phantom gaps in flex containers.** Text nodes were
+  collected individually and each replaced by a holder span during a
+  pass — so a contiguous text run like `"60"` + `"%"` (one anonymous
+  flex item) became two flex items and picked up the container's `gap`
+  ("60 %"), and whitespace-only runs turned invisible text into real
+  ~1ch-wide items. Contiguous sibling text nodes are now decoded as a
+  single slot with one holder, and whitespace-only runs are skipped —
+  whitespace is never scrambled anyway.
 - **Tilt jiggles when the cursor nears the card edges.** Pointer
   hit-testing and `getBoundingClientRect` both saw the _rotated_
   element, so the tilted edge moved away from the cursor — firing

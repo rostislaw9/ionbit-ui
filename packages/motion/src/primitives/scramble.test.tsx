@@ -85,13 +85,56 @@ describe("Scramble", () => {
     expect(button.firstChild?.textContent).toBe("");
     // Holder: hidden clone of the original text (identical box +
     // wrap points) plus an absolutely positioned, clipped glyph layer.
-    const holder = button.querySelector(":scope > span")!;
+    const holder = button.querySelector(":scope > span")! as HTMLElement;
+    // Sole child of a non-inline parent: the holder is a full-width
+    // atomic box so the absolute layer gets a proper rectangular
+    // containing block (inline holders fragment across wrapped lines).
+    expect(holder.style.display).toBe("inline-block");
+    expect(holder.style.width).toBe("100%");
     const sizer = holder.firstElementChild as HTMLElement;
     expect(sizer.style.visibility).toBe("hidden");
     expect(sizer.textContent).toBe("DEPLOY NOW");
     const layer = holder.lastElementChild as HTMLElement;
     expect(layer.style.position).toBe("absolute");
     expect(layer.style.overflow).toBe("hidden");
+  });
+
+  it("keeps a contiguous text run as a single decode box", () => {
+    const { container } = render(
+      <Scramble as="div">
+        <span className="badge">{60}%</span>
+      </Scramble>,
+    );
+    const badge = container.querySelector(".badge")!;
+    // React renders {x}% as two text nodes — one contiguous run, i.e.
+    // one anonymous flex item inside a flex parent. It must decode as
+    // ONE holder: separate holders become separate flex items and pick
+    // up the parent's `gap` ("60 %" instead of "60%").
+    expect(badge.querySelectorAll(":scope > span").length).toBe(1);
+    const sizer = badge.querySelector(":scope > span > span")!;
+    expect(sizer.textContent).toBe("60%");
+  });
+
+  it("does not wrap whitespace-only text runs", () => {
+    const { container } = render(
+      <Scramble as="div">
+        <div>
+          {"a"}
+          <span>x</span> <span>y</span>
+        </div>
+      </Scramble>,
+    );
+    const div = container.querySelector("[data-scramble] > div")!;
+    // The " " between the two spans is a whitespace-only run — it
+    // renders nothing in a flex row, so wrapping it would turn an
+    // invisible text run into a real ~1ch-wide flex item.
+    const ws = [...div.childNodes].find(
+      (n) => n.nodeType === Node.TEXT_NODE && n.textContent === " ",
+    );
+    expect(ws).toBeTruthy();
+    // No holder inserted — the whitespace node stays a plain text node.
+    expect(ws?.nextSibling?.nodeType).toBe(Node.ELEMENT_NODE);
+    expect((ws?.nextSibling as HTMLElement).tagName).toBe("SPAN");
   });
 
   it("does not alter the DOM when disabled", () => {

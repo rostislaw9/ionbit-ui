@@ -5,8 +5,10 @@ import {
   Magnetic,
   Pulse,
   Ripple,
+  Scramble,
   Spotlight,
   Tilt,
+  Trace,
 } from "@ionbit-ui/motion";
 import {
   Badge,
@@ -18,24 +20,10 @@ import {
 } from "@ionbit-ui/ui";
 
 import { useTheme } from "../../hooks/useTheme";
-import { LoginCard, SettingsCard } from "../../showcase";
 
 /* -------------------------------------------------------------------------- */
-/* ThemePreview — real showcase cards rendered in the current theme            */
+/* ThemePreview — primitives and components rendered in the current theme      */
 /* -------------------------------------------------------------------------- */
-
-// The showcase cards use CSS variables for theming (bg-surface, text-foreground,
-// etc.) — they don't read theme state via React props. Memoizing the grid
-// prevents all 4 cards from re-rendering on every settings change; the browser
-// handles visual updates automatically when the CSS variables change.
-const ShowcaseGrid = memo(function ShowcaseGrid() {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      <LoginCard />
-      <SettingsCard />
-    </div>
-  );
-});
 
 interface ThemePreviewProps {
   spotlightIntensity: number;
@@ -45,6 +33,8 @@ interface ThemePreviewProps {
   reflectionIntensity: number;
   rippleIntensity: number;
   tiltIntensity: number;
+  scrambleIntensity: number;
+  traceIntensity: number;
   translucency: number;
   radiusSm: string;
   radiusXl: string;
@@ -58,12 +48,14 @@ function ThemePreviewImpl({
   reflectionIntensity,
   rippleIntensity,
   tiltIntensity,
+  scrambleIntensity,
+  traceIntensity,
 }: ThemePreviewProps) {
   const { mode } = useTheme();
 
   return (
-    <div className="flex flex-col gap-6" data-mode={mode}>
-      {/* Pointer-driven hero cards */}
+    <div className="flex flex-col gap-4" data-mode={mode}>
+      {/* Motion hero cards */}
       <div className="grid gap-4 sm:grid-cols-2">
         {/* Spotlight — large proximity so the glow leads the cursor */}
         <Spotlight intensity={spotlightIntensity} proximity={220}>
@@ -118,10 +110,67 @@ function ThemePreviewImpl({
             </CardHeader>
           </Card>
         </Tilt>
+
+        {/* Scramble — hover decodes every text node in the card */}
+        <Scramble as="div" intensity={scrambleIntensity} trigger="hover">
+          <Card elevated>
+            <CardHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                    Scramble
+                  </p>
+                  <CardTitle className="mt-1 text-lg">
+                    Hover to decrypt
+                  </CardTitle>
+                </div>
+                <Badge variant="accent">
+                  {(scrambleIntensity * 100).toFixed(0)}%
+                </Badge>
+              </div>
+              <CardDescription>
+                Every text node cycles cipher glyphs, then settles left to
+                right.
+              </CardDescription>
+              <p className="mt-3 font-mono text-xs text-foreground-muted">
+                &gt; channel: SECURE // keys rotated
+              </p>
+            </CardHeader>
+          </Card>
+        </Scramble>
+
+        {/* Trace — the border beam keeps the card in a busy state */}
+        <Trace as="div" intensity={traceIntensity}>
+          <Card elevated>
+            <CardHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                    Trace
+                  </p>
+                  <CardTitle className="mt-1 text-lg">
+                    Beam on the border
+                  </CardTitle>
+                </div>
+                <Badge variant="accent">
+                  {(traceIntensity * 100).toFixed(0)}%
+                </Badge>
+              </div>
+              <CardDescription>
+                One accent point laps the perimeter — the card reads as busy
+                while it runs.
+              </CardDescription>
+              <p className="mt-3 flex items-center gap-2 font-mono text-xs text-foreground-muted">
+                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
+                syncing node-07
+              </p>
+            </CardHeader>
+          </Card>
+        </Trace>
       </div>
 
       {/* Motion effects */}
-      <div className="grid grid-cols-3 gap-2">
+      <div className="grid grid-cols-3 gap-4">
         <Glow intensity={glowIntensity}>
           <Button variant="outline" className="w-full">
             Glow
@@ -138,9 +187,6 @@ function ThemePreviewImpl({
           </Button>
         </Magnetic>
       </div>
-
-      {/* Showcase cards — real components from the home page grid */}
-      <ShowcaseGrid />
 
       {/* Status badges + Pulse */}
       <div className="flex flex-wrap items-center justify-evenly gap-2">

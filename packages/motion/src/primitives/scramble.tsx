@@ -50,14 +50,21 @@ function textOf(node: ReactNode): string {
   return "";
 }
 
-/** One decoded text node plus the markup this pass inserted for it. */
+/** One decoded text run plus the markup this pass inserted for it. */
 interface ScrambleSlot {
-  /** Original text node — kept attached but emptied during the pass. */
-  node: Text;
+  /**
+   * Original text nodes — kept attached but emptied during the pass.
+   * A contiguous run of sibling text nodes (e.g. `{x}%` rendering as
+   * `"60"` + `"%"`) renders as a single box — one anonymous flex item —
+   * so it is decoded as one slot with one holder. Splitting it into
+   * per-node holders would create extra flex items, picking up the
+   * parent's `gap` ("60" + "%" → "60 %").
+   */
+  nodes: Text[];
+  /** Original data per node — restored on finish. */
+  data: string[];
   text: string;
   chars: string[];
-  /** Last string written into `node` — "" while the pass owns it. */
-  last: string;
   /** Last string written into the glyph layer — skips no-op writes. */
   out: string;
   /** Wrapper holding the hidden sizer + glyph layer — removed on finish. */
@@ -69,36 +76,47 @@ interface ScrambleSlot {
 }
 
 /**
- * Collects an element's descendant text nodes in document order. Text
- * inside a nested Scramble root belongs to that instance and is skipped.
+ * Collects an element's text content into decode slots — one slot per
+ * maximal run of contiguous sibling text nodes (see ScrambleSlot.nodes).
+ * Text inside a nested Scramble root belongs to that instance and is
+ * skipped.
  */
 function collectTextSlots(el: HTMLElement): ScrambleSlot[] {
   const slots: ScrambleSlot[] = [];
-  const walker = el.ownerDocument.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
-    acceptNode(node) {
-      const holder = (node as Text).parentElement;
-      return holder && holder.closest(`[${SCRAMBLE_ATTR}]`) === el
-        ? NodeFilter.FILTER_ACCEPT
-        : NodeFilter.FILTER_REJECT;
-    },
-  });
-  let node = walker.nextNode();
-  while (node) {
-    const text = node as Text;
-    if (text.data.length > 0) {
+
+  const visit = (parent: Node) => {
+    let run: Text[] = [];
+    const flush = () => {
+      const nodes = run;
+      run = [];
+      const text = nodes.map((n) => n.data).join("");
+      // Whitespace-only runs carry no decode-able content — and their
+      // holder would turn an invisible text run into a real element,
+      // e.g. a phantom ~1ch-wide item inside a flex row.
+      if (text.trim().length === 0) return;
       slots.push({
-        node: text,
-        text: text.data,
-        chars: Array.from(text.data),
-        last: text.data,
-        out: text.data,
+        nodes,
+        data: nodes.map((n) => n.data),
+        text,
+        chars: Array.from(text),
+        out: text,
         holder: null,
         layer: null,
         dead: false,
       });
+    };
+    for (const child of parent.childNodes) {
+      if (child.nodeType === Node.TEXT_NODE) {
+        run.push(child as Text);
+      } else if (child.nodeType === Node.ELEMENT_NODE) {
+        flush();
+        if (!(child as Element).hasAttribute(SCRAMBLE_ATTR)) visit(child);
+      }
+      // Comments etc. generate no boxes — they don't break the run.
     }
-    node = walker.nextNode();
-  }
+    flush();
+  };
+  visit(el);
   return slots;
 }
 
@@ -119,6 +137,25 @@ function collectTextSlots(el: HTMLElement): ScrambleSlot[] {
 function wrapSlot(slot: ScrambleSlot, doc: Document): void {
   const holder = doc.createElement("span");
   holder.style.position = "relative";
+
+  // An inline holder fragments across wrapped lines, and absolutely
+  // positioned children resolve left/right against the FIRST/LAST
+  // fragment — the layer would collapse to a narrow column. When the
+  // run is the sole content of a non-inline parent (p, div, button…),
+  // make the holder a full-width atomic box instead: the sizer wraps
+  // at the parent's content width exactly like the original text, and
+  // the layer gets a proper rectangular containing block.
+  const parent = slot.nodes[0]!.parentElement;
+  if (
+    parent &&
+    parent.children.length === 0 &&
+    doc.defaultView &&
+    doc.defaultView.getComputedStyle(parent).display !== "inline"
+  ) {
+    holder.style.display = "inline-block";
+    holder.style.width = "100%";
+  }
+
   const sizer = doc.createElement("span");
   sizer.style.visibility = "hidden";
   sizer.textContent = slot.text;
@@ -130,10 +167,8 @@ function wrapSlot(slot: ScrambleSlot, doc: Document): void {
   layer.setAttribute("aria-hidden", "true");
   layer.textContent = slot.text;
   holder.append(sizer, layer);
-  slot.node.data = "";
-  slot.last = "";
-  slot.out = slot.text;
-  slot.node.after(holder);
+  for (const n of slot.nodes) n.data = "";
+  slot.nodes[slot.nodes.length - 1]!.after(holder);
   slot.holder = holder;
   slot.layer = layer;
 
@@ -166,19 +201,20 @@ interface ScrambleRunOptions {
 }
 
 /**
- * Runs one decode pass over every text node inside `el`. Characters
+ * Runs one decode pass over every text run inside `el`. Characters
  * settle left-to-right at staggered times (with slight jitter so it
  * doesn't look mechanical) after a short all-glyph lead-in; whitespace
- * is never scrambled. Each text node is emptied (React keeps ownership)
- * while a hidden clone of it preserves the exact layout and an
+ * is never scrambled. Each run's nodes are emptied (React keeps
+ * ownership) while a hidden clone preserves the exact layout and an
  * absolutely positioned, overflow-clipped layer draws the decode on
  * top — the text looks identical to its final state at every frame.
  * DOM writes only — no React re-renders.
  *
  * While the pass runs, `el` is `aria-hidden` and a visually hidden
  * sibling carries the real text; both revert on completion. A slot is
- * only written while it still holds our last write, so a concurrent
- * React update (children changed mid-decode) is never overwritten.
+ * only written while its nodes still hold our emptied value, so a
+ * concurrent React update (children changed mid-decode) is never
+ * overwritten.
  *
  * @returns A cancel function that stops the pass and restores the text.
  */
@@ -216,12 +252,12 @@ function startScramble(
 
   // Screen readers get a static copy while the visual text decodes.
   // Skipped when focus is inside — aria-hidden must not hide focus.
-  const hideable = !el.contains(doc.activeElement);
   const prevHidden = el.getAttribute("aria-hidden");
-  const sr = doc.createElement("span");
-  Object.assign(sr.style, srOnlyCss);
-  sr.textContent = slots.map((s) => s.text).join("");
-  if (hideable) {
+  let sr: HTMLSpanElement | null = null;
+  if (!el.contains(doc.activeElement)) {
+    sr = doc.createElement("span");
+    Object.assign(sr.style, srOnlyCss);
+    sr.textContent = slots.map((s) => s.text).join("");
     el.setAttribute("aria-hidden", "true");
     el.insertAdjacentElement("afterend", sr);
   }
@@ -231,27 +267,29 @@ function startScramble(
   let raf = 0;
   let done = false;
 
-  const finish = () => {
+  const teardown = () => {
     if (done) return;
     done = true;
-    if (prevHidden === null) el.removeAttribute("aria-hidden");
-    else el.setAttribute("aria-hidden", prevHidden);
-    sr.remove();
-  };
-  const restore = () => {
     for (const s of slots) {
       if (s.dead) continue;
       s.holder?.remove();
-      s.holder = null;
-      if (s.node.data === s.last) s.node.data = s.text;
+      for (let i = 0; i < s.nodes.length; i++) {
+        // Restore each node only while it still holds our emptied
+        // value — an external write (React children changed) wins.
+        if (s.nodes[i]!.data === "") s.nodes[i]!.data = s.data[i]!;
+      }
+    }
+    if (sr) {
+      if (prevHidden === null) el.removeAttribute("aria-hidden");
+      else el.setAttribute("aria-hidden", prevHidden);
+      sr.remove();
     }
   };
 
   const step = (now: number) => {
     const t = now - start;
     if (t >= duration) {
-      restore();
-      finish();
+      teardown();
       onDone?.();
       return;
     }
@@ -262,9 +300,11 @@ function startScramble(
         // Externally mutated or detached (e.g. React rendered new
         // children) — the owner's text wins; drop our markup and
         // stop writing this slot.
-        if (!s.dead && (s.node.data !== s.last || !s.node.isConnected)) {
+        if (
+          !s.dead &&
+          (s.nodes.some((n) => n.data !== "") || !s.nodes[0]!.isConnected)
+        ) {
           s.holder?.remove();
-          s.holder = null;
           s.dead = true;
         }
         if (s.dead) {
@@ -290,8 +330,7 @@ function startScramble(
 
   return () => {
     cancelAnimationFrame(raf);
-    restore();
-    finish();
+    teardown();
   };
 }
 

@@ -75,6 +75,10 @@ export interface ThemeSettings {
   tiltIntensity: number;
   /** Tilt reflection intensity (0-1). */
   reflectionIntensity: number;
+  /** Scramble effect intensity (0-1). */
+  scrambleIntensity: number;
+  /** Trace effect intensity (0-1). */
+  traceIntensity: number;
 }
 
 /**

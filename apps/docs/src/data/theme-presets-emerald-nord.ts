@@ -55,6 +55,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -111,6 +113,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -167,6 +171,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -223,6 +229,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -279,6 +287,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -335,6 +345,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -391,6 +403,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
   {
@@ -447,6 +461,8 @@ export const THEME_PRESETS_GROUP_2: ThemePreset[] = [
       rippleIntensity: 0.3,
       tiltIntensity: 0.5,
       reflectionIntensity: 0.35,
+      scrambleIntensity: 0.6,
+      traceIntensity: 0.6,
     },
   },
 ];
