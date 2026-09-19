@@ -42,9 +42,10 @@ export interface SpotlightProps extends Omit<
  *
  * Implementation: a window-level `pointermove` listener tracks the cursor
  * and activates the highlight when it comes within `proximity` px of the
- * element's bounding box. The highlight position is updated via CSS custom
- * properties (`--digital-spot-x/y`) on a `requestAnimationFrame`-throttled
- * callback, so no JavaScript animation loop runs while the pointer is idle.
+ * element's bounding box. The highlight is an oversized radial-gradient
+ * layer moved via `translate3d` on a `requestAnimationFrame`-throttled
+ * callback — compositor-only motion, no per-frame repaints, and no
+ * JavaScript animation loop runs while the pointer is idle.
  *
  * Reduced motion: the effect is disabled entirely. The surface remains
  * fully usable; spotlight is purely decorative.
@@ -68,6 +69,7 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     const reduced = useReducedMotion();
     const frame = useRef<number | null>(null);
     const innerRef = useRef<HTMLDivElement | null>(null);
+    const overlayRef = useRef<HTMLSpanElement | null>(null);
     const activeRef = useRef(false);
     const rectRef = useRef<DOMRect | null>(null);
 
@@ -100,17 +102,21 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
 
         if (frame.current != null) cancelAnimationFrame(frame.current);
         frame.current = requestAnimationFrame(() => {
-          const el2 = innerRef.current;
-          if (!el2) return;
+          const ov = overlayRef.current;
+          if (!ov) return;
           if (inside) {
-            const x = clientX - rect.left;
-            const y = clientY - rect.top;
-            el2.style.setProperty("--digital-spot-x", `${x}px`);
-            el2.style.setProperty("--digital-spot-y", `${y}px`);
-            el2.style.setProperty("--digital-spot-opacity", String(intensity));
+            // The overlay is a 200% layer whose gradient is centered at
+            // the element's center at rest — translating it by the
+            // pointer offset lands the highlight under the cursor while
+            // staying on compositor properties (no per-frame repaint).
+            const x = clientX - rect.left - rect.width / 2;
+            const y = clientY - rect.top - rect.height / 2;
+            ov.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+            const target = String(intensity);
+            if (ov.style.opacity !== target) ov.style.opacity = target;
             activeRef.current = true;
           } else if (activeRef.current) {
-            el2.style.setProperty("--digital-spot-opacity", "0");
+            ov.style.opacity = "0";
             activeRef.current = false;
           }
           frame.current = null;
@@ -172,12 +178,6 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     );
 
     const surfaceStyle: CSSProperties = {
-      // The spotlight layer reads these variables. Defaults keep it hidden
-      // until the pointer enters proximity.
-      ["--digital-spot-x" as string]: "50%",
-      ["--digital-spot-y" as string]: "50%",
-      ["--digital-spot-opacity" as string]: "0",
-      ["--digital-spot-radius" as string]: `${radius}px`,
       position: "relative",
       isolation: "isolate",
       // Clip the overlay to the wrapper's border radius. The radius is
@@ -203,15 +203,18 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
         {enabled && (
           <span
             aria-hidden="true"
+            ref={overlayRef}
             style={{
               position: "absolute",
-              inset: 0,
-              borderRadius: "inherit",
+              // 200% layer: its center coincides with the element's
+              // center, so translate3d(pointer-offset) places the static
+              // gradient under the cursor — compositor-only motion.
+              inset: "-50%",
               pointerEvents: "none",
-              opacity: "var(--digital-spot-opacity)",
+              opacity: 0,
               transition: `opacity ${motionTokens.duration.fast}ms var(--ease-standard, ${motionTokens.easing.standard[2]})`,
-              background:
-                "radial-gradient(var(--digital-spot-radius) circle at var(--digital-spot-x) var(--digital-spot-y), color-mix(in oklab, var(--accent, oklch(0.82 0.16 220)) 18%, transparent), transparent 70%)",
+              willChange: "transform, opacity",
+              background: `radial-gradient(${radius}px circle at center, color-mix(in oklab, var(--accent, oklch(0.82 0.16 220)) 18%, transparent), transparent 70%)`,
               zIndex: 0,
             }}
           />

@@ -1,4 +1,7 @@
-import type { ThemeSettings } from "../../data/theme-presets";
+import type {
+  NumericThemeSettingKey,
+  ThemeSettings,
+} from "../../data/theme-presets";
 
 import { memo, useEffect, useState } from "react";
 
@@ -8,12 +11,7 @@ import { Label, Slider } from "@ionbit-ui/ui";
 /* EffectSlider — local state for instant label feedback, commits on drag end */
 /* -------------------------------------------------------------------------- */
 
-type EffectKey =
-  | "translucency"
-  | "spotlightIntensity"
-  | "magneticIntensity"
-  | "glowIntensity"
-  | "pulseIntensity";
+type EffectKey = NumericThemeSettingKey;
 
 interface EffectSliderProps {
   label: string;

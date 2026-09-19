@@ -9,12 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Ripple and Tilt controls on the Theme page.** The customizer's
+  Effects section now has sliders for all six motion primitives plus
+  Tilt's reflection (alphabetically ordered after Translucency); the
+  preview shows Spotlight and Tilt hero cards plus Glow, Ripple, and
+  Magnetic buttons responding to their settings. `rippleIntensity`, `tiltIntensity`,
+  and `reflectionIntensity` are emitted as `--ripple-intensity` /
+  `--tilt-intensity` / `--reflection-intensity` in the generated
+  theme CSS, and persisted customizer state backfills missing
+  settings keys.
+- **Shadow intensity control on the Theme page.** A segmented
+  Subtle/Normal/Dramatic control scales the elevation shadow alphas
+  (`--shadow-xs`–`--shadow-lg`) in the generated theme CSS — the
+  `shadowIntensity` setting previously declared by every preset is
+  now actually consumed.
 - **Tilt motion primitive** (`@ionbit-ui/motion`): a subtle perspective
   tilt toward the cursor while hovering, spring-smoothed via
-  `motion/react` and capped by `maxAngle` (default 6°) scaled by
-  `intensity`. Composes with Spotlight on the same element; disabled
-  under `prefers-reduced-motion`. Includes two docs demos (card,
-  Tilt + Spotlight composition).
+  `motion/react` and capped by `maxAngle` (default 20°) scaled by
+  `intensity`. An optional `reflection` prop adds a specular glare
+  derived from the surface orientation — the highlight slides across
+  the card as it tilts and fades at rest, like light on a coated
+  surface (`reflectionIntensity` controls the peak). Composes with
+  Spotlight on the same element; disabled under
+  `prefers-reduced-motion`. Includes three docs demos (card,
+  reflection, Tilt + Spotlight composition).
 - **Ripple motion primitive** (`@ionbit-ui/motion`): a radial circle that
   expands from the press point and fades out, contained to the wrapped
   element — like the Mode Switcher's radial reveal. The ripple color
@@ -27,6 +45,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- **Glow `onFocus` now defaults to `false`.** The halo no longer
+  appears on focus-visible unless opted in — focus rings alone carry
+  the focus affordance, keeping the glow a hover/always effect.
+- **Unified motion-effect intensity defaults.** Component defaults,
+  all 20 theme presets, and the docs app now share one set:
+  Glow 0.7, Magnetic 0.2, Pulse 0.65, Ripple 0.3, Spotlight 0.4,
+  Tilt 0.5, Tilt Reflection 0.35. `motionTokens.intensity` gained a
+  dedicated `pulse` entry (Pulse previously reused the glow token);
+  Ripple (was 1), Tilt `intensity` (was 1), and `reflectionIntensity`
+  (was 0.4) defaults were rebalanced to match.
 - **Dropdown Menu migrated from Radix UI to Base UI** (`@base-ui/react/menu`).
   `asChild` replaced by the `render` prop; added `DropdownMenuPortal`,
   `DropdownMenuSub`/`SubTrigger`/`SubContent`, `DropdownMenuCheckboxItem`,
@@ -52,6 +80,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Motion overlays repaint every frame.** Spotlight's highlight and
+  Tilt's reflection glare previously animated `background` /
+  `--digital-spot-*` custom properties, forcing a repaint on every
+  pointer frame. Both are now oversized static-gradient layers moved
+  via `translate3d`/`opacity` — compositor-only motion, noticeably
+  smoother on heavy pages like the Theme preview.
+- **Theme customizer regenerates CSS on every update.** The store
+  rebuilt the full ~40KB theme stylesheet and injected it
+  synchronously per change — the native color picker alone fires
+  `onChange` on every drag tick. The document apply is now coalesced
+  (~90ms throttle with a trailing call) while React state still
+  updates synchronously.
 - **Glow halo follows press feedback.** When the wrapped control shifts
   down on `:active` (e.g. Button's `translate-y-px`), the Glow wrapper
   takes over the 1px shift so the element and halo move together —

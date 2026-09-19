@@ -156,10 +156,15 @@
 
 ## Effect intensities
 
-| Token                   | Value  |
-| ----------------------- | ------ |
-| `--spotlight-intensity` | `0.4`  |
-| `--magnetic-intensity`  | `0.25` |
+| Token                    | Value  |
+| ------------------------ | ------ |
+| `--spotlight-intensity`  | `0.4`  |
+| `--magnetic-intensity`   | `0.2`  |
+| `--glow-intensity`       | `0.7`  |
+| `--pulse-intensity`      | `0.65` |
+| `--ripple-intensity`     | `0.3`  |
+| `--tilt-intensity`       | `0.5`  |
+| `--reflection-intensity` | `0.35` |
 
 ## Animations
 

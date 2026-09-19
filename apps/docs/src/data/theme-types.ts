@@ -49,6 +49,9 @@ export interface ThemeRadius {
   xl: string;
 }
 
+/** Shadow intensity tier — scales the elevation shadow alphas. */
+export type ShadowIntensity = "subtle" | "normal" | "dramatic";
+
 export interface ThemeSettings {
   /**
    * Translucency multiplier (0-1). Controls the alpha of borders and of
@@ -56,8 +59,8 @@ export interface ThemeSettings {
    * Lower = more subtle borders and fainter tinted surfaces.
    */
   translucency: number;
-  /** Shadow intensity: "subtle" | "normal" | "dramatic". */
-  shadowIntensity: "subtle" | "normal" | "dramatic";
+  /** Shadow intensity tier — emitted as --shadow-* overrides. */
+  shadowIntensity: ShadowIntensity;
   /** Spotlight effect intensity (0-1). */
   spotlightIntensity: number;
   /** Magnetic effect intensity (0-1). */
@@ -66,7 +69,23 @@ export interface ThemeSettings {
   glowIntensity: number;
   /** Pulse effect intensity (0-1). */
   pulseIntensity: number;
+  /** Ripple effect intensity (0-1). */
+  rippleIntensity: number;
+  /** Tilt effect intensity (0-1). */
+  tiltIntensity: number;
+  /** Tilt reflection intensity (0-1). */
+  reflectionIntensity: number;
 }
+
+/**
+ * Settings keys whose value is a number — the slider-adjustable
+ * settings (translucency and the effect intensities). Derived from
+ * `ThemeSettings` so it stays in sync automatically; `shadowIntensity`
+ * is excluded because it is a `ShadowIntensity` tier, not a number.
+ */
+export type NumericThemeSettingKey = {
+  [K in keyof ThemeSettings]: ThemeSettings[K] extends number ? K : never;
+}[keyof ThemeSettings];
 
 export interface ThemePreset {
   /** Unique identifier used in CLI. */

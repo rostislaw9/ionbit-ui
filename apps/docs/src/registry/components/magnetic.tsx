@@ -28,7 +28,7 @@ import { Magnetic } from "@/components/motion/magnetic";`,
     {
       name: "intensity",
       type: "number (0-1)",
-      default: "0.25",
+      default: "0.2",
       description: "Pull strength toward cursor.",
     },
     {

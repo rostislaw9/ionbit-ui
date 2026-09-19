@@ -458,9 +458,13 @@ export const motionTokens = {
     gentle: { stiffness: 120, damping: 20, mass: 0.4 },
   },
   intensity: {
-    glow: 0.6,
+    glow: 0.7,
+    magnetic: 0.2, // max translate as fraction of element size
+    pulse: 0.65,
+    ripple: 0.3,
     spotlight: 0.4,
-    magnetic: 0.25, // max translate as fraction of element size
+    tilt: 0.5,
+    tiltReflection: 0.35,
   },
 } as const;
 ```

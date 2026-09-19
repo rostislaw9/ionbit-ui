@@ -16,7 +16,7 @@ export interface RippleProps {
   children: ReactNode;
   /**
    * 0..1 — ripple strength (peak opacity of the expanding circle).
-   * @default 1
+   * @default motionTokens.intensity.ripple
    */
   intensity?: number;
   /**
@@ -67,7 +67,7 @@ interface RippleInstance {
 export const Ripple = forwardRef<HTMLSpanElement, RippleProps>(function Ripple(
   {
     children,
-    intensity = 1,
+    intensity = motionTokens.intensity.ripple,
     color,
     disabled = false,
     duration = motionTokens.duration.slow,

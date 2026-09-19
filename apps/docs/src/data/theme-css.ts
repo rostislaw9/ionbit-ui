@@ -1,4 +1,5 @@
 import type {
+  ShadowIntensity,
   ThemeColors,
   ThemePreset,
   ThemeRadius,
@@ -9,15 +10,25 @@ function mix(color: string, amount: number): string {
   return `color-mix(in oklab, ${color} ${amount}%, transparent)`;
 }
 
+/** Multiplier applied to the mode-specific shadow alphas per tier. */
+const SHADOW_SCALE: Record<ShadowIntensity, number> = {
+  subtle: 0.6,
+  normal: 1,
+  dramatic: 1.5,
+};
+
 function hover(color: string): string {
   return `color-mix(in oklab, ${color} 88%, black)`;
 }
 
 export function colorsToCss(
   c: ThemeColors,
-  translucency: number,
+  s: ThemeSettings,
   isLight: boolean,
 ): string {
+  const { translucency } = s;
+  const k = SHADOW_SCALE[s.shadowIntensity];
+  const alpha = (base: number) => (base * k).toFixed(2);
   const borderBase = isLight ? "0 0 0" : "1 0 0";
   const borderAlpha = translucency.toFixed(2);
   const mutedAmount = Math.round(translucency * 160);
@@ -64,10 +75,10 @@ export function colorsToCss(
     `  --border-success: ${mix(c.success, 50)};`,
     `  --border-warning: ${mix(c.warning, 50)};`,
     `  --border-info: ${mix(c.info, 50)};`,
-    `  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / ${isLight ? 0.06 : 0.2});`,
-    `  --shadow-sm: 0 2px 4px -1px oklch(0 0 0 / ${isLight ? 0.08 : 0.25}), 0 1px 2px -1px oklch(0 0 0 / ${isLight ? 0.06 : 0.2});`,
-    `  --shadow-md: 0 4px 8px -2px oklch(0 0 0 / ${isLight ? 0.1 : 0.3}), 0 2px 4px -2px oklch(0 0 0 / ${isLight ? 0.08 : 0.25});`,
-    `  --shadow-lg: 0 12px 24px -8px oklch(0 0 0 / ${isLight ? 0.12 : 0.4}), 0 4px 8px -4px oklch(0 0 0 / ${isLight ? 0.1 : 0.3});`,
+    `  --shadow-xs: 0 1px 2px 0 oklch(0 0 0 / ${alpha(isLight ? 0.06 : 0.2)});`,
+    `  --shadow-sm: 0 2px 4px -1px oklch(0 0 0 / ${alpha(isLight ? 0.08 : 0.25)}), 0 1px 2px -1px oklch(0 0 0 / ${alpha(isLight ? 0.06 : 0.2)});`,
+    `  --shadow-md: 0 4px 8px -2px oklch(0 0 0 / ${alpha(isLight ? 0.1 : 0.3)}), 0 2px 4px -2px oklch(0 0 0 / ${alpha(isLight ? 0.08 : 0.25)});`,
+    `  --shadow-lg: 0 12px 24px -8px oklch(0 0 0 / ${alpha(isLight ? 0.12 : 0.4)}), 0 4px 8px -4px oklch(0 0 0 / ${alpha(isLight ? 0.1 : 0.3)});`,
   ].join("\n");
 }
 
@@ -86,12 +97,15 @@ export function settingsToCss(s: ThemeSettings): string {
     `  --magnetic-intensity: ${s.magneticIntensity};`,
     `  --glow-intensity: ${s.glowIntensity};`,
     `  --pulse-intensity: ${s.pulseIntensity};`,
+    `  --ripple-intensity: ${s.rippleIntensity};`,
+    `  --tilt-intensity: ${s.tiltIntensity};`,
+    `  --reflection-intensity: ${s.reflectionIntensity};`,
   ].join("\n");
 }
 
 export function generateThemeCss(preset: ThemePreset): string {
-  const darkBlock = `:root {\n${colorsToCss(preset.dark, preset.settings.translucency, false)}\n${radiusToCss(preset.radius)}\n${settingsToCss(preset.settings)}\n}`;
-  const lightBlock = `.light {\n${colorsToCss(preset.light, preset.settings.translucency, true)}\n${radiusToCss(preset.radius)}\n${settingsToCss(preset.settings)}\n}`;
+  const darkBlock = `:root {\n${colorsToCss(preset.dark, preset.settings, false)}\n${radiusToCss(preset.radius)}\n${settingsToCss(preset.settings)}\n}`;
+  const lightBlock = `.light {\n${colorsToCss(preset.light, preset.settings, true)}\n${radiusToCss(preset.radius)}\n${settingsToCss(preset.settings)}\n}`;
 
   return `/* Ionbit UI — Theme: ${preset.label} */\n${darkBlock}\n\n${lightBlock}`;
 }

@@ -2,6 +2,7 @@ import type {
   ThemeColors,
   ThemePreset,
   ThemeRadius,
+  ThemeSettings,
 } from "../data/theme-presets";
 
 import { useCallback, useMemo, useSyncExternalStore } from "react";
@@ -35,14 +36,9 @@ export interface ThemeCustomizerState {
     value: string,
   ) => void;
   updateRadius: (key: keyof ThemeRadius, value: string) => void;
-  updateSettings: (
-    key:
-      | "translucency"
-      | "spotlightIntensity"
-      | "magneticIntensity"
-      | "glowIntensity"
-      | "pulseIntensity",
-    value: number,
+  updateSettings: <K extends keyof ThemeSettings>(
+    key: K,
+    value: ThemeSettings[K],
   ) => void;
   reset: () => void;
 }
@@ -101,15 +97,8 @@ export function useThemeCustomizer(): ThemeCustomizerState {
     [],
   );
   const doUpdateSettings = useCallback(
-    (
-      key:
-        | "translucency"
-        | "spotlightIntensity"
-        | "magneticIntensity"
-        | "glowIntensity"
-        | "pulseIntensity",
-      value: number,
-    ) => updateSettings(key, value),
+    <K extends keyof ThemeSettings>(key: K, value: ThemeSettings[K]) =>
+      updateSettings(key, value),
     [],
   );
   const doReset = useCallback(() => reset(), []);

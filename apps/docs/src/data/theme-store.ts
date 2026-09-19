@@ -48,7 +48,15 @@ function loadPersisted(): PersistedTheme | null {
       parsed.radius &&
       parsed.settings
     ) {
-      return parsed;
+      // Backfill settings keys added after the state was persisted so old
+      // sessions don't produce NaN slider values.
+      return {
+        ...parsed,
+        settings: {
+          ...getPreset(parsed.selectedId).settings,
+          ...parsed.settings,
+        },
+      };
     }
   } catch {
     // Corrupt or missing — fall back to default.
@@ -93,10 +101,37 @@ function notify(): void {
   for (const listener of listeners) listener();
 }
 
+/**
+ * The generated stylesheet is ~40KB; injecting it forces a whole-document
+ * style recalculation. Native color inputs fire onChange on every drag
+ * tick, so updates are coalesced: apply immediately when idle, otherwise
+ * at most once per APPLY_THROTTLE_MS with a trailing call for the last
+ * state. React subscribers still get every state change synchronously —
+ * only the expensive DOM write is throttled.
+ */
+const APPLY_THROTTLE_MS = 90;
+let lastApply = 0;
+let applyTimer: ReturnType<typeof setTimeout> | null = null;
+
+function scheduleApply(): void {
+  const elapsed = Date.now() - lastApply;
+  if (elapsed >= APPLY_THROTTLE_MS) {
+    lastApply = Date.now();
+    applyThemeToDocument(buildPreset(currentState));
+    return;
+  }
+  if (applyTimer) return;
+  applyTimer = setTimeout(() => {
+    applyTimer = null;
+    lastApply = Date.now();
+    applyThemeToDocument(buildPreset(currentState));
+  }, APPLY_THROTTLE_MS - elapsed);
+}
+
 function setState(next: PersistedTheme): void {
   currentState = next;
   persist(next);
-  applyThemeToDocument(buildPreset(next));
+  scheduleApply();
   notify();
 }
 
@@ -167,14 +202,9 @@ function updateRadius(key: keyof ThemeRadius, value: string): void {
   setState({ ...currentState, customized: true, radius: next });
 }
 
-function updateSettings(
-  key:
-    | "translucency"
-    | "spotlightIntensity"
-    | "magneticIntensity"
-    | "glowIntensity"
-    | "pulseIntensity",
-  value: number,
+function updateSettings<K extends keyof ThemeSettings>(
+  key: K,
+  value: ThemeSettings[K],
 ): void {
   setState({
     ...currentState,

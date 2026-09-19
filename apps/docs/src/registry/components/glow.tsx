@@ -58,7 +58,7 @@ import { Glow } from "@/components/motion/glow";`,
     {
       name: "intensity",
       type: "number (0-1)",
-      default: "motionTokens.intensity.glow",
+      default: "0.7",
       description: "Glow strength.",
     },
     {
@@ -89,7 +89,7 @@ import { Glow } from "@/components/motion/glow";`,
     {
       name: "onFocus",
       type: "boolean",
-      default: "true",
+      default: "false",
       description: "Trigger glow on focus-visible.",
     },
     {

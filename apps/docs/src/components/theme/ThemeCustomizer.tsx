@@ -1,7 +1,7 @@
-import type { ThemeColors } from "../../data/theme-presets";
+import type { ShadowIntensity, ThemeColors } from "../../data/theme-presets";
 import type { ThemeCustomizerState } from "../../hooks/useThemeCustomizer";
 
-import { Separator } from "@ionbit-ui/ui";
+import { Label, Separator, ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
 
 import { THEME_PRESETS } from "../../data/theme-presets";
 import { useTheme } from "../../hooks/useTheme";
@@ -185,6 +185,32 @@ export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
       <div>
         <h3 className="mb-3 text-sm font-semibold text-foreground">Effects</h3>
         <div className="flex flex-col gap-4">
+          <div>
+            <Label className="mb-2 block text-xs text-foreground-muted">
+              Shadow
+            </Label>
+            <ToggleGroup
+              type="single"
+              size="sm"
+              variant="outline"
+              spacing={0}
+              className="w-full"
+              value={settings.shadowIntensity}
+              onValueChange={(v: string) => {
+                if (v) updateSettings("shadowIntensity", v as ShadowIntensity);
+              }}
+            >
+              <ToggleGroupItem value="subtle" className="flex-1">
+                Subtle
+              </ToggleGroupItem>
+              <ToggleGroupItem value="normal" className="flex-1">
+                Normal
+              </ToggleGroupItem>
+              <ToggleGroupItem value="dramatic" className="flex-1">
+                Dramatic
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
           <EffectSlider
             label="Translucency"
             value={settings.translucency * 100}
@@ -192,24 +218,6 @@ export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
             max={20}
             step={1}
             effectKey="translucency"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Spotlight"
-            value={settings.spotlightIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="spotlightIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Magnetic"
-            value={settings.magneticIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="magneticIntensity"
             onCommit={updateSettings}
           />
           <EffectSlider
@@ -222,12 +230,57 @@ export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
             onCommit={updateSettings}
           />
           <EffectSlider
+            label="Magnetic"
+            value={settings.magneticIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="magneticIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
             label="Pulse"
             value={settings.pulseIntensity * 100}
             min={0}
             max={100}
             step={5}
             effectKey="pulseIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Ripple"
+            value={settings.rippleIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="rippleIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Spotlight"
+            value={settings.spotlightIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="spotlightIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Tilt"
+            value={settings.tiltIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="tiltIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Tilt Reflection"
+            value={settings.reflectionIntensity * 100}
+            min={0}
+            max={100}
+            step={5}
+            effectKey="reflectionIntensity"
             onCommit={updateSettings}
           />
         </div>

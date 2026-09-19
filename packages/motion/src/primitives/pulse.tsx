@@ -8,7 +8,7 @@ export interface PulseProps {
   children: ReactNode;
   /**
    * 0..1 — pulse strength.
-   * @default motionTokens.intensity.glow
+   * @default motionTokens.intensity.pulse
    */
   intensity?: number;
   /** Color override. Defaults to the `--accent` token. */
@@ -48,7 +48,7 @@ export interface PulseProps {
 export const Pulse = forwardRef<HTMLSpanElement, PulseProps>(function Pulse(
   {
     children,
-    intensity = motionTokens.intensity.glow,
+    intensity = motionTokens.intensity.pulse,
     color,
     disabled = false,
     duration = 1600,

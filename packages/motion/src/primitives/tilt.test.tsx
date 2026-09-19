@@ -47,6 +47,38 @@ describe("Tilt", () => {
     }).not.toThrow();
   });
 
+  it("renders a glare layer when reflection is enabled", () => {
+    const { container } = render(
+      <Tilt reflection>
+        <button>Hover me</button>
+      </Tilt>,
+    );
+    const wrapper = container.firstElementChild as HTMLElement;
+    const glare = wrapper.querySelector("[aria-hidden]");
+    expect(glare).toBeTruthy();
+    expect((glare as HTMLElement).style.pointerEvents).toBe("none");
+  });
+
+  it("does not render a glare layer without reflection", () => {
+    const { container } = render(
+      <Tilt>
+        <button>Hover me</button>
+      </Tilt>,
+    );
+    const wrapper = container.firstElementChild as HTMLElement;
+    expect(wrapper.querySelector("[aria-hidden]")).toBeNull();
+  });
+
+  it("does not render a glare layer when disabled", () => {
+    const { container } = render(
+      <Tilt reflection disabled>
+        <button>Hover me</button>
+      </Tilt>,
+    );
+    const wrapper = container.firstElementChild as HTMLElement;
+    expect(wrapper.querySelector("[aria-hidden]")).toBeNull();
+  });
+
   it("does not track the pointer when disabled", () => {
     const { container } = render(
       <Tilt disabled intensity={0.5}>

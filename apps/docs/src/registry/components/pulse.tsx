@@ -38,7 +38,7 @@ import { Pulse } from "@/components/motion/pulse";`,
     {
       name: "intensity",
       type: "number (0-1)",
-      default: "motionTokens.intensity.glow",
+      default: "0.65",
       description: "Pulse strength.",
     },
     {

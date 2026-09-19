@@ -51,7 +51,7 @@ import { Ripple } from "@/components/motion/ripple";`,
     {
       name: "intensity",
       type: "number (0-1)",
-      default: "1",
+      default: "0.3",
       description: "Peak opacity of the expanding circle.",
     },
     {

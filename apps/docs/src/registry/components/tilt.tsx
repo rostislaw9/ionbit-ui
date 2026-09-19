@@ -1,8 +1,12 @@
 import type { ComponentMeta } from "./types";
 
+import { InlineCode } from "../../components/code/InlineCode";
 import { TiltDemo } from "../../demos/tilt-demo";
 import TiltDemoSource from "../../demos/tilt-demo.tsx?highlighted";
 import TiltDemoRaw from "../../demos/tilt-demo.tsx?raw";
+import { TiltReflectionDemo } from "../../demos/tilt-reflection-demo";
+import TiltReflectionDemoSource from "../../demos/tilt-reflection-demo.tsx?highlighted";
+import TiltReflectionDemoRaw from "../../demos/tilt-reflection-demo.tsx?raw";
 import { TiltSpotlightDemo } from "../../demos/tilt-spotlight-demo";
 import TiltSpotlightDemoSource from "../../demos/tilt-spotlight-demo.tsx?highlighted";
 import TiltSpotlightDemoRaw from "../../demos/tilt-spotlight-demo.tsx?raw";
@@ -20,6 +24,18 @@ export const tiltMeta: ComponentMeta = {
       code: TiltDemoSource,
       rawCode: TiltDemoRaw,
       render: () => <TiltDemo />,
+    },
+    {
+      title: "Reflection",
+      description: (
+        <>
+          Add <InlineCode>reflection</InlineCode> prop to create a specular
+          glare that follows the tilt.
+        </>
+      ),
+      code: TiltReflectionDemoSource,
+      rawCode: TiltReflectionDemoRaw,
+      render: () => <TiltReflectionDemo />,
     },
     {
       title: "With Spotlight",
@@ -48,13 +64,13 @@ import { Tilt } from "@/components/motion/tilt";`,
     {
       name: "intensity",
       type: "number (0-1)",
-      default: "1",
+      default: "0.5",
       description: "Scales the tilt angle.",
     },
     {
       name: "maxAngle",
       type: "number",
-      default: "6",
+      default: "20",
       description: "Maximum tilt angle in degrees at full intensity.",
     },
     {
@@ -62,6 +78,19 @@ import { Tilt } from "@/components/motion/tilt";`,
       type: "number",
       default: "800",
       description: "Perspective distance in px — lower feels deeper.",
+    },
+    {
+      name: "reflection",
+      type: "boolean",
+      default: "false",
+      description:
+        "Add a specular sheen driven by the surface orientation — the reflection band sweeps across the card as it tilts, like light on a coated surface. A flat card shows no reflection.",
+    },
+    {
+      name: "reflectionIntensity",
+      type: "number (0-1)",
+      default: "0.35",
+      description: "Glare opacity at full tilt.",
     },
     {
       name: "as",

@@ -17,7 +17,7 @@ export interface GlowProps {
   disabled?: boolean;
   /** Trigger the glow on hover of the wrapped element. @default true */
   onHover?: boolean;
-  /** Trigger the glow on focus-visible of the wrapped element. @default true */
+  /** Trigger the glow on focus-visible of the wrapped element. @default false */
   onFocus?: boolean;
   /** Always show the glow (not just on hover/focus). @default false */
   always?: boolean;
@@ -58,7 +58,7 @@ export const Glow = forwardRef<HTMLSpanElement, GlowProps>(function Glow(
     color,
     disabled = false,
     onHover = true,
-    onFocus = true,
+    onFocus = false,
     always = false,
     variant = "halo",
     className,

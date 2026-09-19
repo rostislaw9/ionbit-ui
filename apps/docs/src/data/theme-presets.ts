@@ -3,9 +3,11 @@
  */
 
 export type {
+  ShadowIntensity,
   ThemeColors,
   ThemeRadius,
   ThemeSettings,
+  NumericThemeSettingKey,
   ThemePreset,
 } from "./theme-types";
 

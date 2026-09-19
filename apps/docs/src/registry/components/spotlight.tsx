@@ -6,6 +6,9 @@ import SpotlightBasicDemoRaw from "../../demos/spotlight-basic-demo.tsx?raw";
 import { SpotlightProximityDemo } from "../../demos/spotlight-proximity-demo";
 import SpotlightProximityDemoSource from "../../demos/spotlight-proximity-demo.tsx?highlighted";
 import SpotlightProximityDemoRaw from "../../demos/spotlight-proximity-demo.tsx?raw";
+import { TiltSpotlightDemo } from "../../demos/tilt-spotlight-demo";
+import TiltSpotlightDemoSource from "../../demos/tilt-spotlight-demo.tsx?highlighted";
+import TiltSpotlightDemoRaw from "../../demos/tilt-spotlight-demo.tsx?raw";
 
 export const spotlightMeta: ComponentMeta = {
   name: "spotlight",
@@ -29,6 +32,13 @@ export const spotlightMeta: ComponentMeta = {
       code: SpotlightProximityDemoSource,
       rawCode: SpotlightProximityDemoRaw,
       render: () => <SpotlightProximityDemo />,
+    },
+    {
+      title: "With Tilt",
+      description: "Spotlight and Tilt compose on the same element.",
+      code: TiltSpotlightDemoSource,
+      rawCode: TiltSpotlightDemoRaw,
+      render: () => <TiltSpotlightDemo />,
     },
   ],
   usageImport: `import { Spotlight } from "@/components/motion/spotlight";`,
