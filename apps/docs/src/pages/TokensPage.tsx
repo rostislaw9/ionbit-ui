@@ -113,7 +113,7 @@ function TokenSection({ section }: { section: TokenDocSection }) {
   }
 
   if (section.kind === "radius" || section.kind === "shadows") {
-    const prop = section.kind === "radius" ? "borderRadius" : "boxShadow";
+    const radius = section.kind === "radius";
     return (
       <TokenGroup id={section.id} title={section.title}>
         <div className="flex flex-wrap items-end gap-4">
@@ -121,7 +121,12 @@ function TokenSection({ section }: { section: TokenDocSection }) {
             <div key={t} className="flex flex-col items-center gap-2">
               <div
                 className="h-16 w-16 border border-border-strong bg-surface-elevated"
-                style={{ [prop]: `var(--${t})` } as CSSProperties}
+                style={
+                  {
+                    borderRadius: radius ? `var(--${t})` : "var(--radius-md)",
+                    ...(radius ? {} : { boxShadow: `var(--${t})` }),
+                  } as CSSProperties
+                }
               />
               <span className="font-mono text-xs text-foreground-muted">
                 {t.slice(t.indexOf("-") + 1)}
