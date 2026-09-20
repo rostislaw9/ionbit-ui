@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "field",
-  "type": "registry:component",
+  "type": "registry:ui",
   "title": "Field",
   "description": "Composable form field primitives for labels, controls, descriptions, errors, and fieldsets.",
   "dependencies": [

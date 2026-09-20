@@ -61,7 +61,18 @@ export type DropdownMenuTriggerProps = DropdownMenuPrimitive.Trigger.Props;
  * Renders a `<button>` by default. Use the `render` prop to compose
  * another element or component as the trigger.
  */
-export const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
+export function DropdownMenuTrigger({ ...props }: DropdownMenuTriggerProps) {
+  return (
+    <DropdownMenuPrimitive.Trigger
+      data-slot="dropdown-menu-trigger"
+      // Explicit tabindex keeps the trigger in sequential keyboard nav on
+      // macOS browsers (Safari, Firefox), which skip plain buttons unless
+      // Full Keyboard Access is enabled.
+      tabIndex={0}
+      {...props}
+    />
+  );
+}
 
 export type DropdownMenuContentProps = DropdownMenuPrimitive.Popup.Props &
   Pick<

@@ -297,7 +297,7 @@
     },
     {
       "name": "field",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Field",
       "description": "Composable form field primitives for labels, controls, descriptions, errors, and fieldsets.",
       "dependencies": ["class-variance-authority", "clsx", "tailwind-merge"],
@@ -641,7 +641,8 @@
           "type": "registry:lib",
           "target": "components/motion/tokens.ts"
         }
-      ]
+      ],
+      "registryDependencies": ["tokens"]
     },
     {
       "name": "magnetic",
@@ -704,7 +705,8 @@
           "type": "registry:lib",
           "target": "components/motion/tokens.ts"
         }
-      ]
+      ],
+      "registryDependencies": ["tokens"]
     },
     {
       "name": "reveal",

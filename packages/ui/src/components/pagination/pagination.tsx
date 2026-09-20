@@ -186,12 +186,11 @@ export const PaginationEllipsis = forwardRef<
   return (
     <span
       ref={ref}
-      aria-hidden
       data-slot="pagination-ellipsis"
       className={cn("flex size-8 items-center justify-center", className)}
       {...props}
     >
-      <MoreHorizontal className="size-4 text-foreground-subtle" />
+      <MoreHorizontal aria-hidden className="size-4 text-foreground-subtle" />
       <span className="sr-only">More pages</span>
     </span>
   );

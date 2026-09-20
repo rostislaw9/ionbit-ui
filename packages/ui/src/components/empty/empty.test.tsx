@@ -19,10 +19,11 @@ describe("Empty", () => {
     expect(screen.getByTestId("empty")).toHaveTextContent("Content");
   });
 
-  it("applies dashed border class", () => {
-    const { container } = render(<Empty className="border" />);
+  it("does not force a border — styling is left to the consumer", () => {
+    const { container } = render(<Empty />);
     const el = container.firstChild as HTMLElement;
-    expect(el).toHaveClass("border-dashed");
+    expect(el).not.toHaveClass("border");
+    expect(el).not.toHaveClass("border-dashed");
   });
 
   it("sets data-slot", () => {

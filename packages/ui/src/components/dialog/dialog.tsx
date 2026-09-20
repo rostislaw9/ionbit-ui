@@ -201,10 +201,11 @@ export const DialogClose = forwardRef<HTMLButtonElement, DialogCloseProps>(
 export type DialogActionProps = React.ComponentProps<"button">;
 
 /**
- * DialogAction — a styled primary button that does NOT auto-close.
+ * DialogAction — a styled primary button that closes the dialog on click.
  *
- * The user controls closing via onClick + onOpenChange on the Dialog.
- * This allows validation, async operations, or conditional closing.
+ * Renders `Dialog.Close` underneath, so confirming dismisses the dialog.
+ * Attach `onClick` for side effects (save, submit) — for flows that must
+ * keep the dialog open, control `open`/`onOpenChange` on the Dialog itself.
  */
 export const DialogAction = forwardRef<HTMLButtonElement, DialogActionProps>(
   function DialogAction({ className, ...props }, ref) {

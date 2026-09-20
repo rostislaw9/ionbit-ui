@@ -157,23 +157,27 @@ export interface BreadcrumbEllipsisProps extends HTMLAttributes<HTMLSpanElement>
 /**
  * BreadcrumbEllipsis — a collapsed-trail indicator showing hidden levels.
  *
- * Renders an ellipsis (`…`) with `role="presentation"` and an `aria-label`
- * (defaults to "More"). Use when the breadcrumb trail is too long to display
- * in full, typically as a clickable element that expands the hidden levels.
+ * Renders an ellipsis (`…`) hidden from assistive technology, paired with
+ * an `sr-only` sibling carrying the `label` (defaults to "More"). Use when
+ * the breadcrumb trail is too long to display in full, typically as a
+ * clickable element that expands the hidden levels.
  */
 export const BreadcrumbEllipsis = forwardRef<
   HTMLSpanElement,
   BreadcrumbEllipsisProps
 >(function BreadcrumbEllipsis({ className, label = "More", ...props }, ref) {
   return (
-    <span
-      ref={ref}
-      role="presentation"
-      aria-label={label}
-      className={cn("flex size-4 items-center justify-center", className)}
-      {...props}
-    >
-      &hellip;
-    </span>
+    <>
+      <span
+        ref={ref}
+        role="presentation"
+        aria-hidden
+        className={cn("flex size-4 items-center justify-center", className)}
+        {...props}
+      >
+        &hellip;
+      </span>
+      <span className="sr-only">{label}</span>
+    </>
   );
 });

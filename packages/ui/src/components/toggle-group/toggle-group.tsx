@@ -12,7 +12,7 @@ type ToggleGroupSize = NonNullable<ToggleProps["size"]>;
 interface ToggleGroupContextValue {
   variant: ToggleGroupVariant;
   size: ToggleGroupSize;
-  spacing: number;
+  spacing: ToggleGroupSpacing;
 }
 
 const ToggleGroupCtx = createContext<ToggleGroupContextValue>({
@@ -26,7 +26,7 @@ interface ToggleGroupBaseProps {
   className?: string;
   variant?: ToggleGroupVariant;
   size?: ToggleGroupSize;
-  spacing?: number;
+  spacing?: ToggleGroupSpacing;
   orientation?: "horizontal" | "vertical";
   disabled?: boolean;
   "aria-label"?: string;
@@ -49,7 +49,10 @@ interface ToggleGroupMultipleProps extends ToggleGroupBaseProps {
 export type ToggleGroupProps =
   ToggleGroupSingleProps | ToggleGroupMultipleProps;
 
-const spacingGapMap: Record<number, string> = {
+// Keys must be literal so Tailwind generates each gap class — the union
+// type makes unsupported values a compile error instead of a silent
+// missing gap (a dynamic `gap-${spacing}` class can never be scanned).
+const spacingGapMap = {
   0: "gap-0",
   1: "gap-1",
   2: "gap-2",
@@ -58,7 +61,9 @@ const spacingGapMap: Record<number, string> = {
   5: "gap-5",
   6: "gap-6",
   8: "gap-8",
-};
+} as const;
+
+type ToggleGroupSpacing = keyof typeof spacingGapMap;
 
 /**
  * ToggleGroup — a group of toggles with single or multiple selection.
@@ -109,7 +114,7 @@ export function ToggleGroup({
       data-slot="toggle-group"
       className={cn(
         "group/toggle-group flex w-fit items-center",
-        spacingGapMap[spacing] ?? `gap-${spacing}`,
+        spacingGapMap[spacing],
         orientation === "vertical" && "flex-col",
         // When spacing is 0, join items into a combined element
         spacing === 0 &&
@@ -158,7 +163,7 @@ export function ToggleGroupItem({
   ...props
 }: ToggleGroupItemProps) {
   const ctx = useContext(ToggleGroupCtx);
-  const effectiveVariant = ctx.variant || variant;
+  const effectiveVariant = variant ?? ctx.variant;
   return (
     <TogglePrimitive
       data-slot="toggle-group-item"
@@ -166,7 +171,7 @@ export function ToggleGroupItem({
       className={cn(
         toggleVariants({
           variant: effectiveVariant,
-          size: ctx.size || size,
+          size: size ?? ctx.size,
         }),
         "focus-visible:z-10",
         className,

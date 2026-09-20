@@ -37,6 +37,10 @@ export const SelectTrigger = forwardRef<HTMLButtonElement, SelectTriggerProps>(
     return (
       <SelectPrimitive.Trigger
         ref={ref}
+        // Explicit tabindex keeps the trigger in sequential keyboard nav on
+        // macOS browsers (Safari, Firefox), which skip plain buttons unless
+        // Full Keyboard Access is enabled.
+        tabIndex={0}
         className={cn(
           "flex h-8 items-center justify-between rounded-md border border-border bg-surface px-3 py-1.5 text-sm text-foreground hover:border-border-strong focus-visible:shadow-focus focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-40 data-[placeholder]:text-foreground-muted",
           className,

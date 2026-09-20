@@ -88,6 +88,28 @@ describe("ToggleGroup", () => {
     );
   });
 
+  it("lets an item override the group's variant and size", () => {
+    render(
+      <ToggleGroup
+        type="single"
+        variant="outline"
+        size="md"
+        aria-label="Alignment"
+      >
+        <ToggleGroupItem value="left">Left</ToggleGroupItem>
+        <ToggleGroupItem value="right" variant="default" size="sm">
+          Right
+        </ToggleGroupItem>
+      </ToggleGroup>,
+    );
+    const item = screen.getByRole("button", { name: "Right" });
+    expect(item).toHaveAttribute("data-variant", "default");
+    // size "sm" must win over the group's "md" — h-7 is the sm class,
+    // h-8 the md one.
+    expect(item.className).toContain("h-7");
+    expect(item.className).not.toContain("h-8");
+  });
+
   it("calls onValueChange in single mode", async () => {
     const user = userEvent.setup();
     let value = "";

@@ -131,8 +131,16 @@ export function Tabs({
     setIndicator({ x: trigger.offsetLeft, w: trigger.offsetWidth });
   }, [activeValue]);
 
+  // Measure on mount/active change, and re-measure whenever the list's
+  // box changes — window resizes, webfont swaps, and label edits all
+  // shift trigger geometry without touching activeValue.
   useLayoutEffect(() => {
     measure();
+    const list = listRef.current;
+    if (!list) return;
+    const observer = new ResizeObserver(measure);
+    observer.observe(list);
+    return () => observer.disconnect();
   }, [measure]);
 
   const contextValue = useMemo<TabsContextValue>(
