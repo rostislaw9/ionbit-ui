@@ -22,7 +22,10 @@ export interface TraceProps extends Omit<
   intensity?: number;
   /** Beam color override. Defaults to the `--accent` token. */
   color?: string;
-  /** Disable the effect entirely — removes the wrapper. @default false */
+  /**
+   * Disable the effect entirely. The wrapper stays mounted so toggling
+   * doesn't shift layout or drop the forwarded ref. @default false
+   */
   disabled?: boolean;
   /**
    * Whether the beam is running. Unlike `disabled`, the wrapper stays
@@ -101,7 +104,8 @@ export const Trace = forwardRef<HTMLElement, TraceProps>(function Trace(
     else if (ref) ref.current = el;
   };
 
-  if (disabled) return <>{children}</>;
+  // `disabled` keeps the wrapper mounted (no layout shift, ref stays
+  // live) — the beam overlay below is simply not rendered.
 
   const beamColor = color ?? "var(--accent, oklch(0.62 0.19 230))";
   const alpha = Math.max(0, Math.min(1, intensity));
@@ -142,7 +146,7 @@ export const Trace = forwardRef<HTMLElement, TraceProps>(function Trace(
       {...rest}
     >
       {children}
-      {active && (
+      {active && !disabled && (
         <span aria-hidden="true" data-ionbit-trace="" style={layerStyle} />
       )}
     </Component>

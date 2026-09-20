@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+import { createRef } from "react";
 import { describe, expect, it } from "vitest";
 
 import { Pulse } from "./pulse";
@@ -61,5 +62,48 @@ describe("Pulse", () => {
     );
     const wrapper = container.querySelector("span");
     expect(wrapper?.style.animation).toContain("3000ms");
+  });
+
+  // Regression: the wrapper used to be removed while `disabled`, so the
+  // radius sample had to happen on the commit where the wrapper first
+  // mounted. The wrapper now always mounts — this also guards that
+  // toggling never drops the consumer's className or ref.
+  it("inherits the child radius when the wrapper mounts after a disabled→enabled flip", () => {
+    const { container, rerender } = render(
+      <Pulse disabled>
+        <button style={{ borderRadius: "8px" }}>b</button>
+      </Pulse>,
+    );
+    rerender(
+      <Pulse>
+        <button style={{ borderRadius: "8px" }}>b</button>
+      </Pulse>,
+    );
+    const wrapper = container.querySelector("span");
+    expect(wrapper?.style.borderRadius).toBe("8px");
+  });
+
+  it("keeps the wrapper, className, and ref while disabled", () => {
+    const ref = createRef<HTMLSpanElement>();
+    const { container } = render(
+      <Pulse ref={ref} disabled className="wrapper-class">
+        <span>Status</span>
+      </Pulse>,
+    );
+    const wrapper = container.querySelector("span");
+    expect(wrapper).not.toBeNull();
+    expect(wrapper).toHaveClass("wrapper-class");
+    expect(wrapper?.style.animation).toBe("");
+    expect(ref.current).toBe(wrapper);
+  });
+
+  it("attaches the ref to the wrapper when enabled", () => {
+    const ref = createRef<HTMLSpanElement>();
+    render(
+      <Pulse ref={ref}>
+        <span>Status</span>
+      </Pulse>,
+    );
+    expect(ref.current).toBeInstanceOf(HTMLSpanElement);
   });
 });

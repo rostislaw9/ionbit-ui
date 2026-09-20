@@ -107,6 +107,7 @@ import { Tilt } from "@/components/motion/tilt";`,
   ],
   accessibility: [
     "Purely decorative — disabled when reduced motion is active",
+    "Skipped on touch devices — pointer-driven effects require a fine pointer",
     "Only active while hovering — no layout or focus changes",
     "Wrapped element remains fully focusable",
   ],

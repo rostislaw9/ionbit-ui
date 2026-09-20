@@ -28,4 +28,5 @@ export type { TiltProps } from "./primitives/tilt";
 export { Trace } from "./primitives/trace";
 export type { TraceProps } from "./primitives/trace";
 
+export { useFinePointer } from "./hooks/use-fine-pointer";
 export { useReducedMotion } from "./hooks/use-reduced-motion";

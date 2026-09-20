@@ -13,6 +13,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { useFinePointer } from "../hooks/use-fine-pointer";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { subscribePointerMove } from "../pointer-coordinator";
 import { motionTokens } from "../tokens";
@@ -77,7 +78,8 @@ export const Magnetic = forwardRef<HTMLDivElement, MagneticProps>(
     ref,
   ) {
     const reduced = useReducedMotion();
-    const enabled = !disabled && !reduced;
+    const fine = useFinePointer();
+    const enabled = !disabled && !reduced && fine;
     const innerRef = useRef<HTMLDivElement | null>(null);
     const rectRef = useRef<DOMRect | null>(null);
 

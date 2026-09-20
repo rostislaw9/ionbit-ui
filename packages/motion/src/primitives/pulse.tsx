@@ -69,7 +69,19 @@ export const Pulse = forwardRef<HTMLSpanElement, PulseProps>(function Pulse(
     else if (ref) ref.current = el;
   };
 
-  if (disabled) return <>{children}</>;
+  if (disabled) {
+    // The wrapper stays mounted so toggling `disabled` never shifts
+    // layout, drops the forwarded ref, or discards className/style.
+    return (
+      <span
+        ref={setRef}
+        className={className}
+        style={{ display: "inline-flex", ...style }}
+      >
+        {children}
+      </span>
+    );
+  }
 
   const pulseColor = color ?? "var(--accent, oklch(0.62 0.19 230))";
   const isText = variant === "text";

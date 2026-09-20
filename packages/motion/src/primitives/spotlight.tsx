@@ -8,6 +8,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { useFinePointer } from "../hooks/use-fine-pointer";
 import { useInheritedRadius } from "../hooks/use-inherited-radius";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { subscribePointerMove } from "../pointer-coordinator";
@@ -68,6 +69,7 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     ref,
   ) {
     const reduced = useReducedMotion();
+    const fine = useFinePointer();
     const frame = useRef<number | null>(null);
     // The first element child is the overlay span, so resolve the
     // content child through the trailing `display: contents` wrapper.
@@ -79,7 +81,9 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     const activeRef = useRef(false);
     const rectRef = useRef<DOMRect | null>(null);
 
-    const enabled = !disabled && !reduced;
+    // Pointer-driven — skipped entirely on touch devices, where hover
+    // never fires and pointermove only fires during scroll gestures.
+    const enabled = !disabled && !reduced && fine;
 
     // Cache the bounding rect and refresh on scroll/resize to avoid
     // calling getBoundingClientRect on every pointermove event.
@@ -194,7 +198,7 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
               inset: "-50%",
               pointerEvents: "none",
               opacity: 0,
-              transition: `opacity ${motionTokens.duration.fast}ms var(--ease-standard, ${motionTokens.easing.standard[2]})`,
+              transition: `opacity ${motionTokens.duration.fast}ms var(--ease-standard, cubic-bezier(${motionTokens.easing.standard.join(", ")}))`,
               willChange: "transform, opacity",
               background: `radial-gradient(${radius}px circle at center, color-mix(in oklab, var(--accent, oklch(0.82 0.16 220)) 18%, transparent), transparent 70%)`,
               zIndex: 0,

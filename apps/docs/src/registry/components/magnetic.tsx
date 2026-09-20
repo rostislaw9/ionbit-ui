@@ -53,6 +53,7 @@ import { Magnetic } from "@/components/motion/magnetic";`,
   ],
   accessibility: [
     "Purely decorative — disabled when reduced motion is active",
+    "Skipped on touch devices — pointer-driven effects only run with a fine pointer",
     "Does not interfere with keyboard navigation",
     "Wrapped element remains fully focusable",
   ],

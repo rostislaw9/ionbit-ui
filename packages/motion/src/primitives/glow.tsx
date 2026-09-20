@@ -45,7 +45,9 @@ export interface GlowProps {
  * element's border-radius — no need to pass `className` for rounding.
  * The halo also follows press feedback: while the wrapped control is
  * `:active`, the wrapper itself takes over its 1px press shift so the
- * element and halo move together.
+ * element and halo move together. This applies only when the wrapped
+ * element is an interactive control (button, link, role=button) —
+ * static elements never shift.
  *
  * Reduced motion: handled globally by the base CSS layer, which collapses
  * transition durations. The glow still appears (it is a state signal, not
@@ -77,7 +79,19 @@ export const Glow = forwardRef<HTMLSpanElement, GlowProps>(function Glow(
     else if (ref) ref.current = el;
   };
 
-  if (disabled) return <>{children}</>;
+  if (disabled) {
+    // The wrapper stays mounted so toggling `disabled` never shifts
+    // layout, drops the forwarded ref, or discards className/style.
+    return (
+      <span
+        ref={setRef}
+        className={className}
+        style={{ display: "inline-flex", ...style }}
+      >
+        {children}
+      </span>
+    );
+  }
 
   const glowColor = color ?? "var(--accent, oklch(0.62 0.19 230))";
   const isText = variant === "text";

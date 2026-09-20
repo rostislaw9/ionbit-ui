@@ -130,7 +130,9 @@ export const Ripple = forwardRef<HTMLSpanElement, RippleProps>(function Ripple(
     else if (ref) ref.current = el;
   };
 
-  if (disabled) return <>{children}</>;
+  // `disabled` keeps the wrapper (identical styles either way, so
+  // toggling never shifts layout) — the press listeners above simply
+  // don't attach, so no ripple can spawn.
 
   const remove = (id: number) =>
     setRipples((rs) => rs.filter((r) => r.id !== id));

@@ -1,5 +1,22 @@
 import "@testing-library/jest-dom/vitest";
 
+// jsdom's matchMedia never matches — replace it with a desktop pointer
+// environment default so pointer-driven motion primitives are enabled in
+// tests (individual tests may stub matchMedia to simulate other devices).
+if (typeof window !== "undefined") {
+  window.matchMedia = (query: string): MediaQueryList =>
+    ({
+      matches: query.includes("hover") || query.includes("pointer: fine"),
+      media: query,
+      onchange: null,
+      addEventListener: () => {},
+      removeEventListener: () => {},
+      addListener: () => {},
+      removeListener: () => {},
+      dispatchEvent: () => false,
+    }) as unknown as MediaQueryList;
+}
+
 // Radix UI primitives use ResizeObserver which isn't available in jsdom.
 if (typeof globalThis.ResizeObserver === "undefined") {
   globalThis.ResizeObserver = class ResizeObserver {

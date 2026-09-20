@@ -13,6 +13,7 @@ import {
   type ReactNode,
 } from "react";
 
+import { useFinePointer } from "../hooks/use-fine-pointer";
 import { useInheritedRadius } from "../hooks/use-inherited-radius";
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { observeStyleChanges, sampleInkColor } from "../style-observer";
@@ -112,7 +113,8 @@ export const Tilt = forwardRef<HTMLDivElement, TiltProps>(function Tilt(
   ref,
 ) {
   const reduced = useReducedMotion();
-  const enabled = !disabled && !reduced;
+  const fine = useFinePointer();
+  const enabled = !disabled && !reduced && fine;
   // hitRef is the static outer wrapper — it owns pointer events so the
   // interaction surface never rotates with the card (a rotating hit
   // area makes the edge run away from the cursor near the borders,
@@ -197,7 +199,11 @@ export const Tilt = forwardRef<HTMLDivElement, TiltProps>(function Tilt(
   }, [enabled, reflection, radiusRef]);
 
   const innerStyle: MotionStyle = {
-    display: "inline-flex",
+    display: "block",
+    // Fill the outer wrapper when it has definite dimensions (e.g.
+    // w-full) — shrink-wrap contexts resolve 100% back to content.
+    width: "100%",
+    height: "100%",
     // The glare layer is absolutely positioned against this element.
     ...(reflection ? { position: "relative" } : {}),
   };

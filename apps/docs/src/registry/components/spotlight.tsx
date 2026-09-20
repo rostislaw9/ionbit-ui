@@ -79,6 +79,7 @@ export const spotlightMeta: ComponentMeta = {
   ],
   accessibility: [
     "Purely decorative — disabled when reduced motion is active",
+    "Skipped on touch devices — requires a fine pointer",
     "Does not interfere with keyboard navigation",
   ],
 };

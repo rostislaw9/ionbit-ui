@@ -7,12 +7,16 @@ import { Pulse } from "./primitives/pulse";
 import { Reveal } from "./primitives/reveal";
 import { Spotlight } from "./primitives/spotlight";
 
-// Helper to toggle matchMedia for prefers-reduced-motion
+// Helper to toggle matchMedia for prefers-reduced-motion. Non-reduce
+// queries resolve as a desktop pointer environment (fine pointer, hover
+// capable) so pointer-driven primitives stay enabled.
 function setReducedMotion(enabled: boolean) {
   vi.stubGlobal(
     "matchMedia",
     vi.fn().mockImplementation((query: string) => ({
-      matches: enabled && query.includes("reduce"),
+      matches: query.includes("reduce")
+        ? enabled
+        : query.includes("hover") || query.includes("pointer: fine"),
       media: query,
       onchange: null,
       addEventListener: vi.fn(),

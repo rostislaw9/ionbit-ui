@@ -11,14 +11,24 @@ const STYLES = `
 /* Glow — hover/focus/always-driven box-shadow or text-shadow.
    Triggers are controlled via data-glow-hover, data-glow-focus and
    data-glow-always; the shadow value is set as a CSS custom property
-   on the element. */
-[data-digital-glow][data-glow-hover="true"][data-glow-variant="halo"]:hover,
+   on the element. Hover triggering is gated behind (hover: hover) —
+   on touch devices :hover sticks after a tap, so the glow would
+   latch on until the next tap elsewhere. */
+@media (hover: hover) {
+  [data-digital-glow][data-glow-hover="true"][data-glow-variant="halo"]:hover {
+    box-shadow: var(--glow-shadow);
+  }
+
+  [data-digital-glow][data-glow-hover="true"][data-glow-variant="text"]:hover {
+    text-shadow: var(--glow-text-shadow);
+  }
+}
+
 [data-digital-glow][data-glow-focus="true"][data-glow-variant="halo"]:focus-within,
 [data-digital-glow][data-glow-always="true"][data-glow-variant="halo"] {
   box-shadow: var(--glow-shadow);
 }
 
-[data-digital-glow][data-glow-hover="true"][data-glow-variant="text"]:hover,
 [data-digital-glow][data-glow-focus="true"][data-glow-variant="text"]:focus-within,
 [data-digital-glow][data-glow-always="true"][data-glow-variant="text"] {
   text-shadow: var(--glow-text-shadow);
@@ -27,11 +37,15 @@ const STYLES = `
 /* When the wrapped control presses down on :active (e.g. Button's
    translate-y-px), move the whole unit — element + halo — together:
    the wrapper takes over the 1px shift and the child's own active
-   translate/transform is neutralized so it doesn't apply twice. */
-[data-digital-glow]:has(> :active) {
+   translate/transform is neutralized so it doesn't apply twice.
+   Scoped to interactive controls — :active also matches static
+   elements (browsers apply it to the pressed element's ancestors),
+   so without the :is() guard a wrapped div would shift too. */
+[data-digital-glow]:has(> :is(button, a, [role="button"]):active) {
   translate: 0 1px;
 }
-[data-digital-glow][data-glow-variant] > :active {
+[data-digital-glow][data-glow-variant]
+  > :is(button, a, [role="button"]):active {
   translate: none;
   transform: none;
 }
