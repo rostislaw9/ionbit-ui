@@ -2,7 +2,7 @@ import { MarkGithubIcon } from "@primer/octicons-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Button } from "@ionbit-ui/ui";
+import { Button, Tooltip } from "@ionbit-ui/ui";
 
 const REPO = "rostislaw9/ionbit-ui";
 
@@ -31,24 +31,26 @@ export function GitHubStarButton() {
   }, []);
 
   return (
-    <Button
-      variant="ghost"
-      nativeButton={false}
-      aria-label="Star ionbit-ui on GitHub"
-      render={
-        <Link
-          to={`https://github.com/${REPO}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        />
-      }
-    >
-      <MarkGithubIcon size={16} data-icon="inline-start" />
-      {stars !== null && (
-        <span className="text-foreground-muted tabular-nums">
-          {stars >= 1000 ? `${(stars / 1000).toFixed(1)}k` : stars}
-        </span>
-      )}
-    </Button>
+    <Tooltip content="GitHub Repository">
+      <Button
+        variant="ghost"
+        nativeButton={false}
+        aria-label="Star ionbit-ui on GitHub"
+        render={
+          <Link
+            to={`https://github.com/${REPO}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          />
+        }
+      >
+        <MarkGithubIcon size={16} data-icon="inline-start" />
+        {stars && stars >= 1000 && (
+          <span className="text-foreground-muted tabular-nums">
+            {`${(stars / 1000).toFixed(1)}k`}
+          </span>
+        )}
+      </Button>
+    </Tooltip>
   );
 }

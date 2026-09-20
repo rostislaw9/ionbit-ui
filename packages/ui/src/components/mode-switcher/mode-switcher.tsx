@@ -3,6 +3,8 @@ import { forwardRef, useCallback, useRef, type MouseEvent } from "react";
 
 import { Button, type ButtonProps } from "@/components/ui/button";
 
+import { Tooltip } from "../tooltip";
+
 export type Mode = "dark" | "light";
 
 export interface ModeSwitcherProps extends Omit<
@@ -31,7 +33,17 @@ export interface ModeSwitcherProps extends Omit<
  * set.
  */
 export const ModeSwitcher = forwardRef<HTMLButtonElement, ModeSwitcherProps>(
-  function ModeSwitcher({ mode, onModeChange, className, ...props }, ref) {
+  function ModeSwitcher(
+    {
+      mode,
+      onModeChange,
+      variant = "ghost",
+      size = "icon",
+      className,
+      ...props
+    },
+    ref,
+  ) {
     const buttonRef = useRef<HTMLButtonElement | null>(null);
 
     const handleClick = useCallback(
@@ -100,26 +112,27 @@ export const ModeSwitcher = forwardRef<HTMLButtonElement, ModeSwitcherProps>(
     );
 
     const isDark = mode === "dark";
-    const label = isDark ? "Switch to light mode" : "Switch to dark mode";
+    const label = isDark ? "Turn on the light" : "Turn off the light";
 
     return (
-      <Button
-        ref={(node) => {
-          const el = node as HTMLButtonElement | null;
-          buttonRef.current = el;
-          if (typeof ref === "function") ref(el);
-          else if (ref) ref.current = el;
-        }}
-        variant="ghost"
-        size="icon"
-        onClick={handleClick}
-        aria-label={label}
-        title={label}
-        className={className}
-        {...props}
-      >
-        {isDark ? <Sun /> : <Moon />}
-      </Button>
+      <Tooltip content={label}>
+        <Button
+          ref={(node) => {
+            const el = node as HTMLButtonElement | null;
+            buttonRef.current = el;
+            if (typeof ref === "function") ref(el);
+            else if (ref) ref.current = el;
+          }}
+          variant={variant}
+          size={size}
+          onClick={handleClick}
+          aria-label={label}
+          className={className}
+          {...props}
+        >
+          {isDark ? <Sun /> : <Moon />}
+        </Button>
+      </Tooltip>
     );
   },
 );

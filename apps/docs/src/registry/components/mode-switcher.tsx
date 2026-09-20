@@ -3,6 +3,9 @@ import type { ComponentMeta } from "./types";
 import { ModeSwitcherDemo } from "../../demos/mode-switcher-demo";
 import ModeSwitcherDemoSource from "../../demos/mode-switcher-demo.tsx?highlighted";
 import ModeSwitcherDemoRaw from "../../demos/mode-switcher-demo.tsx?raw";
+import { ModeSwitcherVariantsDemo } from "../../demos/mode-switcher-variants-demo";
+import ModeSwitcherVariantsDemoSource from "../../demos/mode-switcher-variants-demo.tsx?highlighted";
+import ModeSwitcherVariantsDemoRaw from "../../demos/mode-switcher-variants-demo.tsx?raw";
 
 export const modeSwitcherMeta: ComponentMeta = {
   name: "mode-switcher",
@@ -18,6 +21,14 @@ export const modeSwitcherMeta: ComponentMeta = {
       code: ModeSwitcherDemoSource,
       rawCode: ModeSwitcherDemoRaw,
       render: () => <ModeSwitcherDemo />,
+    },
+    {
+      title: "Variants",
+      description:
+        "All Button variants and sizes pass through, so the toggle adapts to any control style.",
+      code: ModeSwitcherVariantsDemoSource,
+      rawCode: ModeSwitcherVariantsDemoRaw,
+      render: () => <ModeSwitcherVariantsDemo />,
     },
   ],
   usageImport: `import { ModeSwitcher } from "@/components/ui/mode-switcher";`,
@@ -59,7 +70,7 @@ export const modeSwitcherMeta: ComponentMeta = {
   ],
   accessibility: [
     "Built on the Button component — keyboard accessible via Enter and Space.",
-    'An aria-label reflects the next action (e.g. "Switch to light mode").',
+    'An aria-label reflects the next action (e.g. "Turn on the light"), and the Tooltip announces the same hint via aria-describedby.',
     "The radial animation is skipped when prefers-reduced-motion is set.",
   ],
   setup: {
