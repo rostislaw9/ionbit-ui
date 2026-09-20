@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **Docs sidebar rails used a fake reservation.** The right sidebar's
+  in-flow width was `w-60` while the fixed panel rendered wider,
+  overflowing its slot. Both rails now share one stepped width
+  (`RAIL_W` — `w-56`, `w-68` at 2xl) applied to the reservation and
+  the panel alike, so main content stays truly centered and preset
+  cards gain a third column on wide screens.
+
 ## [0.2.0] — 2026-09-20
 
 ### Added

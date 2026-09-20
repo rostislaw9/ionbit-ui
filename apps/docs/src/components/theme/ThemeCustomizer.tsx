@@ -108,11 +108,11 @@ function ThemeControlsImpl({ state }: { state: ThemeCustomizerState }) {
   const { dark, light, radius, settings } = currentPreset;
 
   return (
-    <div className="flex flex-col gap-5 p-0.5">
+    <div className="flex flex-col gap-5 p-1">
       {/* Preset grid */}
       <div>
         <h3 className="mb-3 text-sm font-semibold text-foreground">Presets</h3>
-        <div className="grid grid-cols-3 gap-2 sm:grid-cols-4 xl:grid-cols-2">
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-5 xl:grid-cols-2">
           {THEME_PRESETS.map((p) => (
             <PresetCard
               key={p.id}

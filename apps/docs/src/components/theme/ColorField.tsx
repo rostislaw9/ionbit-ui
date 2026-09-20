@@ -226,7 +226,9 @@ function ColorFieldImpl({
             <PopoverContent align="end" className="w-64 p-4">
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-1.5">
-                  <Label className="text-xs text-foreground-muted">OKLCH</Label>
+                  <Label className="font-mono text-xs text-foreground-muted">
+                    oklch
+                  </Label>
                   <Input
                     value={draft}
                     onChange={(e) => onDraftChange(e.target.value)}
@@ -246,7 +248,9 @@ function ColorFieldImpl({
                   />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <Label className="text-xs text-foreground-muted">Hex</Label>
+                  <Label className="font-mono text-xs text-foreground-muted">
+                    hex
+                  </Label>
                   <Input
                     value={draftHex}
                     onChange={(e) => onDraftHexChange(e.target.value)}

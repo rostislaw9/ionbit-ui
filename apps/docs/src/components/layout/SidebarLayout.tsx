@@ -3,10 +3,18 @@ import type { ReactNode } from "react";
 import { Sidebar } from "./Sidebar";
 
 /**
+ * Both rails share one stepped width — w-56, w-68 at 2xl —
+ * so the flex row is always symmetric and main content stays
+ * viewport-centered with no fake reservations.
+ */
+const RAIL_W = "w-56 2xl:w-68";
+
+/**
  * Layout with a fixed left sidebar (desktop only) and truly centered
  * content. When `rightSidebar` is provided, a sticky right column is
  * shown on xl+ screens (used for "On this page" navigation).
  */
+
 export function SidebarLayout({
   children,
   rightSidebar,
@@ -17,8 +25,10 @@ export function SidebarLayout({
   return (
     <div className="flex gap-8 px-6 py-8">
       {/* Left sidebar — hidden on mobile (burger menu shows instead) */}
-      <aside className="hidden w-60 shrink-0 lg:block">
-        <div className="fixed top-1/2 h-[calc(100vh-16rem)] w-60 -translate-y-1/2">
+      <aside className={`hidden shrink-0 lg:block ${RAIL_W}`}>
+        <div
+          className={`fixed top-1/2 h-[calc(100vh-16rem)] -translate-y-1/2 ${RAIL_W}`}
+        >
           <Sidebar />
         </div>
       </aside>
@@ -29,20 +39,23 @@ export function SidebarLayout({
       </div>
 
       {/* Right sidebar — "On this page" (xl+ only), scrolls independently.
-          The aside reserves w-60 in the flow to balance the left sidebar
-          and keep main content centered; the actual content is fixed and
-          wider, anchored to the viewport right edge so it never shifts
-          the centered content. w-64 at xl avoids overlap on narrower
-          screens, w-72 at 2xl where there is room. */}
+          The fixed panel's width matches the reservation (RAIL_W), so it
+          lands exactly inside its slot at the viewport's right edge. */}
       {rightSidebar ? (
-        <aside className="hidden w-60 shrink-0 xl:block">
-          <div className="fixed top-24 right-6 no-scrollbar max-h-[calc(100vh-8rem)] w-64 scroll-fade overflow-y-auto overscroll-contain pb-8 scroll-fade-24 2xl:w-72">
+        <aside className={`hidden shrink-0 xl:block ${RAIL_W}`}>
+          <div
+            className={`fixed top-24 right-6 no-scrollbar max-h-[calc(100vh-8rem)] scroll-fade overflow-y-auto overscroll-contain pb-8 scroll-fade-24 ${RAIL_W}`}
+          >
             {rightSidebar}
           </div>
         </aside>
       ) : (
-        /* Right spacer — balances the left sidebar for true centering */
-        <aside className="hidden w-60 shrink-0 xl:block" aria-hidden="true" />
+        /* Right spacer — mirrors the right rail so pages without a
+           sidebar keep the same centered content column. */
+        <aside
+          className={`hidden shrink-0 xl:block ${RAIL_W}`}
+          aria-hidden="true"
+        />
       )}
     </div>
   );
