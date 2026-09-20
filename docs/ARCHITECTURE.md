@@ -485,6 +485,11 @@ Each motion primitive is a wrapper component that:
 - accepts `disabled` to turn the effect off entirely;
 - automatically disables/reduces itself when
   `prefers-reduced-motion: reduce` is active (via `useReducedMotion`);
+- skips their pointer listeners on touch devices (via `useFinePointer`)
+  — cursor-driven effects (Spotlight, Magnetic, Tilt) never attach
+  pointermove listeners without a fine pointer, and Glow's hover
+  trigger is gated behind `@media (hover: hover)` so taps don't latch
+  a sticky glow;
 - is layout-agnostic — it does not impose width/height/padding on the
   child.
 
@@ -499,6 +504,10 @@ Example (illustrative, not final):
 ```
 
 ### 7.4 Reduced-motion behavior per primitive
+
+Pointer-driven primitives (Magnetic, Spotlight, Tilt) additionally
+require a fine pointer (`useFinePointer`): on touch devices their
+listeners are never attached.
 
 | Primitive | Reduced-motion behavior                                   |
 | --------- | --------------------------------------------------------- |
@@ -819,9 +828,12 @@ have a "Copy Page" button that copies the full documentation as
 markdown for pasting into AI agent context. The shared clipboard logic
 is extracted into the `useCopyPage` hook. Detail pages use dynamic
 generators (`componentToMarkdown`, `utilToMarkdown`) since their
-content depends on registry data. Installation and Tokens pages use
-static `.md` files (`src/content/installation.md`,
-`src/content/tokens.md`) imported via Vite's `?raw` suffix.
+content depends on registry data. The Installation page uses a static
+`.md` file (`src/content/installation.md`) imported via Vite's `?raw`
+suffix; the Tokens page renders from `src/data/token-docs.ts` and
+generates its "Copy Page" markdown from the same data
+(`tokensToMarkdown`), so the page and the copied document cannot
+drift apart.
 
 ### 16.4 Code splitting and registry loading
 

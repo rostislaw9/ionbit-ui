@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **Unified theme CSS generator.** `generateThemeCss` and the theme
+  types now live in `@ionbit-ui/tokens` (package exports
+  `./theme-css`, `./theme-types`); the docs app, the registry build,
+  and the CLI all consume the single implementation, eliminating the
+  three drifted copies. CLI `theme --custom` output now includes
+  `--shadow-*` variables (custom themes previously lost elevation)
+  and all nine effect-intensity variables.
+- **Shared CLI command helpers in the docs** (`CLI_PACKAGE`, `pmDlx`,
+  `cliCmd`) — one source for `ionbit-ui@latest` command strings across
+  the installation page, install blocks, theme pages, and the markdown
+  generators.
+- **Derived token reference data** (`apps/docs/src/data/token-docs.ts`):
+  the Tokens page renders from it and its "Copy Page" markdown is
+  generated from the same data, replacing the hand-maintained
+  `content/tokens.md` that had already drifted.
+- **Motion regression tests:** inherited-radius sampling after a
+  disabled-to-enabled flip; the disabled DOM contract (wrapper stays
+  mounted, forwarded ref and className preserved).
+- **Touch-device awareness for motion primitives.** New
+  `useFinePointer` hook (exported from `@ionbit-ui/motion`);
+  pointer-driven primitives (Spotlight, Magnetic, Tilt) skip their
+  pointer listeners entirely on touch devices, and Glow's hover
+  trigger is gated behind `@media (hover: hover)` so taps no longer
+  latch a sticky glow. Ripple intentionally still fires on tap.
 - **Trace motion primitive** (`@ionbit-ui/motion`): a single accent
   point travels along an element's border — for processing and active
   states on cards and inputs. An absolutely positioned overlay paints
@@ -126,6 +150,62 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 
+- **Select and Dropdown Menu triggers were unreachable via Tab on
+  macOS browsers.** Safari and Firefox skip plain `<button>`s in
+  sequential keyboard navigation unless Full Keyboard Access is
+  enabled; explicit `tabIndex={0}` keeps the triggers in the tab
+  order everywhere (a no-op where buttons are already tabbable).
+- **Docs theme page mounted 44 closed Popovers.** Every color field
+  eagerly created a floating-ui popover for an editor that at most
+  one user opens at a time — the bulk of the page's initial render
+  cost. The popover now mounts on first use, the controls sidebar is
+  memoized, and the customizer hook returns a stable result object.
+- **Docs homepage theme strip regenerated theme CSS on every switch.**
+  It now subscribes to a selection-only slice of the theme store
+  (`useThemeSelection`) instead of the full customizer state.
+- **ToggleGroup item `variant`/`size` props were ignored.** Context
+  defaults used inverted fallback precedence (`ctx.variant ||
+variant`), so per-item overrides never applied. Arbitrary
+  `spacing` values no longer rely on a dynamic Tailwind class that
+  was never generated.
+- **Spotlight easing fallback was invalid** without tokens installed
+  (`var(--ease-standard, 0.2)`), collapsing the hover transition to
+  an instant snap; falls back to `ease-out` now.
+- **InstallBlock copied the wrong dependency command** on Base
+  UI-based component pages (`radix-ui` instead of the component's
+  actual dependency).
+- **Breadcrumb ellipsis was invisible to screen readers**
+  (`role="presentation"` and `aria-label` on the same element) and
+  **Pagination's** "More pages" hint sat inside an `aria-hidden`
+  parent.
+- **Tabs sliding indicator** now re-measures on resize, font load,
+  and layout changes via a ResizeObserver.
+- **Motion primitives keep their wrapper when `disabled`.** Glow,
+  Pulse, Ripple, and Trace previously dropped the wrapper — silently
+  dropping the forwarded ref, any `className`/`style`, and shifting
+  layout on toggle. The wrapper now stays mounted with the effect
+  off; `useInheritedRadius` samples on the first commit where the
+  wrapper exists.
+- **`tokens.css` intensity drift.** The base stylesheet declared
+  `--magnetic-intensity: 0.25` (canonical value is `0.2`) and was
+  missing seven of the nine intensity variables, so primitives
+  silently fell back to JS defaults.
+- **Registry `list` printed a duplicate "Components" heading** — the
+  `field` item used a one-off `registry:component` type.
+- **Inline command palettes scrolled the page on mount.** cmdk
+  auto-selects its first item and calls `scrollIntoView`, which walks
+  every scrollable ancestor including the window; the docs homepage
+  palette now mounts only once it is scrolled into view.
+- **Registry build hygiene.** Stale `registry/items/*.json` files are
+  pruned, and the `../` import rewrite is scoped to import specifiers
+  instead of any text occurrence.
+- **Motion wrappers clobber an explicit `border-radius`.** The
+  inherited-radius hook used by Glow, Pulse, Spotlight, Tilt, Ripple,
+  and Trace always copied the content child's radius onto the wrapper
+  — overwriting a radius set via `className` or `style` (e.g.
+  `<Trace className="rounded-lg">` rendered square). The wrapper's own
+  radius now wins; the child's is only inherited when the wrapper has
+  none.
 - **Scramble collapses wrapped text into a narrow column.** The glyph
   overlay is absolutely positioned inside an inline holder, and per
   CSS spec an inline element fragmented across lines resolves the

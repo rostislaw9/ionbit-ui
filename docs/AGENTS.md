@@ -682,3 +682,14 @@ changelog entries. Do NOT run the version sync script — it runs
 automatically inside the release workflow. Do NOT inspect the sync
 script, bump versions manually, or do any prep work beyond reading
 the changelog and creating the release.
+
+---
+
+## 27. Local Servers
+
+Do NOT start dev servers (`yarn dev`, vite, preview servers) and do NOT
+open browser previews. The user starts and restarts servers themselves
+and manages their lifecycle. Orphaned background servers are a recurring
+problem — never spawn long-running processes. Run one-shot verification
+commands (tests, typecheck, lint, build, registry:build) instead; they
+exit on their own.

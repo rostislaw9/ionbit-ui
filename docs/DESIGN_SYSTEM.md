@@ -176,6 +176,8 @@ Avoid exaggerated bounce.
 ## 9. Magnetic Interaction
 
 Magnetic interaction should subtly move an element toward the cursor.
+Pointer-driven effects are desktop-only: on touch devices they skip
+their listeners entirely instead of firing during scroll gestures.
 
 It should:
 
@@ -191,7 +193,8 @@ It should never move an element so far that it becomes confusing.
 
 ## 10. Spotlight
 
-Spotlight follows pointer position within a surface.
+Spotlight follows pointer position within a surface. On touch devices
+it stays dormant — pointer-driven effects require a fine pointer.
 
 Use it primarily for:
 
@@ -220,6 +223,7 @@ Infinite pulse animations must be used sparingly.
 ## 12. Tilt
 
 Tilt adds subtle perspective rotation toward the cursor while hovering.
+Like all pointer-driven effects it is skipped on touch devices.
 
 Use it primarily for:
 

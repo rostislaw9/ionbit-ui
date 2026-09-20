@@ -1,6 +1,6 @@
 import highlightedInline from "virtual:highlighted-inline";
 
-import { PM_INSTALL_PREFIX } from "../../lib/package-managers";
+import { cliCmd, PM_INSTALL_PREFIX } from "../../lib/package-managers";
 import { CopyButton } from "../code/CopyButton";
 import { HighlightedCode } from "../code/HighlightedCode";
 import { InlineCode } from "../code/InlineCode";
@@ -19,7 +19,7 @@ export function UtilInstallation({
       <SectionHeading id="installation">Installation</SectionHeading>
       <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
         If your project was set up with{" "}
-        <InlineCode>npx ionbit-ui@latest init</InlineCode>, you already have{" "}
+        <InlineCode>{cliCmd("npm", "init")}</InlineCode>, you already have{" "}
         <InlineCode>{utilName}</InlineCode>. It ships with the{" "}
         <InlineCode>ionbit-ui</InlineCode> package, which the CLI imports in
         your global CSS file.

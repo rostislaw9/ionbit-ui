@@ -61,7 +61,7 @@ export function SourceCodeBlock({ file }: SourceCodeBlockProps) {
       </div>
 
       {expanded ? (
-        <div className="max-h-[400px] overflow-auto">
+        <div className="no-scrollbar max-h-[400px] scroll-fade overflow-auto scroll-fade-12">
           <HighlightedCode html={file.html} className="shiki-lines" />
         </div>
       ) : (

@@ -2,7 +2,8 @@ import { cn } from "@ionbit-ui/ui";
 
 const blockTitleClass =
   "px-2.5 py-1 text-sm font-semibold text-foreground-subtle lg:text-xs";
-const sectionClass = "flex flex-col items-start gap-0.5 max-lg:items-stretch";
+const sectionClass =
+  "ps-1 flex flex-col items-start gap-0.5 max-lg:items-stretch";
 
 /** A titled group of links in the sidebar. */
 export function SidebarSection({

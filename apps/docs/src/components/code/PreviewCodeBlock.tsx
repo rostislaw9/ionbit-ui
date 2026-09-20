@@ -48,7 +48,7 @@ export function PreviewCodeBlock({
         )}
 
         {codeExpanded ? (
-          <div className="max-h-[400px] overflow-auto">
+          <div className="no-scrollbar max-h-[400px] scroll-fade overflow-auto scroll-fade-12">
             <HighlightedCode html={code} className="shiki-lines" />
           </div>
         ) : (

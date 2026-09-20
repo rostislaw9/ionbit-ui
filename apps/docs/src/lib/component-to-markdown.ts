@@ -4,6 +4,7 @@ import {
   type ComponentMeta,
   BASED_ON_LABEL,
 } from "../registry/components/types";
+import { cliCmd } from "./package-managers";
 
 /**
  * Convert a ComponentMeta object into a markdown document suitable for
@@ -29,7 +30,7 @@ export function componentToMarkdown(comp: ComponentMeta): string {
   lines.push("## Installation");
   lines.push("");
   lines.push("```bash");
-  lines.push(`npx ionbit-ui@latest add ${comp.name}`);
+  lines.push(cliCmd("npm", `add ${comp.name}`));
   lines.push("```");
   lines.push("");
 

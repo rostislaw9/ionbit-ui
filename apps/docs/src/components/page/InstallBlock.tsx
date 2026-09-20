@@ -5,7 +5,7 @@ import sourceLoaders from "virtual:highlighted-sources-map";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@ionbit-ui/ui";
 
-import { PACKAGE_MANAGERS, pmInstallCmd } from "../../lib/package-managers";
+import { cliCmd, pmInstallCmd } from "../../lib/package-managers";
 import { type BasedOn, BASED_ON_LABEL } from "../../registry/components/types";
 import { CopyButton } from "../code/CopyButton";
 import { HighlightedCode } from "../code/HighlightedCode";
@@ -29,7 +29,12 @@ interface InstallBlockProps {
   setup?: SetupMeta;
 }
 
-const PM_INSTALL_CMD = pmInstallCmd("radix-ui");
+/** The dependency each primitive family installs — must match the
+ * packages the shiki plugin writes into the displayed commands. */
+const DEP_PACKAGE: Record<BasedOn, string> = {
+  radix: "radix-ui",
+  base: "@base-ui/react",
+};
 
 const INSTALL_TAB_KEY = "ionbit:install-tab";
 
@@ -126,9 +131,7 @@ export function InstallBlock({ name, basedOn, setup }: InstallBlockProps) {
       content: (
         <>
           <PmCommandBlock
-            copyText={(pmId) =>
-              `${PACKAGE_MANAGERS.find((pm) => pm.id === pmId)!.prefix} ionbit-ui@latest add ${name}`
-            }
+            copyText={(pmId) => cliCmd(pmId, `add ${name}`)}
             codeHtml={install}
           />
           {basedOn && (
@@ -150,7 +153,7 @@ export function InstallBlock({ name, basedOn, setup }: InstallBlockProps) {
       heading: "Install the following dependencies:",
       content: (
         <PmCommandBlock
-          copyText={(pmId) => PM_INSTALL_CMD[pmId]!}
+          copyText={(pmId) => pmInstallCmd(DEP_PACKAGE[basedOn])[pmId]!}
           codeHtml={depInstall}
         />
       ),

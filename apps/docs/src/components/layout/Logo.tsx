@@ -22,7 +22,7 @@ export function Logo({
       <Link
         to="/"
         className={cn(
-          "flex items-center px-2 font-mono font-semibold tracking-tight text-foreground",
+          "flex items-center px-4 font-mono font-semibold tracking-tight text-foreground",
           sizeClasses[size],
           className,
         )}

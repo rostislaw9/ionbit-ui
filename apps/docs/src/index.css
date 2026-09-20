@@ -99,6 +99,7 @@
   line-height: 1.6;
   border-radius: 0;
   background-color: var(--surface) !important;
+  @apply no-scrollbar scroll-fade-x;
 }
 
 .shiki-lines pre code,
@@ -141,6 +142,7 @@
   line-height: 1.6;
   border-radius: 0;
   background: transparent !important;
+  @apply no-scrollbar scroll-fade-x;
 }
 
 .shiki-compact pre code {

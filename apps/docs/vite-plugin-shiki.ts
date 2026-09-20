@@ -6,7 +6,11 @@ import { fileURLToPath } from "node:url";
 import { createHighlighterCore, type HighlighterCore } from "shiki/core";
 import { createJavaScriptRegexEngine } from "shiki/engine/javascript";
 
-import { PACKAGE_MANAGERS, pmInstallCmd } from "./src/lib/package-managers";
+import {
+  cliCmd,
+  PACKAGE_MANAGERS,
+  pmInstallCmd,
+} from "./src/lib/package-managers";
 
 let highlighterPromise: Promise<HighlighterCore> | null = null;
 
@@ -93,22 +97,19 @@ export function App() {
 
 /** Installation page — package-manager commands. */
 const INSTALL_INIT_CMDS = Object.fromEntries(
-  PACKAGE_MANAGERS.map((pm) => [pm.id, `${pm.prefix} ionbit-ui@latest init`]),
+  PACKAGE_MANAGERS.map((pm) => [pm.id, cliCmd(pm.id, "init")]),
 );
 const INSTALL_ADD_CMDS = Object.fromEntries(
-  PACKAGE_MANAGERS.map((pm) => [
-    pm.id,
-    `${pm.prefix} ionbit-ui@latest add button`,
-  ]),
+  PACKAGE_MANAGERS.map((pm) => [pm.id, cliCmd(pm.id, "add button")]),
 );
 const INSTALL_ADD_MULTIPLE_CMDS = Object.fromEntries(
   PACKAGE_MANAGERS.map((pm) => [
     pm.id,
-    `${pm.prefix} ionbit-ui@latest add button dialog accordion`,
+    cliCmd(pm.id, "add button dialog accordion"),
   ]),
 );
 const INSTALL_LIST_CMDS = Object.fromEntries(
-  PACKAGE_MANAGERS.map((pm) => [pm.id, `${pm.prefix} ionbit-ui@latest list`]),
+  PACKAGE_MANAGERS.map((pm) => [pm.id, cliCmd(pm.id, "list")]),
 );
 
 /** Highlight a command map (Record<string, string>) for all package managers. */
@@ -459,7 +460,7 @@ export function shikiHighlightPlugin(): Plugin {
           }
           for (const pm of PACKAGE_MANAGERS) {
             entry.install[pm.id] = await highlight(
-              `${pm.prefix} ionbit-ui@latest add ${name}`,
+              cliCmd(pm.id, `add ${name}`),
               "bash",
             );
           }

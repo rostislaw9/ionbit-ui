@@ -20,7 +20,7 @@ function isBlocks(
 
 function Tree({ lines }: { lines: string[] }) {
   return (
-    <pre className="overflow-x-auto rounded-lg border border-border bg-surface p-4 text-sm leading-relaxed">
+    <pre className="no-scrollbar scroll-fade-x overflow-x-auto rounded-lg border border-border bg-surface p-4 text-sm leading-relaxed">
       <code className="font-mono text-foreground-muted">
         {lines.join("\n")}
       </code>

@@ -2,6 +2,7 @@ import type { ManifestEntry } from "../registry/manifest";
 
 import { LayoutGrid, Text } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 import { Reveal } from "@ionbit-ui/motion";
 import { Button, Input, ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
@@ -31,8 +32,34 @@ type ViewMode = "cards" | "links";
 
 export function ComponentsPage() {
   useDocumentTitle("Components");
-  const [query, setQuery] = useState("");
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get("q") ?? "";
+  const activeCategory = categories.includes(
+    searchParams.get("category") ?? "All",
+  )
+    ? (searchParams.get("category") ?? "All")
+    : "All";
+
+  const setQuery = (value: string) => {
+    setSearchParams(
+      (prev) => {
+        if (value) prev.set("q", value);
+        else prev.delete("q");
+        return prev;
+      },
+      { replace: true },
+    );
+  };
+  const setActiveCategory = (value: string) => {
+    setSearchParams(
+      (prev) => {
+        if (value === "All") prev.delete("category");
+        else prev.set("category", value);
+        return prev;
+      },
+      { replace: true },
+    );
+  };
   const [view, setView] = useState<ViewMode>(() => {
     try {
       const stored = localStorage.getItem(VIEW_STORAGE_KEY);

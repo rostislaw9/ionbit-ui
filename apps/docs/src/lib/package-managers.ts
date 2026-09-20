@@ -28,3 +28,16 @@ export function pmInstallCmd(pkg: string): Record<string, string> {
     PACKAGE_MANAGERS.map((pm) => [pm.id, `${PM_INSTALL_PREFIX[pm.id]} ${pkg}`]),
   );
 }
+
+/** The CLI package, with version pin — e.g. `ionbit-ui@latest`. */
+export const CLI_PACKAGE = "ionbit-ui@latest";
+
+/** The `dlx`-style runner for a package manager id (`pnpm dlx`, `npx`…). */
+export function pmDlx(pmId: string): string {
+  return PACKAGE_MANAGERS.find((pm) => pm.id === pmId)?.prefix ?? "npx";
+}
+
+/** Full CLI invocation for a package manager — `npx ionbit-ui@latest <args>`. */
+export function cliCmd(pmId: string, args: string): string {
+  return `${pmDlx(pmId)} ${CLI_PACKAGE} ${args}`;
+}

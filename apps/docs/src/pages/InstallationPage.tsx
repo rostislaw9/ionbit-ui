@@ -21,7 +21,7 @@ import {
   type Section,
 } from "../hooks/useScrollSpy";
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
-import { PACKAGE_MANAGERS } from "../lib/package-managers";
+import { cliCmd } from "../lib/package-managers";
 
 /** Code block with a filename header — matches Cursor section style. */
 function FileCodeBlock({
@@ -89,9 +89,6 @@ export function InstallationPage() {
   );
   useScrollToAnchor(sectionIds);
 
-  const pmPrefix = (pmId: string) =>
-    PACKAGE_MANAGERS.find((pm) => pm.id === pmId)!.prefix;
-
   const initCmds = highlightedInline["__install_init__"]!.install;
   const addCmds = highlightedInline["__install_add__"]!.install;
   const addMultipleCmds =
@@ -114,7 +111,7 @@ export function InstallationPage() {
             utility and design tokens.
           </p>
           <PmCommandBlock
-            copyText={(pmId) => `${pmPrefix(pmId)} ionbit-ui@latest init`}
+            copyText={(pmId) => cliCmd(pmId, "init")}
             codeHtml={initCmds}
           />
         </>
@@ -130,16 +127,14 @@ export function InstallationPage() {
             the registry and places it in your project.
           </p>
           <PmCommandBlock
-            copyText={(pmId) => `${pmPrefix(pmId)} ionbit-ui@latest add button`}
+            copyText={(pmId) => cliCmd(pmId, "add button")}
             codeHtml={addCmds}
           />
           <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
             You can add multiple components at once:
           </p>
           <PmCommandBlock
-            copyText={(pmId) =>
-              `${pmPrefix(pmId)} ionbit-ui@latest add button dialog accordion`
-            }
+            copyText={(pmId) => cliCmd(pmId, "add button dialog accordion")}
             codeHtml={addMultipleCmds}
           />
         </>
@@ -154,7 +149,7 @@ export function InstallationPage() {
             List all components and utilities available in the registry.
           </p>
           <PmCommandBlock
-            copyText={(pmId) => `${pmPrefix(pmId)} ionbit-ui@latest list`}
+            copyText={(pmId) => cliCmd(pmId, "list")}
             codeHtml={listCmds}
           />
         </>
@@ -226,7 +221,7 @@ export function InstallationPage() {
             fetch component source files into your project.
           </p>
           <PmCommandBlock
-            copyText={(pmId) => `${pmPrefix(pmId)} ionbit-ui@latest add button`}
+            copyText={(pmId) => cliCmd(pmId, "add button")}
             codeHtml={addCmds}
           />
         </>
