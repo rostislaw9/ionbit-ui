@@ -13,10 +13,6 @@ import {
 
 import { type ThemeColors } from "../../data/theme-presets";
 
-/* -------------------------------------------------------------------------- */
-/* Color picker field                                                          */
-/* -------------------------------------------------------------------------- */
-
 /** Round to 4 decimals and drop trailing zeros for compact display. */
 function formatChannel(n: number): string {
   return String(Number(n.toFixed(4)));
@@ -170,6 +166,8 @@ function ColorFieldImpl({
     return () => input.removeEventListener("change", commitLiveHex);
   }, [commitLiveHex]);
 
+  const [popoverMounted, setPopoverMounted] = useState(false);
+
   return (
     <div className="flex items-center justify-between gap-2">
       <Label className="text-xs whitespace-nowrap text-foreground-muted">
@@ -199,9 +197,23 @@ function ColorFieldImpl({
             aria-label={`${label}: calculated`}
           />
         )}
-        {editable && (
-          /* Value editor — icon button opens a popover with the text input */
-          <Popover>
+        {editable && !popoverMounted && (
+          /* Before first use the pencil is a plain button — 44 of these
+             mount on the theme page, and a Popover root (floating-ui +
+             Base UI context) per field is the bulk of the initial load.
+             The real Popover mounts on the first click, already open. */
+          <Button
+            variant="outline"
+            size="icon-xs"
+            aria-label={`Edit ${label} value`}
+            aria-haspopup="dialog"
+            onClick={() => setPopoverMounted(true)}
+          >
+            <Pencil />
+          </Button>
+        )}
+        {editable && popoverMounted && (
+          <Popover defaultOpen>
             <PopoverTrigger asChild>
               <Button
                 variant="outline"

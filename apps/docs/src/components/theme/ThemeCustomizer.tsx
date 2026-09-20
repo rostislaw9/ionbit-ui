@@ -1,6 +1,8 @@
 import type { ShadowIntensity, ThemeColors } from "../../data/theme-presets";
 import type { ThemeCustomizerState } from "../../hooks/useThemeCustomizer";
 
+import { memo } from "react";
+
 import { Label, Separator, ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
 
 import { THEME_PRESETS } from "../../data/theme-presets";
@@ -9,10 +11,6 @@ import { ColorField } from "./ColorField";
 import { EffectSlider } from "./EffectSlider";
 import { PresetCard } from "./PresetCard";
 import { RadiusSlider } from "./RadiusSlider";
-
-/* -------------------------------------------------------------------------- */
-/* ThemeControls — right sidebar (w-60)                                       */
-/* -------------------------------------------------------------------------- */
 
 type DerivedColorKey =
   | "border"
@@ -95,7 +93,7 @@ function getColorValue(
   return `color-mix(in oklab, ${source} 50%, transparent)`;
 }
 
-export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
+function ThemeControlsImpl({ state }: { state: ThemeCustomizerState }) {
   const {
     selectedId,
     customized,
@@ -306,3 +304,7 @@ export function ThemeControls({ state }: { state: ThemeCustomizerState }) {
     </div>
   );
 }
+
+/** Memoized — the store notifies on every change, but the controls only
+ * need to reconcile when the state object itself changes. */
+export const ThemeControls = memo(ThemeControlsImpl);

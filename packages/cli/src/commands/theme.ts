@@ -1,8 +1,11 @@
 import type { Config, ThemeEntry } from "../config";
+import type { ThemePreset } from "@ionbit-ui/tokens/theme-types";
 
 import chalk from "chalk";
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, relative, resolve } from "node:path";
+
+import { generateThemeCss } from "@ionbit-ui/tokens/theme-css";
 
 import { ensureDir, loadConfig } from "../utils/fs";
 import { fetchThemeRegistry } from "../utils/registry";
@@ -49,7 +52,12 @@ export async function theme(
       return;
     }
     label = "Custom";
-    css = generateThemeCss(custom, label);
+    css = generateThemeCss({
+      ...custom,
+      id: "custom",
+      label,
+      description: "",
+    } as unknown as ThemePreset);
   } else {
     if (!id) {
       console.log(chalk.red("Provide a theme id or use --custom <json>."));
@@ -110,81 +118,4 @@ function addThemeImport(config: Config, cwd: string, themePath: string): void {
   if (!existing.includes(importLine)) {
     writeFileSync(cssPath, `${existing.trimEnd()}\n${importLine}\n`);
   }
-}
-
-function colorMix(color: string, amount: number): string {
-  return `color-mix(in oklab, ${color} ${amount}%, transparent)`;
-}
-
-function hoverColor(color: string): string {
-  return `color-mix(in oklab, ${color} 88%, black)`;
-}
-
-function colorsToCss(
-  colors: Record<string, string>,
-  translucency: number,
-  light: boolean,
-): string {
-  const muted = Math.round(translucency * 160);
-  const subtle = Math.round(translucency * 80);
-  const borderBase = light ? "0 0 0" : "1 0 0";
-  return [
-    `  --background: ${colors.background};`,
-    `  --surface: ${colors.surface};`,
-    `  --surface-elevated: ${colors.surfaceElevated};`,
-    `  --surface-hover: ${colors.surfaceHover};`,
-    `  --foreground: ${colors.foreground};`,
-    `  --foreground-muted: ${colors.foregroundMuted};`,
-    `  --foreground-subtle: ${colors.foregroundSubtle};`,
-    `  --accent: ${colors.accent};`,
-    `  --accent-hover: ${colors.accentHover};`,
-    `  --accent-foreground: ${colors.accentForeground};`,
-    `  --accent-muted: ${colorMix(colors.accent!, muted)};`,
-    `  --accent-subtle: ${colorMix(colors.accent!, subtle)};`,
-    ...statusCss("success", colors.success!, muted, subtle, light, "155"),
-    ...statusCss("warning", colors.warning!, muted, subtle, light, "80"),
-    ...statusCss("error", colors.error!, muted, subtle, light, "5"),
-    ...statusCss("info", colors.info!, muted, subtle, light, "230"),
-    `  --ring: ${colors.ring};`,
-    `  --border: oklch(${borderBase} / ${translucency.toFixed(2)});`,
-    `  --border-strong: oklch(${borderBase} / ${(translucency * 1.75).toFixed(2)});`,
-    `  --border-accent: ${colorMix(colors.accent!, 50)};`,
-    `  --border-error: ${colorMix(colors.error!, 50)};`,
-    `  --border-success: ${colorMix(colors.success!, 50)};`,
-    `  --border-warning: ${colorMix(colors.warning!, 50)};`,
-    `  --border-info: ${colorMix(colors.info!, 50)};`,
-  ].join("\n");
-}
-
-function statusCss(
-  name: string,
-  color: string,
-  muted: number,
-  subtle: number,
-  light: boolean,
-  hue: string,
-): string[] {
-  return [
-    `  --${name}: ${color};`,
-    `  --${name}-hover: ${hoverColor(color)};`,
-    `  --${name}-muted: ${colorMix(color, muted)};`,
-    `  --${name}-subtle: ${colorMix(color, subtle)};`,
-    `  --${name}-foreground: ${light ? "oklch(0.99 0 0)" : `oklch(0.1 0.03 ${hue})`};`,
-  ];
-}
-
-function generateThemeCss(theme: CustomTheme, label: string): string {
-  const radius = Object.entries(theme.radius)
-    .map(([key, value]) => `  --radius-${key}: ${value};`)
-    .join("\n");
-  const settings = Object.entries(theme.settings)
-    .filter(([key]) => key.endsWith("Intensity"))
-    .map(
-      ([key, value]) =>
-        `  --${key.replace(/[A-Z]/g, (m) => `-${m.toLowerCase()}`)}: ${value};`,
-    )
-    .join("\n");
-  const block = (colors: Record<string, string>, light: boolean) =>
-    `${light ? ".light" : ":root"} {\n${colorsToCss(colors, Number(theme.settings.translucency), light)}\n${radius}\n${settings}\n}`;
-  return `/* Ionbit UI — Theme: ${label} */\n${block(theme.dark, false)}\n\n${block(theme.light, true)}`;
 }

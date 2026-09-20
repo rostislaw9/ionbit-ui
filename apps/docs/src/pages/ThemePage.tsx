@@ -9,26 +9,30 @@ import { SidebarLayout } from "../components/layout/SidebarLayout";
 import { SectionHeading } from "../components/page/SectionHeading";
 import { ThemeControls } from "../components/theme/ThemeCustomizer";
 import { ThemePreview } from "../components/theme/ThemePreview";
+import { useDebouncedValue } from "../hooks/useDebouncedValue";
 import { useDocumentTitle } from "../hooks/useDocumentTitle";
 import { useMediaQuery } from "../hooks/useMediaQuery";
 import { useScrollToAnchor } from "../hooks/useScrollToAnchor";
 import { useThemeCustomizer } from "../hooks/useThemeCustomizer";
 import { highlightCode } from "../lib/highlight";
-import { PACKAGE_MANAGERS } from "../lib/package-managers";
+import { cliCmd, PACKAGE_MANAGERS } from "../lib/package-managers";
 
 const SECTION_IDS = ["preview", "install"];
 
 function DynamicCodeBlock({ code, lang }: { code: string; lang: "css" }) {
   const [html, setHtml] = useState("");
+  // The CSS is ~40KB — re-tokenizing per slider tick stutters the drag.
+  // The previous highlight stays visible until the input settles.
+  const settledCode = useDebouncedValue(code, 250);
   useEffect(() => {
     let cancelled = false;
-    highlightCode(code, lang).then((h) => {
+    highlightCode(settledCode, lang).then((h) => {
       if (!cancelled) setHtml(h);
     });
     return () => {
       cancelled = true;
     };
-  }, [code, lang]);
+  }, [settledCode, lang]);
   return (
     <HighlightedCode
       html={html || code}
@@ -41,11 +45,14 @@ function DynamicCodeBlock({ code, lang }: { code: string; lang: "css" }) {
 /** Highlight the CLI command once per package manager (runtime shiki). */
 function useHighlightedCommand(args: string): Record<string, string> {
   const [html, setHtml] = useState<Record<string, string>>({});
+  // Customized themes embed a JSON blob that changes per slider tick —
+  // highlight only once the input settles.
+  const settledArgs = useDebouncedValue(args, 200);
   useEffect(() => {
     let cancelled = false;
     Promise.all(
       PACKAGE_MANAGERS.map(async (pm) => {
-        const cmd = `${pm.prefix} ${args}`;
+        const cmd = `${pm.prefix} ${settledArgs}`;
         return [pm.id, await highlightCode(cmd, "bash")] as const;
       }),
     ).then((entries) => {
@@ -54,7 +61,7 @@ function useHighlightedCommand(args: string): Record<string, string> {
     return () => {
       cancelled = true;
     };
-  }, [args]);
+  }, [settledArgs]);
   // Fall back to raw command text until highlighting resolves.
   return Object.fromEntries(
     PACKAGE_MANAGERS.map((pm) => [
@@ -150,9 +157,7 @@ export function ThemePage() {
             Apply the selected theme to your project:
           </p>
           <PmCommandBlock
-            copyText={(pmId) =>
-              `${PACKAGE_MANAGERS.find((p) => p.id === pmId)!.prefix} ${commandArgs}`
-            }
+            copyText={(pmId) => cliCmd(pmId, commandArgs)}
             codeHtml={commandHtml}
           />
           <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
@@ -162,7 +167,7 @@ export function ThemePage() {
             <div className="absolute top-2.5 right-2.5 z-10 bg-inherit">
               <CopyButton text={cssOutput} />
             </div>
-            <div className="max-h-80 overflow-y-auto">
+            <div className="no-scrollbar max-h-80 scroll-fade overflow-y-auto scroll-fade-12">
               <DynamicCodeBlock code={cssOutput} lang="css" />
             </div>
           </div>

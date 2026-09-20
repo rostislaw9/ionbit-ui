@@ -3,10 +3,6 @@ import type { ThemePreset } from "../../data/theme-presets";
 import { Check } from "lucide-react";
 import { memo } from "react";
 
-/* -------------------------------------------------------------------------- */
-/* Preset card — compact color strip                                           */
-/* -------------------------------------------------------------------------- */
-
 interface PresetCardProps {
   preset: ThemePreset;
   isActive: boolean;
@@ -21,6 +17,7 @@ function PresetCardImpl({ preset, isActive, mode, onSelect }: PresetCardProps) {
   return (
     <button
       type="button"
+      aria-pressed={isActive}
       onClick={() => onSelect(preset.id)}
       className={`group relative flex flex-col overflow-hidden border text-start transition-all ${
         isActive

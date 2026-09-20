@@ -43,6 +43,20 @@ export interface ThemeCustomizerState {
   reset: () => void;
 }
 
+/**
+ * Selection-only slice of the theme store — for surfaces that switch
+ * presets but never display the generated CSS or CLI command (e.g. the
+ * homepage theme strip). Skips the ~40KB CSS regeneration the full hook
+ * performs on every change.
+ */
+export function useThemeSelection(): {
+  selectedId: string;
+  setSelectedId: (id: string) => void;
+} {
+  const state = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
+  return { selectedId: state.selectedId, setSelectedId: selectPreset };
+}
+
 export function useThemeCustomizer(): ThemeCustomizerState {
   const state = useSyncExternalStore(subscribe, getSnapshot, getSnapshot);
 
@@ -50,14 +64,21 @@ export function useThemeCustomizer(): ThemeCustomizerState {
     const preset = getPreset(state.selectedId);
     return {
       id: preset.id,
-      label: preset.label,
-      description: preset.description,
+      label: state.customized ? "Custom" : preset.label,
+      description: state.customized ? "Customized theme" : preset.description,
       dark: state.dark,
       light: state.light,
       radius: state.radius,
       settings: state.settings,
     };
-  }, [state.selectedId, state.dark, state.light, state.radius, state.settings]);
+  }, [
+    state.customized,
+    state.selectedId,
+    state.dark,
+    state.light,
+    state.radius,
+    state.settings,
+  ]);
 
   const cliCommand = useMemo(
     () =>
@@ -103,16 +124,32 @@ export function useThemeCustomizer(): ThemeCustomizerState {
   );
   const doReset = useCallback(() => reset(), []);
 
-  return {
-    selectedId: state.selectedId,
-    customized: state.customized,
-    currentPreset,
-    cliCommand,
-    cssOutput,
-    setSelectedId,
-    updateColor: doUpdateColor,
-    updateRadius: doUpdateRadius,
-    updateSettings: doUpdateSettings,
-    reset: doReset,
-  };
+  // Stable result object so memoized consumers (ThemeControls) bail when
+  // nothing they read has changed.
+  return useMemo(
+    () => ({
+      selectedId: state.selectedId,
+      customized: state.customized,
+      currentPreset,
+      cliCommand,
+      cssOutput,
+      setSelectedId,
+      updateColor: doUpdateColor,
+      updateRadius: doUpdateRadius,
+      updateSettings: doUpdateSettings,
+      reset: doReset,
+    }),
+    [
+      state.selectedId,
+      state.customized,
+      currentPreset,
+      cliCommand,
+      cssOutput,
+      setSelectedId,
+      doUpdateColor,
+      doUpdateRadius,
+      doUpdateSettings,
+      doReset,
+    ],
+  );
 }

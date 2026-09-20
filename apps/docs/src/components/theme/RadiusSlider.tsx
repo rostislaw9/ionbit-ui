@@ -6,10 +6,6 @@ import { Label, Slider } from "@ionbit-ui/ui";
 
 import { useCommittedLocal } from "./useCommittedLocal";
 
-/* -------------------------------------------------------------------------- */
-/* RadiusSlider — local state for instant label feedback, commits on release  */
-/* -------------------------------------------------------------------------- */
-
 interface RadiusSliderProps {
   label: string;
   value: string;
@@ -24,11 +20,7 @@ function RadiusSliderImpl({
   radiusKey,
   onChange,
 }: RadiusSliderProps) {
-  // Local state mirrors the global value but updates instantly during drag
-  // so the label stays responsive. The global state (and all downstream
-  // re-renders: ThemePreview, CSS generation, shiki highlight, DOM apply)
-  // only updates on release — `releaseProps` guarantees the commit lands
-  // even when Radix's `onValueCommit` doesn't fire.
+  // Instant local feedback; the store commits on release (see useCommittedLocal).
   const numeric = parseFloat(value) || 0;
   const { local, setLocal, commit, releaseProps } = useCommittedLocal(
     numeric,

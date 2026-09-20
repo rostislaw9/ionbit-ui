@@ -21,10 +21,6 @@ import {
 
 import { useTheme } from "../../hooks/useTheme";
 
-/* -------------------------------------------------------------------------- */
-/* ThemePreview — primitives and components rendered in the current theme      */
-/* -------------------------------------------------------------------------- */
-
 interface ThemePreviewProps {
   spotlightIntensity: number;
   magneticIntensity: number;

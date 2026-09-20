@@ -9,10 +9,6 @@ import { Label, Slider } from "@ionbit-ui/ui";
 
 import { useCommittedLocal } from "./useCommittedLocal";
 
-/* -------------------------------------------------------------------------- */
-/* EffectSlider — local state for instant label feedback, commits on release  */
-/* -------------------------------------------------------------------------- */
-
 type EffectKey = NumericThemeSettingKey;
 
 interface EffectSliderProps {
@@ -38,11 +34,7 @@ function EffectSliderImpl({
   effectKey,
   onCommit,
 }: EffectSliderProps) {
-  // Local state mirrors the global value but updates instantly during drag
-  // so the label stays responsive. The global state (and all downstream
-  // re-renders: ThemePreview, CSS generation, DOM apply) only updates on
-  // release — `releaseProps` guarantees the commit lands even when Radix's
-  // `onValueCommit` doesn't fire.
+  // Instant local feedback; the store commits on release (see useCommittedLocal).
   const { local, setLocal, commit, releaseProps } = useCommittedLocal(
     value,
     (v) => onCommit(effectKey, v / displayMultiplier),
@@ -67,7 +59,5 @@ function EffectSliderImpl({
 
 export const EffectSlider = memo(EffectSliderImpl);
 
-/* -------------------------------------------------------------------------- */
-/* ThemeSettings — satisfies the constraint on the customizer hook            */
-/* -------------------------------------------------------------------------- */
+// Re-exported so the customizer hook's constraint resolves from one place.
 export type { ThemeSettings };

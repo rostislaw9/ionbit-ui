@@ -23,7 +23,8 @@
     "oklch"
   ],
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "exports": {
     "./css": "./dist/tokens.css",
@@ -31,7 +32,9 @@
     "./utilities": "./dist/utilities.css",
     "./tokens.css": "./dist/tokens.css",
     "./base.css": "./dist/base.css",
-    "./utilities.css": "./dist/utilities.css"
+    "./utilities.css": "./dist/utilities.css",
+    "./theme-css": "./src/theme-css.ts",
+    "./theme-types": "./src/theme-types.ts"
   },
   "publishConfig": {
     "access": "public",
