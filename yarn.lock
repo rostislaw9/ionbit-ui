@@ -728,7 +728,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@ionbit-ui/tokens@workspace:*, @ionbit-ui/tokens@workspace:packages/tokens":
+"@ionbit-ui/tokens@workspace:*, @ionbit-ui/tokens@workspace:^, @ionbit-ui/tokens@workspace:packages/tokens":
   version: 0.0.0-use.local
   resolution: "@ionbit-ui/tokens@workspace:packages/tokens"
   dependencies:
@@ -4560,6 +4560,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "ionbit-ui@workspace:packages/cli"
   dependencies:
+    "@ionbit-ui/tokens": "workspace:^"
     chalk: "npm:^6.0.0"
     commander: "npm:^15.0.0"
     typescript: "npm:^5.6.0"
