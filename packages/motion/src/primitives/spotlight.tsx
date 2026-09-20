@@ -51,6 +51,10 @@ export interface SpotlightProps extends Omit<
  *
  * Reduced motion: the effect is disabled entirely. The surface remains
  * fully usable; spotlight is purely decorative.
+ *
+ * The wrapper clips its children (`overflow: hidden`) to bound the
+ * gradient; the child's `border-radius` and `box-shadow` are mirrored
+ * onto the wrapper, so rounded corners and elevation survive clipping.
  */
 export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
   function Spotlight(
@@ -76,6 +80,9 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     const innerRef = useInheritedRadius<HTMLDivElement>({
       resolveChild: (el) =>
         (el.lastElementChild?.firstElementChild as HTMLElement | null) ?? null,
+      // The wrapper clips children, so a child's box-shadow would be
+      // clipped too — re-apply it at the clip boundary.
+      mirrorShadow: true,
     });
     const overlayRef = useRef<HTMLSpanElement | null>(null);
     const activeRef = useRef(false);
