@@ -32,11 +32,9 @@ export function HomePage() {
       />
 
       <section className="relative flex flex-col items-center gap-6 pt-8 text-center sm:pt-16">
-        <Reveal direction="up">
-          <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-            react · typescript · tailwind
-          </p>
-        </Reveal>
+        <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+          react · typescript · tailwind
+        </p>
         <Reveal direction="up">
           <h1 className="text-4xl leading-tight font-semibold tracking-tight text-foreground sm:text-6xl">
             Interfaces that{" "}
@@ -78,19 +76,10 @@ export function HomePage() {
         </Reveal>
       </section>
 
-      <Reveal direction="up">
-        <DeployConsole />
-      </Reveal>
-      <Reveal direction="up">
-        <FeatureGrid />
-      </Reveal>
-      <Reveal direction="up">
-        <InterfaceExamples />
-      </Reveal>
-      <Reveal direction="up">
-        <ThemeStrip />
-      </Reveal>
-
+      <DeployConsole />
+      <FeatureGrid />
+      <InterfaceExamples />
+      <ThemeStrip />
       <InstallFooter />
     </div>
   );

@@ -52,37 +52,35 @@ export function TokensPage() {
       }
     >
       <div className="flex flex-col gap-12">
-        <Reveal direction="up">
-          <header className="flex items-start justify-between gap-4">
-            <div className="flex flex-col gap-2">
-              <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                Design tokens
-              </p>
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-                The visual contract
-              </h1>
-              <p className="max-w-2xl text-foreground-muted">
-                Components reference these semantic tokens via Tailwind
-                utilities. Retheme by overriding the variables in your CSS — no
-                Tailwind config edit required.
-              </p>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCopyPage}
-              aria-label={pageCopied ? "Copied" : "Copy page as markdown"}
-              className="hidden shrink-0 sm:flex"
-            >
-              {pageCopied ? (
-                <Check data-icon="inline-start" />
-              ) : (
-                <Copy data-icon="inline-start" />
-              )}
-              {pageCopied ? "Copied" : "Copy Page"}
-            </Button>
-          </header>
-        </Reveal>
+        <header className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-2">
+            <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+              Design tokens
+            </p>
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+              The visual contract
+            </h1>
+            <p className="max-w-2xl text-foreground-muted">
+              Components reference these semantic tokens via Tailwind utilities.
+              Retheme by overriding the variables in your CSS — no Tailwind
+              config edit required.
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCopyPage}
+            aria-label={pageCopied ? "Copied" : "Copy page as markdown"}
+            className="hidden shrink-0 sm:flex"
+          >
+            {pageCopied ? (
+              <Check data-icon="inline-start" />
+            ) : (
+              <Copy data-icon="inline-start" />
+            )}
+            {pageCopied ? "Copied" : "Copy Page"}
+          </Button>
+        </header>
 
         {TOKEN_DOC_SECTIONS.map((section) => (
           <TokenSection key={section.id} section={section} />

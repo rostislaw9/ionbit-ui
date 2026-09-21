@@ -4,7 +4,6 @@ import { LayoutGrid, Text } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import { Reveal } from "@ionbit-ui/motion";
 import { Button, Input, ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
 
 import { ComponentCards } from "../components/browser/ComponentCards";
@@ -130,64 +129,60 @@ export function ComponentsPage() {
       }
     >
       <div className="flex flex-col gap-8">
-        <Reveal direction="up">
-          <header className="flex flex-col gap-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-              Component browser
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-              Components
-            </h1>
-            <p className="text-sm text-foreground-muted">
-              {componentManifest.length} primitives. Click any component for
-              live previews, code, and API details.
-            </p>
-          </header>
-        </Reveal>
+        <header className="flex flex-col gap-2">
+          <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+            Component browser
+          </p>
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+            Components
+          </h1>
+          <p className="text-sm text-foreground-muted">
+            {componentManifest.length} primitives. Click any component for live
+            previews, code, and API details.
+          </p>
+        </header>
 
-        <Reveal direction="up">
-          <div className="flex flex-col gap-4 2xl:flex-row 2xl:items-center 2xl:justify-between">
-            <div className="flex w-full items-center gap-3 sm:max-w-xs">
-              <Input
-                placeholder="Search components..."
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-              <ToggleGroup
-                type="single"
-                variant="outline"
-                spacing={0}
-                value={view}
-                onValueChange={(v: string) => {
-                  if (v === "cards" || v === "links") setView(v);
-                }}
-                aria-label="Show as"
-              >
-                <ToggleGroupItem value="cards" aria-label="Show as cards">
-                  <LayoutGrid />
-                </ToggleGroupItem>
-                <ToggleGroupItem value="links" aria-label="Show as links">
-                  <Text />
-                </ToggleGroupItem>
-              </ToggleGroup>
-            </div>
+        <div className="flex flex-col gap-4 2xl:flex-row 2xl:items-center 2xl:justify-between">
+          <div className="flex w-full items-center gap-3 sm:max-w-xs">
+            <Input
+              placeholder="Search components..."
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+            />
             <ToggleGroup
               type="single"
-              size="sm"
-              spacing={1}
-              value={activeCategory}
-              onValueChange={(v: string) => v && setActiveCategory(v)}
-              aria-label="Filter by category"
-              className="flex-wrap"
+              variant="outline"
+              spacing={0}
+              value={view}
+              onValueChange={(v: string) => {
+                if (v === "cards" || v === "links") setView(v);
+              }}
+              aria-label="Show as"
             >
-              {categories.map((cat) => (
-                <ToggleGroupItem key={cat} value={cat}>
-                  {cat}
-                </ToggleGroupItem>
-              ))}
+              <ToggleGroupItem value="cards" aria-label="Show as cards">
+                <LayoutGrid />
+              </ToggleGroupItem>
+              <ToggleGroupItem value="links" aria-label="Show as links">
+                <Text />
+              </ToggleGroupItem>
             </ToggleGroup>
           </div>
-        </Reveal>
+          <ToggleGroup
+            type="single"
+            size="sm"
+            spacing={1}
+            value={activeCategory}
+            onValueChange={(v: string) => v && setActiveCategory(v)}
+            aria-label="Filter by category"
+            className="flex-wrap"
+          >
+            {categories.map((cat) => (
+              <ToggleGroupItem key={cat} value={cat}>
+                {cat}
+              </ToggleGroupItem>
+            ))}
+          </ToggleGroup>
+        </div>
 
         {showSections ? (
           <div className="flex flex-col gap-12">

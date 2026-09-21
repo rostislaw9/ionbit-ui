@@ -13,20 +13,18 @@ export function UtilsPage() {
   return (
     <SidebarLayout>
       <div className="flex flex-col gap-8">
-        <Reveal direction="up">
-          <header className="flex flex-col gap-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-              CSS utilities
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-              All utilities
-            </h1>
-            <p className="text-sm text-foreground-muted">
-              {utilManifest.length} utilities. Click any utility for live
-              previews, code, and API details.
-            </p>
-          </header>
-        </Reveal>
+        <header className="flex flex-col gap-2">
+          <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+            CSS utilities
+          </p>
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+            All utilities
+          </h1>
+          <p className="text-sm text-foreground-muted">
+            {utilManifest.length} utilities. Click any utility for live
+            previews, code, and API details.
+          </p>
+        </header>
 
         <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
           {utilManifest.map((util, i) => (

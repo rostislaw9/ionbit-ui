@@ -2,7 +2,6 @@ import type { ComponentMeta } from "../../registry/components/types";
 
 import { memo } from "react";
 
-import { Reveal } from "@ionbit-ui/motion";
 import { ToggleGroup, ToggleGroupItem } from "@ionbit-ui/ui";
 
 import { PreviewCodeBlock } from "../code/PreviewCodeBlock";
@@ -30,42 +29,38 @@ export const ExampleSwitcher = memo(function ExampleSwitcher({
   return (
     <>
       {examples.length > 1 && (
-        <Reveal direction="up">
-          <ToggleGroup
-            type="single"
-            size="sm"
-            spacing={1}
-            value={String(activeExample)}
-            onValueChange={(v: string) => {
-              if (v) onSelect(Number(v));
-            }}
-            aria-label="Demo switcher"
-            className="flex-wrap"
-          >
-            {examples.map((ex, i) => (
-              <ToggleGroupItem key={ex.title} value={String(i)}>
-                {ex.title}
-              </ToggleGroupItem>
-            ))}
-          </ToggleGroup>
-        </Reveal>
+        <ToggleGroup
+          type="single"
+          size="sm"
+          spacing={1}
+          value={String(activeExample)}
+          onValueChange={(v: string) => {
+            if (v) onSelect(Number(v));
+          }}
+          aria-label="Demo switcher"
+          className="flex-wrap"
+        >
+          {examples.map((ex, i) => (
+            <ToggleGroupItem key={ex.title} value={String(i)}>
+              {ex.title}
+            </ToggleGroupItem>
+          ))}
+        </ToggleGroup>
       )}
 
-      <Reveal direction="up" delay={60}>
-        <section id="preview" className="flex scroll-mt-24 flex-col gap-3">
-          <h2 className="text-xl font-semibold text-foreground md:text-lg">
-            {example.title}
-          </h2>
-          <p className="text-base text-foreground-muted md:text-sm">
-            {example.description}
-          </p>
-          <PreviewCodeBlock
-            preview={example.render()}
-            code={example.code}
-            rawCode={example.rawCode}
-          />
-        </section>
-      </Reveal>
+      <section id="preview" className="flex scroll-mt-24 flex-col gap-3">
+        <h2 className="text-xl font-semibold text-foreground md:text-lg">
+          {example.title}
+        </h2>
+        <p className="text-base text-foreground-muted md:text-sm">
+          {example.description}
+        </p>
+        <PreviewCodeBlock
+          preview={example.render()}
+          code={example.code}
+          rawCode={example.rawCode}
+        />
+      </section>
     </>
   );
 });

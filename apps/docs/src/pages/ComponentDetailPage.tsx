@@ -3,7 +3,6 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import highlightedInline from "virtual:highlighted-inline";
 
-import { Reveal } from "@ionbit-ui/motion";
 import { Badge, Button } from "@ionbit-ui/ui";
 
 import { CodeBlockWithCopy } from "../components/code/CodeBlockWithCopy";
@@ -236,59 +235,55 @@ export function ComponentDetailPage() {
   return (
     <SidebarLayout
       rightSidebar={
-        <Reveal direction="up">
-          <OnThisPage
-            sections={sections}
-            activeSection={activeSection}
-            onSectionClick={handleSectionClick}
-          />
-        </Reveal>
+        <OnThisPage
+          sections={sections}
+          activeSection={activeSection}
+          onSectionClick={handleSectionClick}
+        />
       }
     >
       <div className="flex flex-col gap-8">
-        <Reveal direction="up">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-                  <h1 className="order-2 text-3xl font-semibold tracking-tight text-foreground sm:order-1">
-                    {comp.label}
-                  </h1>
-                  <div className="order-1 flex flex-wrap items-center gap-2 sm:order-2">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                <h1 className="order-2 text-3xl font-semibold tracking-tight text-foreground sm:order-1">
+                  {comp.label}
+                </h1>
+                <div className="order-1 flex flex-wrap items-center gap-2 sm:order-2">
+                  <Badge
+                    variant="accent"
+                    className="font-mono text-[10px] tracking-wider uppercase"
+                  >
+                    {comp.category}
+                  </Badge>
+                  {comp.basedOn && (
                     <Badge
-                      variant="accent"
+                      variant="outline"
                       className="font-mono text-[10px] tracking-wider uppercase"
                     >
-                      {comp.category}
+                      {comp.basedOn && BASED_ON_LABEL[comp.basedOn]}
                     </Badge>
-                    {comp.basedOn && (
-                      <Badge
-                        variant="outline"
-                        className="font-mono text-[10px] tracking-wider uppercase"
-                      >
-                        {comp.basedOn && BASED_ON_LABEL[comp.basedOn]}
-                      </Badge>
-                    )}
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 sm:hidden">
-                  <PageActions prev={prev} next={next} />
+                  )}
                 </div>
               </div>
-              <p className="max-w-2xl text-foreground-muted">
-                {comp.description}
-              </p>
+              <div className="flex items-center gap-1 sm:hidden">
+                <PageActions prev={prev} next={next} />
+              </div>
             </div>
-            <div className="hidden items-center gap-1 sm:flex sm:shrink-0">
-              <PageActions
-                prev={prev}
-                next={next}
-                pageCopied={pageCopied}
-                onCopyPage={handleCopyPage}
-              />
-            </div>
+            <p className="max-w-2xl text-foreground-muted">
+              {comp.description}
+            </p>
           </div>
-        </Reveal>
+          <div className="hidden items-center gap-1 sm:flex sm:shrink-0">
+            <PageActions
+              prev={prev}
+              next={next}
+              pageCopied={pageCopied}
+              onCopyPage={handleCopyPage}
+            />
+          </div>
+        </div>
 
         <ExampleSwitcher
           key={comp.name}
@@ -298,36 +293,27 @@ export function ComponentDetailPage() {
         />
 
         {comp.about && (
-          <Reveal direction="up" delay={120}>
-            <section id="about" className="flex scroll-mt-24 flex-col gap-3">
-              <SectionHeading id="about">About</SectionHeading>
-              <p className="text-sm text-foreground-muted">{comp.about}</p>
-            </section>
-          </Reveal>
+          <section id="about" className="flex scroll-mt-24 flex-col gap-3">
+            <SectionHeading id="about">About</SectionHeading>
+            <p className="text-sm text-foreground-muted">{comp.about}</p>
+          </section>
         )}
 
-        <Reveal direction="up" delay={120}>
-          <section
-            id="installation"
-            className="flex scroll-mt-24 flex-col gap-3"
-          >
-            <SectionHeading id="installation">Installation</SectionHeading>
-            <InstallBlock
-              name={comp.name}
-              basedOn={comp.basedOn}
-              setup={comp.setup}
-            />
-          </section>
-        </Reveal>
+        <section id="installation" className="flex scroll-mt-24 flex-col gap-3">
+          <SectionHeading id="installation">Installation</SectionHeading>
+          <InstallBlock
+            name={comp.name}
+            basedOn={comp.basedOn}
+            setup={comp.setup}
+          />
+        </section>
 
         {comp.usageImport && comp.usageCode && (
-          <Reveal direction="up" delay={180}>
-            <UsageSection
-              componentName={comp.name}
-              usageImport={comp.usageImport}
-              usageCode={comp.usageCode}
-            />
-          </Reveal>
+          <UsageSection
+            componentName={comp.name}
+            usageImport={comp.usageImport}
+            usageCode={comp.usageCode}
+          />
         )}
 
         {comp.infoBlocks && comp.infoBlocks.length > 0 && (

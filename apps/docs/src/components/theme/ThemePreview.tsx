@@ -163,28 +163,59 @@ function ThemePreviewImpl({
             </CardHeader>
           </Card>
         </Trace>
-      </div>
 
-      {/* Motion effects */}
-      <div className="grid grid-cols-3 gap-4">
+        {/* Glow — accent halo builds while the cursor is near */}
         <Glow intensity={glowIntensity}>
-          <Button variant="outline" className="w-full">
-            Glow
-          </Button>
+          <Card elevated>
+            <CardHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                    Glow
+                  </p>
+                  <CardTitle className="mt-1 text-lg">
+                    Hover to energize
+                  </CardTitle>
+                </div>
+                <Badge variant="accent">
+                  {(glowIntensity * 100).toFixed(0)}%
+                </Badge>
+              </div>
+              <CardDescription>
+                An accent halo charges the border while the cursor rests on the
+                surface.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </Glow>
+
+        {/* Ripple — press sends a wave across the surface */}
         <Ripple intensity={rippleIntensity}>
-          <Button variant="secondary" className="w-full">
-            Ripple
-          </Button>
+          <Card elevated>
+            <CardHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                    Ripple
+                  </p>
+                  <CardTitle className="mt-1 text-lg">
+                    Press anywhere on it
+                  </CardTitle>
+                </div>
+                <Badge variant="accent">
+                  {(rippleIntensity * 100).toFixed(0)}%
+                </Badge>
+              </div>
+              <CardDescription>
+                A wave radiates outward from the contact point — works on any
+                surface, not just buttons.
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </Ripple>
-        <Magnetic intensity={magneticIntensity}>
-          <Button variant="primary" className="w-full">
-            Magnetic
-          </Button>
-        </Magnetic>
       </div>
 
-      {/* Status badges + Pulse */}
+      {/* Status badges + Pulse + Magnetic */}
       <div className="flex flex-wrap items-center justify-evenly gap-2">
         <Badge variant="default">Default</Badge>
         <Badge variant="accent">Accent</Badge>
@@ -200,6 +231,11 @@ function ThemePreviewImpl({
           </Pulse>
           <span className="text-sm text-foreground-muted">Pulse</span>
         </div>
+        <Magnetic intensity={magneticIntensity}>
+          <Button size="sm" variant="primary">
+            Magnetic
+          </Button>
+        </Magnetic>
       </div>
     </div>
   );

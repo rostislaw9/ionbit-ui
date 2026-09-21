@@ -2,7 +2,6 @@ import { Check, Copy, FileBracesCorner } from "lucide-react";
 import { useMemo } from "react";
 import highlightedInline from "virtual:highlighted-inline";
 
-import { Reveal } from "@ionbit-ui/motion";
 import { Button } from "@ionbit-ui/ui";
 
 import { CopyButton } from "../components/code/CopyButton";
@@ -248,115 +247,101 @@ export function InstallationPage() {
     >
       <div className="flex flex-col gap-8">
         {/* Header */}
-        <Reveal direction="up">
-          <header className="flex items-start justify-between gap-4">
-            <div className="flex flex-col gap-2">
-              <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                Getting started
-              </p>
-              <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-                Installation
-              </h1>
-              <p className="max-w-2xl text-base leading-relaxed text-foreground-muted md:text-sm">
-                Set up Ionbit UI in your React project with the CLI, or add
-                components manually.
-              </p>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleCopyPage}
-              aria-label={pageCopied ? "Copied" : "Copy page as markdown"}
-              className="hidden shrink-0 sm:flex"
-            >
-              {pageCopied ? (
-                <Check data-icon="inline-start" />
-              ) : (
-                <Copy data-icon="inline-start" />
-              )}
-              {pageCopied ? "Copied" : "Copy Page"}
-            </Button>
-          </header>
-        </Reveal>
+        <header className="flex items-start justify-between gap-4">
+          <div className="flex flex-col gap-2">
+            <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+              Getting started
+            </p>
+            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+              Installation
+            </h1>
+            <p className="max-w-2xl text-base leading-relaxed text-foreground-muted md:text-sm">
+              Set up Ionbit UI in your React project with the CLI, or add
+              components manually.
+            </p>
+          </div>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={handleCopyPage}
+            aria-label={pageCopied ? "Copied" : "Copy page as markdown"}
+            className="hidden shrink-0 sm:flex"
+          >
+            {pageCopied ? (
+              <Check data-icon="inline-start" />
+            ) : (
+              <Copy data-icon="inline-start" />
+            )}
+            {pageCopied ? "Copied" : "Copy Page"}
+          </Button>
+        </header>
 
         {/* Quick Start */}
-        <Reveal direction="up" delay={60}>
-          <section
-            id="quick-start"
-            className="flex scroll-mt-24 flex-col gap-6"
-          >
-            <div className="flex flex-col gap-2">
-              <SectionHeading id="quick-start">Quick Start</SectionHeading>
-              <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
-                The fastest way to get started. The CLI scaffolds the directory
-                structure, installs base dependencies, and sets up your CSS
-                imports.
-              </p>
-            </div>
-            <div className="steps flex flex-col gap-6 [counter-reset:step] md:ml-4 md:border-l md:pl-8">
-              {quickStartSteps.map((step) => (
-                <div
-                  key={step.id}
-                  id={step.id}
-                  className="flex scroll-mt-24 flex-col gap-3"
-                >
-                  <h3 className="step text-lg font-semibold text-foreground md:text-sm">
-                    {step.heading}
-                  </h3>
-                  {step.content}
-                </div>
-              ))}
-            </div>
-          </section>
-        </Reveal>
+        <section id="quick-start" className="flex scroll-mt-24 flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <SectionHeading id="quick-start">Quick Start</SectionHeading>
+            <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
+              The fastest way to get started. The CLI scaffolds the directory
+              structure, installs base dependencies, and sets up your CSS
+              imports.
+            </p>
+          </div>
+          <div className="steps flex flex-col gap-6 [counter-reset:step] md:ml-4 md:border-l md:pl-8">
+            {quickStartSteps.map((step) => (
+              <div
+                key={step.id}
+                id={step.id}
+                className="flex scroll-mt-24 flex-col gap-3"
+              >
+                <h3 className="step text-lg font-semibold text-foreground md:text-sm">
+                  {step.heading}
+                </h3>
+                {step.content}
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Manual Setup */}
-        <Reveal direction="up" delay={120}>
-          <section id="manual" className="flex scroll-mt-24 flex-col gap-6">
-            <div className="flex flex-col gap-2">
-              <SectionHeading id="manual">Manual Setup</SectionHeading>
-              <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
-                Prefer to set things up yourself? Follow these steps to
-                configure Ionbit UI manually.
-              </p>
-            </div>
-            <div className="steps flex flex-col gap-6 [counter-reset:step] md:ml-4 md:border-l md:pl-8">
-              {manualSteps.map((step) => (
-                <div
-                  key={step.id}
-                  id={step.id}
-                  className="flex scroll-mt-24 flex-col gap-3"
-                >
-                  <h3 className="step text-lg font-semibold text-foreground md:text-sm">
-                    {step.heading}
-                  </h3>
-                  {step.content}
-                </div>
-              ))}
-            </div>
-          </section>
-        </Reveal>
+        <section id="manual" className="flex scroll-mt-24 flex-col gap-6">
+          <div className="flex flex-col gap-2">
+            <SectionHeading id="manual">Manual Setup</SectionHeading>
+            <p className="text-base leading-relaxed text-foreground-muted md:text-sm">
+              Prefer to set things up yourself? Follow these steps to configure
+              Ionbit UI manually.
+            </p>
+          </div>
+          <div className="steps flex flex-col gap-6 [counter-reset:step] md:ml-4 md:border-l md:pl-8">
+            {manualSteps.map((step) => (
+              <div
+                key={step.id}
+                id={step.id}
+                className="flex scroll-mt-24 flex-col gap-3"
+              >
+                <h3 className="step text-lg font-semibold text-foreground md:text-sm">
+                  {step.heading}
+                </h3>
+                {step.content}
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Requirements */}
-        <Reveal direction="up" delay={180}>
-          <section
-            id="requirements"
-            className="flex scroll-mt-24 flex-col gap-3"
-          >
-            <SectionHeading id="requirements">Requirements</SectionHeading>
-            <ul className="flex flex-col gap-2">
-              {requirements.map((req) => (
-                <li
-                  key={req}
-                  className="flex items-start gap-2 text-base text-foreground-muted md:text-sm"
-                >
-                  <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
-                  {req}
-                </li>
-              ))}
-            </ul>
-          </section>
-        </Reveal>
+        <section id="requirements" className="flex scroll-mt-24 flex-col gap-3">
+          <SectionHeading id="requirements">Requirements</SectionHeading>
+          <ul className="flex flex-col gap-2">
+            {requirements.map((req) => (
+              <li
+                key={req}
+                className="flex items-start gap-2 text-base text-foreground-muted md:text-sm"
+              >
+                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                {req}
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </SidebarLayout>
   );

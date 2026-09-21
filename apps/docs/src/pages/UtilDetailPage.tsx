@@ -4,7 +4,6 @@ import { ArrowLeft } from "lucide-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 
-import { Reveal } from "@ionbit-ui/motion";
 import { Badge, Button } from "@ionbit-ui/ui";
 
 import { PreviewCodeBlock } from "../components/code/PreviewCodeBlock";
@@ -133,74 +132,66 @@ export function UtilDetailPage() {
   return (
     <SidebarLayout
       rightSidebar={
-        <Reveal direction="up">
-          <OnThisPage
-            sections={sections}
-            activeSection={activeSection}
-            onSectionClick={handleSectionClick}
-          />
-        </Reveal>
+        <OnThisPage
+          sections={sections}
+          activeSection={activeSection}
+          onSectionClick={handleSectionClick}
+        />
       }
     >
       <div className="flex flex-col gap-8">
         {/* Header */}
-        <Reveal direction="up">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-start justify-between gap-2">
-                <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
-                  <h1 className="order-2 text-3xl font-semibold tracking-tight text-foreground sm:order-1">
-                    {util.label}
-                  </h1>
-                  <div className="order-1 flex flex-wrap items-center gap-2 sm:order-2">
-                    <Badge
-                      variant="accent"
-                      className="font-mono text-[10px] tracking-wider uppercase"
-                    >
-                      {util.category}
-                    </Badge>
-                  </div>
-                </div>
-                <div className="flex items-center gap-1 sm:hidden">
-                  <PageActions prev={prev} next={next} />
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-2">
+          <div className="flex flex-col gap-2">
+            <div className="flex items-start justify-between gap-2">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:gap-3">
+                <h1 className="order-2 text-3xl font-semibold tracking-tight text-foreground sm:order-1">
+                  {util.label}
+                </h1>
+                <div className="order-1 flex flex-wrap items-center gap-2 sm:order-2">
+                  <Badge
+                    variant="accent"
+                    className="font-mono text-[10px] tracking-wider uppercase"
+                  >
+                    {util.category}
+                  </Badge>
                 </div>
               </div>
-              <p className="max-w-2xl text-foreground-muted">
-                {util.description}
-              </p>
+              <div className="flex items-center gap-1 sm:hidden">
+                <PageActions prev={prev} next={next} />
+              </div>
             </div>
-            <div className="hidden items-center gap-1 sm:flex sm:shrink-0">
-              <PageActions
-                prev={prev}
-                next={next}
-                pageCopied={pageCopied}
-                onCopyPage={handleCopyPage}
-              />
-            </div>
+            <p className="max-w-2xl text-foreground-muted">
+              {util.description}
+            </p>
           </div>
-        </Reveal>
+          <div className="hidden items-center gap-1 sm:flex sm:shrink-0">
+            <PageActions
+              prev={prev}
+              next={next}
+              pageCopied={pageCopied}
+              onCopyPage={handleCopyPage}
+            />
+          </div>
+        </div>
 
         {/* Hero demo */}
         {util.heroDemo && (
-          <Reveal direction="up" delay={60}>
-            <section
-              id="preview"
-              key={util.name}
-              className="flex scroll-mt-24 flex-col gap-3"
-            >
-              <PreviewCodeBlock
-                preview={util.heroDemo.render()}
-                code={util.heroDemo.code}
-                rawCode={util.heroDemo.rawCode}
-              />
-            </section>
-          </Reveal>
+          <section
+            id="preview"
+            key={util.name}
+            className="flex scroll-mt-24 flex-col gap-3"
+          >
+            <PreviewCodeBlock
+              preview={util.heroDemo.render()}
+              code={util.heroDemo.code}
+              rawCode={util.heroDemo.rawCode}
+            />
+          </section>
         )}
 
         {/* Installation */}
-        <Reveal direction="up" delay={120}>
-          <UtilInstallation utilName={util.name} cssImport={util.cssImport} />
-        </Reveal>
+        <UtilInstallation utilName={util.name} cssImport={util.cssImport} />
 
         {/* Usage */}
         <UtilUsage

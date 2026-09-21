@@ -1,7 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 
-import { Reveal } from "@ionbit-ui/motion";
-
 import { CopyButton } from "../components/code/CopyButton";
 import { HighlightedCode } from "../components/code/HighlightedCode";
 import { PmCommandBlock } from "../components/code/PmCommandBlock";
@@ -118,38 +116,28 @@ export function ThemePage() {
 
   return (
     <SidebarLayout
-      rightSidebar={
-        isDesktop ? (
-          <Reveal direction="up">
-            <ThemeControls state={state} />
-          </Reveal>
-        ) : undefined
-      }
+      rightSidebar={isDesktop ? <ThemeControls state={state} /> : undefined}
     >
       <div className="flex flex-col gap-12">
-        <Reveal direction="up">
-          <header className="flex flex-col gap-2">
-            <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-              Themes
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-foreground">
-              Make it yours
-            </h1>
-            <p className="max-w-2xl text-foreground-muted">
-              Choose a preset or fine-tune every color, radius, and effect. Copy
-              the CLI command to install the theme in your project.
-            </p>
-          </header>
-        </Reveal>
+        <header className="flex flex-col gap-2">
+          <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+            Themes
+          </p>
+          <h1 className="text-3xl font-semibold tracking-tight text-foreground">
+            Make it yours
+          </h1>
+          <p className="max-w-2xl text-foreground-muted">
+            Choose a preset or fine-tune every color, radius, and effect. Copy
+            the CLI command to install the theme in your project.
+          </p>
+        </header>
 
         {!isDesktop && <ThemeControls state={state} />}
 
-        <Reveal direction="up" delay={60}>
-          <section id="preview" className="flex scroll-mt-24 flex-col gap-4">
-            <SectionHeading id="preview">Live Preview</SectionHeading>
-            <ThemePreview {...previewProps} />
-          </section>
-        </Reveal>
+        <section id="preview" className="flex scroll-mt-24 flex-col gap-4">
+          <SectionHeading id="preview">Live Preview</SectionHeading>
+          <ThemePreview {...previewProps} />
+        </section>
 
         <section id="install" className="flex scroll-mt-24 flex-col gap-4">
           <SectionHeading id="install">Install</SectionHeading>
