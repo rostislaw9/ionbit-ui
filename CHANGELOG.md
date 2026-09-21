@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- **`Skeleton` was invisible in light mode.** Its fill used
+  `--surface-elevated`, which is pure white in light themes. The fill is
+  now the theme's `--foreground` at 10% alpha — a recessed gray that
+  stays visible on any surface, in both modes, and in every generated
+  theme without a dedicated token.
+- **Keyboard hint glyph was unreadable.** The `⇥` character in the
+  accessibility feature cell barely rendered; it is now a `kbd` chip
+  with the Lucide tab icon plus the word "tab".
+
 ## [0.2.1] — 2026-09-21
 
 ### Changed

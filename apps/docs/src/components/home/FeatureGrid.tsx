@@ -1,5 +1,7 @@
 import type { ReactNode } from "react";
 
+import { ArrowRightToLine } from "lucide-react";
+
 import { Glow, Pulse, Scramble } from "@ionbit-ui/motion";
 import { Button } from "@ionbit-ui/ui";
 
@@ -59,7 +61,12 @@ const FEATURES: Feature[] = [
           focus me
         </Button>
         <span className="font-mono text-xs text-foreground-subtle">
-          press ⇥ to see the ring
+          press{" "}
+          <kbd className="inline-flex items-center gap-1 rounded border border-border px-1 align-middle">
+            <ArrowRightToLine className="size-3" aria-hidden />
+            tab
+          </kbd>{" "}
+          to see the ring
         </span>
       </span>
     ),

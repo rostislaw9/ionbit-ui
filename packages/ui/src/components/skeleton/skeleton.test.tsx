@@ -9,7 +9,7 @@ describe("Skeleton", () => {
     const el = container.firstChild as HTMLElement;
     expect(el).toHaveClass("animate-pulse");
     expect(el).toHaveClass("rounded-md");
-    expect(el).toHaveClass("bg-surface-elevated");
+    expect(el).toHaveClass("bg-foreground/10");
   });
 
   it("accepts custom className", () => {

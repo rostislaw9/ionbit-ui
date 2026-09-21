@@ -7,8 +7,10 @@ export type SkeletonProps = HTMLAttributes<HTMLDivElement>;
 /**
  * Skeleton — a loading placeholder with a subtle pulse animation.
  *
- * Built on native HTML, shadcn-inspired. Uses semantic surface tokens so
- * it adapts to the active theme. Consumers control sizing via `className`
+ * Built on native HTML, shadcn-inspired. The fill is the theme's
+ * foreground at low alpha — a recessed gray that stays visible on any
+ * surface in both modes and in every generated theme, without a
+ * dedicated token. Consumers control sizing via `className`
  * (e.g. `h-4 w-full`); the component itself only provides shape, color,
  * and animation defaults.
  *
@@ -20,10 +22,7 @@ export const Skeleton = forwardRef<HTMLDivElement, SkeletonProps>(
     return (
       <div
         ref={ref}
-        className={cn(
-          "animate-pulse rounded-md bg-surface-elevated",
-          className,
-        )}
+        className={cn("animate-pulse rounded-md bg-foreground/10", className)}
         {...props}
       />
     );
