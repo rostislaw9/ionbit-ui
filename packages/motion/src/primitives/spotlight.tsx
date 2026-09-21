@@ -52,9 +52,9 @@ export interface SpotlightProps extends Omit<
  * Reduced motion: the effect is disabled entirely. The surface remains
  * fully usable; spotlight is purely decorative.
  *
- * The wrapper clips its children (`overflow: hidden`) to bound the
- * gradient; the child's `border-radius` and `box-shadow` are mirrored
- * onto the wrapper, so rounded corners and elevation survive clipping.
+ * The gradient lives in its own clipped layer (`overflow: hidden` +
+ * inherited `border-radius`), so children are never clipped — a
+ * child's `box-shadow` and other overflowing paint render normally.
  */
 export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
   function Spotlight(
@@ -80,9 +80,6 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     const innerRef = useInheritedRadius<HTMLDivElement>({
       resolveChild: (el) =>
         (el.lastElementChild?.firstElementChild as HTMLElement | null) ?? null,
-      // The wrapper clips children, so a child's box-shadow would be
-      // clipped too — re-apply it at the clip boundary.
-      mirrorShadow: true,
     });
     const overlayRef = useRef<HTMLSpanElement | null>(null);
     const activeRef = useRef(false);
@@ -173,9 +170,6 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
     const surfaceStyle: CSSProperties = {
       position: "relative",
       isolation: "isolate",
-      // Clip the overlay to the wrapper's border radius, inherited
-      // from the content child via `useInheritedRadius`.
-      overflow: "hidden",
       ...style,
     };
 
@@ -194,23 +188,36 @@ export const Spotlight = forwardRef<HTMLDivElement, SpotlightProps>(
         onPointerLeave={handlePointerLeave}
       >
         {enabled && (
+          // Clip layer, not the wrapper: the gradient stays inside the
+          // rounded bounds (radius inherited via `useInheritedRadius`)
+          // while the child's own box-shadow can still paint outside.
           <span
             aria-hidden="true"
-            ref={overlayRef}
             style={{
               position: "absolute",
-              // 200% layer: its center coincides with the element's
-              // center, so translate3d(pointer-offset) places the static
-              // gradient under the cursor — compositor-only motion.
-              inset: "-50%",
+              inset: 0,
+              borderRadius: "inherit",
+              overflow: "hidden",
               pointerEvents: "none",
-              opacity: 0,
-              transition: `opacity ${motionTokens.duration.fast}ms var(--ease-standard, cubic-bezier(${motionTokens.easing.standard.join(", ")}))`,
-              willChange: "transform, opacity",
-              background: `radial-gradient(${radius}px circle at center, color-mix(in oklab, var(--accent, oklch(0.82 0.16 220)) 18%, transparent), transparent 70%)`,
               zIndex: 0,
             }}
-          />
+          >
+            <span
+              ref={overlayRef}
+              style={{
+                position: "absolute",
+                // 200% layer: its center coincides with the element's
+                // center, so translate3d(pointer-offset) places the
+                // static gradient under the cursor — compositor-only
+                // motion.
+                inset: "-50%",
+                opacity: 0,
+                transition: `opacity ${motionTokens.duration.fast}ms var(--ease-standard, cubic-bezier(${motionTokens.easing.standard.join(", ")}))`,
+                willChange: "transform, opacity",
+                background: `radial-gradient(${radius}px circle at center, color-mix(in oklab, var(--accent, oklch(0.82 0.16 220)) 18%, transparent), transparent 70%)`,
+              }}
+            />
+          </span>
         )}
         <span style={{ position: "relative", zIndex: 1, display: "contents" }}>
           {children}

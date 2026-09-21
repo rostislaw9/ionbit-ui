@@ -16,23 +16,14 @@ export interface UseInheritedRadiusOptions<T extends HTMLElement> {
    * overlay layers) before the real content.
    */
   resolveChild?: (el: T) => HTMLElement | null;
-  /**
-   * Also mirror the child's `box-shadow` onto the wrapper. Required
-   * when the wrapper clips its children (`overflow: hidden`): the
-   * child's shadow paints outside its box and would be clipped, so it
-   * is re-applied at the clip boundary. @default false
-   */
-  mirrorShadow?: boolean;
 }
 
 /**
- * Reads the content child's computed border-radius (and, with
- * `mirrorShadow`, its `box-shadow`) and applies it to the wrapper
- * element. This lets motion wrappers (Glow, Pulse, Spotlight, Tilt,
- * Ripple) automatically match the wrapped element's rounded corners —
- * and, for wrappers that clip their children, keep the child's
- * elevation visible — without requiring the user to pass a
- * `className`.
+ * Reads the content child's computed border-radius and applies it to
+ * the wrapper element. This lets motion wrappers (Glow, Pulse,
+ * Spotlight, Tilt, Ripple) automatically match the wrapped element's
+ * rounded corners without requiring the user to pass a `className`
+ * for the radius.
  *
  * The radius is sampled lazily on the first commit where the wrapper
  * element actually exists — primitives that drop their wrapper while
@@ -61,18 +52,9 @@ export function useInheritedRadius<T extends HTMLElement = HTMLElement>(
       el.firstElementChild) as HTMLElement | null;
     if (!child) return;
 
-    const childStyle = getComputedStyle(child);
-    if (
-      childStyle.borderRadius &&
-      el.style.borderRadius !== childStyle.borderRadius
-    ) {
-      el.style.borderRadius = childStyle.borderRadius;
-    }
-    if (
-      optionsRef.current?.mirrorShadow &&
-      el.style.boxShadow !== childStyle.boxShadow
-    ) {
-      el.style.boxShadow = childStyle.boxShadow;
+    const childRadius = getComputedStyle(child).borderRadius;
+    if (childRadius && el.style.borderRadius !== childRadius) {
+      el.style.borderRadius = childRadius;
     }
   }, []);
 

@@ -7,8 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Docs pages no longer scroll-reveal.** `Reveal` wrappers were removed
+  from the components browser, component/util detail pages, installation,
+  tokens, theme, and home pages — docs content renders immediately
+  instead of animating in on every visit.
+- **Theme live preview effect tiles.** Glow and Ripple are now full
+  preview cards matching the other motion cards; Magnetic remains a
+  button in the badge strip.
+
 ### Fixed
 
+- **`Spotlight`/`Ripple` clipped children's `box-shadow`.** Both
+  primitives applied `overflow: hidden` to the wrapper, so an elevated
+  `Card` inside lost its shadow. The bounded paint now lives in an
+  internal clip layer (`inset: 0; overflow: hidden; border-radius:
+inherit`) — children are never clipped, so shadows and other overflow
+  render normally.
+- **Collapsible docs overstated defaults.** The description claimed
+  animated height transitions and rotating indicators; the component
+  ships neither — that styling is demo-level.
+- **Token shadow previews ignored the theme radius.** Shadow swatches
+  on the tokens page now render at `var(--radius-md)` like real
+  components; the radius section still samples each token.
 - **Docs sidebar rails used a fake reservation.** The right sidebar's
   in-flow width was `w-60` while the fixed panel rendered wider,
   overflowing its slot. Both rails now share one stepped width

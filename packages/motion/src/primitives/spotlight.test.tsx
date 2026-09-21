@@ -43,14 +43,18 @@ describe("Spotlight", () => {
     expect(overlays.length).toBeGreaterThan(0);
   });
 
-  it("applies overflow hidden for clipping", () => {
+  it("clips the overlay layer without clipping children", () => {
     const { container } = render(
       <Spotlight>
         <div>Content</div>
       </Spotlight>,
     );
     const wrapper = container.firstElementChild as HTMLElement;
-    expect(wrapper.style.overflow).toBe("hidden");
+    const clipLayer = container.querySelector(
+      '[aria-hidden="true"]',
+    ) as HTMLElement;
+    expect(wrapper.style.overflow).toBe("");
+    expect(clipLayer.style.overflow).toBe("hidden");
   });
 
   it("overlay is pointer-events none", () => {

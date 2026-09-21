@@ -144,8 +144,7 @@ export const Ripple = forwardRef<HTMLSpanElement, RippleProps>(function Ripple(
       style={{
         display: "inline-flex",
         position: "relative",
-        overflow: "hidden",
-        // Buttons shift down 1px on :active — give the clip area 1px of
+        // Buttons shift down 1px on :active — give the clip layer 1px of
         // slack so the bottom edge isn't cut. The negative margin keeps
         // the wrapper's outer size unchanged.
         paddingBlockEnd: 1,
@@ -154,26 +153,37 @@ export const Ripple = forwardRef<HTMLSpanElement, RippleProps>(function Ripple(
       }}
     >
       {children}
-      {ripples.map((r) => (
-        <span
-          key={r.id}
-          aria-hidden="true"
-          data-ionbit-ripple=""
-          onAnimationEnd={() => remove(r.id)}
-          style={{
-            position: "absolute",
-            left: r.x - r.radius,
-            top: r.y - r.radius,
-            width: r.radius * 2,
-            height: r.radius * 2,
-            borderRadius: "50%",
-            background: r.color,
-            pointerEvents: "none",
-            animation: `ionbit-ui-ripple ${duration}ms var(--ease-standard, ease-out) forwards`,
-            ["--ripple-opacity" as string]: 0.24 * intensity,
-          }}
-        />
-      ))}
+      {/* Clip layer, not the wrapper: ink stays inside the rounded
+          bounds while the child's own box-shadow still paints. */}
+      <span
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: "inherit",
+          overflow: "hidden",
+          pointerEvents: "none",
+        }}
+      >
+        {ripples.map((r) => (
+          <span
+            key={r.id}
+            data-ionbit-ripple=""
+            onAnimationEnd={() => remove(r.id)}
+            style={{
+              position: "absolute",
+              left: r.x - r.radius,
+              top: r.y - r.radius,
+              width: r.radius * 2,
+              height: r.radius * 2,
+              borderRadius: "50%",
+              background: r.color,
+              animation: `ionbit-ui-ripple ${duration}ms var(--ease-standard, ease-out) forwards`,
+              ["--ripple-opacity" as string]: 0.24 * intensity,
+            }}
+          />
+        ))}
+      </span>
     </span>
   );
 });

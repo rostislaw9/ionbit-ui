@@ -491,7 +491,12 @@ Each motion primitive is a wrapper component that:
   trigger is gated behind `@media (hover: hover)` so taps don't latch
   a sticky glow;
 - is layout-agnostic — it does not impose width/height/padding on the
-  child.
+  child;
+- never clips its children — primitives that need bounded paint
+  (Spotlight's gradient, Ripple's ink, Tilt's glare) clip their own
+  internal effect layer (`inset: 0; overflow: hidden; border-radius:
+inherit`) instead of the wrapper, so a child's `box-shadow` and other
+  overflowing paint render normally.
 
 Example (illustrative, not final):
 
