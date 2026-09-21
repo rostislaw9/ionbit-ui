@@ -2,9 +2,10 @@ import {
   BoxesIcon,
   HomeIcon,
   PackageIcon,
-  Search,
+  PaintbrushIcon,
+  PuzzleIcon,
+  SearchIcon,
   SettingsIcon,
-  SparklesIcon,
   WrenchIcon,
   XIcon,
 } from "lucide-react";
@@ -47,7 +48,8 @@ const PAGE_ICONS: Record<string, ComponentType<{ className?: string }>> = {
   "/docs/installation": SettingsIcon,
   "/docs/components": BoxesIcon,
   "/docs/utils": WrenchIcon,
-  "/tokens": SparklesIcon,
+  "/tokens": PuzzleIcon,
+  "/themes": PaintbrushIcon,
 };
 
 /** Build the full search index from nav items, components, and utils. */
@@ -198,7 +200,7 @@ export function SearchBar() {
           onClick={() => setMobileOpen(true)}
           aria-label="Search documentation"
         >
-          <Search />
+          <SearchIcon />
           Search
         </Button>
         <CommandDialog open={mobileOpen} onOpenChange={setMobileOpen}>
