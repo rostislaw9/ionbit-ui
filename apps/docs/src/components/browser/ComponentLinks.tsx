@@ -23,7 +23,7 @@ export function ComponentLinks({
   return (
     <div className="grid grid-cols-2 justify-items-start gap-y-1 md:grid-cols-3 md:gap-x-32">
       {items.map((comp) => (
-        <HoverCard key={comp.name} openDelay={150} closeDelay={150}>
+        <HoverCard key={comp.name} openDelay={600} closeDelay={150}>
           <HoverCardTrigger asChild>
             <Button
               variant="link"

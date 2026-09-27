@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Component browser hover cards open slower.** `openDelay` raised
+  from 150ms to 600ms so preview cards no longer flash while sweeping
+  the cursor across the link grid.
+
 ### Fixed
 
 - **`Skeleton` was invisible in light mode.** Its fill used
