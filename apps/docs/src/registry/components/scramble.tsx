@@ -4,6 +4,9 @@ import { InlineCode } from "../../components/code/InlineCode";
 import { ScrambleDemo } from "../../demos/scramble-demo";
 import ScrambleDemoSource from "../../demos/scramble-demo.tsx?highlighted";
 import ScrambleDemoRaw from "../../demos/scramble-demo.tsx?raw";
+import { ScrambleRevealDemo } from "../../demos/scramble-reveal-demo";
+import ScrambleRevealDemoSource from "../../demos/scramble-reveal-demo.tsx?highlighted";
+import ScrambleRevealDemoRaw from "../../demos/scramble-reveal-demo.tsx?raw";
 import { ScrambleStateDemo } from "../../demos/scramble-state-demo";
 import ScrambleStateDemoSource from "../../demos/scramble-state-demo.tsx?highlighted";
 import ScrambleStateDemoRaw from "../../demos/scramble-state-demo.tsx?raw";
@@ -24,6 +27,14 @@ export const scrambleMeta: ComponentMeta = {
       code: ScrambleDemoSource,
       rawCode: ScrambleDemoRaw,
       render: () => <ScrambleDemo />,
+    },
+    {
+      title: "With Reveal",
+      description:
+        "Wrap in Reveal to decode the text while the container animates in.",
+      code: ScrambleRevealDemoSource,
+      rawCode: ScrambleRevealDemoRaw,
+      render: () => <ScrambleRevealDemo />,
     },
     {
       title: "State Change",

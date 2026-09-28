@@ -261,7 +261,7 @@ export const componentManifest: ManifestEntry[] = [
     label: "Reveal",
     category: "Motion",
     description: "Scroll-triggered entrance.",
-    exampleCount: 1,
+    exampleCount: 2,
     isNew: false,
   },
   {
@@ -285,7 +285,7 @@ export const componentManifest: ManifestEntry[] = [
     label: "Scramble",
     category: "Motion",
     description: "Text decoding visual effect.",
-    exampleCount: 2,
+    exampleCount: 3,
     isNew: true,
   },
   {

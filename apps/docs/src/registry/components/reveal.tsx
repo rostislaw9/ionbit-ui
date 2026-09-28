@@ -3,6 +3,9 @@ import type { ComponentMeta } from "./types";
 import { RevealDemo } from "../../demos/reveal-demo";
 import RevealDemoSource from "../../demos/reveal-demo.tsx?highlighted";
 import RevealDemoRaw from "../../demos/reveal-demo.tsx?raw";
+import { ScrambleRevealDemo } from "../../demos/scramble-reveal-demo";
+import ScrambleRevealDemoSource from "../../demos/scramble-reveal-demo.tsx?highlighted";
+import ScrambleRevealDemoRaw from "../../demos/scramble-reveal-demo.tsx?raw";
 
 export const revealMeta: ComponentMeta = {
   name: "reveal",
@@ -17,6 +20,14 @@ export const revealMeta: ComponentMeta = {
       code: RevealDemoSource,
       rawCode: RevealDemoRaw,
       render: () => <RevealDemo />,
+    },
+    {
+      title: "With Scramble",
+      description:
+        "Composes with Scramble — the card slides up while its text decodes.",
+      code: ScrambleRevealDemoSource,
+      rawCode: ScrambleRevealDemoRaw,
+      render: () => <ScrambleRevealDemo />,
     },
   ],
   usageImport: `import { Reveal } from "@/components/motion/reveal";`,
