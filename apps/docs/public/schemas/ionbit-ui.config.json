@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ionbit-ui-docs.onrender.com/schemas/ionbit-ui.config.json",
+  "title": "Ionbit UI configuration",
+  "description": "Configuration for the ionbit-ui CLI — written by `ionbit-ui init`.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["style", "tailwind", "aliases"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON Schema reference (this file)."
+    },
+    "theme": {
+      "type": "string",
+      "description": "Last installed theme — a preset id (e.g. \"nord\") or \"custom\"."
+    },
+    "style": {
+      "type": "string",
+      "enum": ["digital"],
+      "description": "Visual style preset."
+    },
+    "tailwind": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["css", "cssVariables"],
+      "properties": {
+        "css": {
+          "type": "string",
+          "description": "Global CSS file, relative to the project root."
+        },
+        "cssVariables": {
+          "type": "boolean",
+          "description": "Emit tokens as CSS custom properties."
+        }
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["components", "motion", "lib", "styles"],
+      "properties": {
+        "components": {
+          "type": "string",
+          "description": "Install directory for UI components."
+        },
+        "motion": {
+          "type": "string",
+          "description": "Install directory for motion primitives."
+        },
+        "lib": {
+          "type": "string",
+          "description": "Install directory for shared utilities (cn, etc.)."
+        },
+        "styles": {
+          "type": "string",
+          "description": "Install directory for tokens and theme CSS."
+        }
+      }
+    }
+  }
+}

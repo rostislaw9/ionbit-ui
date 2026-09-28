@@ -7,7 +7,7 @@ import { dirname, relative, resolve } from "node:path";
 
 import { generateThemeCss } from "@ionbit-ui/tokens/theme-css";
 
-import { ensureDir, loadConfig } from "../utils/fs";
+import { ensureDir, loadConfig, saveConfig } from "../utils/fs";
 import { fetchThemeRegistry } from "../utils/registry";
 
 interface CustomTheme {
@@ -40,6 +40,7 @@ export async function theme(
 
   let css: string;
   let label: string;
+  let themeId = "custom";
   if (options.custom) {
     let custom: CustomTheme;
     try {
@@ -73,13 +74,16 @@ export async function theme(
     }
     label = preset.label;
     css = preset.css;
+    themeId = preset.id;
   }
 
   const themePath = resolve(cwd, config.aliases.styles, "theme.css");
   if (existsSync(themePath) && !options.overwrite) {
     console.log(
       chalk.yellow(
-        `${config.aliases.styles}/theme.css already exists. Use --overwrite to replace it.`,
+        `${config.aliases.styles}/theme.css already exists${
+          config.theme ? ` (theme: ${config.theme})` : ""
+        }. Use --overwrite to replace it.`,
       ),
     );
     process.exitCode = 1;
@@ -89,6 +93,8 @@ export async function theme(
   ensureDir(themePath);
   writeFileSync(themePath, css + "\n");
   addThemeImport(config, cwd, themePath);
+  config.theme = themeId;
+  saveConfig(config, cwd);
   console.log(chalk.green(`✓ Installed ${label} theme`));
   console.log(chalk.dim(`  ${config.aliases.styles}/theme.css`));
 }

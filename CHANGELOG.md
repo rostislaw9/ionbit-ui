@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`ionbit-ui.config.json` JSON Schema.** `init` now writes a `$schema`
+  reference pointing at a hosted schema describing the real config shape
+  (`style`, `tailwind`, `aliases`), enabling editor autocomplete and
+  validation — previously it referenced shadcn's incompatible schema.
+- **`theme` records the installed theme.** The command writes the preset
+  id (or `"custom"`) to `theme` in the config and names the current theme
+  in the overwrite warning.
+
 ## [0.2.2] — 2026-09-28
 
 ### Security

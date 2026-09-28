@@ -47,7 +47,10 @@ export interface ThemeRegistry {
 }
 
 export interface Config {
-  $schema: string;
+  /** Optional JSON Schema reference for editor tooling. */
+  $schema?: string;
+  /** Last installed theme — a preset id or "custom". */
+  theme?: string;
   style: string;
   tailwind: {
     css: string;
@@ -62,7 +65,7 @@ export interface Config {
 }
 
 export const DEFAULT_CONFIG: Config = {
-  $schema: "https://ui.shadcn.com/schema/registry.json",
+  $schema: "https://ionbit-ui-docs.onrender.com/schemas/ionbit-ui.config.json",
   style: "digital",
   tailwind: {
     css: "src/index.css",
