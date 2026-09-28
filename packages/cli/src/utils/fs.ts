@@ -1,7 +1,7 @@
 import type { Config } from "../config";
 
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { dirname, resolve, sep } from "node:path";
 
 import { CONFIG_FILE } from "../config";
 
@@ -54,5 +54,13 @@ export function resolveTargetPath(
     resolved = target.replace("styles/", config.aliases.styles + "/");
   }
 
-  return resolve(cwd, resolved);
+  const resolvedPath = resolve(cwd, resolved);
+  const root = resolve(cwd);
+  // Registry-controlled target paths must stay inside the project.
+  if (resolvedPath !== root && !resolvedPath.startsWith(root + sep)) {
+    throw new Error(
+      `Refusing to write outside the project directory: ${target}`,
+    );
+  }
+  return resolvedPath;
 }

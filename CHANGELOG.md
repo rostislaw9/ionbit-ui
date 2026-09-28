@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- **CLI hardening against a compromised/mutated registry.** Dependency
+  installs now run via `spawnSync` with an argument array (no shell) and
+  registry-supplied specifiers are validated before reaching the package
+  manager; registry-controlled target paths must resolve inside the
+  project directory; and the remote registry is pinned to the CLI's own
+  release tag instead of `main`, so a published package reads the
+  registry it shipped with.
+
 ### Changed
 
 - **Component browser hover cards open slower.** `openDelay` raised

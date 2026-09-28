@@ -1,10 +1,15 @@
-export const REGISTRY_URL =
-  "https://raw.githubusercontent.com/rostislaw9/ionbit-ui/main/registry.json";
+// Pin the remote registry to this CLI's own release tag: a published
+// package reads exactly the registry it shipped with instead of whatever
+// `main` serves at fetch time. Prereleases track `main`.
+const REGISTRY_REF = __CLI_VERSION__.includes("-")
+  ? "main"
+  : `v${__CLI_VERSION__}`;
 
-export const REGISTRY_ITEM_URL =
-  "https://raw.githubusercontent.com/rostislaw9/ionbit-ui/main/registry/items";
-export const THEME_REGISTRY_URL =
-  "https://raw.githubusercontent.com/rostislaw9/ionbit-ui/main/registry/themes.json";
+const REGISTRY_BASE = `https://raw.githubusercontent.com/rostislaw9/ionbit-ui/${REGISTRY_REF}`;
+
+export const REGISTRY_URL = `${REGISTRY_BASE}/registry.json`;
+export const REGISTRY_ITEM_URL = `${REGISTRY_BASE}/registry/items`;
+export const THEME_REGISTRY_URL = `${REGISTRY_BASE}/registry/themes.json`;
 
 export interface RegistryItem {
   name: string;
