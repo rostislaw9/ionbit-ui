@@ -1,5 +1,9 @@
 # Ionbit UI CLI
 
+[![npm version](https://img.shields.io/npm/v/ionbit-ui)](https://www.npmjs.com/package/ionbit-ui)
+[![Socket](https://badge.socket.dev/npm/package/ionbit-ui)](https://socket.dev/npm/package/ionbit-ui)
+[![License](https://img.shields.io/npm/l/ionbit-ui)](https://github.com/rostislaw9/ionbit-ui/blob/main/LICENSE)
+
 A CLI for installing [Ionbit UI](https://github.com/rostislaw9/ionbit-ui) components into your React project.
 
 ## Quick start

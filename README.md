@@ -6,6 +6,11 @@ and an integrated motion/interaction system.
 > Build interfaces that feel alive without having to design every
 > interaction from scratch.
 
+[![npm version](https://img.shields.io/npm/v/ionbit-ui)](https://www.npmjs.com/package/ionbit-ui)
+[![Socket](https://badge.socket.dev/npm/package/ionbit-ui)](https://socket.dev/npm/package/ionbit-ui)
+[![License](https://img.shields.io/npm/l/ionbit-ui)](./LICENSE)
+[![Release](https://github.com/rostislaw9/ionbit-ui/actions/workflows/release.yml/badge.svg)](https://github.com/rostislaw9/ionbit-ui/actions/workflows/release.yml)
+
 ## What this is
 
 Ionbit UI is **not**:
@@ -58,7 +63,8 @@ npx ionbit-ui@latest list
 ```
 
 This copies the component source into `src/components/ui/`, resolves registry
-dependencies, and tells you which npm packages to install.
+dependencies, and installs the required npm packages using your project's
+package manager (detected from its lockfile: npm, pnpm, yarn, or bun).
 
 ## Motion primitives
 
@@ -103,7 +109,7 @@ Ionbit UI uses a semantic token system mapped to Tailwind v4 utilities:
 --border        --border-strong       --border-accent
 --accent        --accent-hover        --accent-muted
 --success       --warning             --error        --info
---radius-sm/md/lg/xl    --shadow-xs/sm/md/lg/glow
+--radius-sm/md/lg/xl/full    --shadow-xs/sm/md/lg/focus/glow
 --duration-fast/normal/slow    --ease-standard/emphasized/exit
 ```
 
