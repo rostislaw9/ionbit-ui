@@ -103,6 +103,8 @@ export function settingsToCss(s: ThemeSettings): string {
     `  --scramble-speed: ${s.scrambleSpeed};`,
     `  --trace-intensity: ${s.traceIntensity};`,
     `  --trace-speed: ${s.traceSpeed};`,
+    `  --typewriter-speed: ${s.typewriterSpeed};`,
+    `  --counter-speed: ${s.counterSpeed};`,
   ].join("\n");
 }
 

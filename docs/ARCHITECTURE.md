@@ -184,10 +184,10 @@ runtime, no bundle cost.
 
 ### 4.2 `@ionbit-ui/motion`
 
-**Purpose:** Reusable motion primitives (`Glow`, `Magnetic`, `Pulse`,
-`Reveal`, `Ripple`, `Scramble`, `Spotlight`, `Tilt`, `Trace`) plus shared
-motion tokens (timing, easing, intensity) and reduced-motion
-utilities.
+**Purpose:** Reusable motion primitives (`Counter`, `Glow`, `Magnetic`,
+`Pulse`, `Reveal`, `Ripple`, `Scramble`, `Spotlight`, `Tilt`, `Trace`,
+`Typewriter`) plus shared motion tokens (timing, easing, intensity) and
+reduced-motion utilities.
 
 **Contents:**
 

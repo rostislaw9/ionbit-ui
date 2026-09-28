@@ -14,6 +14,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   travel rate (effective lap time = `duration / speed`). The theme editor
   gains a "Trace Speed" control (`traceSpeed` setting, emitted as
   `--trace-speed`).
+- **`Typewriter` and `Counter` motion primitives.** Typewriter prints
+  text character by character with a trailing block caret (mount, view,
+  hover, or focus triggers; re-types on content change). `"mount"` types
+  before first paint so no finished text flashes — the deploy console
+  on the home page types each new log line this way. Counter rolls a number
+  up to its target with an ease-out curve (`from`, `duration`,
+  `decimals`, `format`, view or hover triggers, re-counts on `value`
+  change). Both respect reduced motion, share the IntersectionObserver
+  pool, and get theme-editor speed controls (`typewriterSpeed`,
+  `counterSpeed` — emitted as `--typewriter-speed` / `--counter-speed`).
+- **`data-motion-skip` opt-out attribute.** Mark any element inside a
+  text-walking motion wrapper (Scramble, Typewriter) to keep its text
+  untouched — badges, icons, and live values stay static while the rest
+  animates.
 
 ### Changed
 

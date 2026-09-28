@@ -13,6 +13,7 @@ import { collapsibleMeta } from "./collapsible";
 import { comboboxMeta } from "./combobox";
 import { commandMeta } from "./command";
 import { contextMenuMeta } from "./context-menu";
+import { counterMeta } from "./counter";
 import { dialogMeta } from "./dialog";
 import { dropdownMenuMeta } from "./dropdown-menu";
 import { emptyMeta } from "./empty";
@@ -49,6 +50,7 @@ import { tiltMeta } from "./tilt";
 import { toastMeta } from "./toast";
 import { tooltipMeta } from "./tooltip";
 import { traceMeta } from "./trace";
+import { typewriterMeta } from "./typewriter";
 
 export const componentRegistry: ComponentMeta[] = [
   accordionMeta,
@@ -64,6 +66,7 @@ export const componentRegistry: ComponentMeta[] = [
   comboboxMeta,
   commandMeta,
   contextMenuMeta,
+  counterMeta,
   dialogMeta,
   dropdownMenuMeta,
   emptyMeta,
@@ -100,6 +103,7 @@ export const componentRegistry: ComponentMeta[] = [
   toastMeta,
   tooltipMeta,
   traceMeta,
+  typewriterMeta,
 ];
 
 export { componentCategories } from "./manifest";

@@ -308,6 +308,24 @@ function ThemeControlsImpl({ state }: { state: ThemeCustomizerState }) {
             effectKey="traceSpeed"
             onCommit={updateSettings}
           />
+          <EffectSlider
+            label="Typewriter Speed"
+            value={settings.typewriterSpeed * 100}
+            min={20}
+            max={200}
+            step={10}
+            effectKey="typewriterSpeed"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Counter Speed"
+            value={settings.counterSpeed * 100}
+            min={20}
+            max={200}
+            step={10}
+            effectKey="counterSpeed"
+            onCommit={updateSettings}
+          />
         </div>
       </div>
     </div>

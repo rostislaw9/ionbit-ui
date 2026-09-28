@@ -11,6 +11,7 @@ import {
 
 import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { observeIntersection } from "../intersection-observer-pool";
+import { collectTextRuns } from "../text-runs";
 import { motionTokens } from "../tokens";
 
 /** Default glyph pool — reads as a "decoding" charset. */
@@ -82,42 +83,13 @@ interface ScrambleSlot {
  * skipped.
  */
 function collectTextSlots(el: HTMLElement): ScrambleSlot[] {
-  const slots: ScrambleSlot[] = [];
-
-  const visit = (parent: Node) => {
-    let run: Text[] = [];
-    const flush = () => {
-      const nodes = run;
-      run = [];
-      const text = nodes.map((n) => n.data).join("");
-      // Whitespace-only runs carry no decode-able content — and their
-      // holder would turn an invisible text run into a real element,
-      // e.g. a phantom ~1ch-wide item inside a flex row.
-      if (text.trim().length === 0) return;
-      slots.push({
-        nodes,
-        data: nodes.map((n) => n.data),
-        text,
-        chars: Array.from(text),
-        out: text,
-        holder: null,
-        layer: null,
-        dead: false,
-      });
-    };
-    for (const child of parent.childNodes) {
-      if (child.nodeType === Node.TEXT_NODE) {
-        run.push(child as Text);
-      } else if (child.nodeType === Node.ELEMENT_NODE) {
-        flush();
-        if (!(child as Element).hasAttribute(SCRAMBLE_ATTR)) visit(child);
-      }
-      // Comments etc. generate no boxes — they don't break the run.
-    }
-    flush();
-  };
-  visit(el);
-  return slots;
+  return collectTextRuns(el, SCRAMBLE_ATTR).map((run) => ({
+    ...run,
+    out: run.text,
+    holder: null,
+    layer: null,
+    dead: false,
+  }));
 }
 
 /**
@@ -343,6 +315,9 @@ export interface ScrambleProps extends Omit<
    * descendant text animates in place while the markup is preserved,
    * so a button, paragraph, or card can be wrapped whole. When
    * `children` changes after the first play, the new text re-decodes.
+   *
+   * Elements marked `data-motion-skip` keep their text untouched —
+   * use it to opt badges, icons, or live values out of the decode.
    */
   children?: ReactNode;
   /**

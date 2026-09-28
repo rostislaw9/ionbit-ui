@@ -45,6 +45,21 @@ describe("Scramble", () => {
     expect(srOnly?.textContent).toBe("STATUS");
   });
 
+  it("leaves elements marked data-motion-skip untouched", () => {
+    const { container } = render(
+      <Scramble as="div" trigger="hover">
+        <span>DECODES</span>
+        <span data-motion-skip className="keep">
+          STAYS
+        </span>
+      </Scramble>,
+    );
+    const root = container.querySelector("[data-scramble]")!;
+    fireEvent.pointerEnter(root);
+    // The skipped subtree was never emptied or wrapped.
+    expect(root.querySelector(".keep")?.textContent).toBe("STAYS");
+  });
+
   it("keeps nested markup intact", () => {
     const { container } = render(
       <Scramble as="div" disabled>

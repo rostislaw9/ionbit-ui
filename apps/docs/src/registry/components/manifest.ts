@@ -121,6 +121,14 @@ export const componentManifest: ManifestEntry[] = [
     isNew: false,
   },
   {
+    name: "counter",
+    label: "Counter",
+    category: "Motion",
+    description: "Number rolls up to its value.",
+    exampleCount: 1,
+    isNew: true,
+  },
+  {
     name: "dialog",
     label: "Dialog",
     category: "Overlay",
@@ -422,6 +430,14 @@ export const componentManifest: ManifestEntry[] = [
     category: "Motion",
     description: "Accent beam along element's border.",
     exampleCount: 3,
+    isNew: true,
+  },
+  {
+    name: "typewriter",
+    label: "Typewriter",
+    category: "Motion",
+    description: "Terminal-style character-by-character typing.",
+    exampleCount: 1,
     isNew: true,
   },
 ];

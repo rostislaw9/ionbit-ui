@@ -81,6 +81,10 @@ export interface ThemeSettings {
   traceIntensity: number;
   /** Trace beam speed multiplier (1 = normal). */
   traceSpeed: number;
+  /** Typewriter typing speed multiplier (1 = normal). */
+  typewriterSpeed: number;
+  /** Counter count-up speed multiplier (1 = normal). */
+  counterSpeed: number;
 }
 
 /**

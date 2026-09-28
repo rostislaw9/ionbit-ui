@@ -1,6 +1,7 @@
 import { memo } from "react";
 
 import {
+  Counter,
   Glow,
   Magnetic,
   Pulse,
@@ -9,6 +10,7 @@ import {
   Spotlight,
   Tilt,
   Trace,
+  Typewriter,
 } from "@ionbit-ui/motion";
 import {
   Badge,
@@ -32,6 +34,8 @@ interface ThemePreviewProps {
   scrambleSpeed: number;
   traceIntensity: number;
   traceSpeed: number;
+  typewriterSpeed: number;
+  counterSpeed: number;
   translucency: number;
   radiusSm: string;
   radiusXl: string;
@@ -48,6 +52,8 @@ function ThemePreviewImpl({
   scrambleSpeed,
   traceIntensity,
   traceSpeed,
+  typewriterSpeed,
+  counterSpeed,
 }: ThemePreviewProps) {
   const { mode } = useTheme();
 
@@ -57,11 +63,11 @@ function ThemePreviewImpl({
       <div className="grid gap-4 sm:grid-cols-2">
         {/* Spotlight — large proximity so the glow leads the cursor */}
         <Spotlight intensity={spotlightIntensity} proximity={220}>
-          <Card elevated>
+          <Card elevated className="h-full">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Spotlight
                   </p>
                   <CardTitle className="mt-1 text-lg">
@@ -86,11 +92,11 @@ function ThemePreviewImpl({
           reflectionIntensity={reflectionIntensity}
           intensity={tiltIntensity}
         >
-          <Card elevated>
+          <Card elevated className="h-full">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Tilt
                   </p>
                   <CardTitle className="mt-1 text-lg">
@@ -116,18 +122,18 @@ function ThemePreviewImpl({
           intensity={1}
           trigger="hover"
         >
-          <Card elevated>
+          <Card elevated className="h-full">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Scramble
                   </p>
                   <CardTitle className="mt-1 text-lg">
                     Hover to decrypt
                   </CardTitle>
                 </div>
-                <Badge variant="accent">
+                <Badge variant="accent" data-motion-skip>
                   {(scrambleSpeed * 100).toFixed(0)}%
                 </Badge>
               </div>
@@ -144,11 +150,11 @@ function ThemePreviewImpl({
 
         {/* Trace — the border beam keeps the card in a busy state */}
         <Trace as="div" double intensity={traceIntensity} speed={traceSpeed}>
-          <Card elevated>
+          <Card elevated className="h-full">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Trace
                   </p>
                   <CardTitle className="mt-1 text-lg">
@@ -173,11 +179,11 @@ function ThemePreviewImpl({
 
         {/* Glow — accent halo builds while the cursor is near */}
         <Glow intensity={glowIntensity}>
-          <Card elevated>
+          <Card elevated className="h-full">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Glow
                   </p>
                   <CardTitle className="mt-1 text-lg">
@@ -198,15 +204,15 @@ function ThemePreviewImpl({
 
         {/* Ripple — press sends a wave across the surface */}
         <Ripple intensity={rippleIntensity}>
-          <Card elevated>
+          <Card elevated className="h-full">
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono text-[10px] tracking-[0.2em] text-accent uppercase">
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
                     Ripple
                   </p>
                   <CardTitle className="mt-1 text-lg">
-                    Press anywhere on it
+                    Press anywhere on the card
                   </CardTitle>
                 </div>
                 <Badge variant="accent">
@@ -220,6 +226,67 @@ function ThemePreviewImpl({
             </CardHeader>
           </Card>
         </Ripple>
+
+        {/* Typewriter — hover replays the typing like terminal output */}
+        <Typewriter
+          as="div"
+          speed={Math.round(30 / typewriterSpeed)}
+          trigger="hover"
+        >
+          <Card elevated className="h-full">
+            <CardHeader>
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+                    Typewriter
+                  </p>
+                  <CardTitle className="mt-1 text-lg">Hover to type</CardTitle>
+                </div>
+                <Badge variant="accent" data-motion-skip>
+                  {(typewriterSpeed * 100).toFixed(0)}%
+                </Badge>
+              </div>
+              <CardDescription>
+                Every text node types character by character — the caret keeps
+                blinking once it settles.
+              </CardDescription>
+              <p className="mt-3 font-mono text-xs text-foreground-muted">
+                &gt; tail -f /var/log/deploy.log
+              </p>
+            </CardHeader>
+          </Card>
+        </Typewriter>
+
+        {/* Counter — the stat rolls up when the card enters view */}
+        <Card elevated className="h-full">
+          <CardHeader>
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
+                  Counter
+                </p>
+                <CardTitle className="mt-1 text-lg">
+                  Hover the stat to count
+                </CardTitle>
+              </div>
+              <Badge variant="accent">{(counterSpeed * 100).toFixed(0)}%</Badge>
+            </div>
+            <CardDescription>
+              Values roll from zero up to their target — hover the number itself
+              to run it again.
+            </CardDescription>
+            <p className="mt-3 font-mono text-2xl text-foreground tabular-nums">
+              <Counter
+                value={48210}
+                duration={Math.round(1200 / counterSpeed)}
+                trigger="hover"
+              />
+              <span className="ml-2 text-xs text-foreground-muted">
+                installs
+              </span>
+            </p>
+          </CardHeader>
+        </Card>
       </div>
 
       {/* Status badges + Pulse + Magnetic */}

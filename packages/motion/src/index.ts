@@ -28,5 +28,11 @@ export type { TiltProps } from "./primitives/tilt";
 export { Trace } from "./primitives/trace";
 export type { TraceProps } from "./primitives/trace";
 
+export { Typewriter } from "./primitives/typewriter";
+export type { TypewriterProps } from "./primitives/typewriter";
+
+export { Counter } from "./primitives/counter";
+export type { CounterProps } from "./primitives/counter";
+
 export { useFinePointer } from "./hooks/use-fine-pointer";
 export { useReducedMotion } from "./hooks/use-reduced-motion";

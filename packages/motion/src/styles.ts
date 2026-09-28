@@ -105,6 +105,16 @@ const STYLES = `
     --ionbit-trace-angle: 1turn;
   }
 }
+
+/* Typewriter — the trailing block caret blinks like a terminal cursor. */
+@keyframes ionbit-ui-caret-blink {
+  0%, 55% {
+    opacity: 1;
+  }
+  56%, 100% {
+    opacity: 0;
+  }
+}
 `;
 
 let injected = false;

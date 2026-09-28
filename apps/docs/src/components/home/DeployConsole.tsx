@@ -15,7 +15,7 @@ import {
   useState,
 } from "react";
 
-import { Glow, Pulse, Scramble, Trace } from "@ionbit-ui/motion";
+import { Glow, Pulse, Scramble, Trace, Typewriter } from "@ionbit-ui/motion";
 import {
   Badge,
   Button,
@@ -439,7 +439,7 @@ export function DeployConsole() {
         cmd="open examples/deploy-console.tsx"
         note="interactive · try a deploy"
       />
-      <Trace as="div" intensity={0.9} duration={4800} active={!!deploy}>
+      <Trace as="div" double intensity={0.9} duration={4800} active={!!deploy}>
         <Card className="overflow-hidden">
           <CardHeader className="flex-row flex-wrap items-center justify-between gap-3 border-b border-border px-4 py-2.5">
             <span className="flex items-center gap-2.5">
@@ -691,7 +691,7 @@ const ControlStrip = memo(function ControlStrip({
         </span>
       </span>
       <span className="flex items-center gap-2.5">
-        <Glow intensity={0.7}>
+        <Glow intensity={0.7} disabled={deploying}>
           <Button
             variant="outline"
             size="sm"
@@ -703,7 +703,7 @@ const ControlStrip = memo(function ControlStrip({
             ) : (
               <Rocket data-icon="inline-start" />
             )}
-            {deploying ? "deploying…" : "deploy"}
+            {deploying ? "deploying..." : "deploy"}
           </Button>
         </Glow>
         <DropdownMenu>
@@ -743,7 +743,11 @@ const LogRow = memo(function LogRow({ line }: { line: LogLine }) {
   return (
     <div className="flex gap-2">
       <span className="shrink-0 text-foreground-subtle">{line.ts}</span>
-      <span className={LEVEL_CLASS[line.level]}>{line.text}</span>
+      <span className={LEVEL_CLASS[line.level]}>
+        <Typewriter caret={false} speed={14} trigger="mount">
+          {line.text}
+        </Typewriter>
+      </span>
     </div>
   );
 });

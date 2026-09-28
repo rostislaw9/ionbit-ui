@@ -137,6 +137,12 @@ export const scrambleMeta: ComponentMeta = {
       default: "false",
       description: "Disable the effect — renders the final text.",
     },
+    {
+      name: "data-motion-skip",
+      type: "attribute",
+      description:
+        "Mark any descendant to keep its text untouched — badges, icons, live values.",
+    },
   ],
   accessibility: [
     "While decoding, the element is aria-hidden and a visually-hidden sibling exposes the final text to screen readers; at rest the content is fully accessible",
