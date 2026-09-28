@@ -94,7 +94,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Layout",
     description: "Expandable content panel.",
     exampleCount: 4,
-    isNew: true,
+    isNew: false,
   },
   {
     name: "combobox",
@@ -102,7 +102,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Searchable option picker.",
     exampleCount: 10,
-    isNew: true,
+    isNew: false,
   },
   {
     name: "command",
@@ -150,7 +150,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Form",
     description: "Composable form field parts.",
     exampleCount: 11,
-    isNew: true,
+    isNew: false,
   },
   {
     name: "glow",
@@ -206,7 +206,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Theme toggle with radial reveal.",
     exampleCount: 1,
-    isNew: true,
+    isNew: false,
   },
   {
     name: "native-select",
@@ -390,7 +390,7 @@ export const componentManifest: ManifestEntry[] = [
     category: "Feedback",
     description: "Transient notification.",
     exampleCount: 6,
-    isNew: true,
+    isNew: false,
   },
   {
     name: "toggle",
@@ -421,7 +421,7 @@ export const componentManifest: ManifestEntry[] = [
     label: "Trace",
     category: "Motion",
     description: "Accent beam along element's border.",
-    exampleCount: 2,
+    exampleCount: 3,
     isNew: true,
   },
 ];

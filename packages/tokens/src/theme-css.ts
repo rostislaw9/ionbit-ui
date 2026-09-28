@@ -100,8 +100,9 @@ export function settingsToCss(s: ThemeSettings): string {
     `  --ripple-intensity: ${s.rippleIntensity};`,
     `  --tilt-intensity: ${s.tiltIntensity};`,
     `  --reflection-intensity: ${s.reflectionIntensity};`,
-    `  --scramble-intensity: ${s.scrambleIntensity};`,
+    `  --scramble-speed: ${s.scrambleSpeed};`,
     `  --trace-intensity: ${s.traceIntensity};`,
+    `  --trace-speed: ${s.traceSpeed};`,
   ].join("\n");
 }
 

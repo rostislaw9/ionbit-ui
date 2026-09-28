@@ -36,6 +36,12 @@ export interface TraceProps extends Omit<
   active?: boolean;
   /** Time for one full lap around the border, in ms. @default 2400 */
   duration?: number;
+  /**
+   * Beam speed multiplier — 2 laps twice as fast, 0.5 half as fast.
+   * Scales `duration` (effective lap time = duration / speed).
+   * @default 1
+   */
+  speed?: number;
   /** Beam thickness in px. @default 1.5 */
   thickness?: number;
   /**
@@ -43,6 +49,12 @@ export interface TraceProps extends Omit<
    * @default 0.15
    */
   arc?: number;
+  /**
+   * Two beams on opposite sides instead of one. With `arc > 0.25`
+   * the beams' tails overlap and visually merge.
+   * @default false
+   */
+  double?: boolean;
   /**
    * Element tag for the wrapper. Use `"div"` when wrapping block-level
    * children such as cards.
@@ -79,8 +91,10 @@ export const Trace = forwardRef<HTMLElement, TraceProps>(function Trace(
     disabled = false,
     active = true,
     duration = 2400,
+    speed = 1,
     thickness = 1.5,
     arc = 0.15,
+    double = false,
     as: Component = "span",
     className,
     style,
@@ -109,6 +123,15 @@ export const Trace = forwardRef<HTMLElement, TraceProps>(function Trace(
 
   const beamColor = color ?? "var(--accent, oklch(0.62 0.19 230))";
   const alpha = Math.max(0, Math.min(1, intensity));
+  const lap = duration / Math.max(speed, 0.01);
+
+  // A beam is a color ramp ending at `end` turns around the ring —
+  // `double` mirrors it at the opposite side (half a turn apart).
+  const beam = (end: number) =>
+    `transparent ${end - arc}turn, color-mix(in oklab, ${beamColor} 45%, transparent) ${end - arc * 0.35}turn, ${beamColor} ${end}turn`;
+  const gradient = double
+    ? `conic-gradient(from var(--ionbit-trace-angle, 0deg), transparent 0turn, ${beam(0.5)}, transparent 0.5turn, ${beam(1)})`
+    : `conic-gradient(from var(--ionbit-trace-angle, 0deg), transparent 0turn, transparent ${1 - arc}turn, color-mix(in oklab, ${beamColor} 45%, transparent) ${1 - arc * 0.35}turn, ${beamColor} 1turn)`;
 
   const layerStyle: CSSProperties = reduced
     ? {
@@ -123,14 +146,14 @@ export const Trace = forwardRef<HTMLElement, TraceProps>(function Trace(
         inset: 0,
         borderRadius: "inherit",
         padding: `${thickness}px`,
-        background: `conic-gradient(from var(--ionbit-trace-angle, 0deg), transparent 0turn, transparent ${1 - arc}turn, color-mix(in oklab, ${beamColor} 45%, transparent) ${1 - arc * 0.35}turn, ${beamColor} 1turn)`,
+        background: gradient,
         WebkitMask:
           "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
         WebkitMaskComposite: "xor",
         mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
         maskComposite: "exclude",
         opacity: alpha,
-        animation: `ionbit-ui-trace ${duration}ms linear infinite`,
+        animation: `ionbit-ui-trace ${lap}ms linear infinite`,
         pointerEvents: "none",
       };
 

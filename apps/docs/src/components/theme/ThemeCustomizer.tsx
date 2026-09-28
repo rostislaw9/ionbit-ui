@@ -256,11 +256,11 @@ function ThemeControlsImpl({ state }: { state: ThemeCustomizerState }) {
           />
           <EffectSlider
             label="Scramble"
-            value={settings.scrambleIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="scrambleIntensity"
+            value={settings.scrambleSpeed * 100}
+            min={20}
+            max={200}
+            step={10}
+            effectKey="scrambleSpeed"
             onCommit={updateSettings}
           />
           <EffectSlider
@@ -297,6 +297,15 @@ function ThemeControlsImpl({ state }: { state: ThemeCustomizerState }) {
             max={100}
             step={5}
             effectKey="traceIntensity"
+            onCommit={updateSettings}
+          />
+          <EffectSlider
+            label="Trace Speed"
+            value={settings.traceSpeed * 100}
+            min={20}
+            max={200}
+            step={10}
+            effectKey="traceSpeed"
             onCommit={updateSettings}
           />
         </div>

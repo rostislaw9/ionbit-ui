@@ -29,8 +29,9 @@ interface ThemePreviewProps {
   reflectionIntensity: number;
   rippleIntensity: number;
   tiltIntensity: number;
-  scrambleIntensity: number;
+  scrambleSpeed: number;
   traceIntensity: number;
+  traceSpeed: number;
   translucency: number;
   radiusSm: string;
   radiusXl: string;
@@ -44,8 +45,9 @@ function ThemePreviewImpl({
   reflectionIntensity,
   rippleIntensity,
   tiltIntensity,
-  scrambleIntensity,
+  scrambleSpeed,
   traceIntensity,
+  traceSpeed,
 }: ThemePreviewProps) {
   const { mode } = useTheme();
 
@@ -108,7 +110,12 @@ function ThemePreviewImpl({
         </Tilt>
 
         {/* Scramble — hover decodes every text node in the card */}
-        <Scramble as="div" intensity={scrambleIntensity} trigger="hover">
+        <Scramble
+          as="div"
+          duration={Math.round(800 / scrambleSpeed)}
+          intensity={1}
+          trigger="hover"
+        >
           <Card elevated>
             <CardHeader>
               <div className="flex items-start justify-between gap-4">
@@ -121,7 +128,7 @@ function ThemePreviewImpl({
                   </CardTitle>
                 </div>
                 <Badge variant="accent">
-                  {(scrambleIntensity * 100).toFixed(0)}%
+                  {(scrambleSpeed * 100).toFixed(0)}%
                 </Badge>
               </div>
               <CardDescription>
@@ -136,7 +143,7 @@ function ThemePreviewImpl({
         </Scramble>
 
         {/* Trace — the border beam keeps the card in a busy state */}
-        <Trace as="div" intensity={traceIntensity}>
+        <Trace as="div" double intensity={traceIntensity} speed={traceSpeed}>
           <Card elevated>
             <CardHeader>
               <div className="flex items-start justify-between gap-4">

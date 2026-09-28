@@ -3,6 +3,9 @@ import type { ComponentMeta } from "./types";
 import { TraceDemo } from "../../demos/trace-demo";
 import TraceDemoSource from "../../demos/trace-demo.tsx?highlighted";
 import TraceDemoRaw from "../../demos/trace-demo.tsx?raw";
+import { TraceDoubleDemo } from "../../demos/trace-double-demo";
+import TraceDoubleDemoSource from "../../demos/trace-double-demo.tsx?highlighted";
+import TraceDoubleDemoRaw from "../../demos/trace-double-demo.tsx?raw";
 import { TraceStateDemo } from "../../demos/trace-state-demo";
 import TraceStateDemoSource from "../../demos/trace-state-demo.tsx?highlighted";
 import TraceStateDemoRaw from "../../demos/trace-state-demo.tsx?raw";
@@ -21,6 +24,14 @@ export const traceMeta: ComponentMeta = {
       code: TraceDemoSource,
       rawCode: TraceDemoRaw,
       render: () => <TraceDemo />,
+    },
+    {
+      title: "Double",
+      description:
+        "The double prop mirrors the beam on the opposite side of the border.",
+      code: TraceDoubleDemoSource,
+      rawCode: TraceDoubleDemoRaw,
+      render: () => <TraceDoubleDemo />,
     },
     {
       title: "State",
@@ -55,6 +66,12 @@ export const traceMeta: ComponentMeta = {
       description: "Time for one lap around the border in ms.",
     },
     {
+      name: "speed",
+      type: "number",
+      default: "1",
+      description: "Beam speed multiplier — scales duration.",
+    },
+    {
       name: "thickness",
       type: "number",
       default: "1.5",
@@ -65,6 +82,12 @@ export const traceMeta: ComponentMeta = {
       type: "number (0-1)",
       default: "0.15",
       description: "Beam length as a fraction of the border perimeter.",
+    },
+    {
+      name: "double",
+      type: "boolean",
+      default: "false",
+      description: "Add a second beam on the opposite side of the border.",
     },
     {
       name: "as",

@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **`Trace` gains `double` and `speed` props.** `double` paints a second
+  beam on the opposite side of the border; `speed` multiplies the beam's
+  travel rate (effective lap time = `duration / speed`). The theme editor
+  gains a "Trace Speed" control (`traceSpeed` setting, emitted as
+  `--trace-speed`).
+
+### Changed
+
+- **`scrambleIntensity` is now `scrambleSpeed`.** The Scramble customizer
+  control was really a timing knob — it's now a speed multiplier matching
+  `traceSpeed` (1 = normal, emitted as `--scramble-speed`).
+
 ## [0.2.3] — 2026-09-28
 
 ### Added

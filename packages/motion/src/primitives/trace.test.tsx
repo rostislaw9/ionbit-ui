@@ -45,6 +45,29 @@ describe("Trace", () => {
     expect((layer as HTMLElement).style.animation).toContain("ionbit-ui-trace");
   });
 
+  it("scales the lap duration with the speed prop", () => {
+    const { container } = render(
+      <Trace duration={2400} speed={2}>
+        <button type="button">Syncing</button>
+      </Trace>,
+    );
+    const layer = container.querySelector("[data-ionbit-trace]") as HTMLElement;
+    expect(layer.style.animation).toContain("1200ms");
+  });
+
+  it("paints a second beam on the opposite side when doubled", () => {
+    const { container } = render(
+      <Trace double>
+        <button type="button">Syncing</button>
+      </Trace>,
+    );
+    const layer = container.querySelector("[data-ionbit-trace]") as HTMLElement;
+    const bg = layer.style.background;
+    expect(bg).toContain("0.5turn");
+    expect(bg).toContain("1turn");
+    expect(bg.match(/conic-gradient/g)?.length).toBe(1);
+  });
+
   it("keeps the wrapper mounted but hides the beam when inactive", () => {
     const { container } = render(
       <Trace active={false} data-testid="trace">
