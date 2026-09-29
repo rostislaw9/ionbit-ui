@@ -42,25 +42,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Typewriter trails, extracted as a standalone component (`children`
   glyph, `blink`, `interval`). Theme control: `caretSpeed`.
 - **`Marquee` motion primitive.** Content scrolls in a seamless
-  horizontal loop — copies are measured and repeated until they cover
-  the container, then the track shifts exactly one copy-width per
-  cycle, so the loop never jumps and never shows a gap. `duration`,
-  `reverse`, `gap`, and `pauseOnHover` (pure CSS, hover-capable devices
-  only). Theme control: `marqueeSpeed`.
+  horizontal loop — the track shifts exactly one copy-width per cycle,
+  so the loop never jumps and never shows a gap. `duration`, `reverse`,
+  `gap`, and `pauseOnHover` (pure CSS, hover-capable devices only; mark
+  an ancestor with `data-marquee-pause-scope` to pause from a larger
+  surface). Theme control: `marqueeSpeed`.
 - **`caret="whileTyping"` on Typewriter.** The caret is removed when
   the pass completes — chain multiple Typewriters with it and the
   cursor appears to travel line to line, resting only on the last.
-
-### Fixed
-
-- **Marquee `pauseOnHover` never engaged.** The track animation was an
-  inline `animation` shorthand, which overrides the stylesheet's
-  `animation-play-state`. The animation now lives in the motion
-  stylesheet, driven by CSS vars.
-- **Marquee could scroll empty space before looping.** Two copies only
-  tile seamlessly when one copy is wider than the container; copies are
-  now repeated to cover `container + one copy` (ResizeObserver
-  re-tiles on resize), and each cycle shifts a measured copy-width.
 
 ### Changed
 
@@ -69,12 +58,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   Browsers share that clock, but jsdom's rAF timestamps use a different
   epoch — the anchor makes passes deterministic and testable
   everywhere.
-
-- **`speed` is now `interval` on Typewriter.** The prop was
-  milliseconds per character — a duration, not a multiplier — and is
-  renamed to match `Caret`'s `interval`. The naming rule across the
-  motion package: `interval` is ms per unit event, `duration` is total
-  ms, and `speed` is reserved for multipliers (Trace).
 - **`scrambleIntensity` is now `scrambleSpeed`.** The Scramble customizer
   control was really a timing knob — it's now a speed multiplier matching
   `traceSpeed` (1 = normal, emitted as `--scramble-speed`).
