@@ -100,7 +100,10 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to commit — versions already in sync."
           else
-            git commit -m "chore: sync version to ${{ steps.version.outputs.version }}
+            # --no-verify: the pre-commit hook's prettier tailwind plugin needs
+            # packages/tokens/dist, which isn't built until the step after this.
+            # The commit only rewrites version strings — nothing to lint.
+            git commit --no-verify -m "chore: sync version to ${{ steps.version.outputs.version }}
 
             Auto-synced by the Release workflow on Release ${{ github.event.release.tag_name }}."
             git push origin main
