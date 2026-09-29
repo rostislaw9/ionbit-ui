@@ -23,10 +23,10 @@ export interface TextRun {
  * run; splitting it into per-node units would create extra flex items
  * and pick up the parent's `gap`.
  *
- * Whitespace-only runs carry no content and are skipped. Text inside a
- * nested element marked with `markerAttr` belongs to that nested
- * instance, and elements marked `data-motion-skip` are excluded —
- * both are skipped.
+ * Whitespace-only runs carry no content and are skipped — they're
+ * formatting whitespace, not text to animate. Text inside a nested
+ * element marked with `markerAttr` belongs to that nested instance,
+ * and elements marked `data-motion-skip` are excluded.
  */
 export function collectTextRuns(
   el: HTMLElement,
@@ -39,6 +39,7 @@ export function collectTextRuns(
     const flush = () => {
       const nodes = run;
       run = [];
+      if (nodes.length === 0) return;
       const text = nodes.map((n) => n.data).join("");
       if (text.trim().length === 0) return;
       runs.push({

@@ -34,5 +34,14 @@ export type { TypewriterProps } from "./primitives/typewriter";
 export { Counter } from "./primitives/counter";
 export type { CounterProps } from "./primitives/counter";
 
+export { SplitFlap } from "./primitives/splitflap";
+export type { SplitFlapProps } from "./primitives/splitflap";
+
+export { Caret } from "./primitives/caret";
+export type { CaretProps } from "./primitives/caret";
+
+export { Marquee } from "./primitives/marquee";
+export type { MarqueeProps } from "./primitives/marquee";
+
 export { useFinePointer } from "./hooks/use-fine-pointer";
 export { useReducedMotion } from "./hooks/use-reduced-motion";

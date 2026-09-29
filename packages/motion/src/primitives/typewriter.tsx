@@ -14,6 +14,7 @@ import { useReducedMotion } from "../hooks/use-reduced-motion";
 import { observeIntersection } from "../intersection-observer-pool";
 import { ensureMotionStyles } from "../styles";
 import { collectTextRuns } from "../text-runs";
+import { applyCaretStyles } from "./caret";
 
 /** Marks a Typewriter root so nested instances type only their own text. */
 const TYPEWRITER_ATTR = "data-typewriter";
@@ -55,8 +56,12 @@ interface TypewriterRunOptions {
   interval: number;
   /** ms before typing starts. */
   delay: number;
-  /** Show a trailing block caret while typing (and keep it after). */
-  caret: boolean;
+  /**
+   * Caret behavior: `true` keeps it blinking after the text settles,
+   * `"whileTyping"` removes it when the pass completes, `false`
+   * never shows it.
+   */
+  caret: boolean | "whileTyping";
   onDone?: () => void;
 }
 
@@ -96,9 +101,7 @@ function startTypewriter(
     caretEl.textContent = "▌";
     caretEl.setAttribute("aria-hidden", "true");
     caretEl.setAttribute("data-typewriter-caret", "");
-    caretEl.style.display = "inline-block";
-    caretEl.style.color = "var(--accent, currentColor)";
-    caretEl.style.animation = "ionbit-ui-caret-blink 1.1s step-end infinite";
+    applyCaretStyles(caretEl, 1100);
     // Insert at the typing head immediately — the step loop only
     // repositions it after the active node from here on.
     nodes[0]?.node.before(caretEl);
@@ -115,7 +118,10 @@ function startTypewriter(
     el.insertAdjacentElement("afterend", sr);
   }
 
-  const start = performance.now();
+  // Anchor to the first rAF timestamp — rAF times and
+  // performance.now() share a clock in browsers but differ in jsdom;
+  // the first-frame base keeps the pass testable.
+  let start: number | null = null;
   let raf = 0;
   let done = false;
 
@@ -137,6 +143,7 @@ function startTypewriter(
   };
 
   const step = (now: number) => {
+    if (start === null) start = now;
     const elapsed = now - start - delay;
     const shown =
       elapsed <= 0 ? 0 : Math.min(total, Math.floor(elapsed / interval));
@@ -178,8 +185,13 @@ function startTypewriter(
         else el.setAttribute("aria-hidden", prevHidden);
         sr.remove();
       }
-      // The caret stays mounted — a blinking cursor reads as "the
-      // channel is still open", which is the terminal idiom.
+      // A persistent caret reads as "the channel is still open" — the
+      // terminal idiom. "whileTyping" removes it on completion so
+      // stacked Typewriters can hand the cursor to the next line.
+      if (caret === "whileTyping") {
+        caretEl?.remove();
+        done = true;
+      }
       onDone?.();
       return;
     }
@@ -208,12 +220,16 @@ export interface TypewriterProps extends Omit<
    */
   children?: ReactNode;
   /** Milliseconds per character. @default 30 */
-  speed?: number;
+  interval?: number;
   /**
-   * Show a trailing block caret while typing; it keeps blinking once
-   * the text settles. @default true
+   * Caret behavior. `true` keeps the block caret blinking once the
+   * text settles — the "channel open" terminal idiom. `"whileTyping"`
+   * removes the caret when the pass completes — chain multiple
+   * Typewriters with it and the cursor appears to travel from line
+   * to line, resting only on the last one. `false` never shows it.
+   * @default true
    */
-  caret?: boolean;
+  caret?: boolean | "whileTyping";
   /** Delay in ms before typing starts once triggered. @default 0 */
   delay?: number;
   /**
@@ -259,7 +275,7 @@ export const Typewriter = forwardRef<HTMLElement, TypewriterProps>(
   function Typewriter(
     {
       children,
-      speed = 30,
+      interval = 30,
       caret = true,
       delay = 0,
       trigger = "view",
@@ -287,12 +303,12 @@ export const Typewriter = forwardRef<HTMLElement, TypewriterProps>(
       playedRef.current = true;
       cancelRef.current?.();
       cancelRef.current = startTypewriter(el, {
-        interval: speed,
+        interval,
         delay,
         caret,
         onDone: onComplete,
       });
-    }, [speed, delay, caret, onComplete]);
+    }, [interval, delay, caret, onComplete]);
 
     // Trigger: mount — type immediately, before the first paint, so the
     // finished text never flashes. Layout effect: the nodes are emptied

@@ -8,6 +8,7 @@ import { badgeMeta } from "./badge";
 import { breadcrumbMeta } from "./breadcrumb";
 import { buttonMeta } from "./button";
 import { cardMeta } from "./card";
+import { caretMeta } from "./caret";
 import { checkboxMeta } from "./checkbox";
 import { collapsibleMeta } from "./collapsible";
 import { comboboxMeta } from "./combobox";
@@ -24,6 +25,7 @@ import { inputMeta } from "./input";
 import { inputGroupMeta } from "./input-group";
 import { labelMeta } from "./label";
 import { magneticMeta } from "./magnetic";
+import { marqueeMeta } from "./marquee";
 import { modeSwitcherMeta } from "./mode-switcher";
 import { nativeSelectMeta } from "./native-select";
 import { paginationMeta } from "./pagination";
@@ -41,6 +43,7 @@ import { sheetMeta } from "./sheet";
 import { skeletonMeta } from "./skeleton";
 import { sliderMeta } from "./slider";
 import { spinnerMeta } from "./spinner";
+import { splitflapMeta } from "./splitflap";
 import { spotlightMeta } from "./spotlight";
 import { switchMeta } from "./switch";
 import { tableMeta } from "./table";
@@ -61,6 +64,7 @@ export const componentRegistry: ComponentMeta[] = [
   breadcrumbMeta,
   buttonMeta,
   cardMeta,
+  caretMeta,
   checkboxMeta,
   collapsibleMeta,
   comboboxMeta,
@@ -77,6 +81,7 @@ export const componentRegistry: ComponentMeta[] = [
   inputGroupMeta,
   labelMeta,
   magneticMeta,
+  marqueeMeta,
   modeSwitcherMeta,
   nativeSelectMeta,
   paginationMeta,
@@ -94,6 +99,7 @@ export const componentRegistry: ComponentMeta[] = [
   skeletonMeta,
   sliderMeta,
   spinnerMeta,
+  splitflapMeta,
   spotlightMeta,
   switchMeta,
   tableMeta,

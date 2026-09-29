@@ -744,7 +744,7 @@ const LogRow = memo(function LogRow({ line }: { line: LogLine }) {
     <div className="flex gap-2">
       <span className="shrink-0 text-foreground-subtle">{line.ts}</span>
       <span className={LEVEL_CLASS[line.level]}>
-        <Typewriter caret={false} speed={14} trigger="mount">
+        <Typewriter caret={false} interval={14} trigger="mount">
           {line.text}
         </Typewriter>
       </span>

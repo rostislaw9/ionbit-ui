@@ -1,4 +1,8 @@
-import type { ShadowIntensity, ThemeColors } from "../../data/theme-presets";
+import type {
+  NumericThemeSettingKey,
+  ShadowIntensity,
+  ThemeColors,
+} from "../../data/theme-presets";
 import type { ThemeCustomizerState } from "../../hooks/useThemeCustomizer";
 
 import { memo } from "react";
@@ -53,6 +57,90 @@ const COLOR_KEYS: ColorKeyConfig[] = [
   { key: "borderWarning", label: "Border Warning", derived: true },
   { key: "borderInfo", label: "Border Info", derived: true },
 ];
+
+interface EffectSliderConfig {
+  key: NumericThemeSettingKey;
+  label: string;
+  min: number;
+  max: number;
+  step: number;
+}
+
+// Effect sliders — sorted alphabetically by label. Adding a slider
+// here is enough; the sort keeps the list ordered automatically.
+const EFFECT_SLIDERS: EffectSliderConfig[] = [
+  { key: "translucency", label: "Translucency", min: 2, max: 20, step: 1 },
+  { key: "glowIntensity", label: "Glow", min: 0, max: 100, step: 5 },
+  {
+    key: "magneticIntensity",
+    label: "Magnetic",
+    min: 0,
+    max: 100,
+    step: 5,
+  },
+  { key: "pulseIntensity", label: "Pulse", min: 0, max: 100, step: 5 },
+  { key: "rippleIntensity", label: "Ripple", min: 0, max: 100, step: 5 },
+  {
+    key: "scrambleSpeed",
+    label: "Scramble",
+    min: 20,
+    max: 200,
+    step: 10,
+  },
+  {
+    key: "spotlightIntensity",
+    label: "Spotlight",
+    min: 0,
+    max: 100,
+    step: 5,
+  },
+  { key: "tiltIntensity", label: "Tilt", min: 0, max: 100, step: 5 },
+  {
+    key: "reflectionIntensity",
+    label: "Tilt Reflection",
+    min: 0,
+    max: 100,
+    step: 5,
+  },
+  { key: "traceIntensity", label: "Trace", min: 0, max: 100, step: 5 },
+  {
+    key: "traceSpeed",
+    label: "Trace Speed",
+    min: 20,
+    max: 200,
+    step: 10,
+  },
+  {
+    key: "typewriterSpeed",
+    label: "Typewriter Speed",
+    min: 20,
+    max: 200,
+    step: 10,
+  },
+  {
+    key: "counterSpeed",
+    label: "Counter Speed",
+    min: 20,
+    max: 200,
+    step: 10,
+  },
+  {
+    key: "splitflapSpeed",
+    label: "SplitFlap Speed",
+    min: 20,
+    max: 200,
+    step: 10,
+  },
+  {
+    key: "marqueeSpeed",
+    label: "Marquee Speed",
+    min: 20,
+    max: 200,
+    step: 10,
+  },
+  { key: "caretSpeed", label: "Caret Speed", min: 20, max: 200, step: 10 },
+];
+EFFECT_SLIDERS.sort((a, b) => a.label.localeCompare(b.label));
 
 function getColorValue(
   colors: ThemeColors,
@@ -209,123 +297,18 @@ function ThemeControlsImpl({ state }: { state: ThemeCustomizerState }) {
               </ToggleGroupItem>
             </ToggleGroup>
           </div>
-          <EffectSlider
-            label="Translucency"
-            value={settings.translucency * 100}
-            min={2}
-            max={20}
-            step={1}
-            effectKey="translucency"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Glow"
-            value={settings.glowIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="glowIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Magnetic"
-            value={settings.magneticIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="magneticIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Pulse"
-            value={settings.pulseIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="pulseIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Ripple"
-            value={settings.rippleIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="rippleIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Scramble"
-            value={settings.scrambleSpeed * 100}
-            min={20}
-            max={200}
-            step={10}
-            effectKey="scrambleSpeed"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Spotlight"
-            value={settings.spotlightIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="spotlightIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Tilt"
-            value={settings.tiltIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="tiltIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Tilt Reflection"
-            value={settings.reflectionIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="reflectionIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Trace"
-            value={settings.traceIntensity * 100}
-            min={0}
-            max={100}
-            step={5}
-            effectKey="traceIntensity"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Trace Speed"
-            value={settings.traceSpeed * 100}
-            min={20}
-            max={200}
-            step={10}
-            effectKey="traceSpeed"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Typewriter Speed"
-            value={settings.typewriterSpeed * 100}
-            min={20}
-            max={200}
-            step={10}
-            effectKey="typewriterSpeed"
-            onCommit={updateSettings}
-          />
-          <EffectSlider
-            label="Counter Speed"
-            value={settings.counterSpeed * 100}
-            min={20}
-            max={200}
-            step={10}
-            effectKey="counterSpeed"
-            onCommit={updateSettings}
-          />
+          {EFFECT_SLIDERS.map(({ key, label, min, max, step }) => (
+            <EffectSlider
+              key={key}
+              label={label}
+              value={settings[key] * 100}
+              min={min}
+              max={max}
+              step={step}
+              effectKey={key}
+              onCommit={updateSettings}
+            />
+          ))}
         </div>
       </div>
     </div>

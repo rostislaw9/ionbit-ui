@@ -105,6 +105,9 @@ export function settingsToCss(s: ThemeSettings): string {
     `  --trace-speed: ${s.traceSpeed};`,
     `  --typewriter-speed: ${s.typewriterSpeed};`,
     `  --counter-speed: ${s.counterSpeed};`,
+    `  --splitflap-speed: ${s.splitflapSpeed};`,
+    `  --marquee-speed: ${s.marqueeSpeed};`,
+    `  --caret-speed: ${s.caretSpeed};`,
   ].join("\n");
 }
 

@@ -24,17 +24,17 @@ export const typewriterMeta: ComponentMeta = {
   usageCode: `<Typewriter as="p">stream online</Typewriter>`,
   props: [
     {
-      name: "speed",
+      name: "interval",
       type: "number",
       default: "30",
       description: "Milliseconds per character.",
     },
     {
       name: "caret",
-      type: "boolean",
+      type: 'boolean | "whileTyping"',
       default: "true",
       description:
-        "Trailing block caret while typing; keeps blinking once settled.",
+        'true keeps the caret blinking once settled; "whileTyping" removes it on completion — chain Typewriters and the cursor travels line to line, resting on the last.',
     },
     {
       name: "delay",

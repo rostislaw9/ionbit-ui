@@ -1,27 +1,21 @@
 import { memo } from "react";
 
-import {
-  Counter,
-  Glow,
-  Magnetic,
-  Pulse,
-  Ripple,
-  Scramble,
-  Spotlight,
-  Tilt,
-  Trace,
-  Typewriter,
-} from "@ionbit-ui/motion";
-import {
-  Badge,
-  Button,
-  Card,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@ionbit-ui/ui";
+import { Magnetic, Pulse } from "@ionbit-ui/motion";
+import { Badge, Button } from "@ionbit-ui/ui";
 
 import { useTheme } from "../../hooks/useTheme";
+import { CaretCard } from "./cards/CaretCard";
+import { CounterCard } from "./cards/CounterCard";
+import { GlowCard } from "./cards/GlowCard";
+import { MarqueeCard } from "./cards/MarqueeCard";
+import { RevealCard } from "./cards/RevealCard";
+import { RippleCard } from "./cards/RippleCard";
+import { ScrambleCard } from "./cards/ScrambleCard";
+import { SplitFlapCard } from "./cards/SplitFlapCard";
+import { SpotlightCard } from "./cards/SpotlightCard";
+import { TiltCard } from "./cards/TiltCard";
+import { TraceCard } from "./cards/TraceCard";
+import { TypewriterCard } from "./cards/TypewriterCard";
 
 interface ThemePreviewProps {
   spotlightIntensity: number;
@@ -36,6 +30,9 @@ interface ThemePreviewProps {
   traceSpeed: number;
   typewriterSpeed: number;
   counterSpeed: number;
+  splitflapSpeed: number;
+  marqueeSpeed: number;
+  caretSpeed: number;
   translucency: number;
   radiusSm: string;
   radiusXl: string;
@@ -54,6 +51,9 @@ function ThemePreviewImpl({
   traceSpeed,
   typewriterSpeed,
   counterSpeed,
+  splitflapSpeed,
+  marqueeSpeed,
+  caretSpeed,
 }: ThemePreviewProps) {
   const { mode } = useTheme();
 
@@ -61,232 +61,21 @@ function ThemePreviewImpl({
     <div className="flex flex-col gap-4" data-mode={mode}>
       {/* Motion hero cards */}
       <div className="grid gap-4 sm:grid-cols-2">
-        {/* Spotlight — large proximity so the glow leads the cursor */}
-        <Spotlight intensity={spotlightIntensity} proximity={220}>
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Spotlight
-                  </p>
-                  <CardTitle className="mt-1 text-lg">
-                    Hover anywhere near
-                  </CardTitle>
-                </div>
-                <Badge variant="accent">
-                  {(spotlightIntensity * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                The radial highlight follows your cursor up to 220px away from
-                the card edges.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </Spotlight>
-
-        {/* Tilt — the whole card surface tilts toward the cursor */}
-        <Tilt
-          reflection
-          reflectionIntensity={reflectionIntensity}
+        <SpotlightCard intensity={spotlightIntensity} />
+        <TiltCard
           intensity={tiltIntensity}
-        >
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Tilt
-                  </p>
-                  <CardTitle className="mt-1 text-lg">
-                    Move across the card
-                  </CardTitle>
-                </div>
-                <Badge variant="accent">
-                  {(tiltIntensity * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                The surface tilts toward your cursor and springs back when you
-                leave.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </Tilt>
-
-        {/* Scramble — hover decodes every text node in the card */}
-        <Scramble
-          as="div"
-          duration={Math.round(800 / scrambleSpeed)}
-          intensity={1}
-          trigger="hover"
-        >
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Scramble
-                  </p>
-                  <CardTitle className="mt-1 text-lg">
-                    Hover to decrypt
-                  </CardTitle>
-                </div>
-                <Badge variant="accent" data-motion-skip>
-                  {(scrambleSpeed * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                Every text node cycles cipher glyphs, then settles left to
-                right.
-              </CardDescription>
-              <p className="mt-3 font-mono text-xs text-foreground-muted">
-                &gt; channel: SECURE // keys rotated
-              </p>
-            </CardHeader>
-          </Card>
-        </Scramble>
-
-        {/* Trace — the border beam keeps the card in a busy state */}
-        <Trace as="div" double intensity={traceIntensity} speed={traceSpeed}>
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Trace
-                  </p>
-                  <CardTitle className="mt-1 text-lg">
-                    Beam on the border
-                  </CardTitle>
-                </div>
-                <Badge variant="accent">
-                  {(traceIntensity * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                One accent point laps the perimeter — the card reads as busy
-                while it runs.
-              </CardDescription>
-              <p className="mt-3 flex items-center gap-2 font-mono text-xs text-foreground-muted">
-                <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent" />
-                syncing node-07
-              </p>
-            </CardHeader>
-          </Card>
-        </Trace>
-
-        {/* Glow — accent halo builds while the cursor is near */}
-        <Glow intensity={glowIntensity}>
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Glow
-                  </p>
-                  <CardTitle className="mt-1 text-lg">
-                    Hover to energize
-                  </CardTitle>
-                </div>
-                <Badge variant="accent">
-                  {(glowIntensity * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                An accent halo charges the border while the cursor rests on the
-                surface.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </Glow>
-
-        {/* Ripple — press sends a wave across the surface */}
-        <Ripple intensity={rippleIntensity}>
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Ripple
-                  </p>
-                  <CardTitle className="mt-1 text-lg">
-                    Press anywhere on the card
-                  </CardTitle>
-                </div>
-                <Badge variant="accent">
-                  {(rippleIntensity * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                A wave radiates outward from the contact point — works on any
-                surface, not just buttons.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        </Ripple>
-
-        {/* Typewriter — hover replays the typing like terminal output */}
-        <Typewriter
-          as="div"
-          speed={Math.round(30 / typewriterSpeed)}
-          trigger="hover"
-        >
-          <Card elevated className="h-full">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                    Typewriter
-                  </p>
-                  <CardTitle className="mt-1 text-lg">Hover to type</CardTitle>
-                </div>
-                <Badge variant="accent" data-motion-skip>
-                  {(typewriterSpeed * 100).toFixed(0)}%
-                </Badge>
-              </div>
-              <CardDescription>
-                Every text node types character by character — the caret keeps
-                blinking once it settles.
-              </CardDescription>
-              <p className="mt-3 font-mono text-xs text-foreground-muted">
-                &gt; tail -f /var/log/deploy.log
-              </p>
-            </CardHeader>
-          </Card>
-        </Typewriter>
-
-        {/* Counter — the stat rolls up when the card enters view */}
-        <Card elevated className="h-full">
-          <CardHeader>
-            <div className="flex items-start justify-between gap-4">
-              <div>
-                <p className="font-mono text-xs tracking-[0.2em] text-accent uppercase">
-                  Counter
-                </p>
-                <CardTitle className="mt-1 text-lg">
-                  Hover the stat to count
-                </CardTitle>
-              </div>
-              <Badge variant="accent">{(counterSpeed * 100).toFixed(0)}%</Badge>
-            </div>
-            <CardDescription>
-              Values roll from zero up to their target — hover the number itself
-              to run it again.
-            </CardDescription>
-            <p className="mt-3 font-mono text-2xl text-foreground tabular-nums">
-              <Counter
-                value={48210}
-                duration={Math.round(1200 / counterSpeed)}
-                trigger="hover"
-              />
-              <span className="ml-2 text-xs text-foreground-muted">
-                installs
-              </span>
-            </p>
-          </CardHeader>
-        </Card>
+          reflectionIntensity={reflectionIntensity}
+        />
+        <ScrambleCard speed={scrambleSpeed} />
+        <TraceCard intensity={traceIntensity} speed={traceSpeed} />
+        <GlowCard intensity={glowIntensity} />
+        <RippleCard intensity={rippleIntensity} />
+        <TypewriterCard speed={typewriterSpeed} />
+        <MarqueeCard speed={marqueeSpeed} />
+        <CounterCard speed={counterSpeed} />
+        <SplitFlapCard speed={splitflapSpeed} />
+        <CaretCard speed={caretSpeed} />
+        <RevealCard />
       </div>
 
       {/* Status badges + Pulse + Magnetic */}

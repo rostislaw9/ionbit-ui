@@ -137,11 +137,15 @@ export const Counter = forwardRef<HTMLElement, CounterProps>(function Counter(
         el.insertAdjacentElement("afterend", sr);
       }
 
-      const t0 = performance.now();
+      // Anchor to the first rAF timestamp — rAF times and
+      // performance.now() share a clock in browsers but differ in
+      // jsdom; the first-frame base keeps the count testable.
+      let t0: number | null = null;
       let raf = 0;
       const step = (now: number) => {
         // Stopped owning the text — an external write wins.
         if (!el.isConnected) return;
+        if (t0 === null) t0 = now;
         const t = Math.min(1, (now - t0) / duration);
         const current = start + delta * easeOutCubic(t);
         const text = formatValue(t >= 1 ? value : current);

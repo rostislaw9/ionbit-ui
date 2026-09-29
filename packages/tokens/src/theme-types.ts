@@ -85,6 +85,12 @@ export interface ThemeSettings {
   typewriterSpeed: number;
   /** Counter count-up speed multiplier (1 = normal). */
   counterSpeed: number;
+  /** SplitFlap flap speed multiplier (1 = normal). */
+  splitflapSpeed: number;
+  /** Marquee scroll speed multiplier (1 = normal). */
+  marqueeSpeed: number;
+  /** Caret blink speed multiplier (1 = normal). */
+  caretSpeed: number;
 }
 
 /**

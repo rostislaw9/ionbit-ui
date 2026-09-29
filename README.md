@@ -46,8 +46,9 @@ Progress, RadioGroup, ScrollArea, Select, Separator, Sheet, Skeleton,
 Slider, Spinner, Switch, Table, Tabs, Textarea, Toast, Toggle,
 ToggleGroup, Tooltip.
 
-**Motion (11):** Counter, Glow, Magnetic, Pulse, Reveal, Ripple,
-Scramble, Spotlight, Tilt, Trace, Typewriter.
+**Motion (14):** Caret, Counter, Glow, Magnetic, Marquee, Pulse,
+Reveal, Ripple, Scramble, SplitFlap, Spotlight, Tilt, Trace,
+Typewriter.
 
 ## Quick start
 

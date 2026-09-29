@@ -81,6 +81,14 @@ export const componentManifest: ManifestEntry[] = [
     isNew: false,
   },
   {
+    name: "caret",
+    label: "Caret",
+    category: "Motion",
+    description: "Blinking terminal block cursor.",
+    exampleCount: 1,
+    isNew: true,
+  },
+  {
     name: "checkbox",
     label: "Checkbox",
     category: "Form",
@@ -207,6 +215,14 @@ export const componentManifest: ManifestEntry[] = [
     description: "Cursor attraction effect.",
     exampleCount: 1,
     isNew: false,
+  },
+  {
+    name: "marquee",
+    label: "Marquee",
+    category: "Motion",
+    description: "Content scrolls in a seamless loop.",
+    exampleCount: 1,
+    isNew: true,
   },
   {
     name: "mode-switcher",
@@ -343,6 +359,14 @@ export const componentManifest: ManifestEntry[] = [
     description: "Animated loading indicator.",
     exampleCount: 2,
     isNew: false,
+  },
+  {
+    name: "splitflap",
+    label: "SplitFlap",
+    category: "Motion",
+    description: "Departure-board character flips.",
+    exampleCount: 2,
+    isNew: true,
   },
   {
     name: "spotlight",

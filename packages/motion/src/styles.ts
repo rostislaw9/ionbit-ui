@@ -106,7 +106,7 @@ const STYLES = `
   }
 }
 
-/* Typewriter — the trailing block caret blinks like a terminal cursor. */
+/* Typewriter / Caret — the block caret blinks like a terminal cursor. */
 @keyframes ionbit-ui-caret-blink {
   0%, 55% {
     opacity: 1;
@@ -114,6 +114,57 @@ const STYLES = `
   56%, 100% {
     opacity: 0;
   }
+}
+
+/* Marquee — the track holds enough measured copies to cover the
+   viewport while one slides out; each cycle shifts exactly one copy
+   width (--marquee-shift, -50% before measurement). The animation is
+   declared HERE, not inline — an inline animation shorthand would
+   override this rule's animation-play-state, which is exactly what
+   pauseOnHover needs. Direction/duration come in as CSS vars.
+   Pause is gated behind (hover: hover) so a tap doesn't latch it. */
+@keyframes ionbit-ui-marquee {
+  to {
+    transform: translateX(var(--marquee-shift, -50%));
+  }
+}
+
+[data-marquee-track] {
+  animation: ionbit-ui-marquee var(--marquee-duration, 24s) linear
+    infinite;
+  animation-direction: var(--marquee-direction, normal);
+}
+
+@media (hover: hover) {
+  [data-marquee][data-pause-on-hover]:hover [data-marquee-track],
+  [data-marquee-pause-scope]:hover
+    [data-marquee][data-pause-on-hover]
+    [data-marquee-track] {
+    animation-play-state: paused;
+  }
+}
+
+/* SplitFlap — optional card chrome (the cards prop). One merged
+   card face around the whole module block: the strip itself is the
+   card and the glyphs inside are plain text, so nothing misaligns,
+   and the fill is identical at rest and mid-pass — edge pad modules
+   are covered too since the background lives on the element, not on
+   per-char boxes. Leaves share the card fill so a falling leaf
+   reads as the strip's own face. */
+[data-splitflap-cards] {
+  display: inline-block;
+  background: var(
+    --splitflap-card-bg,
+    color-mix(in oklab, currentColor 9%, transparent)
+  );
+}
+
+[data-splitflap-cards] [data-splitflap-flap-top],
+[data-splitflap-cards] [data-splitflap-flap-bottom] {
+  background: var(
+    --splitflap-card-bg,
+    color-mix(in oklab, currentColor 9%, transparent)
+  );
 }
 `;
 

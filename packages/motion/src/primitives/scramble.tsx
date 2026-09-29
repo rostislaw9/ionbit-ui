@@ -234,7 +234,10 @@ function startScramble(
     el.insertAdjacentElement("afterend", sr);
   }
 
-  const start = performance.now();
+  // Anchor to the first rAF timestamp — rAF times and
+  // performance.now() share a clock in browsers but differ in jsdom;
+  // the first-frame base keeps the decode testable.
+  let start: number | null = null;
   let last = -Infinity;
   let raf = 0;
   let done = false;
@@ -259,6 +262,7 @@ function startScramble(
   };
 
   const step = (now: number) => {
+    if (start === null) start = now;
     const t = now - start;
     if (t >= duration) {
       teardown();

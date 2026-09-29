@@ -37,6 +37,21 @@ describe("Typewriter", () => {
     expect(container.querySelector("[data-typewriter-caret]")).toBeNull();
   });
 
+  it("removes the caret on completion with caret whileTyping", async () => {
+    const { container } = render(
+      <Typewriter trigger="mount" interval={1} caret="whileTyping">
+        HI
+      </Typewriter>,
+    );
+    expect(container.querySelector("[data-typewriter-caret]")).toBeTruthy();
+    await new Promise((r) => setTimeout(r, 300));
+    // Text settled and the caret handed off — none left blinking.
+    expect(container.querySelector("[data-typewriter-caret]")).toBeNull();
+    expect(container.querySelector("[data-typewriter]")!.textContent).toBe(
+      "HI",
+    );
+  });
+
   it("renders as a different element", () => {
     const { container } = render(<Typewriter as="p">STATUS</Typewriter>);
     expect(container.querySelector("p[data-typewriter]")).toBeTruthy();
@@ -83,7 +98,7 @@ describe("Typewriter", () => {
 
   it("does not stack carets across replays", async () => {
     const { container } = render(
-      <Typewriter trigger="hover" speed={1}>
+      <Typewriter trigger="hover" interval={1}>
         HI
       </Typewriter>,
     );
